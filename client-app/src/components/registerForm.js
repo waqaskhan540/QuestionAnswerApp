@@ -61,11 +61,25 @@ class RegisterForm extends React.Component {
 
   validateForm = errors => {
     let valid = true;
+    let isEmpty = false;
+
     Object.values(errors).forEach(
       // if we have an error string set valid to false
       val => val.length > 0 && (valid = false)
     );
-    return valid;
+
+    Object.keys(this.state).forEach(key => {
+      switch(key) {
+        case 'firstname':
+        case 'lastname':
+        case 'email':
+        case 'password':
+        case 'confirmpassword':
+          if(this.state[key]  == null)
+              isEmpty = true;
+      }
+    })
+    //return valid;
   };
 
   handleSubmit = event => {
@@ -80,7 +94,7 @@ class RegisterForm extends React.Component {
       this.setState({ isloading: true });
       Axios.post("http://localhost:54709/api/auth/register", data)
         .then(response => {
-          debugger;
+         
           if (response.data.success) {
             this.setState({ isloading: false });
             this.props.history.push("/");
