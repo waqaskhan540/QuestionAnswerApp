@@ -1,171 +1,152 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { Button, Checkbox, Form, Message } from "semantic-ui-react";
-import Axios from "axios";
+import React, { Component } from "react";
+import { Formik } from "formik";
 import { withRouter } from "react-router-dom";
+import { Form, Button, Message } from "semantic-ui-react";
+import authenticationService from "../services/authenticationService";
 
-const validEmailRegex = RegExp(
-  /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-);
-
-class RegisterForm extends React.Component {
+class RegisterForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: null,
-      lastname: null,
-      email: null,
-      password: null,
-      confirmPassword: null,
-      errors: {
-        firstname: "",
-        lastname: "",
-        email: "",
-        password: "",
-        confirmPassword: ""
-      },
-      isloading: false,
-      errorMessage: "" //error message from server
+      error: "" //error from server
     };
   }
+  validateForm = values => {
+    let errors = {};
 
-  handleChange = event => {
-    event.preventDefault();
-    let { name, value } = event.target;
-    let errors = this.state.errors;
-    console.log("handle change called");
-    switch (name) {
-      case "firstname":
-        errors.firstname =
-          value.length < 5 ? "firstname should have atleast 5 characters" : "";
-        break;
-      case "lastname":
-        errors.lastname =
-          value.length < 5 ? "lastname should have atleast 5 characters" : "";
-        break;
-      case "email":
-        errors.email = validEmailRegex.test(value) ? "" : "email is invalid";
-        break;
-      case "password":
-        errors.password =
-          value.length < 6 ? "password should be atleast 6 characters" : "";
-        break;
-      case "confirmpassword":
-        errors.confirmPassword =
-          value == this.state.password ? "" : "passwords do not match";
-        break;
+    if (!values.firstname) {
+      errors.firstname = "first name is required.";
     }
 
-    this.setState({ errors, [name]: value });
-  };
-
-  validateForm = errors => {
-    let valid = true;
-    let isEmpty = false;
-
-    Object.values(errors).forEach(
-      // if we have an error string set valid to false
-      val => val.length > 0 && (valid = false)
-    );
-
-    Object.keys(this.state).forEach(key => {
-      switch(key) {
-        case 'firstname':
-        case 'lastname':
-        case 'email':
-        case 'password':
-        case 'confirmpassword':
-          if(this.state[key]  == null)
-              isEmpty = true;
-      }
-    })
-    //return valid;
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    if (this.validateForm(this.state.errors)) {
-      let data = {
-        firstname: this.state.firstname,
-        lastname: this.state.lastname,
-        email: this.state.email,
-        password: this.state.password
-      };
-      this.setState({ isloading: true });
-      Axios.post("http://localhost:54709/api/auth/register", data)
-        .then(response => {
-         
-          if (response.data.success) {
-            this.setState({ isloading: false });
-            this.props.history.push("/");
-          } else {
-            this.setState({ isloading: false });
-            this.setState({ errorMessage: response.data.message });
-          }
-        })
-        .catch(err => {
-          debugger;
-          this.setState({ isloading: false });
-          this.setState({ errorMessage: "something went wrong" });
-        });
-    } else {
-      console.log("invalid form");
+    if (!values.lastname) {
+      errors.lastname = "last name is required.";
     }
+
+    if (!values.email) {
+      errors.email = "email is required";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+      errors.email = "invalid email address";
+    }
+
+    if (!values.password) {
+      errors.password = "password is required";
+    } else if (values.password.length < 6) {
+      errors.password = "password must be atleast 6 characters long.";
+    }
+
+    if (values.password != values.confirmPassword) {
+      errors.confirmPassword = "passwords do not match";
+    }
+    return errors;
+  };
+
+  submitHandler = (values, { setSubmitting }) => {
+    authenticationService
+      .register(values)
+      .then(response => {
+        setSubmitting(false);
+        localStorage.setItem("access_token",response.data.data.access_token);
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        setSubmitting(false);
+        this.setState({ error: err.response.data.message });
+      });
   };
 
   render() {
-    const { errors, isloading, errorMessage } = this.state;
+    const { error } = this.state;
+
     return (
-      <Form loading={isloading} error={errorMessage.length > 0}>
-        <Form.Input
-          error={errors.firstname.length ? errors.firstname : null}
-          fluid
-          label="First name"
-          name="firstname"
-          placeholder="First name"
-          onChange={this.handleChange}
-        />
-        <Form.Input
-          error={errors.lastname.length ? errors.lastname : null}
-          fluid
-          label="Last Name"
-          name="lastname"
-          placeholder="Last Name"
-          onChange={this.handleChange}
-        />
-        <Form.Input
-          error={errors.email.length ? errors.email : null}
-          fluid
-          label="Email"
-          name="email"
-          placeholder="Email"
-          onChange={this.handleChange}
-        />
-        <Form.Input
-          error={errors.password.length ? errors.password : null}
-          fluid
-          type="password"
-          label="Password"
-          name="password"
-          placeholder="Password"
-          onChange={this.handleChange}
-        />
-        <Form.Input
-          error={errors.confirmPassword.length ? errors.confirmPassword : null}
-          fluid
-          label="Confirm Password"
-          type="password"
-          name="confirmpassword"
-          placeholder="Confirm Password"
-          onChange={this.handleChange}
-        />
-        {errorMessage.length ? (
-          <Message error header="Error" content={errorMessage} />
-        ):''}
-        <Button type="submit" onClick={this.handleSubmit}>
-          Submit
-        </Button>
-      </Form>
+      <div>
+        <Formik
+          initialValues={{
+            firstname: "",
+            lastname: "",
+            email: "",
+            password: "",
+            confirmPassword: ""
+          }}
+          validate={this.validateForm}
+          onSubmit={this.submitHandler}
+        >
+          {({
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting
+          }) => (
+            <Form
+              onSubmit={handleSubmit}
+              loading={isSubmitting}
+              error={error.length}
+            >
+              <Form.Input
+                error={
+                  errors.firstname && touched.firstname && errors.firstname
+                }
+                fluid
+                label="First Name"
+                name="firstname"
+                placeholder="First Name"
+                onChange={handleChange}
+              />
+              <Form.Input
+                error={errors.lastname && touched.lastname && errors.lastname}
+                fluid
+                label="Last Name"
+                name="lastname"
+                placeholder="Last Name"
+                onChange={handleChange}
+              />
+              <Form.Input
+                error={errors.email && touched.email && errors.email}
+                fluid
+                label="Email"
+                name="email"
+                placeholder="Email"
+                onChange={handleChange}
+              />
+
+              <Form.Input
+                error={errors.password && touched.password && errors.password}
+                fluid
+                label="Password"
+                name="password"
+                placeholder="Password"
+                type="password"
+                onChange={handleChange}
+              />
+
+              <Form.Input
+                error={
+                  errors.confirmPassword &&
+                  touched.confirmPassword &&
+                  errors.confirmPassword
+                }
+                fluid
+                label="Confirm Password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                type="password"
+                onChange={handleChange}
+              />
+
+              {error.length ? (
+                <Message error header="Error" content={error} />
+              ) : (
+                ""
+              )}
+
+              <Button type="submit" disabled={isSubmitting}>
+                Submit
+              </Button>
+            </Form>
+          )}
+        </Formik>
+      </div>
     );
   }
 }

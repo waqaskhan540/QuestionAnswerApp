@@ -79,7 +79,7 @@ namespace Api.Controllers
             try
             {
                 var token = GenerateToken(user);
-                return Ok(new { access_token = token });
+                return Ok(BaseResponse.Ok(new { access_token = token }));
             }
             catch (Exception ex)
             {

@@ -1,23 +1,96 @@
 import React, { Component } from "react";
-import { Button, Checkbox, Form } from "semantic-ui-react";
+import { Formik } from "formik";
+import {withRouter} from "react-router-dom"
+import { Form, Button, Message } from "semantic-ui-react";
+import authenticationService from "../services/authenticationService";
 
 class LoginForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: ""
+    };
+  }
   render() {
-    return (
-      <Form>
-        <Form.Field>
-          <label>Email</label>
-          <input placeholder="Email" />
-        </Form.Field>
-        <Form.Field>
-          <label>Password</label>
-          <input type="password" placeholder="Password" />
-        </Form.Field>
+    const { error } = this.state;
 
-        <Button type="submit">Submit</Button>
-      </Form>
+    return (
+      <div>
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          validate={values => {
+            let errors = {};
+            if (!values.email) {
+              errors.email = "Email is required";
+            } else if (
+              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+            ) {
+              errors.email = "Invalid email address";
+            }
+
+            if (!values.password) {
+              errors.password = "Password is required";
+            } else if (values.password.length < 6) {
+              errors.password = "Password must be atleast 6 characters long.";
+            }
+            return errors;
+          }}
+          onSubmit={(values, { setSubmitting }) => {
+            const { email, password } = values;
+            authenticationService
+              .login(email, password)
+              .then(response => {
+                setSubmitting(false);
+                localStorage.setItem("access_token",response.data.data.access_token);
+                this.props.history.push("/");
+              })
+              .catch(err => {
+                setSubmitting(false);                
+                this.setState({ error: err.response.data.message });
+                
+              });
+          }}
+        >
+          {({ errors, touched, handleChange, handleSubmit, isSubmitting }) => (
+            <Form
+              onSubmit={handleSubmit}
+              loading={isSubmitting}
+              error={error.length}
+            >
+              <Form.Input
+                error={errors.email && touched.email && errors.email}
+                fluid
+                label="Email"
+                name="email"
+                placeholder="Email"
+                onChange={handleChange}
+              />
+
+              <Form.Input
+                error={errors.password && touched.password && errors.password}
+                fluid
+                label="Password"
+                name="password"
+                placeholder="Password"
+                type="password"
+                onChange={handleChange}
+              />
+
+              {error.length ? (
+                <Message error header="Error" content={error} />
+              ) : (
+                ""
+              )}
+
+              <Button type="submit" disabled={isSubmitting}>
+                Submit
+              </Button>
+            </Form>
+          )}
+        </Formik>
+      </div>
     );
   }
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);
