@@ -45,7 +45,7 @@ class RegisterForm extends Component {
       .register(values)
       .then(response => {
         setSubmitting(false);
-        localStorage.setItem("access_token",response.data.data.access_token);
+        localStorage.setItem("access_token", response.data.data.access_token);
         this.props.history.push("/");
       })
       .catch(err => {
@@ -70,18 +70,11 @@ class RegisterForm extends Component {
           validate={this.validateForm}
           onSubmit={this.submitHandler}
         >
-          {({
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            isSubmitting
-          }) => (
+          {({ errors, touched, handleChange, handleSubmit, isSubmitting }) => (
             <Form
               onSubmit={handleSubmit}
               loading={isSubmitting}
-              error={error.length}
+              error={error.length > 0}
             >
               <Form.Input
                 error={
