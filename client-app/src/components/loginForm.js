@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import { Formik } from "formik";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import {bindActionCreators} from "redux";
 import { Form, Button, Message } from "semantic-ui-react";
 import authenticationService from "../services/authenticationService";
-import { USER_LOGGED_IN } from "../actionTypes/userActionTypes";
-import { userLoggedIn } from "../actions/userActions";
+import * as userActions from "../actions/userActions";
+
+
 
 class LoginForm extends Component {
   constructor(props) {
@@ -109,9 +111,9 @@ class LoginForm extends Component {
 const mapStateToProps = state => {
   return { user: state.user };
 };
-const mapDispatchToProps = {
- userLoggedIn
-};
+const mapDispatchToProps = dispatch => ({
+ actions : bindActionCreators(userActions,dispatch)
+});
 export default withRouter(
   connect(
     mapStateToProps,

@@ -1,5 +1,6 @@
 ﻿using Api.ApiModels;
 using Api.Data;
+using Api.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,6 +19,7 @@ namespace Api.Controllers
         {
             _dbContext = dbContext;
         }
+        
 
         [HttpGet("api/questions")]
         public async Task<IActionResult> GetAll()

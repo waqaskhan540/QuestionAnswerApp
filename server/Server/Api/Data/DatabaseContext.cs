@@ -18,11 +18,16 @@ namespace Api.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<AppUser>()
+                .HasIndex(x => x.Email)
+                .IsUnique();
+
             modelBuilder.Entity<Question>().HasKey(x => x.Id);
             modelBuilder.Entity<Question>()
                 .Property(x => x.QuestionText)
                 .HasMaxLength(500)
                 .IsRequired();
+
             modelBuilder.Entity<Question>()
                 .HasOne(q => q.User)
                 .WithMany(u => u.Questions)

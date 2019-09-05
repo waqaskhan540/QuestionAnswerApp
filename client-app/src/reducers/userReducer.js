@@ -1,4 +1,5 @@
 import {USER_LOGGED_IN} from "../actionTypes/userActionTypes"
+
 let initialState = {
     firstname:'',
     lastname:'',
