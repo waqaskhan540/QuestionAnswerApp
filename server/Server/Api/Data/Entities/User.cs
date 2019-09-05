@@ -13,6 +13,7 @@ namespace Api.Data.Entities
         public string Email { get; set; }
         public string PasswordHash { get; set; }
 
+        public ICollection<Question> Questions { get; set; }
         public static AppUser Create(string firstname,string lastname,string email,string passwordHash)
         {
             return new AppUser

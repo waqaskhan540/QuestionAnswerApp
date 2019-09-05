@@ -1,6 +1,6 @@
 import React from "react";
-import { Input, Menu, Segment } from "semantic-ui-react";
-import {Link,withRouter} from "react-router-dom"
+import { Input, Menu } from "semantic-ui-react";
+import {withRouter} from "react-router-dom"
 
 class AppHeader extends React.Component {
   state = { activeItem: "home" };

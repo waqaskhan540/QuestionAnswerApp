@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { Formik } from "formik";
-import {withRouter} from "react-router-dom"
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 import { Form, Button, Message } from "semantic-ui-react";
 import authenticationService from "../services/authenticationService";
+import { USER_LOGGED_IN } from "../actionTypes/userActionTypes";
+import { userLoggedIn } from "../actions/userActions";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -14,27 +17,32 @@ class LoginForm extends Component {
 
   submitHandler = (values, { setSubmitting }) => {
     const { email, password } = values;
+ 
     authenticationService
       .login(email, password)
       .then(response => {
         setSubmitting(false);
-        localStorage.setItem("access_token",response.data.data.access_token);
+        localStorage.setItem("access_token", response.data.data.access_token);
+        const user = {
+          firstname: values.firstname,
+          lastname: values.lastname,
+          email: values.email,
+          accessToken: response.data.data.access_token
+        };
+        this.props.userLoggedIn(user)
         this.props.history.push("/");
       })
       .catch(err => {
-        setSubmitting(false);                
+        setSubmitting(false);        
         this.setState({ error: err.response.data.message });
-        
       });
-  }
+  };
 
   validateForm = values => {
     let errors = {};
     if (!values.email) {
       errors.email = "Email is required";
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-    ) {
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
       errors.email = "Invalid email address";
     }
 
@@ -44,7 +52,7 @@ class LoginForm extends Component {
       errors.password = "Password must be atleast 6 characters long.";
     }
     return errors;
-  }
+  };
 
   render() {
     const { error } = this.state;
@@ -98,4 +106,15 @@ class LoginForm extends Component {
   }
 }
 
-export default withRouter(LoginForm);
+const mapStateToProps = state => {
+  return { user: state.user };
+};
+const mapDispatchToProps = {
+ userLoggedIn
+};
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(LoginForm)
+);

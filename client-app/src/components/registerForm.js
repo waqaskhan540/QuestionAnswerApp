@@ -34,7 +34,7 @@ class RegisterForm extends Component {
       errors.password = "password must be atleast 6 characters long.";
     }
 
-    if (values.password != values.confirmPassword) {
+    if (values.password !== values.confirmPassword) {
       errors.confirmPassword = "passwords do not match";
     }
     return errors;

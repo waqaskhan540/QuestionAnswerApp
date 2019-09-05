@@ -1,12 +1,13 @@
 import React, {Component} from "react";
-import ReactDOM from "react-dom";
-import AppHeader from '../components/appHeader';
+import {connect} from "react-redux";
 
 class HomeScreen extends Component {
     render() {
+        debugger;
+        const {isAuthenticated,firstname,lastname} = this.props.user;
         return (
         <div>           
-            <p> this is home screen</p>
+            <p> {isAuthenticated ? firstname + ' ' + lastname: "Home"} </p>
         </div>
         
         
@@ -14,4 +15,9 @@ class HomeScreen extends Component {
     }
 }
 
-export default HomeScreen;
+const mapStateToProps = state => {
+    return {
+        user :state.user
+    }
+}
+export default connect(mapStateToProps)(HomeScreen);
