@@ -2,12 +2,10 @@ import React, { Component } from "react";
 import { Formik } from "formik";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import {bindActionCreators} from "redux";
+import { bindActionCreators } from "redux";
 import { Form, Button, Message } from "semantic-ui-react";
 import authenticationService from "../services/authenticationService";
 import * as userActions from "../actions/userActions";
-
-
 
 class LoginForm extends Component {
   constructor(props) {
@@ -19,26 +17,29 @@ class LoginForm extends Component {
 
   submitHandler = (values, { setSubmitting }) => {
     const { email, password } = values;
- 
+
     authenticationService
       .login(email, password)
       .then(response => {
         setSubmitting(false);
-        localStorage.setItem("access_token", response.data.data.access_token);
-        
-        const user = {
-          firstname: response.data.data.user.firstname,
-          lastname: response.data.data.user.lastname,
-          email: response.data.data.user.email,
-          accessToken: response.data.data.access_token
+
+        const { user, access_token } = response.data.data;
+        const userInfo = {
+          firstname: user.firstname,
+          lastname: user.lastname,
+          email: user.email,
+          accessToken: access_token
         };
-        
-        this.props.actions.userLoggedIn(user)
+
+        this.props.actions.userLoggedIn(userInfo);
+        localStorage.setItem("access_token", response.data.data.access_token);
+        localStorage.setItem("user", JSON.stringify(user));
+
         this.props.history.push("/");
       })
       .catch(err => {
-        setSubmitting(false);  
-        console.log(err);      
+        setSubmitting(false);
+        console.log(err);
         this.setState({ error: err.response.data.message });
       });
   };
@@ -115,7 +116,7 @@ const mapStateToProps = state => {
   return { user: state.user };
 };
 const mapDispatchToProps = dispatch => ({
- actions : bindActionCreators(userActions,dispatch)
+  actions: bindActionCreators(userActions, dispatch)
 });
 export default withRouter(
   connect(
