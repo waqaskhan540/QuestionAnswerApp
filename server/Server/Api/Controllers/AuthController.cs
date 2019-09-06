@@ -107,7 +107,7 @@ namespace Api.Controllers
                 {
                     new Claim(ClaimTypes.Name, user.LastName.ToString()),
                     new Claim(ClaimTypes.Email,user.Email.ToString()),
-                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString(),ClaimValueTypes.Integer32)
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

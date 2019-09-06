@@ -12,6 +12,6 @@ namespace Api.ApiModels
         [Required]
         public string QuestionText { get; set; }
 
-        public DateTime DateTime { get; set; }
+        
     }
 }
