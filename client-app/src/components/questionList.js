@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment } from "semantic-ui-react";
+import { Item } from "semantic-ui-react";
 import questionService from "../services/questionsService";
 
 class QuestionsList extends Component {
@@ -22,11 +22,20 @@ class QuestionsList extends Component {
   render() {
     const { loading, questions } = this.state;
     return (
-      <div>
+      <Item.Group>
         {questions.map(question => (
-          <Segment raised key={question.id}>{question.questionText}</Segment>
+          <Item key={question.id}>
+            <Item.Image size="tiny" src="https://via.placeholder.com/100" />
+
+            <Item.Content>
+              <Item.Header as="a">{question.questionText}</Item.Header>
+              <Item.Meta>Description</Item.Meta>
+
+              <Item.Extra>Additional Details</Item.Extra>
+            </Item.Content>
+          </Item>
         ))}
-      </div>
+      </Item.Group>
     );
   }
 }

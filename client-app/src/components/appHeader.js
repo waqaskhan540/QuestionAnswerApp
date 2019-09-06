@@ -135,8 +135,8 @@ class AppHeader extends React.Component {
           </Modal.Content>
 
           <Modal.Actions>
-            <Button onClick={this.toggleModal} negative>
-              Cancel
+            <Button onClick={this.toggleModal} negative={!showSuccessMessage}>
+              {showSuccessMessage ? "OK":"Cancel"}
             </Button>
             {showSuccessMessage ? (
               ""
