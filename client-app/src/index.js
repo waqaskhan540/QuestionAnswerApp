@@ -9,8 +9,12 @@ import LoginScreen from "./screens/loginScreen";
 import QuestionScreen from "./screens/questionsScreen";
 import RegisterScreen from "./screens/registerScreen";
 import rootReducer from "./reducers";
+import {loadState,saveState} from "./helpers/localStorage";
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer,loadState());
+store.subscribe(() => {
+  saveState(store.getState())
+})
 
 ReactDOM.render(
   <Provider store = {store}>

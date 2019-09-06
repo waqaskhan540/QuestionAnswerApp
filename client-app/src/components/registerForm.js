@@ -56,10 +56,7 @@ class RegisterForm extends Component {
           accessToken: access_token
         };
 
-        this.props.actions.userLoggedIn(userInfo);
-        localStorage.setItem("access_token", response.data.data.access_token);
-        localStorage.setItem("user", JSON.stringify(user));
-
+        this.props.actions.userLoggedIn(userInfo);     
         this.props.history.push("/");
       })
       .catch(err => {

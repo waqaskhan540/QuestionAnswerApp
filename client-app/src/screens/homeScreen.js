@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 
 class HomeScreen extends Component {
     render() {
-        debugger;
+        
         const {isAuthenticated,firstname,lastname} = this.props.user;
         return (
         <div>           

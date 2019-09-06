@@ -40,7 +40,7 @@ class AppHeader extends React.Component {
                 onClick={this.handleItemClick}
               >
                 <Icon name="user" />
-                {user.firstname}
+                {user.lastname}
               </Menu.Item>
             ) : (
                 <>
