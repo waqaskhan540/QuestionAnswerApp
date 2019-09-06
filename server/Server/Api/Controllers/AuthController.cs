@@ -48,8 +48,8 @@ namespace Api.Controllers
             {
                 await _dbContext.Users.AddAsync(user);
                 await _dbContext.SaveChangesAsync();
-                var token = GenerateToken(user);
-                return Ok(BaseResponse.Ok(new { access_token = token }));
+                var tokenResponse = GenerateToken(user);
+                return Ok(BaseResponse.Ok(tokenResponse));
             }
             catch (Exception ex)
             {
@@ -78,8 +78,8 @@ namespace Api.Controllers
 
             try
             {
-                var token = GenerateToken(user);
-                return Ok(BaseResponse.Ok(new { access_token = token }));
+                var tokenResponse = GenerateToken(user);
+                return Ok(BaseResponse.Ok(tokenResponse));
             }
             catch (Exception ex)
             {
@@ -97,7 +97,7 @@ namespace Api.Controllers
             }
         }
 
-        private string GenerateToken(AppUser user)
+        private object GenerateToken(AppUser user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes("some_big_key_value_here_secret");
@@ -113,7 +113,16 @@ namespace Api.Controllers
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
+            return new
+            {
+                access_token = tokenHandler.WriteToken(token),
+                user = new
+                {
+                    firstname = user.FirstName,
+                    lastname = user.LastName,
+                    email = user.Email,
+                }
+            };
 
         }
     }

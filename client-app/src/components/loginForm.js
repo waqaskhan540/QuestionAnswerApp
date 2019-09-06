@@ -25,17 +25,20 @@ class LoginForm extends Component {
       .then(response => {
         setSubmitting(false);
         localStorage.setItem("access_token", response.data.data.access_token);
+        
         const user = {
-          firstname: values.firstname,
-          lastname: values.lastname,
-          email: values.email,
+          firstname: response.data.data.user.firstname,
+          lastname: response.data.data.user.lastname,
+          email: response.data.data.user.email,
           accessToken: response.data.data.access_token
         };
-        this.props.userLoggedIn(user)
+        
+        this.props.actions.userLoggedIn(user)
         this.props.history.push("/");
       })
       .catch(err => {
-        setSubmitting(false);        
+        setSubmitting(false);  
+        console.log(err);      
         this.setState({ error: err.response.data.message });
       });
   };
