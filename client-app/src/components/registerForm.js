@@ -3,6 +3,9 @@ import { Formik } from "formik";
 import { withRouter } from "react-router-dom";
 import { Form, Button, Message } from "semantic-ui-react";
 import authenticationService from "../services/authenticationService";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as userActions from "../actions/userActions";
 
 class RegisterForm extends Component {
   constructor(props) {
@@ -45,7 +48,18 @@ class RegisterForm extends Component {
       .register(values)
       .then(response => {
         setSubmitting(false);
+        const { user, access_token } = response.data.data;
+        const userInfo = {
+          firstname: user.firstname,
+          lastname: user.lastname,
+          email: user.email,
+          accessToken: access_token
+        };
+
+        this.props.actions.userLoggedIn(userInfo);
         localStorage.setItem("access_token", response.data.data.access_token);
+        localStorage.setItem("user", JSON.stringify(user));
+
         this.props.history.push("/");
       })
       .catch(err => {
@@ -144,4 +158,16 @@ class RegisterForm extends Component {
   }
 }
 
-export default withRouter(RegisterForm);
+
+const mapStateToProps = state => {
+  return {
+    user : state.user
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    actions : bindActionCreators(userActions,dispatch)
+  }
+}
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(RegisterForm));
