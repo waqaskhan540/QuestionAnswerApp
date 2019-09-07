@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Item } from "semantic-ui-react";
+import { Item ,Label} from "semantic-ui-react";
 import questionService from "../services/questionsService";
+import {Link} from "react-router-dom";
 
 class QuestionsList extends Component {
   constructor(props) {
@@ -26,14 +27,21 @@ class QuestionsList extends Component {
       <Item.Group>
         {questions.map(question => (
           <Item key={question.id}>
-           
-            <Item.Content>
-              <Item.Header as="a">{question.questionText}</Item.Header>
-              <Item.Meta>{question.user.firstName} {question.user.lastName}</Item.Meta>
-
-              <Item.Extra>Additional Details</Item.Extra>
-            </Item.Content>
-          </Item>
+          <Item.Image size="tiny" src='https://via.placeholder.com/150' />
+    
+          <Item.Content>
+            <Item.Header>
+                <Link to={`/question/${question.id}`}>{question.questionText}</Link>
+            </Item.Header>
+            <Item.Meta>
+              <span className='cinema'>{question.user.firstName} {question.user.lastName}</span>
+            </Item.Meta>           
+            <Item.Extra>
+              <Label>14 Answers</Label>
+              <Label content='Additional Languages' />
+            </Item.Extra>
+          </Item.Content>
+        </Item>
         ))}
       </Item.Group>
     );

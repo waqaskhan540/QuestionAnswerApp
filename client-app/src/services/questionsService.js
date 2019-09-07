@@ -12,6 +12,10 @@ class QuestionsService {
       headers : getHeaders()
     })
   }
+
+  static getQuestionById =(queId) => {
+    return axios.get(`${config.API_BASE_URL}/api/questions/${queId}`);
+  }
 }
 
 export default QuestionsService;
