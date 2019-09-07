@@ -7,11 +7,12 @@ class HomeScreen extends Component {
   render() {
     return (
       <div>
-        <Grid container columns={2} padded>
-          <Grid.Column>
+        <Grid container columns={3} padded>
+        <Grid.Column width={3}></Grid.Column>
+          <Grid.Column width={10}>
             <QuestionList />
           </Grid.Column>
-          <Grid.Column></Grid.Column>
+          <Grid.Column width={3}></Grid.Column>
         </Grid>
       </div>
     );

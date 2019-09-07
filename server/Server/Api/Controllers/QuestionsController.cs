@@ -11,6 +11,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Api.Controllers
 {
     
@@ -46,7 +47,19 @@ namespace Api.Controllers
         [HttpGet("api/questions")]
         public async Task<IActionResult> GetAll()
         {
-            var questions = await _dbContext.Questions.ToListAsync();
+            var questions = await _dbContext.Questions
+                                     .Select(q => new {
+                                         q.Id,
+                                         q.QuestionText,
+                                         q.DateTime,
+                                         q.UserId,
+                                         User = new  {
+                                             q.User.FirstName,
+                                             q.User.LastName
+                                         }
+                                     })                                    
+                                    .ToListAsync();
+
             return Ok(BaseResponse.Ok(questions));
         }
 

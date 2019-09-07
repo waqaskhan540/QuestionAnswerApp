@@ -21,15 +21,15 @@ class QuestionsList extends Component {
   }
   render() {
     const { loading, questions } = this.state;
+    
     return (
       <Item.Group>
         {questions.map(question => (
           <Item key={question.id}>
-            <Item.Image size="tiny" src="https://via.placeholder.com/100" />
-
+           
             <Item.Content>
               <Item.Header as="a">{question.questionText}</Item.Header>
-              <Item.Meta>Description</Item.Meta>
+              <Item.Meta>{question.user.firstName} {question.user.lastName}</Item.Meta>
 
               <Item.Extra>Additional Details</Item.Extra>
             </Item.Content>
