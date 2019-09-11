@@ -9,13 +9,16 @@ import {
   Form,
   TextArea
 } from "semantic-ui-react";
+import { withRouter } from "react-router-dom";
+
 class QuestionModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
       postingQue: false,
       showSuccessMessage: false,
-      questionText: ""
+      questionText: "",
+      postedQuestionId: null // id of the question successfully posted
     };
   }
 
@@ -32,6 +35,12 @@ class QuestionModal extends Component {
     //so that modal could be closed
     this.props.toggleModal();
   };
+
+  gotoQuestion = () => {
+    const { postedQuestionId } = this.state;
+    this.toggleModal();
+    this.props.history.push(`/question/${postedQuestionId}`);
+  };
   postQuestion = () => {
     this.setState({ postingQue: true });
     const { questionText } = this.state;
@@ -41,6 +50,8 @@ class QuestionModal extends Component {
       .then(response => {
         this.setState({ postingQue: false });
         this.setState({ showSuccessMessage: true });
+        const { id } = response.data.data;
+        this.setState({ postedQuestionId: id });
       })
       .catch(err => console.log(err));
   };
@@ -49,7 +60,7 @@ class QuestionModal extends Component {
     this.setState({ questionText: e.target.value });
   };
   render() {
-    const { postingQue, showSuccessMessage } = this.state;
+    const { postingQue, showSuccessMessage, postedQuestionId } = this.state;
     const { modalOpened, toggleModal } = this.props;
     return (
       <Modal open={modalOpened}>
@@ -61,7 +72,8 @@ class QuestionModal extends Component {
                 <Icon name="check circle" />
                 Your question has been posted successfully.
               </Header>
-              <Button primary>Goto My Question</Button>
+              {/* <Link to={`/question/${postedQuestionId}`}>Goto My Question</Link> */}
+              <Button onClick={this.gotoQuestion} positive> Goto My Question </Button>
             </Segment>
           ) : (
             <Form>
@@ -96,4 +108,4 @@ class QuestionModal extends Component {
   }
 }
 
-export default QuestionModal;
+export default withRouter(QuestionModal);
