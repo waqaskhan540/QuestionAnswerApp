@@ -24,6 +24,7 @@ namespace Api.Controllers
         public AuthController(DatabaseContext dbContext)
         {
             _dbContext = dbContext;
+            
         }
 
         [HttpPost("register")]

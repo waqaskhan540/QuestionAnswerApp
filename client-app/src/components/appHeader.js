@@ -1,28 +1,15 @@
 import React from "react";
-import {
-  Input,
-  Menu,
-  Icon,
-  Modal,
-  Form,
-  Segment,
-  Header,
-  TextArea,
-  Button
-} from "semantic-ui-react";
+import { Input, Menu, Icon } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import questionService from "../services/questionsService";
+import QuestionModal from "../components/questionModal";
 
 class AppHeader extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       activeItem: "home",
-      modalOpened: false,
-      postingQue: false,
-      questionText: "",
-      showSuccessMessage: false
+      modalOpened: false
     };
   }
 
@@ -32,37 +19,12 @@ class AppHeader extends React.Component {
   };
 
   toggleModal = () => {
-    const modalStatus = this.state.modalOpened;
-    if (modalStatus) {
-      this.setState({ showSuccessMessage: false });
-      this.setState({ questionText: "" });
-    }
-
+    const modalStatus = this.state.modalOpened;   
     this.setState({ modalOpened: !modalStatus });
   };
 
-  postQuestion = () => {
-    this.setState({ postingQue: true });
-    const { questionText } = this.state;
-
-    questionService
-      .postQuestion({ questionText })
-      .then(response => {
-        this.setState({ postingQue: false });
-        this.setState({ showSuccessMessage: true });
-      })
-      .catch(err => console.log(err));
-  };
-  onQueTextChange = e => {
-    this.setState({ questionText: e.target.value });
-  };
   render() {
-    const {
-      activeItem,
-      modalOpened,
-      postingQue,
-      showSuccessMessage
-    } = this.state;
+    const { activeItem, modalOpened } = this.state;
     const { user } = this.props;
 
     return (
@@ -112,46 +74,7 @@ class AppHeader extends React.Component {
             )}
           </Menu.Menu>
         </Menu>
-        <Modal open={modalOpened}>
-          <Modal.Header>Ask Question</Modal.Header>
-          <Modal.Content>
-            {showSuccessMessage ? (
-              <Segment placeholder>
-                <Header icon>
-                  <Icon name="check circle" />
-                  Your question has been posted successfully.
-                </Header>
-                <Button primary>Goto My Question</Button>
-              </Segment>
-            ) : (
-              <Form>
-                <TextArea
-                  value={this.state.questionText}
-                  onChange={this.onQueTextChange}
-                  placeholder="Type your question here"
-                />
-              </Form>
-            )}
-          </Modal.Content>
-
-          <Modal.Actions>
-            <Button onClick={this.toggleModal} negative={!showSuccessMessage}>
-              {showSuccessMessage ? "OK":"Cancel"}
-            </Button>
-            {showSuccessMessage ? (
-              ""
-            ) : (
-              <Button
-                onClick={this.postQuestion}
-                positive
-                labelPosition="right"
-                icon="checkmark"
-                loading={postingQue}
-                content={postingQue ? "Posting..." : "Post Question"}
-              />
-            )}
-          </Modal.Actions>
-        </Modal>
+        <QuestionModal modalOpened={modalOpened} toggleModal = {this.toggleModal} />
       </div>
     );
   }

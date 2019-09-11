@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Api.Data;
@@ -29,7 +30,12 @@ namespace Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = Configuration.GetConnectionString("Default");
+            string connectionString = string.Empty;
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                connectionString = Configuration.GetConnectionString("Windows");
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                connectionString = Configuration.GetConnectionString("Linux");
+
             services.AddDbContext<DatabaseContext>(options => options.UseMySql(connectionString));
 
             services.AddCors(config =>
