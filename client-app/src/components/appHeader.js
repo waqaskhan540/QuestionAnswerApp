@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Menu, Icon } from "semantic-ui-react";
+import { Input, Menu, Icon, Dropdown, Image, Divider } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import QuestionModal from "../components/questionModal";
@@ -59,14 +59,16 @@ class AppHeader extends React.Component {
             </Menu.Item>
 
             {user.isAuthenticated ? (
-              <Menu.Item
-                name="user"
-                active={activeItem === "user"}
-                onClick={this.handleItemClick}
-              >
-                <Icon name="user" />
-                {user.lastname}
-              </Menu.Item>
+              <Dropdown item simple icon="user">
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick = {() => this.props.history.push("/profile")}>
+                    <span className="text">Profile</span>
+                  </Dropdown.Item>
+                  <Divider />
+
+                  <Dropdown.Item>Logout</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             ) : (
               <>
                 <Menu.Item

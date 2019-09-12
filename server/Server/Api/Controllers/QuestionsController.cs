@@ -90,7 +90,7 @@ namespace Api.Controllers
         public async Task<IActionResult> GetMyQuestions()
         {
             var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
-            var questions = await _dbContext.Questions.Where(x => x.Id == int.Parse(userId)).ToListAsync();
+            var questions = await _dbContext.Questions.Where(x => x.UserId == int.Parse(userId)).ToListAsync();
             return Ok(BaseResponse.Ok(questions));
         }
     }
