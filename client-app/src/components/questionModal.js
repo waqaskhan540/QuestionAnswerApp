@@ -7,7 +7,8 @@ import {
   Icon,
   Button,
   Form,
-  TextArea
+  Label,
+  Input
 } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 
@@ -17,6 +18,7 @@ class QuestionModal extends Component {
     this.state = {
       postingQue: false,
       showSuccessMessage: false,
+      questionError: false,
       questionText: "",
       postedQuestionId: null // id of the question successfully posted
     };
@@ -42,9 +44,14 @@ class QuestionModal extends Component {
     this.props.history.push(`/question/${postedQuestionId}`);
   };
   postQuestion = () => {
-    this.setState({ postingQue: true });
     const { questionText } = this.state;
 
+    if (!questionText.length) {
+      this.setState({ questionError: true });
+      return;
+    }
+
+    this.setState({ postingQue: true });
     questionService
       .postQuestion({ questionText })
       .then(response => {
@@ -57,11 +64,14 @@ class QuestionModal extends Component {
   };
 
   onQueTextChange = e => {
-    this.setState({ questionText: e.target.value });
+    const text = e.target.value;
+    this.setState({ questionText: text });
+    if (!text.length) this.setState({ questionError: true });
+    else this.setState({ questionError: false });
   };
   render() {
-    const { postingQue, showSuccessMessage, postedQuestionId } = this.state;
-    const { modalOpened, toggleModal } = this.props;
+    const { postingQue, showSuccessMessage, questionError } = this.state;
+    const { modalOpened } = this.props;
     return (
       <Modal open={modalOpened}>
         <Modal.Header>Ask Question</Modal.Header>
@@ -72,16 +82,35 @@ class QuestionModal extends Component {
                 <Icon name="check circle" />
                 Your question has been posted successfully.
               </Header>
-              {/* <Link to={`/question/${postedQuestionId}`}>Goto My Question</Link> */}
-              <Button onClick={this.gotoQuestion} positive> Goto My Question </Button>
+
+              <Button onClick={this.gotoQuestion} positive>
+                {" "}
+                Goto My Question{" "}
+              </Button>
             </Segment>
           ) : (
             <Form>
-              <TextArea
+              {/* <Input
                 value={this.state.questionText}
                 onChange={this.onQueTextChange}
+                error={questionError}
                 placeholder="Type your question here"
-              />
+              / */}
+              <Form.Field>
+                <Input
+                  value={this.state.questionText}
+                  onChange={this.onQueTextChange}
+                  error={questionError}
+                  placeholder="Type your question here"
+                />
+                {questionError ? (
+                  <Label basic color="red" pointing>
+                    Please enter a question
+                  </Label>
+                ) : (
+                  ""
+                )}
+              </Form.Field>
             </Form>
           )}
         </Modal.Content>

@@ -19,7 +19,7 @@ class AppHeader extends React.Component {
   };
 
   toggleModal = () => {
-    const modalStatus = this.state.modalOpened;   
+    const modalStatus = this.state.modalOpened;
     this.setState({ modalOpened: !modalStatus });
   };
 
@@ -29,7 +29,7 @@ class AppHeader extends React.Component {
 
     return (
       <div>
-        <Menu pointing>
+        <Menu>
           <Menu.Item
             name="home"
             active={activeItem === "home"}
@@ -37,9 +37,18 @@ class AppHeader extends React.Component {
           />
 
           {user.isAuthenticated ? (
-            <Menu.Item name="Ask Question" onClick={this.toggleModal}>
-              <Icon name="question circle" /> Ask Question
-            </Menu.Item>
+            <>
+              <Menu.Item
+                name="myquestions"
+                active={activeItem === "myquestions"}
+                onClick={this.handleItemClick}
+              >
+                <Icon name="list alternate" /> My Questions
+              </Menu.Item>
+              <Menu.Item name="Ask Question" onClick={this.toggleModal}>
+                <Icon name="question circle" /> Ask Question
+              </Menu.Item>
+            </>
           ) : (
             ""
           )}
@@ -74,7 +83,10 @@ class AppHeader extends React.Component {
             )}
           </Menu.Menu>
         </Menu>
-        <QuestionModal modalOpened={modalOpened} toggleModal = {this.toggleModal} />
+        <QuestionModal
+          modalOpened={modalOpened}
+          toggleModal={this.toggleModal}
+        />
       </div>
     );
   }

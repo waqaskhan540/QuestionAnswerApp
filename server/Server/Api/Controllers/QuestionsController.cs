@@ -84,5 +84,14 @@ namespace Api.Controllers
             var question = await _dbContext.Questions.FirstOrDefaultAsync(x => x.Id == questionId);
             return Ok(BaseResponse.Ok(question));
         }
+
+        [HttpGet("api/myquestions")]
+        [Authorize]
+        public async Task<IActionResult> GetMyQuestions()
+        {
+            var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
+            var questions = await _dbContext.Questions.Where(x => x.Id == int.Parse(userId)).ToListAsync();
+            return Ok(BaseResponse.Ok(questions));
+        }
     }
 }

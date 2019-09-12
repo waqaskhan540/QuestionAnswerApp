@@ -17,6 +17,7 @@ class LoginForm extends Component {
 
   submitHandler = (values, { setSubmitting }) => {
     const { email, password } = values;
+    const { returnUrl } = this.props;
 
     authenticationService
       .login(email, password)
@@ -31,8 +32,9 @@ class LoginForm extends Component {
           accessToken: access_token
         };
 
-        this.props.actions.userLoggedIn(userInfo);       
-        this.props.history.push("/");
+        this.props.actions.userLoggedIn(userInfo);
+        if (returnUrl) this.props.history.push(returnUrl);
+        else this.props.history.push("/");
       })
       .catch(err => {
         setSubmitting(false);
@@ -68,8 +70,7 @@ class LoginForm extends Component {
           onSubmit={this.submitHandler}
         >
           {({ errors, touched, handleChange, handleSubmit, isSubmitting }) => (
-            <Form
-              onSubmit={handleSubmit}
+            <Form             
               loading={isSubmitting}
               error={error.length > 0}
             >
