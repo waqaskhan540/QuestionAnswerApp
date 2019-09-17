@@ -1,49 +1,40 @@
 import React, { Component } from "react";
-import { Item, Label, Segment } from "semantic-ui-react";
-import questionService from "../services/questionsService";
+import { Item, Label } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 class QuestionsList extends Component {
-  constructor(props) {
-    super(props);
-
-    // this.state = {
-    //   questions: [],
-    //   loading: false
-    // };
-  }
-
-  componentDidMount() {
-    // this.setState({ loading: true });
-    // questionService.getLatestQuestions().then(response => {
-    //   const questions = response.data.data;
-    //   this.setState({ questions: questions, loading: false });
-    // });
-  }
   render() {
-    const { questions } = this.props;
+    const { questions, isUserAuthenticated } = this.props;
 
     return (
-      <Item.Group>
+      <Item.Group divided>
         {questions.map(question => (
-         
-            <Item key={question.id}>
-              <Item.Image size="tiny" src="https://via.placeholder.com/150" />
+          <Item key={question.id}>
+            <Item.Image size="tiny" src="https://via.placeholder.com/150" />
 
-              <Item.Content>
-                <Item.Header>
-                  <Link to={`/question/${question.id}`}>
-                    {question.questionText}
-                  </Link>
-                </Item.Header>
-                <Item.Meta></Item.Meta>
-                <Item.Extra>
-                  {/* <Label>14 Answers</Label> */}
-                  {/* <Label content='Additional Languages' /> */}
-                </Item.Extra>
-              </Item.Content>
-            </Item>
-         
+            <Item.Content>
+              <Item.Header>
+                <Link to={`/question/${question.id}`}>
+                  {question.questionText}
+                </Link>
+              </Item.Header>
+              <Item.Meta>
+                <span>{question.user.firstName}</span>
+                <span>{question.user.lastName}</span> -&nbsp;
+                <span>{new Date(question.dateTime).toLocaleDateString()}</span>
+              </Item.Meta>
+              <Item.Extra>
+                <Label content="Answers (12)" />
+                {isUserAuthenticated ? (
+                  <Label as="a" basic color="blue">
+                    Write Answer
+                  </Label>
+                ) : (
+                  ""
+                )}
+              </Item.Extra>
+            </Item.Content>
+          </Item>
         ))}
       </Item.Group>
     );

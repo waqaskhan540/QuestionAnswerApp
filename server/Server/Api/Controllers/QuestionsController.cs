@@ -81,7 +81,20 @@ namespace Api.Controllers
         [HttpGet("api/questions/{questionId}")]
         public async Task<IActionResult> GetQuestion(int questionId)
         {
-            var question = await _dbContext.Questions.FirstOrDefaultAsync(x => x.Id == questionId);
+            var question = await _dbContext.Questions
+                                     .Select(q => new {
+                                         q.Id,
+                                         q.QuestionText,
+                                         q.DateTime,
+                                         q.UserId,
+                                         User = new
+                                         {
+                                             q.User.FirstName,
+                                             q.User.LastName
+                                         }
+                                     })
+                                     .Where(q => q.Id == questionId)
+                                    .FirstOrDefaultAsync();
             return Ok(BaseResponse.Ok(question));
         }
 

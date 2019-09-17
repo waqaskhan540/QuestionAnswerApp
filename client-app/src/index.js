@@ -9,6 +9,7 @@ import LoginScreen from "./screens/loginScreen";
 import QuestionScreen from "./screens/questionsScreen";
 import RegisterScreen from "./screens/registerScreen";
 import QuestionDetailScreen from "./screens/questionDetailScreen";
+import WriteAnswerScreen from "./screens/writeAnswerScreen";
 import MyQuestionsScreen from './screens/myQuestionsScreen';
 import rootReducer from "./reducers";
 import {loadState,saveState} from "./helpers/localStorage";
@@ -29,6 +30,7 @@ ReactDOM.render(
       <Route path="/register" render={() => <RegisterScreen />} />
       <Route path ="/question/:id" render={(props) => <QuestionDetailScreen {...props}/>}/>
       <Route path="/myquestions" render = {() => <MyQuestionsScreen/>} />
+      <Route path="/write/:id" render={(props) => <WriteAnswerScreen {...props}/>}/>
     </Router>
   </Provider>,
   document.getElementById("root")

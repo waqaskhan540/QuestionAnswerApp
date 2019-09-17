@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Menu, Icon, Dropdown, Image, Divider } from "semantic-ui-react";
+import { Input, Menu, Icon, Dropdown, Divider } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import QuestionModal from "../components/questionModal";

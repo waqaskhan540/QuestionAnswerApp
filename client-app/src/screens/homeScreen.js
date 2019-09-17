@@ -27,7 +27,7 @@ class HomeScreen extends Component {
         <Grid container columns={3} padded>
           <Grid.Column width={5}></Grid.Column>
           <Grid.Column width={8}>
-            <Segment raised>
+           
               {loading ? (
                 <Segment>
                   <Dimmer active inverted>
@@ -37,9 +37,12 @@ class HomeScreen extends Component {
                   <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
                 </Segment>
               ) : (
-                <QuestionList questions={questions} />
+                <QuestionList 
+                  questions={questions} 
+                  isUserAuthenticated = {this.props.user.isAuthenticated}
+                  />
               )}
-            </Segment>
+          
           </Grid.Column>
           <Grid.Column width={3}></Grid.Column>
         </Grid>
