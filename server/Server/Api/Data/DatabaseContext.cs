@@ -10,9 +10,11 @@ namespace Api.Data
     public class DatabaseContext : DbContext
     {
         public DatabaseContext(DbContextOptions options) : base(options) { }
-       
+
         public DbSet<AppUser> Users { get; set; }
         public DbSet<Question> Questions { get; set; }
+
+        public DbSet<Answer> Answers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,9 +31,25 @@ namespace Api.Data
                 .IsRequired();
 
             modelBuilder.Entity<Question>()
+
                 .HasOne(q => q.User)
                 .WithMany(u => u.Questions)
                 .HasForeignKey(q => q.UserId);
+
+            modelBuilder.Entity<Answer>().HasKey(x => x.AnswerId);
+            modelBuilder.Entity<Answer>()
+                .Property(x => x.AnswerMarkup)
+                .IsRequired();
+            modelBuilder.Entity<Answer>()
+                .Property(x => x.DateTime)
+                .IsRequired();
+
+            modelBuilder.Entity<Answer>()
+                .HasOne(x => x.Question)
+                .WithMany(x => x.Answers);
+
+
+
 
         }
     }

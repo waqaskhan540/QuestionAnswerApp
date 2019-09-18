@@ -43,7 +43,7 @@ class QuestionDetail extends Component {
         <span>{question.user.lastName}</span> - &nbsp;
         <span>{new Date(question.dateTime).toLocaleDateString()}</span>
         <div>
-          <Link to={`write/${question.id}`}>
+          <Link to={`/write/${question.id}`}>
             <Button content="Write an Answer" basic />
           </Link>
         </div>
