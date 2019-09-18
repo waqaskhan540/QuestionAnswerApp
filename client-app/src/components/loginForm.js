@@ -19,6 +19,7 @@ class LoginForm extends Component {
     const { email, password } = values;
     const { returnUrl } = this.props;
 
+    
     authenticationService
       .login(email, password)
       .then(response => {
@@ -72,6 +73,7 @@ class LoginForm extends Component {
           {({ errors, touched, handleChange, handleSubmit, isSubmitting }) => (
             <Form             
               loading={isSubmitting}
+              onSubmit={handleSubmit}
               error={error.length > 0}
             >
               <Form.Input
