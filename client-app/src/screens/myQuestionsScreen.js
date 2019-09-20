@@ -15,7 +15,8 @@ class MyQuestionsScreen extends Component {
   }
 
   componentDidMount() {
-    questionService.getMyQuestions().then(response => {
+    const {  user } = this.props;
+    questionService.getMyQuestions(user.userId).then(response => {
       const questions = response.data.data;
       this.setState({ questions: questions, loading: false });
     });

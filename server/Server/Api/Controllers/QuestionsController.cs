@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
-    
+
     public class QuestionsController : Controller
     {
         private readonly DatabaseContext _dbContext;
@@ -22,7 +22,7 @@ namespace Api.Controllers
         {
             _dbContext = dbContext;
         }
-        
+
         [HttpPost("api/questions")]
         [Authorize]
         public async Task<IActionResult> Post([FromBody]QuestionViewModel model)
@@ -34,7 +34,7 @@ namespace Api.Controllers
             var question = new Question
             {
                 DateTime = DateTime.Now,
-                UserId =  int.Parse(userId),
+                UserId = int.Parse(userId),
                 QuestionText = model.QuestionText
             };
 
@@ -48,30 +48,51 @@ namespace Api.Controllers
         public async Task<IActionResult> GetAll()
         {
             var questions = await _dbContext.Questions
-                                     .Select(q => new {
+                                     .Select(q => new
+                                     {
                                          q.Id,
                                          q.QuestionText,
                                          q.DateTime,
                                          q.UserId,
-                                         User = new  {
+                                         User = new
+                                         {
                                              q.User.FirstName,
                                              q.User.LastName
                                          }
-                                     })                                    
+                                     })
                                     .ToListAsync();
 
             return Ok(BaseResponse.Ok(questions));
         }
 
         [HttpGet("api/questions/user/{userId}")]
+        [Authorize]
         public async Task<IActionResult> Get(int userId)
         {
-            var questions = await _dbContext.Questions.Where(q => q.UserId == userId).ToListAsync();
+            var loggedUserId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
+            if (userId != int.Parse(loggedUserId))
+                return Unauthorized();
+
+            var questions = await _dbContext.Questions
+                                        .Where(q => q.UserId == userId)
+                                         .Select(q => new
+                                         {
+                                             q.Id,
+                                             q.QuestionText,
+                                             q.DateTime,
+                                             q.UserId,
+                                             User = new
+                                             {
+                                                 q.User.FirstName,
+                                                 q.User.LastName
+                                             }
+                                         })
+                                        .ToListAsync();
             return Ok(BaseResponse.Ok(questions));
         }
 
         [HttpGet("api/questions/user/{userId}/question/{questionId}")]
-        public async Task<IActionResult> Get(int userId,int questionId)
+        public async Task<IActionResult> Get(int userId, int questionId)
         {
             var question = await _dbContext.Questions
                                 .FirstOrDefaultAsync(x => x.UserId == userId && x.Id == questionId);
@@ -82,7 +103,8 @@ namespace Api.Controllers
         public async Task<IActionResult> GetQuestion(int questionId)
         {
             var question = await _dbContext.Questions
-                                     .Select(q => new {
+                                     .Select(q => new
+                                     {
                                          q.Id,
                                          q.QuestionText,
                                          q.DateTime,
@@ -98,13 +120,6 @@ namespace Api.Controllers
             return Ok(BaseResponse.Ok(question));
         }
 
-        [HttpGet("api/myquestions")]
-        [Authorize]
-        public async Task<IActionResult> GetMyQuestions()
-        {
-            var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
-            var questions = await _dbContext.Questions.Where(x => x.UserId == int.Parse(userId)).ToListAsync();
-            return Ok(BaseResponse.Ok(questions));
-        }
+
     }
 }

@@ -30,6 +30,7 @@ class LoginForm extends Component {
           firstname: user.firstname,
           lastname: user.lastname,
           email: user.email,
+          userId:user.userId,
           accessToken: access_token
         };
 

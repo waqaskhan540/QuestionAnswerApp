@@ -17,8 +17,8 @@ class QuestionsService {
     return axios.get(`${config.API_BASE_URL}/api/questions/${queId}`);
   };
 
-  static getMyQuestions = () => {
-    return axios.get(`${config.API_BASE_URL}/api/myquestions`, {
+  static getMyQuestions = (userId) => {
+    return axios.get(`${config.API_BASE_URL}/api/questions/user/${userId}`, {
       headers: getHeaders()
     });
   };

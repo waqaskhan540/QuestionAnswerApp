@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
-   
+
     public class AnswersController : Controller
     {
         private readonly DatabaseContext _dbContext;
@@ -53,18 +53,24 @@ namespace Api.Controllers
         [HttpGet("api/answers/{questionId:int}")]
         public async Task<IActionResult> GetAnswers(int questionId)
         {
+
             var answers = await _dbContext.Answers
                                 .Where(x => x.questionId == questionId)
                                 .Include(q => q.User)
+                                //.Include(q => q.Question)
+                                //    .ThenInclude(q => q.User)
                                 .Select(a => new
                                 {
                                     a.AnswerId,
                                     a.AnswerMarkup,
                                     a.DateTime,
-                                    a.User.Id,
-                                    a.User.FirstName,
-                                    a.User.LastName,
-                                    a.User.Email
+                                    user = new
+                                    {
+                                        a.User.FirstName,
+                                        a.User.LastName,
+                                        a.User.Email
+
+                                    }
                                 })
                                 .ToListAsync();
 

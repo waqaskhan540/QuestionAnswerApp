@@ -21,6 +21,8 @@ export default class TextEditor extends Component {
     }
   };
 
+  postAnswer = (e) => this.props.onPostAnswer(this.state.value.toString("html"));
+
   render() {
     
     const { question } = this.props;
@@ -37,7 +39,7 @@ export default class TextEditor extends Component {
           editorStyle = {{height:'250px'}}
         />
         <br />
-        <Button icon labelPosition="left" primary>
+        <Button icon labelPosition="left" primary onClick = {this.postAnswer}>
           <Icon name="send" />
           Publish Answer
         </Button>

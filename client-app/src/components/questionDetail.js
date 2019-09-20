@@ -11,30 +11,9 @@ import {
 import { Link } from "react-router-dom";
 
 class QuestionDetail extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isLoading: true,
-      question: null
-    };
-  }
-
-  componentDidMount() {
-    const { questionId } = this.props;
-
-    questionService
-      .getQuestionById(questionId)
-      .then(response => {
-        const questionData = response.data.data;
-        this.setState({ question: questionData });
-        this.setState({ isLoading: false });
-      })
-      .catch(err => this.setState({ isLoading: false }));
-  }
   render() {
-    const { isLoading, question } = this.state;
-    if (isLoading) return <div>Loading question ...</div>;
+    const { isLoading, answers, question } = this.props;
+    if (isLoading) return <div>Loading ...</div>;
 
     return (
       <Container>
@@ -48,15 +27,12 @@ class QuestionDetail extends Component {
           </Link>
         </div>
         <Divider />
-        <Segment>
-          <Header as="h3">Answer One</Header>
-          <Image src="http://semantic-ui.com/images/wireframe/paragraph.png" />
-
-          <Divider section />
-
-          <Header as="h3">Answer Two</Header>
-          <Image src="http://semantic-ui.com/images/wireframe/paragraph.png" />
-        </Segment>
+        {answers.map(ans => (
+          <Segment key={ans.answerId}>
+            <Header as="h3">{ans.user.firstName} {ans.user.lastName}</Header>
+            <p>{ans.answerMarkup}</p>                  
+          </Segment>
+        ))}
       </Container>
     );
   }

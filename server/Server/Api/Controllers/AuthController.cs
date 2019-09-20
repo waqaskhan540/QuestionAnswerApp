@@ -122,6 +122,7 @@ namespace Api.Controllers
                     firstname = user.FirstName,
                     lastname = user.LastName,
                     email = user.Email,
+                    userId = user.Id
                 }
             };
 
