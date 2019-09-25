@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Grid } from "semantic-ui-react";
 import TextEditor from "../components/textEditor";
 import questionService from "../services/questionsService";
 import AnswerService from "../services/answerService";
-import {withRouter} from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
 class WriteAnswerScreen extends Component {
   constructor(props) {
@@ -15,7 +14,6 @@ class WriteAnswerScreen extends Component {
   }
 
   postAnswer = answer => {
-    
     const { id } = this.props.match.params;
     AnswerService.postAnswer(id, answer)
       .then(response => this.props.history.push(`/question/${id}`))
@@ -31,18 +29,18 @@ class WriteAnswerScreen extends Component {
   }
   render() {
     const { isloading, question } = this.state;
+
     return (
-      <Grid container columns={3} padded>
-        <Grid.Column width={5}></Grid.Column>
-        <Grid.Column width={8}>
-          {isloading ? (
-            "Loading..."
-          ) : (
-            <TextEditor onPostAnswer={this.postAnswer} question={question} />
-          )}
-        </Grid.Column>
-        <Grid.Column width={3}></Grid.Column>
-      </Grid>
+      // <Grid container columns={3} padded>
+      //   <Grid.Column width={5}></Grid.Column>
+      //   <Grid.Column width={8}>
+      <div>
+        {isloading ? (
+          "Loading..."
+        ) : (
+          <TextEditor onPostAnswer={this.postAnswer} question={question} />
+        )}
+      </div>
     );
   }
 }

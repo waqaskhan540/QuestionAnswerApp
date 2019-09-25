@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import RichTextEditor from "react-rte";
 import { Header, Button, Icon } from "semantic-ui-react";
 

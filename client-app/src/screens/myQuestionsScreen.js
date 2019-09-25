@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import QuestionList from "../components/questionList";
-import { Grid } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import questionService from "../services/questionsService";
@@ -15,7 +14,7 @@ class MyQuestionsScreen extends Component {
   }
 
   componentDidMount() {
-    const {  user } = this.props;
+    const { user } = this.props;
     questionService.getMyQuestions(user.userId).then(response => {
       const questions = response.data.data;
       this.setState({ questions: questions, loading: false });
@@ -31,17 +30,19 @@ class MyQuestionsScreen extends Component {
   render() {
     const { loading, questions } = this.state;
     return (
-      <Grid container columns={3} padded>
-        <Grid.Column width={5}></Grid.Column>
-        <Grid.Column width={8}>
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            <QuestionList questions={questions} />
-          )}
-        </Grid.Column>
-        <Grid.Column width={3}></Grid.Column>
-      </Grid>
+      // <Grid container columns={3} padded>
+      //   <Grid.Column width={5}></Grid.Column>
+      //   <Grid.Column width={8}>
+      <div>
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          <QuestionList questions={questions} />
+        )}
+      </div>
+      //   </Grid.Column>
+      //   <Grid.Column width={3}></Grid.Column>
+      // </Grid>
     );
   }
 }

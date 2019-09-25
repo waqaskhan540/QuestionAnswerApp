@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import QuestionDetail from "../components/questionDetail";
 import AnswerService from "../services/answerService";
 import QuestionService from "../services/questionsService";
+import {connect} from 'react-redux';
 
 class QuestionDetailScreen extends Component {
   state = {
@@ -24,14 +25,22 @@ class QuestionDetailScreen extends Component {
 
   render() {
     const { isloading, answers, question } = this.state;
+    const {isAuthenticated} = this.props.user;
+
     return (
       <QuestionDetail
         isLoading={isloading}
         answers={answers}
         question={question}
+        isUserAuthenticated = {isAuthenticated}
       />
     );
   }
 }
 
-export default QuestionDetailScreen;
+const mapStateToProps = (state) => {
+  return {
+    user : state.user
+  }
+}
+export default connect(mapStateToProps)(QuestionDetailScreen);

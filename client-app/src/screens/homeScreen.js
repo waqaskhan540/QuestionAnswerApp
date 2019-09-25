@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import QuestionList from "../components/questionList";
-import { Grid, Segment, Dimmer, Loader ,Image} from "semantic-ui-react";
+import { Segment, Dimmer, Loader ,Image} from "semantic-ui-react";
 import questionService from "../services/questionsService";
 
 class HomeScreen extends Component {
@@ -24,9 +24,9 @@ class HomeScreen extends Component {
     const { loading, questions } = this.state;
     return (
       <div>
-        <Grid container columns={3} padded>
+        {/* <Grid container columns={3} padded>
           <Grid.Column width={5}></Grid.Column>
-          <Grid.Column width={8}>
+          <Grid.Column width={8}> */}
            
               {loading ? (
                 <Segment>
@@ -43,9 +43,9 @@ class HomeScreen extends Component {
                   />
               )}
           
-          </Grid.Column>
+          {/* </Grid.Column>
           <Grid.Column width={3}></Grid.Column>
-        </Grid>
+        </Grid> */}
       </div>
     );
   }

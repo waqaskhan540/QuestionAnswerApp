@@ -10,7 +10,8 @@ import {
   Label,
   Input
 } from "semantic-ui-react";
-import { withRouter } from "react-router-dom";
+
+
 
 class QuestionModal extends Component {
   constructor(props) {
@@ -137,4 +138,5 @@ class QuestionModal extends Component {
   }
 }
 
-export default withRouter(QuestionModal);
+//export default withRouter(QuestionModal);
+export default QuestionModal
