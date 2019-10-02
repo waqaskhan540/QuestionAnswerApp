@@ -76,6 +76,12 @@ namespace Api
                 app.UseDeveloperExceptionPage();
             }
 
+            using(var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<DatabaseContext>();
+                context.Database.EnsureCreated();                                    
+            }
+
             app.UseCors("AllowAll");
             app.UseAuthentication();
             app.UseMvc();

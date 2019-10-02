@@ -6,6 +6,7 @@
     "axios": "^0.19.0",
     "draft-js": "^0.11.0",
     "formik": "^1.5.8",
+    "grommet": "^2.7.8",
     "qs": "^6.8.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -15,7 +16,8 @@
     "react-rte": "^0.16.1",
     "react-scripts": "3.1.1",
     "redux": "^4.0.4",
-    "semantic-ui-react": "^0.88.0"
+    "semantic-ui-react": "^0.88.0",
+    "styled-components": "^4.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
