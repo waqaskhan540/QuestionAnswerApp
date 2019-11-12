@@ -1,9 +1,10 @@
 import React from "react";
 import LoginForm from "../components/loginForm";
-import {  Header } from "semantic-ui-react";
+import { Header } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Box, Grid } from "grommet";
 import authenticationService from "../services/authenticationService";
 import * as userActions from "../actions/userActions";
 import qs from "qs";
@@ -60,23 +61,34 @@ class LoginScreen extends React.Component {
       });
   };
   render() {
-   
-
     return (
       <div>
-        {/* <Grid container columns={3} padded>
-          <Grid.Column></Grid.Column>
-          <Grid.Column> */}
+        <Grid
+          areas={[
+            { name: "nav", start: [0, 0], end: [0, 0] },
+            { name: "main", start: [1, 0], end: [1, 0] }
+          ]}
+          columns={["medium", "medium"]}
+          rows={["medium", "small"]}
+          gap="small"
+          margin="medium"
+        >
+          <Box gridArea="nav" />
+
+          <Box
+            gridArea="main"
+            pad="medium"
+            elevation="small"           
+            alignSelf="center"
+          >
             <Header as="h3">Login</Header>
-            <hr />
             <LoginForm
-              submitHandler = {this.submitHandler}
-              validateForm = {this.validateForm}
-              error = {this.state.error}
+              submitHandler={this.submitHandler}
+              validateForm={this.validateForm}
+              error={this.state.error}
             />
-          {/* </Grid.Column>
-          <Grid.Column></Grid.Column>
-        </Grid> */}
+          </Box>
+        </Grid>
       </div>
     );
   }

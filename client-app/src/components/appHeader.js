@@ -67,7 +67,7 @@ const AppHeader = ({
         )}
       </Menu.Menu>
     </Menu>
-    <QuestionModal modalOpened={modalOpened} toggleModal={toggleModal} />
+    
   </div>
 );
 

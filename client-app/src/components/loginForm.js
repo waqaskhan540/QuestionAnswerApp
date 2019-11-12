@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
-import { Form, Button, Message } from "semantic-ui-react";
+import { Form, Message } from "semantic-ui-react";
+import { Button } from "grommet";
 
 const LoginForm = ({ submitHandler, error, validateForm }) => (
   <div>
@@ -36,9 +37,15 @@ const LoginForm = ({ submitHandler, error, validateForm }) => (
 
           {error.length ? <Message error header="Error" content={error} /> : ""}
 
-          <Button type="submit" disabled={isSubmitting}>
+          {/* <Button type="submit" disabled={isSubmitting}>
             Submit
-          </Button>
+          </Button> */}
+          <Button
+            label="Login"
+            type="submit"
+            disabled={isSubmitting}
+            fill="horizontal"
+          />
         </Form>
       )}
     </Formik>

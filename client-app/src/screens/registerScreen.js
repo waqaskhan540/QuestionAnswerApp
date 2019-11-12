@@ -1,10 +1,11 @@
 import React from "react";
 import RegisterForm from "../components/registerForm";
-import {  Header } from "semantic-ui-react";
+import { Header } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 import authenticationService from "../services/authenticationService";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import {Grid,Box} from "grommet";
 import * as userActions from "../actions/userActions";
 
 class RegisterScreen extends React.Component {
@@ -69,19 +70,33 @@ class RegisterScreen extends React.Component {
   render() {
     return (
       <div>
-        {/* <Grid container columns={3} padded>
-          <Grid.Column></Grid.Column>
-          <Grid.Column> */}
+        <Grid
+          areas={[
+            { name: "nav", start: [0, 0], end: [0, 0] },
+            { name: "main", start: [1, 0], end: [1, 0] }
+          ]}
+          columns={["medium", "medium"]}
+          rows={["medium", "small"]}
+          gap="small"
+          margin={ {vertical : "xlarge"}}
+        >
+          <Box gridArea="nav" />
+          <Box
+            gridArea="main"
+            pad="medium"
+            elevation="small"
+            alignSelf="center"
+            style = {{"margin-top":"100px"}}
+          >
             <Header as="h3">Register</Header>
-            <hr />
+
             <RegisterForm
               error={this.state.error}
               validateForm={this.validateForm}
               submitHandler={this.submitHandler}
             />
-          {/* </Grid.Column>
-          <Grid.Column></Grid.Column>
-        </Grid> */}
+          </Box>
+        </Grid>
       </div>
     );
   }
