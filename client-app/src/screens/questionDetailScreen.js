@@ -15,12 +15,14 @@ class QuestionDetailScreen extends Component {
 
     QuestionService.getQuestionById(id).then(response => {
       this.setState({ question: response.data.data });
+
+      AnswerService.getAnswersByQuestionId(id).then(response => {
+        this.setState({ isloading: false });
+        this.setState({ answers: response.data.data });
+      });
     });
 
-    AnswerService.getAnswersByQuestionId(id).then(response => {
-      this.setState({ isloading: false });
-      this.setState({ answers: response.data.data });
-    });
+   
   }
 
   render() {

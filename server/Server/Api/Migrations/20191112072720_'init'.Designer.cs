@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Api.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20190905124411_'question_table'")]
-    partial class question_table
+    [Migration("20191112072720_'init'")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,6 +18,29 @@ namespace Api.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("Api.Data.Entities.Answer", b =>
+                {
+                    b.Property<int>("AnswerId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AnswerMarkup")
+                        .IsRequired();
+
+                    b.Property<DateTime>("DateTime");
+
+                    b.Property<int>("UserId");
+
+                    b.Property<int>("questionId");
+
+                    b.HasKey("AnswerId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("questionId");
+
+                    b.ToTable("Answers");
+                });
 
             modelBuilder.Entity("Api.Data.Entities.AppUser", b =>
                 {
@@ -33,6 +56,9 @@ namespace Api.Migrations
                     b.Property<string>("PasswordHash");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
@@ -55,6 +81,19 @@ namespace Api.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("Api.Data.Entities.Answer", b =>
+                {
+                    b.HasOne("Api.Data.Entities.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Api.Data.Entities.Question", "Question")
+                        .WithMany("Answers")
+                        .HasForeignKey("questionId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Api.Data.Entities.Question", b =>

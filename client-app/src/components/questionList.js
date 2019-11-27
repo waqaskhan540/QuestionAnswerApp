@@ -1,42 +1,38 @@
 import React, { Component } from "react";
-import { Item, Label } from "semantic-ui-react";
+import { Item, Label ,Button} from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { Box, Heading } from "grommet";
 
 class QuestionsList extends Component {
   render() {
     const { questions, isUserAuthenticated } = this.props;
-
+    console.log(questions);
     return (
-      <Item.Group divided>
+      <div>
         {questions.map(question => (
-          <Item key={question.id}>
-            <Item.Image size="tiny" src="https://via.placeholder.com/150" />
-
-            <Item.Content>
-              <Item.Header>
-                <Link to={`/question/${question.id}`}>
-                  {question.questionText}
-                </Link>
-              </Item.Header>
-              <Item.Meta>
-                <span>{question.user.firstName}</span>
-                <span>{question.user.lastName}</span> -&nbsp;
-                <span>{new Date(question.dateTime).toLocaleDateString()}</span>
-              </Item.Meta>
-              <Item.Extra>
-                <Label content="Answers (12)" />
-                {isUserAuthenticated ? (
-                  <Label as="a" basic color="blue">
-                    Write Answer
-                  </Label>
-                ) : (
-                  ""
-                )}
-              </Item.Extra>
-            </Item.Content>
-          </Item>
+          <Box
+            direction="column"
+            pad="medium"
+            border={"small"}
+            margin="medium"
+            hoverIndicator={true}
+            onClick={() => console.log("clicked")}
+            elevation="small"
+            key={question.id}            
+          >
+            <Box align="stretch">
+              {question.user.firstName} {question.user.lastName} {" . "}
+              {new Date(question.dateTime).toLocaleDateString()}
+            </Box>
+            <Link to ={`question/${question.id}`}>
+              {/* <Heading margin="none" level="5"> */}
+              <h3> {question.questionText}</h3>
+              {/* </Heading> */}
+            </Link>
+           
+          </Box>
         ))}
-      </Item.Group>
+      </div>
     );
   }
 }
