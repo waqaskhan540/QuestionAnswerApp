@@ -3,6 +3,8 @@ import TextEditor from "../components/textEditor";
 import questionService from "../services/questionsService";
 import AnswerService from "../services/answerService";
 import { withRouter } from "react-router-dom";
+import {Grid,Box} from "grommet";
+import {Loader} from "semantic-ui-react";
 
 class WriteAnswerScreen extends Component {
   constructor(props) {
@@ -35,11 +37,27 @@ class WriteAnswerScreen extends Component {
       //   <Grid.Column width={5}></Grid.Column>
       //   <Grid.Column width={8}>
       <div>
-        {isloading ? (
-          "Loading..."
-        ) : (
-          <TextEditor onPostAnswer={this.postAnswer} question={question} />
-        )}
+        <Grid
+          rows={["xlarge"]}
+          columns={["small", "large", "small"]}
+          gap="small"
+          areas={[
+            { name: "left", start: [0, 0], end: [0, 0] },
+            { name: "middle", start: [1, 0], end: [1, 0] },
+            { name: "right", start: [2, 0], end: [2, 0] }
+          ]}
+          margin= "small"
+        >
+          <Box gridArea="left" />
+          <Box gridArea="middle">
+            {isloading ? (
+              <Loader active inline='centered' />
+            ) : (
+              <TextEditor onPostAnswer={this.postAnswer} question={question} />
+            )}
+          </Box>
+          <Box gridArea="right" />
+        </Grid>
       </div>
     );
   }

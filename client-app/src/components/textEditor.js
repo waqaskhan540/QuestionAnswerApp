@@ -28,10 +28,7 @@ export default class TextEditor extends Component {
     const { question } = this.props;
     return (
       <div>
-        <Header as="h1">{question.questionText}</Header>
-        <span>{question.user.firstName}&nbsp;</span>
-        <span>{question.user.lastName}</span> - &nbsp;
-        <span>{new Date(question.dateTime).toLocaleDateString()}</span>
+        <Header as="h1">{question.questionText}</Header>            
         <RichTextEditor         
           value={this.state.value}
           onChange={this.onChange}

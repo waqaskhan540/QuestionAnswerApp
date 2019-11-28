@@ -10,6 +10,7 @@ import {
   Label,
   Input
 } from "semantic-ui-react";
+import {withRouter} from "react-router-dom"
 
 
 
@@ -40,7 +41,7 @@ class QuestionModal extends Component {
   };
 
   gotoQuestion = () => {
-    const { postedQuestionId } = this.state;
+    const { postedQuestionId } = this.state;    
     this.toggleModal();
     this.props.history.push(`/question/${postedQuestionId}`);
   };
@@ -139,4 +140,4 @@ class QuestionModal extends Component {
 }
 
 //export default withRouter(QuestionModal);
-export default QuestionModal
+export default withRouter(QuestionModal);

@@ -60,6 +60,7 @@ namespace Api.Controllers
                                              q.User.LastName
                                          }
                                      })
+                                     .OrderByDescending(x => x.DateTime)
                                     .ToListAsync();
 
             return Ok(BaseResponse.Ok(questions));
@@ -87,6 +88,7 @@ namespace Api.Controllers
                                                  q.User.LastName
                                              }
                                          })
+                                         .OrderByDescending(x => x.DateTime)
                                         .ToListAsync();
             return Ok(BaseResponse.Ok(questions));
         }

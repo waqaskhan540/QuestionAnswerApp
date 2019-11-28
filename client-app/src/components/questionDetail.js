@@ -1,6 +1,7 @@
 import React from "react";
-import { Header, Divider, Container, Segment, Button } from "semantic-ui-react";
+import { Header, Divider, Container, Segment, Button,Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { Box } from "grommet";
 
 const QuestionDetail = ({
   isLoading,
@@ -13,10 +14,10 @@ const QuestionDetail = ({
   return (
     <Container>
       <Header as="h1">{question.questionText}</Header>
-      <span>{question.user.firstName}&nbsp;</span>
+      {/* <span>{question.user.firstName}&nbsp;</span>
       <span>{question.user.lastName}</span> - &nbsp;
-      <span>{new Date(question.dateTime).toLocaleDateString()}</span>
-      <div>
+      <span>{new Date(question.dateTime).toLocaleDateString()}</span> */}
+      {/* <div>
         {isUserAuthenticated ? (
           <Link to={`/write/${question.id}`}>
             <Button content="Write an Answer" basic />
@@ -24,16 +25,39 @@ const QuestionDetail = ({
         ) : (
           ""
         )}
-      </div>
-      <Divider />
-      {answers.map(ans => (
-        <Segment key={ans.answerId}>
-          <Header as="h3">
-            {ans.user.firstName} {ans.user.lastName}
+      </div> */}
+      {/* <Divider /> */}
+      {answers.length ? (
+        answers.map(ans => (
+          <Box
+            direction="column"
+            pad="medium"
+            hoverIndicator={true}
+            onClick={() => console.log("clicked")}
+            elevation="small"
+            key={question.id}
+            alignContent={"start"}
+            gap={"small"}
+          >
+            <p style={{ color: "grey" }}>
+              {" "}
+              {ans.user.firstName} {ans.user.lastName} {" . "}
+              {new Date(ans.dateTime).toLocaleDateString()}
+            </p>
+            <div dangerouslySetInnerHTML={{ __html: ans.answerMarkup }}></div>
+          </Box>
+        ))
+      ) : (
+        <Segment placeholder>
+          <Header icon>
+            <Icon name="pencil alternate" />
+            Question not answered yet.
           </Header>
-          <p>{ans.answerMarkup}</p>
+          <Segment.Inline>
+            <Button primary>Write Answer</Button>            
+          </Segment.Inline>
         </Segment>
-      ))}
+      )}
     </Container>
   );
 };
