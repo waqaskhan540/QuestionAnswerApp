@@ -12,7 +12,7 @@ const QuestionDetail = ({
   if (isLoading) return <Loader active/>;
 
   return (
-    <Container>
+    <div>
       <Header as="h1">{question.questionText}</Header>
       
       {answers.length ? (
@@ -46,7 +46,7 @@ const QuestionDetail = ({
           </Segment.Inline>
         </Segment>
       )}
-    </Container>
+    </div>
   );
 };
 
