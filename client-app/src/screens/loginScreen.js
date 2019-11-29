@@ -47,6 +47,7 @@ class LoginScreen extends React.Component {
           lastname: user.lastname,
           email: user.email,
           userId: user.userId,
+          image : user.image,
           accessToken: access_token
         };
 

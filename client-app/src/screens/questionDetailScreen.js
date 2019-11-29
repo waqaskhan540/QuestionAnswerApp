@@ -3,7 +3,7 @@ import QuestionDetail from "../components/questionDetail";
 import AnswerService from "../services/answerService";
 import QuestionService from "../services/questionsService";
 import { connect } from "react-redux";
-import {Grid,Box} from "grommet";
+import ScreenContainer from "../components/common/screenContainer";
 
 class QuestionDetailScreen extends Component {
   state = {
@@ -29,28 +29,17 @@ class QuestionDetailScreen extends Component {
     const { isAuthenticated } = this.props.user;
 
     return (
-      <Grid
-        rows={["xlarge"]}
-        columns={["small", "large", "small"]}
-        gap="small"
-        margin = "small"
-        areas={[
-          { name: "left", start: [0, 0], end: [0, 0] },
-          { name: "middle", start: [1, 0], end: [1, 0] },
-          { name: "right", start: [2, 0], end: [2, 0] }
-        ]}
-      >
-        <Box gridArea="left" />
-        <Box gridArea="middle">
+     
+      <ScreenContainer
+        middle={
           <QuestionDetail
             isLoading={isloading}
             answers={answers}
             question={question}
             isUserAuthenticated={isAuthenticated}
           />
-        </Box>
-        <Box gridArea="right" />
-      </Grid>
+        }
+      />
     );
   }
 }

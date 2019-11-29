@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Box, Button, Heading ,Menu} from "grommet";
 import QuestionModal from "../components/questionModal";
+import {withRouter} from "react-router-dom";
 
 class AppBar extends Component {
   render() {
-    const { modalOpened, toggleModal, user } = this.props;
+    const { modalOpened, toggleModal, user ,history} = this.props;
     return (
       <Box
         tag="header"
@@ -39,7 +40,7 @@ class AppBar extends Component {
               <Menu
                 label={user.lastname}
                 items={[
-                  { label: "Profile", onClick: () => {} },
+                  { label: "Profile", onClick: () => { history.push("/profile")} },
                   { label: "Log Out", onClick: () => {} }
                 ]}
               />
@@ -61,4 +62,4 @@ class AppBar extends Component {
   }
 }
 
-export default AppBar;
+export default withRouter(AppBar);

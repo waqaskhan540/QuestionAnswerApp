@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
@@ -9,16 +9,16 @@ import RegisterScreen from "./screens/registerScreen";
 import QuestionDetailScreen from "./screens/questionDetailScreen";
 import WriteAnswerScreen from "./screens/writeAnswerScreen";
 import MyQuestionsScreen from "./screens/myQuestionsScreen";
+import ProfileScreen from "./screens/ProfileScreen";
 import rootReducer from "./reducers";
 import { loadState, saveState } from "./helpers/localStorage";
-import AppBar from "./containers/appBarContainer"
-import {Grommet} from "grommet";
+import AppBar from "./containers/appBarContainer";
+import { Grommet } from "grommet";
 
 const store = createStore(rootReducer, loadState());
 store.subscribe(() => {
   saveState(store.getState());
 });
-
 
 ReactDOM.render(
   <Grommet plain>
@@ -29,6 +29,7 @@ ReactDOM.render(
         <Route exact path="/home" render={() => <HomeScreen />} />
         <Route path="/login" render={props => <LoginScreen {...props} />} />
         <Route path="/register" render={() => <RegisterScreen />} />
+        <Route path="/profile" render={() => <ProfileScreen />} />
         <Route
           path="/question/:id"
           render={props => <QuestionDetailScreen {...props} />}

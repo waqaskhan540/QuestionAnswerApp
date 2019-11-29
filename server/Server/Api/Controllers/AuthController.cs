@@ -114,6 +114,7 @@ namespace Api.Controllers
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
+
             return new
             {
                 access_token = tokenHandler.WriteToken(token),
@@ -122,7 +123,8 @@ namespace Api.Controllers
                     firstname = user.FirstName,
                     lastname = user.LastName,
                     email = user.Email,
-                    userId = user.Id
+                    userId = user.Id,
+                    image = Convert.ToBase64String(user.ProfilePicture)
                 }
             };
 

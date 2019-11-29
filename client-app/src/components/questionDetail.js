@@ -1,7 +1,7 @@
 import React from "react";
-import { Header, Divider, Container, Segment, Button,Icon } from "semantic-ui-react";
+import { Header, Loader, Container, Segment,Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { Box } from "grommet";
+import { Box,Button } from "grommet";
 
 const QuestionDetail = ({
   isLoading,
@@ -9,24 +9,12 @@ const QuestionDetail = ({
   question,
   isUserAuthenticated
 }) => {
-  if (isLoading) return <div>Loading ...</div>;
+  if (isLoading) return <Loader active/>;
 
   return (
     <Container>
       <Header as="h1">{question.questionText}</Header>
-      {/* <span>{question.user.firstName}&nbsp;</span>
-      <span>{question.user.lastName}</span> - &nbsp;
-      <span>{new Date(question.dateTime).toLocaleDateString()}</span> */}
-      {/* <div>
-        {isUserAuthenticated ? (
-          <Link to={`/write/${question.id}`}>
-            <Button content="Write an Answer" basic />
-          </Link>
-        ) : (
-          ""
-        )}
-      </div> */}
-      {/* <Divider /> */}
+      
       {answers.length ? (
         answers.map(ans => (
           <Box
@@ -54,7 +42,7 @@ const QuestionDetail = ({
             Question not answered yet.
           </Header>
           <Segment.Inline>
-            <Button primary>Write Answer</Button>            
+             <Button label = "Write Answer" href = {`/write/${question.id}`}   primary color="accent-3" />
           </Segment.Inline>
         </Segment>
       )}
