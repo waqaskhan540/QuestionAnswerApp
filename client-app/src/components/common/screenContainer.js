@@ -14,27 +14,19 @@ const ScreenContainer = ({ left, middle, right }) => (
     ]}
   >
     <Box gridArea="left" margin={"small"} gap={"large"}>
-      <Menu pointing secondary vertical>
-        <Menu.Item name="inbox">
-          <Label color="teal">1</Label>
-          Inbox
-        </Menu.Item>
-
-        <Menu.Item name="spam">
-          <Label>51</Label>
-          Spam
-        </Menu.Item>
-
-        <Menu.Item name="updates">
-          <Label>1</Label>
-          Updates
-        </Menu.Item>
+      <Menu secondary vertical>
         <Menu.Item>
-          <Input icon="search" placeholder="Search mail..." />
+          <Label color="teal">1</Label>
+          Drafts
+        </Menu.Item>
+
+        <Menu.Item>
+          <Label>1</Label>
+          Saved
         </Menu.Item>
       </Menu>
     </Box>
-    <Box gridArea="middle" margin={"small"}>
+    <Box gridArea="middle" margin={"large"} pad={"small"}>
       {middle}
     </Box>
     <Box gridArea="right">{right}</Box>

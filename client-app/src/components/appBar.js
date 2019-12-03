@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { Box, Button, Heading ,Menu} from "grommet";
+import { Box, Button, Heading, Menu } from "grommet";
 import QuestionModal from "../components/questionModal";
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import { Avatar } from "grommet-controls";
 
 class AppBar extends Component {
   render() {
-    const { modalOpened, toggleModal, user ,history} = this.props;
+    const { modalOpened, toggleModal, user, history } = this.props;
     return (
       <Box
         tag="header"
@@ -34,14 +35,25 @@ class AppBar extends Component {
           ""
         )}
 
-        <Box direction="row" align="end" basis="2/3" justify="end">
+        <Box direction="row" align="end" basis="3/4" justify="end">
           {user.isAuthenticated ? (
             <>
               <Menu
-                label={user.lastname}
+                //label={user.lastname}
+                icon={<Avatar image={`data:image/png;base64, ${user.image}`} />}
                 items={[
-                  { label: "Profile", onClick: () => { history.push("/profile")} },
-                  { label: "Log Out", onClick: () => {} }
+                  {
+                    label: "Profile",
+                    onClick: () => {
+                      history.push("/profile");
+                    }
+                  },
+                  {
+                    label: "Log Out",
+                    onClick: () => {
+                      //history.push("/logout");
+                    }
+                  }
                 ]}
               />
             </>

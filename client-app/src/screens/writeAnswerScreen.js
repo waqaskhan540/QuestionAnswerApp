@@ -2,24 +2,46 @@ import React, { Component } from "react";
 import TextEditor from "../components/textEditor";
 import questionService from "../services/questionsService";
 import AnswerService from "../services/answerService";
+import DraftService from "../services/draftService";
 import { withRouter } from "react-router-dom";
-import {Grid,Box} from "grommet";
-import {Loader} from "semantic-ui-react";
+import { Grid, Box } from "grommet";
+import { Loader } from "semantic-ui-react";
+import {connect} from "react-redux";
 
 class WriteAnswerScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isloading: true,
-      question: null
+      question: null,
+      publishingAnswer: false,
+      savingDraft: false
     };
   }
 
   postAnswer = answer => {
     const { id } = this.props.match.params;
+    this.setState({ publishingAnswer: true });
     AnswerService.postAnswer(id, answer)
-      .then(response => this.props.history.push(`/question/${id}`))
+      .then(response => {
+        this.setState({ publishingAnswer: false });
+        this.props.history.push(`/question/${id}`);
+      })
       .catch(err => console.log(err));
+  };
+
+  saveDraft = draft => {
+    this.setState({ savingDraft: true });
+   
+    DraftService.saveDraft(draft)
+      .then(response => {
+        this.setState({ savingDraft: false });
+        console.log(response);
+      })
+      .catch(err => {
+        this.setState({ savingDraft: false });
+        console.log(err);
+      });
   };
 
   componentDidMount() {
@@ -46,14 +68,20 @@ class WriteAnswerScreen extends Component {
             { name: "middle", start: [1, 0], end: [1, 0] },
             { name: "right", start: [2, 0], end: [2, 0] }
           ]}
-          margin= "small"
+          margin="small"
         >
           <Box gridArea="left" />
           <Box gridArea="middle">
             {isloading ? (
-              <Loader active inline='centered' />
+              <Loader active inline="centered" />
             ) : (
-              <TextEditor onPostAnswer={this.postAnswer} question={question} />
+              <TextEditor
+                onSaveDraft={this.saveDraft}
+                onPostAnswer={this.postAnswer}
+                publishingAnswer={this.state.publishingAnswer}
+                savingDraft={this.state.savingDraft}
+                question={question}
+              />
             )}
           </Box>
           <Box gridArea="right" />
@@ -63,4 +91,9 @@ class WriteAnswerScreen extends Component {
   }
 }
 
-export default withRouter(WriteAnswerScreen);
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+export default connect(mapStateToProps)(WriteAnswerScreen);

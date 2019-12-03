@@ -19,8 +19,7 @@ const QuestionDetail = ({
         answers.map(ans => (
           <Box
             direction="column"
-            pad="medium"
-            hoverIndicator={true}
+            pad="medium"            
             onClick={() => console.log("clicked")}
             elevation="small"
             key={question.id}

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Box, Heading } from "grommet";
 import SmallButton from "./common/smallButton";
 import { withRouter } from "react-router-dom";
+import { Notification } from "grommet-controls";
 
 class QuestionsList extends Component {
   render() {
@@ -11,13 +12,12 @@ class QuestionsList extends Component {
 
     return (
       <div>
+        
         {questions.map(question => (
           <Box
             direction="column"
             pad="medium"
-            
             margin="medium"
-            hoverIndicator={true}
             onClick={() => console.log("clicked")}
             elevation="small"
             key={question.id}

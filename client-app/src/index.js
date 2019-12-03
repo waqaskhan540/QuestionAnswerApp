@@ -10,6 +10,7 @@ import QuestionDetailScreen from "./screens/questionDetailScreen";
 import WriteAnswerScreen from "./screens/writeAnswerScreen";
 import MyQuestionsScreen from "./screens/myQuestionsScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+
 import rootReducer from "./reducers";
 import { loadState, saveState } from "./helpers/localStorage";
 import AppBar from "./containers/appBarContainer";
@@ -30,6 +31,7 @@ ReactDOM.render(
         <Route path="/login" render={props => <LoginScreen {...props} />} />
         <Route path="/register" render={() => <RegisterScreen />} />
         <Route path="/profile" render={() => <ProfileScreen />} />
+
         <Route
           path="/question/:id"
           render={props => <QuestionDetailScreen {...props} />}
