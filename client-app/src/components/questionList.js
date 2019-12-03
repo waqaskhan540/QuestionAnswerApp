@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { Box, Heading } from "grommet";
 import SmallButton from "./common/smallButton";
 import { withRouter } from "react-router-dom";
-import { Notification } from "grommet-controls";
+import {toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 class QuestionsList extends Component {
   render() {
@@ -42,7 +43,9 @@ class QuestionsList extends Component {
                 onClick={() => history.push(`write/${question.id}`)}
                 icon={"write"}
               />
-              <SmallButton label={"Save"} icon={"save"} />
+              <SmallButton
+              onClick = {() => toast("hello world")}
+              label={"Save"} icon={"save"} />
             </Box>
           </Box>
         ))}

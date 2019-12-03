@@ -122,6 +122,34 @@ namespace Api.Controllers
             return Ok(BaseResponse.Ok(question));
         }
 
+        [HttpPost("api/save/{id:int}")]
+        [Authorize]
+        public async Task<IActionResult> SaveQuestion(int id)
+        {
+            var question = await _dbContext.Questions.FirstOrDefaultAsync(x => x.Id == id);
+            if(null == question)
+            {
+                return BadRequest();
+            }
+
+            var loggedUserId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
+            var existing = await _dbContext.SavedQuestions.FirstOrDefaultAsync(x => x.QuestionId == id && x.UserId == int.Parse(loggedUserId));
+
+            if (null != existing)
+                return Ok();
+
+            var savedQuestion = new SavedQuestion
+            {
+                UserId = int.Parse(loggedUserId),
+                QuestionId = id,
+                DateTime = DateTime.Now
+            };
+
+            await _dbContext.SavedQuestions.AddAsync(savedQuestion);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok();
+        }
 
     }
 }

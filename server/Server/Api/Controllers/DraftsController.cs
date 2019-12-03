@@ -1,8 +1,10 @@
 ﻿using Api.ApiModels;
 using Api.Data;
 using Api.Data.Entities;
+using Api.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +24,7 @@ namespace Api.Controllers
             _dbContext = dbContext;
         }
 
-        [HttpPost("api/draft")]
+        [HttpPost("api/drafts")]
         public async Task<IActionResult> SaveDraft([FromBody]DraftViewModel model)
         {
             if (!ModelState.IsValid)
@@ -51,5 +53,15 @@ namespace Api.Controllers
             await _dbContext.SaveChangesAsync();
             return Ok();
         }
+
+        [HttpGet("api/drafts")]
+        public async Task<IActionResult> GetDrafts()
+        {
+            var userId = HttpContext.GetLoggedUserId();
+            var drafts = await _dbContext.Drafts.Where(x => x.UserId == userId).ToListAsync();
+            return Ok(BaseResponse.Ok(drafts));
+        }
+
+
     }
 }

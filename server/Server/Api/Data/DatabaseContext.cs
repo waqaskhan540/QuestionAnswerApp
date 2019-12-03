@@ -16,6 +16,7 @@ namespace Api.Data
 
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Draft> Drafts { get; set; }
+        public DbSet<SavedQuestion> SavedQuestions {get;set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
