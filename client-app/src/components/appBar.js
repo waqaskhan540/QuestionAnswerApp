@@ -10,23 +10,33 @@ class AppBar extends Component {
     return (
       <Box
         tag="header"
-        elevation="xsmall"
+        alignContent="center"
+        elevation="small"
         direction="row"
         align="start"
         justify="start"
-        pad={{ vertical: "small", horizontal: "medium" }}
+        pad={{ vertical: "small", horizontal: "small" }}
       >
         <Heading level={3}>QnA</Heading>
-        <Button label="Home" href={"/home"} style={{ marginLeft: "20px" }} />
+        <Button
+          primary={true}
+          label="Home"
+          href={"/home"}
+          style={{ marginLeft: "20px" }}
+        />
         {user.isAuthenticated ? (
           <>
             <Button
               label="Questions"
+              plain={true}
+              primary={true}
               href={"/myquestions"}
               style={{ marginLeft: "20px" }}
             />
             <Button
               label="Ask"
+              plain={true}
+              primary={true}
               style={{ marginLeft: "20px" }}
               onClick={toggleModal}
             />
@@ -59,8 +69,9 @@ class AppBar extends Component {
             </>
           ) : (
             <>
-              <Button label="Login" href={"/login"} />
+              <Button primary={true} label="Login" href={"/login"} />
               <Button
+                primary={true}
                 label="Register"
                 href={"/register"}
                 style={{ marginLeft: "20px" }}
