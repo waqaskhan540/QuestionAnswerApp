@@ -1,6 +1,7 @@
 ﻿using Api.ApiModels;
 using Api.Data;
 using Api.Data.Entities;
+using Api.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -136,7 +137,7 @@ namespace Api.Controllers
             var existing = await _dbContext.SavedQuestions.FirstOrDefaultAsync(x => x.QuestionId == id && x.UserId == int.Parse(loggedUserId));
 
             if (null != existing)
-                return Ok();
+                return Ok(BaseResponse.Ok("Question already saved"));
 
             var savedQuestion = new SavedQuestion
             {
@@ -148,7 +149,15 @@ namespace Api.Controllers
             await _dbContext.SavedQuestions.AddAsync(savedQuestion);
             await _dbContext.SaveChangesAsync();
 
-            return Ok();
+            return Ok(BaseResponse.Ok("Question saved successfully."));
+        }
+
+        [HttpGet("api/saved/count")]
+        public async Task<IActionResult> GetSavedCount()
+        {
+            var userId = HttpContext.GetLoggedUserId();
+            var savedQuestions = await _dbContext.SavedQuestions.Where(x => x.UserId == userId).ToListAsync();
+            return Ok(BaseResponse.Ok(new { savedCount = savedQuestions.Count }));
         }
 
     }

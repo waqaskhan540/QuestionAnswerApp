@@ -1,6 +1,8 @@
 import React from "react";
 import { Grid, Box, List } from "grommet";
-import { Input, Label, Menu } from "semantic-ui-react";
+import SideBar from "./sideBar";
+
+
 
 const ScreenContainer = ({ left, middle, right }) => (
   <Grid
@@ -14,17 +16,7 @@ const ScreenContainer = ({ left, middle, right }) => (
     ]}
   >
     <Box gridArea="left" margin={"small"} gap={"large"}>
-      <Menu secondary vertical>
-        <Menu.Item>
-          <Label color="teal">1</Label>
-          Drafts
-        </Menu.Item>
-
-        <Menu.Item>
-          <Label>1</Label>
-          Saved
-        </Menu.Item>
-      </Menu>
+        {left}
     </Box>
     <Box gridArea="middle" margin={"large"} pad={"small"}>
       {middle}

@@ -3,6 +3,7 @@ import { Box, Button, Heading, Menu } from "grommet";
 import QuestionModal from "../components/questionModal";
 import { withRouter } from "react-router-dom";
 import { Avatar } from "grommet-controls";
+import { Icon } from "semantic-ui-react";
 
 class AppBar extends Component {
   render() {
@@ -28,14 +29,12 @@ class AppBar extends Component {
           <>
             <Button
               label="Questions"
-              plain={true}
               primary={true}
               href={"/myquestions"}
               style={{ marginLeft: "20px" }}
             />
             <Button
               label="Ask"
-              plain={true}
               primary={true}
               style={{ marginLeft: "20px" }}
               onClick={toggleModal}
@@ -49,8 +48,13 @@ class AppBar extends Component {
           {user.isAuthenticated ? (
             <>
               <Menu
-                //label={user.lastname}
-                icon={<Avatar image={`data:image/png;base64, ${user.image}`} />}
+                icon={
+                  user.image ? (
+                    <Avatar image={`data:image/png;base64, ${user.image}`} />
+                  ) : (
+                    <Icon disabled name="user circle"  size='big'/>
+                  )
+                }
                 items={[
                   {
                     label: "Profile",
@@ -62,6 +66,8 @@ class AppBar extends Component {
                     label: "Log Out",
                     onClick: () => {
                       //history.push("/logout");
+                      localStorage.removeItem("state")
+                      history.push("/")
                     }
                   }
                 ]}

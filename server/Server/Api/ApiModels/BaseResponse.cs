@@ -17,6 +17,11 @@ namespace Api.ApiModels
             return new BaseResponse { Success = true , Data = data};
         }
 
+        public static BaseResponse Ok(string message)
+        {
+            return new BaseResponse { Success = true, Message = message };
+        }
+
         public static BaseResponse Error(string message = null)
         {
             return new BaseResponse { Message = message, Success = false };

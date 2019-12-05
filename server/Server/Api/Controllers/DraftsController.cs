@@ -62,6 +62,14 @@ namespace Api.Controllers
             return Ok(BaseResponse.Ok(drafts));
         }
 
+        [HttpGet("api/drafts/count")]
+        public async Task<IActionResult> GetDraftsCount()
+        {            
+            var userId = HttpContext.GetLoggedUserId();
+            var drafts = await _dbContext.Drafts.Where(x => x.UserId == userId).ToListAsync();
+            return Ok(BaseResponse.Ok(new { draftCount = drafts.Count }));
+        }
+
 
     }
 }

@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import Profile from "../components/profile";
-import ScreenContainer from "../components/common/screenContainer";
+import ProfileScreenContainer from "../components/common/profileScreenContainer";
 import { connect } from "react-redux";
 
 class ProfileScreen extends Component {
   render() {
-    return <ScreenContainer middle={<Profile user={this.props.user} />} />;
+    // return <ScreenContainer middle={} />;
+    return (
+      <ProfileScreenContainer>
+        <Profile user={this.props.user} />
+      </ProfileScreenContainer>
+    );
   }
 }
 

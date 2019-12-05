@@ -10,7 +10,7 @@ import QuestionDetailScreen from "./screens/questionDetailScreen";
 import WriteAnswerScreen from "./screens/writeAnswerScreen";
 import MyQuestionsScreen from "./screens/myQuestionsScreen";
 import ProfileScreen from "./screens/ProfileScreen";
-import {ToastContainer,toast} from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import rootReducer from "./reducers";
 import { loadState, saveState } from "./helpers/localStorage";
 import AppBar from "./containers/appBarContainer";
@@ -41,7 +41,17 @@ ReactDOM.render(
           path="/write/:id"
           render={props => <WriteAnswerScreen {...props} />}
         />
-        <ToastContainer/>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange
+          draggable
+          pauseOnHover={false}
+        />
       </Router>
     </Provider>
   </Grommet>,

@@ -124,7 +124,7 @@ namespace Api.Controllers
                     lastname = user.LastName,
                     email = user.Email,
                     userId = user.Id,
-                    image = Convert.ToBase64String(user.ProfilePicture)
+                    image = user.ProfilePicture != null? Convert.ToBase64String(user.ProfilePicture):null
                 }
             };
 

@@ -4,16 +4,25 @@ import { Link } from "react-router-dom";
 import { Box, Heading } from "grommet";
 import SmallButton from "./common/smallButton";
 import { withRouter } from "react-router-dom";
-import {toast} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import questionService from "./../services/questionsService";
 
 class QuestionsList extends Component {
+  saveQuestion(questionId) {
+    toast.info("Saving question");
+    questionService
+      .saveQuestion(questionId)
+      .then(resp => {        
+        toast.success(resp.data.message);
+      })
+      .catch(err => toast.error("Something went wrong!"));
+  }
   render() {
     const { questions, isUserAuthenticated, history } = this.props;
 
     return (
       <div>
-        
         {questions.map(question => (
           <Box
             direction="column"
@@ -44,8 +53,10 @@ class QuestionsList extends Component {
                 icon={"write"}
               />
               <SmallButton
-              onClick = {() => toast("hello world")}
-              label={"Save"} icon={"save"} />
+                onClick={() => this.saveQuestion(question.id)}
+                label={"Save"}
+                icon={"save"}
+              />
             </Box>
           </Box>
         ))}

@@ -22,6 +22,12 @@ class QuestionsService {
       headers: getHeaders()
     });
   };
+
+  static saveQuestion = (questionId) => {
+    return axios.post(`${config.API_BASE_URL}/api/save/${questionId}`,{}, {
+      headers : getHeaders()
+    })
+  }
 }
 
 export default QuestionsService;
