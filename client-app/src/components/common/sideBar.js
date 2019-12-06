@@ -37,7 +37,7 @@ const SideBar = ({ isUserAuthenticated, draftCount, savedCount }) => {
     <Menu secondary vertical>
       {categories.map(category => {
         return (
-          <Menu.Item>
+          <Menu.Item key= {category}>
             <Label color="teal">1</Label>
             {category}
           </Menu.Item>

@@ -7,6 +7,9 @@ import { bindActionCreators } from "redux";
 import { Box, Grid } from "grommet";
 import authenticationService from "../services/authenticationService";
 import * as userActions from "../actions/userActions";
+import FacebookLogin from "react-facebook-login";
+import { GoogleLogin } from "react-google-login";
+import axios from "axios";
 import qs from "qs";
 
 class LoginScreen extends React.Component {
@@ -14,6 +17,38 @@ class LoginScreen extends React.Component {
     error: ""
   };
 
+  constructor(props) {
+    super(props);
+    this.facebookLoginCallback = this.facebookLoginCallback.bind(this);
+    this.responseGoogle = this.responseGoogle.bind(this);
+  }
+  facebookLoginCallback(response) {   
+    const { accessToken } = response;
+    const { userLoggedIn } = this.props.actions;
+    const { history } = this.props;
+
+    axios
+      .post("http://localhost:5000/api/auth/external-login", {
+        provider: "facebook",
+        accessToken: accessToken
+      })
+      .then(response => {
+        const { user, access_token } = response.data.data;
+        const userInfo = {
+          firstname: user.firstname,
+          lastname: user.lastname,
+          email: user.email,
+          userId: user.userId,
+          image: user.image,
+          accessToken: access_token
+        };
+
+        userLoggedIn(userInfo);
+        //if (returnUrl) this.props.history.push(returnUrl);
+        history.push("/");
+      })
+      .catch(err => console.log(err));
+  }
   validateForm = values => {
     let errors = {};
     if (!values.email) {
@@ -30,6 +65,36 @@ class LoginScreen extends React.Component {
     return errors;
   };
 
+  responseGoogle(response) {
+    
+    if(!response)
+      return;
+    const { accessToken } = response;
+    const { userLoggedIn } = this.props.actions;
+    const { history } = this.props;
+
+    axios
+      .post("http://localhost:5000/api/auth/external-login", {
+        provider: "google",
+        accessToken: accessToken
+      })
+      .then(response => {
+        const { user, access_token } = response.data.data;
+        const userInfo = {
+          firstname: user.firstname,
+          lastname: user.lastname,
+          email: user.email,
+          userId: user.userId,
+          image: user.image,
+          accessToken: access_token
+        };
+
+        userLoggedIn(userInfo);
+        //if (returnUrl) this.props.history.push(returnUrl);
+        history.push("/");
+      })
+      .catch(err => console.log(err));
+  }
   submitHandler = (values, { setSubmitting }) => {
     const { email, password } = values;
     const { returnUrl } = qs.parse(this.props.location.search, {
@@ -47,7 +112,7 @@ class LoginScreen extends React.Component {
           lastname: user.lastname,
           email: user.email,
           userId: user.userId,
-          image : user.image,
+          image: user.image,
           accessToken: access_token
         };
 
@@ -79,7 +144,7 @@ class LoginScreen extends React.Component {
           <Box
             gridArea="main"
             pad="medium"
-            elevation="small"           
+            elevation="small"
             alignSelf="center"
           >
             <Header as="h3">Login</Header>
@@ -88,6 +153,30 @@ class LoginScreen extends React.Component {
               validateForm={this.validateForm}
               error={this.state.error}
             />
+
+            {/* <FacebookLogin
+              appId="1170436143158785"
+              autoLoad={true}
+              fields="name,email,picture"
+              callback={this.facebookLoginCallback}
+            /> */}
+           
+            <GoogleLogin
+              clientId={"1095144691030-h93b853sljjf31f3pico1g9jjibvjcrc.apps.googleusercontent.com"}
+              //scope="https://www.googleapis.com/auth/analytics"
+              onSuccess={this.responseGoogle}
+              onFailure={this.responseGoogle}
+              onRequest={this.responseGoogle}
+              offline={false}
+              approvalPrompt="force"
+              responseType="id_token"
+              isSignedIn
+              theme="dark"
+              // disabled
+              // prompt="consent"
+              // className='button'
+              // style={{ color: 'red' }}
+            ></GoogleLogin>
           </Box>
         </Grid>
       </div>
@@ -102,8 +191,5 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(userActions, dispatch)
 });
 export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(LoginScreen)
+  connect(mapStateToProps, mapDispatchToProps)(LoginScreen)
 );
