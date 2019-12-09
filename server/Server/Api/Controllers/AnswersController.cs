@@ -43,7 +43,7 @@ namespace Api.Controllers
                 UserId = int.Parse(userId)
             };
 
-            await _dbContext.Answers.AddAsync(answer);
+            await _dbContext.Answers.AddAsync(answer);            
             await _dbContext.SaveChangesAsync();
 
             return Ok(BaseResponse.Ok("Answered published successfully."));

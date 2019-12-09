@@ -1,16 +1,58 @@
-import {USER_LOGGED_IN,USER_UPDATED_PROFILE_IMG} from "../actionTypes/userActionTypes"
+import * as UserActions from "../actionTypes/userActionTypes"
 
 export const userLoggedIn = (user) => {
     
     return {
-        type : USER_LOGGED_IN,
+        type : UserActions.USER_LOGGED_IN,
         payload : user
     }
 }
 
 export const userUpdatedProfileImg = (img) => {
     return {
-        type : USER_UPDATED_PROFILE_IMG,
+        type : UserActions.USER_UPDATED_PROFILE_IMG,
         payload : img
+    }
+}
+
+export const userQuestionsLoading = (loadingStatus) => {
+    return {
+        type: UserActions.USER_QUESTIONS_LOADING,
+        payload : loadingStatus
+    }
+}
+
+export const userQuestionsLoaded = (questions) => {
+    return {
+        type: UserActions.USER_QUESTIONS_LOADED,
+        payload : questions
+    }
+}
+
+export const userStatsUpdating = (updateStatus) => {
+    return {
+        type : UserActions.USER_STATS_UPDATING,
+        payload : updateStatus
+    }
+}
+
+export const userStatsUpdated = (stats) => {
+    return {
+        type : UserActions.USER_STATS_UPADTED,
+        payload : stats
+    }
+}
+
+export const userMyQuestionsLoading = (loadingStatus) => {
+    return {
+        type : UserActions.USER_LOADING_MY_QUESTIONS,
+        payload : loadingStatus
+    }
+}
+
+export const userMyQuestionsLoaded = (myQuestions) => {
+    return {
+        type : UserActions.USER_MY_QUESTIONS_LOADED,
+        payload : myQuestions
     }
 }

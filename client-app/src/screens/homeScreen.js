@@ -1,63 +1,64 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { Loader } from "semantic-ui-react";
 import QuestionList from "../components/questionList";
-import { Segment, Dimmer, Loader, Image } from "semantic-ui-react";
-import { Box, Grid } from "grommet";
 import questionService from "../services/questionsService";
 import ScreenContainer from "../components/common/screenContainer";
 import SideBar from "./../components/common/sideBar";
 import StatsService from "./../services/statsService";
+import WritePost from "./../components/writePost";
+import * as UserActions from "./../actions/userActions";
 
 class HomeScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      questions: [],
-      loading: true,
-      savedCount: 0,
-      draftCount: 0
-    };
-  }
-
+ 
   componentDidMount() {
     const { isAuthenticated } = this.props.user;
-
     questionService.getLatestQuestions().then(response => {
-      const questions = response.data.data;
-      this.setState({ questions: questions, loading: false });
+      const questions = response.data.data;      
+      this.props.actions.userQuestionsLoaded(questions);
     });
 
     if (isAuthenticated) {
-      StatsService.GetUserStats().then(response => {
-        this.setState({
-          savedCount: response[1].data.data.savedCount,
-          draftCount: response[0].data.data.draftCount
-        });
+      this.props.actions.userStatsUpdating(true);
+      StatsService.GetUserStats().then(response => {        
+        const savedCount = response[1].data.data.savedCount;
+        const draftCount = response[0].data.data.draftCount;        
+        this.props.actions.userStatsUpdated({ savedCount, draftCount });
+        this.props.actions.userStatsUpdating(false);
       });
     }
   }
 
   render() {
-    const { loading, questions } = this.state;
-    const { isAuthenticated } = this.props.user;
+    const {
+      loading,
+      questions,
+      isAuthenticated,
+      savedCount,
+      draftCount
+    } = this.props.user;
 
     return (
       <ScreenContainer
         left={
           <SideBar
             isUserAuthenticated={isAuthenticated}
-            savedCount={this.state.savedCount}
-            draftCount={this.state.draftCount}
+            savedCount={savedCount}
+            draftCount={draftCount}
           />
         }
         middle={
           loading ? (
             <Loader active></Loader>
           ) : (
-            <QuestionList
-              questions={questions}
-              isUserAuthenticated={isAuthenticated}
-            />
+            <>
+              {isAuthenticated && <WritePost />}
+              <QuestionList
+                questions={questions}
+                isUserAuthenticated={isAuthenticated}
+              />
+            </>
           )
         }
       />
@@ -70,4 +71,9 @@ const mapStateToProps = state => {
     user: state.user
   };
 };
-export default connect(mapStateToProps)(HomeScreen);
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: bindActionCreators(UserActions, dispatch)
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

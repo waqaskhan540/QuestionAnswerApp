@@ -3,61 +3,52 @@ import TextEditor from "../components/textEditor";
 import questionService from "../services/questionsService";
 import AnswerService from "../services/answerService";
 import DraftService from "../services/draftService";
-import { withRouter } from "react-router-dom";
 import { Grid, Box } from "grommet";
 import { Loader } from "semantic-ui-react";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as WriteAnswerActions from "./../actions/writeAnswerActions";
 
 class WriteAnswerScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isloading: true,
-      question: null,
-      publishingAnswer: false,
-      savingDraft: false
-    };
-  }
-
   postAnswer = answer => {
     const { id } = this.props.match.params;
-    this.setState({ publishingAnswer: true });
+    this.props.actions.savingAnswer(true);
     AnswerService.postAnswer(id, answer)
-      .then(response => {
-        this.setState({ publishingAnswer: false });
+      .then(response => {       
+        this.props.actions.savingAnswer(false);
         this.props.history.push(`/question/${id}`);
       })
       .catch(err => console.log(err));
   };
 
-  saveDraft = draft => {
-    this.setState({ savingDraft: true });
-   
+  saveDraft = draft => {  
+    this.props.actions.savingDraft(true);
     DraftService.saveDraft(draft)
-      .then(response => {
-        this.setState({ savingDraft: false });
+      .then(response => {      
+        this.props.actions.savingDraft(false);
         console.log(response);
       })
-      .catch(err => {
-        this.setState({ savingDraft: false });
+      .catch(err => {        
+        this.props.actions.savingDraft(false);
         console.log(err);
       });
   };
 
   componentDidMount() {
-    const { id } = this.props.match.params;
+    const { id } = this.props.match.params;   
     questionService.getQuestionById(id).then(response => {
-      const question = response.data.data;
-      this.setState({ isloading: false, question: question });
+      const question = response.data.data;     
+      this.props.actions.questionLoaded(question);
     });
   }
   render() {
-    const { isloading, question } = this.state;
-
-    return (
-      // <Grid container columns={3} padded>
-      //   <Grid.Column width={5}></Grid.Column>
-      //   <Grid.Column width={8}>
+    const {
+      question,
+      publishingAnswer,
+      savingDraft,
+      loadingQuestion
+    } = this.props.writeAnswer;
+    return (     
       <div>
         <Grid
           rows={["xlarge"]}
@@ -72,14 +63,14 @@ class WriteAnswerScreen extends Component {
         >
           <Box gridArea="left" />
           <Box gridArea="middle">
-            {isloading ? (
+            {loadingQuestion ? (
               <Loader active inline="centered" />
             ) : (
               <TextEditor
                 onSaveDraft={this.saveDraft}
                 onPostAnswer={this.postAnswer}
-                publishingAnswer={this.state.publishingAnswer}
-                savingDraft={this.state.savingDraft}
+                publishingAnswer={publishingAnswer}
+                savingDraft={savingDraft}
                 question={question}
               />
             )}
@@ -93,7 +84,13 @@ class WriteAnswerScreen extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    writeAnswer: state.writeAnswer
   };
 };
-export default connect(mapStateToProps)(WriteAnswerScreen);
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: bindActionCreators(WriteAnswerActions, dispatch)
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(WriteAnswerScreen);

@@ -4,32 +4,27 @@ import AnswerService from "../services/answerService";
 import QuestionService from "../services/questionsService";
 import { connect } from "react-redux";
 import ScreenContainer from "../components/common/screenContainer";
+import { bindActionCreators } from "redux";
+import * as QuestionDetailActions from "./../actions/questionDetailActions";
 
 class QuestionDetailScreen extends Component {
-  state = {
-    isloading: true,
-    question: null,
-    answers: []
-  };
   componentDidMount() {
     const { id } = this.props.match.params;
-
+    this.props.actions.isLoading(true);
     QuestionService.getQuestionById(id).then(response => {
-      this.setState({ question: response.data.data });
-
+      this.props.actions.questionLoaded(response.data.data);
       AnswerService.getAnswersByQuestionId(id).then(response => {
-        this.setState({ isloading: false });
-        this.setState({ answers: response.data.data });
+        this.props.actions.answersLoaded(response.data.data);
+        this.props.actions.isLoading(false);
       });
     });
   }
 
   render() {
-    const { isloading, answers, question } = this.state;
+    const { isloading, answers, question } = this.props.questionDetail;
     const { isAuthenticated } = this.props.user;
 
     return (
-     
       <ScreenContainer
         middle={
           <QuestionDetail
@@ -46,7 +41,17 @@ class QuestionDetailScreen extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    questionDetail: state.questionDetail
   };
 };
-export default connect(mapStateToProps)(QuestionDetailScreen);
+
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: bindActionCreators(QuestionDetailActions, dispatch)
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(QuestionDetailScreen);

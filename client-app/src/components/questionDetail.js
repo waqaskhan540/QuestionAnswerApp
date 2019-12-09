@@ -41,7 +41,7 @@ const QuestionDetail = ({
             Question not answered yet.
           </Header>
           <Segment.Inline>
-             <Button label = "Write Answer" href = {`/write/${question.id}`}   primary color="accent-3" />
+      {isUserAuthenticated && <Button label = "Write Answer" href = {`/write/${question.id}`}   primary color="accent-3" /> }
           </Segment.Inline>
         </Segment>
       )}

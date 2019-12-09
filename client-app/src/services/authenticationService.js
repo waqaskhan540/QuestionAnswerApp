@@ -9,6 +9,10 @@ class AuthenticationService {
     static register = (data) => {
         return axios.post(`${config.API_BASE_URL}/api/auth/register`,{...data} )
     }
+
+    static loginExternal = (provider, accessToken) => {
+        return axios.post(`${config.API_BASE_URL}/api/auth/external-login`,{provider,accessToken})
+    }
 }
 
 export default AuthenticationService;

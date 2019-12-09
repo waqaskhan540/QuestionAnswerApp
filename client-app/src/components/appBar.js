@@ -52,7 +52,7 @@ class AppBar extends Component {
                   user.image ? (
                     <Avatar image={`data:image/png;base64, ${user.image}`} />
                   ) : (
-                    <Icon disabled name="user circle"  size='big'/>
+                    <Icon disabled name="user circle" size="big" />
                   )
                 }
                 items={[
@@ -66,8 +66,22 @@ class AppBar extends Component {
                     label: "Log Out",
                     onClick: () => {
                       //history.push("/logout");
-                      localStorage.removeItem("state")
-                      history.push("/")
+                      localStorage.removeItem("state");
+                      if (window.gapi) {
+                        const auth = window.gapi.auth2.getAuthInstance();
+                        if (auth != null) {
+                          auth
+                            .signOut()
+                            .then(re => console.log("logout from google"));
+                        }
+                      }
+
+                      if (window.FB && window.FB.getAccessToken()) {
+                        window.FB.logout();
+                      }
+                      if (history.location.pathname == "/")
+                        window.location.reload();
+                      else history.push("/");
                     }
                   }
                 ]}

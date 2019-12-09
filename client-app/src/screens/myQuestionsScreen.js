@@ -4,23 +4,19 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import questionService from "../services/questionsService";
 import { Loader } from "semantic-ui-react";
-import { Box, Grid } from "grommet";
 import ScreenContainer from "../components/common/screenContainer";
 
-class MyQuestionsScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      questions: [],
-      loading: true
-    };
-  }
+import { bindActionCreators } from "redux";
+import * as UserActions from "./../actions/userActions";
 
+class MyQuestionsScreen extends Component {
+ 
   componentDidMount() {
     const { user } = this.props;
     questionService.getMyQuestions(user.userId).then(response => {
-      const questions = response.data.data;
-      this.setState({ questions: questions, loading: false });
+      const questions = response.data.data;      
+      this.props.actions.userMyQuestionsLoaded(questions);
+      this.props.actions.userMyQuestionsLoading(false);
     });
   }
   componentWillMount() {
@@ -31,15 +27,14 @@ class MyQuestionsScreen extends Component {
     }
   }
   render() {
-    const { loading, questions } = this.state;
+    const { loadingMyQuestions, myQuestions } = this.props.user;
     return (
-      
       <ScreenContainer
         middle={
-          loading ? (
+          loadingMyQuestions ? (
             <Loader active></Loader>
           ) : (
-            <QuestionList questions={questions} />
+            <QuestionList questions={myQuestions} />
           )
         }
       />
@@ -52,4 +47,11 @@ const mapStateToProps = state => {
     user: state.user
   };
 };
-export default withRouter(connect(mapStateToProps)(MyQuestionsScreen));
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: bindActionCreators(UserActions, dispatch)
+  };
+};
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(MyQuestionsScreen)
+);

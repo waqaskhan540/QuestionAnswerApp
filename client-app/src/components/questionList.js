@@ -13,7 +13,7 @@ class QuestionsList extends Component {
     toast.info("Saving question");
     questionService
       .saveQuestion(questionId)
-      .then(resp => {        
+      .then(resp => {
         toast.success(resp.data.message);
       })
       .catch(err => toast.error("Something went wrong!"));
@@ -27,8 +27,7 @@ class QuestionsList extends Component {
           <Box
             direction="column"
             pad="medium"
-            margin="medium"
-            onClick={() => console.log("clicked")}
+            margin="medium"          
             elevation="small"
             key={question.id}
             alignContent={"start"}
@@ -46,18 +45,20 @@ class QuestionsList extends Component {
               <h3> {question.questionText}</h3>
               {/* </Heading> */}
             </Link>
-            <Box align="start" direction="row">
-              <SmallButton
-                label={"Answer"}
-                onClick={() => history.push(`write/${question.id}`)}
-                icon={"write"}
-              />
-              <SmallButton
-                onClick={() => this.saveQuestion(question.id)}
-                label={"Save"}
-                icon={"save"}
-              />
-            </Box>
+            {isUserAuthenticated && (
+              <Box align="start" direction="row">
+                <SmallButton
+                  label={"Answer"}
+                  onClick={() => history.push(`write/${question.id}`)}
+                  icon={"write"}
+                />
+                <SmallButton
+                  onClick={() => this.saveQuestion(question.id)}
+                  label={"Save"}
+                  icon={"save"}
+                />
+              </Box>
+            )}
           </Box>
         ))}
       </div>
