@@ -11,11 +11,12 @@ class WritePost extends Component {
           direction="row"
           align="center"
           pad={{ horizontal: "small", vertical: "xsmall" }}
-          round="small"   
-          elevation= "medium"      
+          round="medium"   
+               
           border={{
             side: "all",
-            color: "transparent" 
+            color: "#7D4CDB" ,
+            size:"medium"            
           }}         
         >
          

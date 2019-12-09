@@ -41,13 +41,13 @@ class HomeScreen extends Component {
 
     return (
       <ScreenContainer
-        left={
-          <SideBar
-            isUserAuthenticated={isAuthenticated}
-            savedCount={savedCount}
-            draftCount={draftCount}
-          />
-        }
+        // left={
+        //   <SideBar
+        //     isUserAuthenticated={isAuthenticated}
+        //     savedCount={savedCount}
+        //     draftCount={draftCount}
+        //   />
+        // }
         middle={
           loading ? (
             <Loader active></Loader>
