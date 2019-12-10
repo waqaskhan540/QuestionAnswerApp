@@ -4,6 +4,7 @@ import QuestionModal from "../components/questionModal";
 import { withRouter } from "react-router-dom";
 import { Avatar } from "grommet-controls";
 import { Icon } from "semantic-ui-react";
+import "./styles/appBar.css";
 
 class AppBar extends Component {
   render() {

@@ -18,7 +18,7 @@ const ScreenContainer = ({ left, middle, right }) => (
     <Box gridArea="left" margin={"small"} gap={"large"}>
         {left}
     </Box>
-    <Box gridArea="middle" margin={"small"} pad={"small"}>
+    <Box gridArea="middle" margin={"small"} pad={"small"}  gap = {"small"}>
       {middle}
     </Box>
     <Box gridArea="right">{right}</Box>

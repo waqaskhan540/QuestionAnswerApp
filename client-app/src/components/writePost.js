@@ -1,39 +1,46 @@
 import React, { Component } from "react";
-import { Box, TextInput,Text } from "grommet";
+import { Box, TextInput, Text } from "grommet";
+import { Spinning } from "grommet-controls";
 
 class WritePost extends Component {
   render() {
+    const { value, onChange, onKeyPress, isLoading } = this.props;
     return (
-       
-        <Box
-         // ref={boxRef}
-          width="large"
-          direction="row"
-          align="center"
-          pad={{ horizontal: "small", vertical: "xsmall" }}
-          round="medium"   
-               
-          border={{
-            side: "all",
-            color: "#7D4CDB" ,
-            size:"medium"            
-          }}         
-        >
-         
+      <Box
+        width="large"
+        direction="row"            
+        pad={{ horizontal: "small", vertical: "xsmall" }}
+        round="medium"
+        border={{
+          side: "all",
+          color: "#7D4CDB",
+          size: "medium"
+        }}
+      >
+        {isLoading ? (
+          <Box
+            align="center"
+            alignContent="center"
+            fill
+            pad={{ horizontal: "small", vertical: "xsmall" }}
+          >
+            <Spinning color="accent-1" />
+        </Box>
+        ) : (
           <TextInput
             type="search"
-           // dropTarget={boxRef.current}
             plain
-          //  value={value}
-           // onChange={onChange}
-          //  onSelect={onSelect}
-          //  suggestions={renderSuggestions()}
+            value={value}
+            onChange={onChange}
+            onKeyPress={onKeyPress}
+            //  onSelect={onSelect}
+            //  suggestions={renderSuggestions()}
             placeholder="Write your question and press 'Enter'"
-           // onSuggestionsOpen={() => setSuggestionOpen(true)}
-           // onSuggestionsClose={() => setSuggestionOpen(false)}
+            // onSuggestionsOpen={() => setSuggestionOpen(true)}
+            // onSuggestionsClose={() => setSuggestionOpen(false)}
           />
-        </Box>
-      
+        )}
+      </Box>
     );
   }
 }
