@@ -9,6 +9,7 @@ import * as QuestionDetailActions from "./../actions/questionDetailActions";
 
 class QuestionDetailScreen extends Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     const { id } = this.props.match.params;
     this.props.actions.isLoading(true);
     QuestionService.getQuestionById(id).then(response => {

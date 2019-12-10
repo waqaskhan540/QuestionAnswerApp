@@ -18,17 +18,14 @@ class WritePostContainer extends Component {
   onKeyPress = e => {
     if (e.key === "Enter") {
       this.setState({ isLoading: true });
-      // setTimeout(() => this.setState({isLoading:false}), 3000)
       const questionText = e.target.value;
       if (!questionText.length) return;
 
       questionService
         .postQuestion({ questionText })
         .then(response => {
-          setTimeout(() => {
-            this.props.actions.userUpdateQuestions(response.data.data);
-            this.setState({ isLoading: false,value:"" });
-          }, 3000);
+          this.props.actions.userUpdateQuestions(response.data.data);
+          this.setState({ isLoading: false, value: "" });
         })
         .catch(err => {
           console.log(err);

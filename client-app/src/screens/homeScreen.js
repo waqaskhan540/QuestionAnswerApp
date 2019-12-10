@@ -45,7 +45,7 @@ class HomeScreen extends Component {
           <Box
             align="center"
             alignContent="center"
-            fill
+            fill            
             pad={{ horizontal: "small", vertical: "xsmall" }}
           >
             <WritePost />

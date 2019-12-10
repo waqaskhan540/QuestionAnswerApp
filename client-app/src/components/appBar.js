@@ -12,18 +12,20 @@ class AppBar extends Component {
     return (
       <Box
         tag="header"
-        alignContent="center"        
+        alignContent="center"
         direction="row"
         align="start"
         justify="start"
         pad={{ vertical: "small", horizontal: "small" }}
       >
-        <Heading level={2}>QnA</Heading>
+        <Heading level={2} style={{ fontFamily: "Pacifico" }}>
+          QnA
+        </Heading>
         <Button
           primary={true}
           label="Home"
           href={"/home"}
-          style={{ marginLeft: "20px"}}
+          style={{ marginLeft: "20px" }}
         />
         {user.isAuthenticated ? (
           <>

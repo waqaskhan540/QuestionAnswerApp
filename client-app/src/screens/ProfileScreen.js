@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import Profile from "../components/profile";
-import ProfileScreenContainer from "../components/common/profileScreenContainer";
+import ScreenContainer from "../components/common/screenContainer";
 import { connect } from "react-redux";
 
 class ProfileScreen extends Component {
   render() {
     // return <ScreenContainer middle={} />;
     return (
-      <ProfileScreenContainer>
-        <Profile user={this.props.user} />
-      </ProfileScreenContainer>
+      <ScreenContainer
+        middle={<Profile user={this.props.user} />}
+      ></ScreenContainer>
     );
   }
 }
