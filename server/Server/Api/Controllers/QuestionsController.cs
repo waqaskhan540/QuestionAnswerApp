@@ -42,7 +42,7 @@ namespace Api.Controllers
             await _dbContext.Questions.AddAsync(question);
             await _dbContext.SaveChangesAsync();
 
-            return Ok(BaseResponse.Ok(new { question.Id }));
+            return await GetQuestion(question.Id);
         }
 
         [HttpGet("api/questions")]

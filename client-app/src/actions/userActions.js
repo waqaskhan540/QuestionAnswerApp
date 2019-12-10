@@ -56,3 +56,10 @@ export const userMyQuestionsLoaded = (myQuestions) => {
         payload : myQuestions
     }
 }
+
+export const userUpdateQuestions = (question) => {
+    return {
+        type : UserActions.USER_UPDATE_QUESTIONS,
+        payload : question
+    }
+}

@@ -19,10 +19,10 @@ class QuestionsList extends Component {
       .catch(err => toast.error("Something went wrong!"));
   }
   render() {
-    const { questions, isUserAuthenticated, history } = this.props;
-
+    const { questions, isUserAuthenticated, history } = this.props;    
     return (
       <div>
+        
         {questions.map(question => (
           <Box
             direction="column"

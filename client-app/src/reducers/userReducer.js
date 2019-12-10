@@ -67,6 +67,11 @@ const user = (state = initialState, action) => {
         ...state,
         myQuestions: action.payload
       };
+    case UserActions.USER_UPDATE_QUESTIONS:      
+      return {
+        ...state,
+        questions : [action.payload,...state.questions]
+      }
     default:
       return state;
   }

@@ -11,6 +11,10 @@ import {
   Input
 } from "semantic-ui-react";
 import {withRouter} from "react-router-dom"
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import * as UserActions from "./../actions/userActions";
+
 
 
 
@@ -60,7 +64,8 @@ class QuestionModal extends Component {
         this.setState({ postingQue: false });
         this.setState({ showSuccessMessage: true });
         const { id } = response.data.data;
-        this.setState({ postedQuestionId: id });
+        this.setState({ postedQuestionId: id });        
+        this.props.actions.userUpdateQuestions(response.data.data);
       })
       .catch(err => console.log(err));
   };
@@ -138,6 +143,16 @@ class QuestionModal extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    user : state.user
+  }
+}
 
+const mapDispatchToProps = dispatch => {
+  return {
+    actions : bindActionCreators(UserActions,dispatch)
+  }
+}
 //export default withRouter(QuestionModal);
-export default withRouter(QuestionModal);
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(QuestionModal));
