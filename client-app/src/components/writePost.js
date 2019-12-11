@@ -10,11 +10,11 @@ class WritePost extends Component {
         width="large"
         direction="row"            
         pad={{ horizontal: "small", vertical: "xsmall" }}
-        round="medium"
+        //round="medium"
         border={{
-          side: "all",
+          side: "bottom",
           color: "#7D4CDB",
-          size: "medium"
+          size: "small"
         }}
       >
         {isLoading ? (
@@ -33,6 +33,7 @@ class WritePost extends Component {
             value={value}
             onChange={onChange}
             onKeyPress={onKeyPress}
+            style = {{fontSize : "20px"}}
             //  onSelect={onSelect}
             //  suggestions={renderSuggestions()}
             placeholder="Write your question and press 'Enter'"
