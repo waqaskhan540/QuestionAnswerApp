@@ -1,6 +1,5 @@
 import React from "react";
-import { Header, Loader, Container, Segment,Icon } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Header, Loader, Segment,Icon } from "semantic-ui-react";
 import { Box,Button } from "grommet";
 
 const QuestionDetail = ({

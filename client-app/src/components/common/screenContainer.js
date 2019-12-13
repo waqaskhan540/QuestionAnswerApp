@@ -1,8 +1,5 @@
 import React from "react";
-import { Grid, Box, List } from "grommet";
-import SideBar from "./sideBar";
-
-
+import { Grid, Box } from "grommet";
 
 const ScreenContainer = ({ left, middle, right }) => (
   <Grid
@@ -16,9 +13,9 @@ const ScreenContainer = ({ left, middle, right }) => (
     ]}
   >
     <Box gridArea="left" margin={"small"} gap={"large"}>
-        {left}
+      {left}
     </Box>
-    <Box gridArea="middle" margin={"small"} pad={"small"}  gap = {"small"}>
+    <Box gridArea="middle" margin={"small"} pad={"small"} gap={"small"}>
       {middle}
     </Box>
     <Box gridArea="right">{right}</Box>

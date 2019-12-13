@@ -10,7 +10,7 @@ export default class TextEditor extends Component {
 
   onChange = value => {
     this.setState({ value });
-    if (value.toString("html") != "<p><br></p>")
+    if (value.toString("html") !== "<p><br></p>")
       this.setState({ publishBtnDisabled: false });
     else this.setState({ publishBtnDisabled: true });
 

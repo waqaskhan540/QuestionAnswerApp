@@ -1,6 +1,6 @@
 import React from "react";
-import { Grid, Box, List ,Stack} from "grommet";
-import SideBar from "./sideBar";
+import { Box ,Stack} from "grommet";
+
 
 const ProfileScreenContainer = ({ children }) => (
     <Stack fill anchor="bottom">

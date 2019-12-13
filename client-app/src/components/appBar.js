@@ -81,7 +81,7 @@ class AppBar extends Component {
                       if (window.FB && window.FB.getAccessToken()) {
                         window.FB.logout();
                       }
-                      if (history.location.pathname == "/")
+                      if (history.location.pathname === "/")
                         window.location.reload();
                       else history.push("/");
                     }

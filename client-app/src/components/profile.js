@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-
 import { Box } from "grommet";
-import axios from "axios";
 import userProfileService from "./../services/userProfileService";
-import { Card, Icon, Image } from "semantic-ui-react";
+import { Image } from "semantic-ui-react";
 
 class Profile extends Component {
   constructor(props) {
@@ -51,7 +49,7 @@ class Profile extends Component {
         </Box>
         <Box width="medium">
           <Box direction="column">
-            <h1>Muhammad Waqas</h1>
+            <h1>{firstname} {lastname}</h1>
             <p>Admin</p>
           </Box>
         </Box>

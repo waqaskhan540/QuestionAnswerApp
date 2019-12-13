@@ -5,7 +5,6 @@ import { Loader } from "semantic-ui-react";
 import QuestionList from "../components/questionList";
 import questionService from "../services/questionsService";
 import ScreenContainer from "../components/common/screenContainer";
-import SideBar from "./../components/common/sideBar";
 import StatsService from "./../services/statsService";
 import WritePost from "./../containers/writePostContainer";
 import * as UserActions from "./../actions/userActions";
@@ -34,9 +33,7 @@ class HomeScreen extends Component {
     const {
       loading,
       questions,
-      isAuthenticated,
-      savedCount,
-      draftCount
+      isAuthenticated
     } = this.props.user;
 
     return (

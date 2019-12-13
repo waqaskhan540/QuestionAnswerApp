@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Box, TextInput, Text } from "grommet";
+import { Box, TextInput } from "grommet";
 import { Spinning } from "grommet-controls";
 
 class WritePost extends Component {

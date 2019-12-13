@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import questionService from "../services/questionsService";
 import { Loader } from "semantic-ui-react";
 import ScreenContainer from "../components/common/screenContainer";
-
 import { bindActionCreators } from "redux";
 import * as UserActions from "./../actions/userActions";
 

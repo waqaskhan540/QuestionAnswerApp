@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Item, Label, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { Box, Heading } from "grommet";
+import { Box } from "grommet";
 import SmallButton from "./common/smallButton";
 import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
