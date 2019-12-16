@@ -63,3 +63,7 @@ export const userUpdateQuestions = (question) => {
         payload : question
     }
 }
+
+export const userResetPage = () => {
+    return {type : UserActions.USER_RESET_PAGE}
+}

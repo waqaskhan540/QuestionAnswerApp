@@ -11,30 +11,48 @@ import * as UserActions from "./../actions/userActions";
 import { Box } from "grommet";
 
 class HomeScreen extends Component {
+  state = {
+    page: 1,
+    questions: [],
+    loading: false
+  };
+
+  loadFeed = () => {
+    const { page } = this.state;
+    // this.setState({loading:true})
+    questionService.getFeedData(page).then(response => {
+      const questions = response.data.data;
+     // this.props.actions.userQuestionsLoaded(questions);
+
+      this.setState({
+        page: page + 1,
+        questions: [...this.state.questions, ...questions],
+        loading: false
+      });
+    });
+  };
+
+  componentWillUnmount() {
+    this.props.actions.userResetPage();
+  }
   componentDidMount() {
     const { isAuthenticated } = this.props.user;
-    questionService.getLatestQuestions().then(response => {
-      const questions = response.data.data;
-      this.props.actions.userQuestionsLoaded(questions);
-    });
 
-    if (isAuthenticated) {
-      this.props.actions.userStatsUpdating(true);
-      StatsService.GetUserStats().then(response => {
-        const savedCount = response[1].data.data.savedCount;
-        const draftCount = response[0].data.data.draftCount;
-        this.props.actions.userStatsUpdated({ savedCount, draftCount });
-        this.props.actions.userStatsUpdating(false);
-      });
-    }
+    this.loadFeed();
+    // if (isAuthenticated) {
+    //   this.props.actions.userStatsUpdating(true);
+    //   StatsService.GetUserStats().then(response => {
+    //     const savedCount = response[1].data.data.savedCount;
+    //     const draftCount = response[0].data.data.draftCount;
+    //     this.props.actions.userStatsUpdated({ savedCount, draftCount });
+    //     this.props.actions.userStatsUpdating(false);
+    //   });
+    // }
   }
 
   render() {
-    const {
-      loading,
-      questions,
-      isAuthenticated
-    } = this.props.user;
+    const { isAuthenticated} = this.props.user;
+    const { questions, loading } = this.state;
 
     return (
       <>
@@ -42,7 +60,7 @@ class HomeScreen extends Component {
           <Box
             align="center"
             alignContent="center"
-            fill            
+            fill
             pad={{ horizontal: "small", vertical: "xsmall" }}
           >
             <WritePost />
@@ -56,6 +74,7 @@ class HomeScreen extends Component {
               <QuestionList
                 questions={questions}
                 isUserAuthenticated={isAuthenticated}
+                onloadMore={this.loadFeed}
               />
             )
           }

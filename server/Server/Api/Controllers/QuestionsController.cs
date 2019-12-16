@@ -45,10 +45,12 @@ namespace Api.Controllers
             return await GetQuestion(question.Id);
         }
 
-        [HttpGet("api/questions")]
-        public async Task<IActionResult> GetAll()
+        [HttpGet("api/feed/{page:int}")]
+        public async Task<IActionResult> GetAll(int page = 1)
         {
             var questions = await _dbContext.Questions
+                                     .Take(page * 5)
+                                     .Skip((page - 1) * 5)
                                      .Select(q => new
                                      {
                                          q.Id,

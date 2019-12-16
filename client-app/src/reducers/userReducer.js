@@ -14,7 +14,8 @@ let initialState = {
   loading: true,
   statsUpdating: false,
   savedCount: 0,
-  draftCount: 0
+  draftCount: 0, 
+  
 };
 
 const user = (state = initialState, action) => {
@@ -40,12 +41,19 @@ const user = (state = initialState, action) => {
         ...state,
         loading: action.payload
       };
-    case UserActions.USER_QUESTIONS_LOADED:
+    case UserActions.USER_QUESTIONS_LOADED:      
       return {
         ...state,
         loading: false,
-        questions: action.payload
+        page : this.state.page + 1,
+        questions: [...state.questions,...action.payload]
       };
+    case UserActions.USER_RESET_PAGE:
+      return {
+        ...state,
+        questions : [],
+        page : 1
+      }
     case UserActions.USER_STATS_UPDATING:
       return {
         ...state,

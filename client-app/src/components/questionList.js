@@ -6,6 +6,8 @@ import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import questionService from "./../services/questionsService";
+import { Button } from "grommet";
+import { Download } from "grommet-icons";
 
 class QuestionsList extends Component {
   saveQuestion(questionId) {
@@ -19,6 +21,7 @@ class QuestionsList extends Component {
   }
   render() {
     const { questions, isUserAuthenticated, history } = this.props;
+
     return (
       <div>
         {questions.map(question => (
@@ -59,6 +62,20 @@ class QuestionsList extends Component {
             )}
           </Box>
         ))}
+        {/* <SmallButton
+          icon="download"
+          onClick={this.props.onloadMore}
+          label="Load More"
+        /> */}
+        {questions.length && (
+          <Box fill>
+            <Button
+              icon={<Download />}
+              label="Load More"
+              onClick={this.props.onloadMore}
+            />
+          </Box>
+        )}
       </div>
     );
   }

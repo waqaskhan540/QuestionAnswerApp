@@ -3,6 +3,10 @@ import config from "../config";
 import { getHeaders } from "../helpers/authHelper";
 
 class QuestionsService {
+
+  static getFeedData = (pageNum = 1) => {
+    return axios.get(`${config.API_BASE_URL}/api/feed/${pageNum}`)
+  }
   static getLatestQuestions = () => {
     return axios.get(`${config.API_BASE_URL}/api/questions`);
   };
