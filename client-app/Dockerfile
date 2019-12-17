@@ -8,8 +8,9 @@ WORKDIR /app
 # install and cache app dependencies
 COPY . .
 RUN ls
-RUN npm install 
+RUN rm -rf package-lock.json
+RUN rm -rf node_modules && npm install 
 
-EXPOSE 5000
+EXPOSE 3000
 # start app
 CMD ["npm", "start"]

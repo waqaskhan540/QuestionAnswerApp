@@ -36,6 +36,7 @@ namespace Api
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                 connectionString = Configuration.GetConnectionString("Linux");
 
+            Console.WriteLine($"connectionString:{connectionString}");
             services.AddDbContext<DatabaseContext>(options => options.UseMySql(connectionString));
 
             services.AddCors(config =>

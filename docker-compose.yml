@@ -1,0 +1,31 @@
+version: "3.3"
+services:
+  db:
+    image: mysql:latest  
+    environment:      
+      MYSQL_RANDOM_ROOT_PASSWORD: 1
+      MYSQL_DATABASE: questionsdb
+      MYSQL_USER: waqas
+      MYSQL_PASSWORD: Liverpool1            
+    restart: always   
+  api:
+    build:
+      context: .\server\Server\Api
+    ports:
+      - "5000:5000"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    depends_on:
+      - db
+    links:
+      - db:db    
+  web:
+    build:
+      context: .\client-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+  
+ 
