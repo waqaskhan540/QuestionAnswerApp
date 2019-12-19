@@ -30,13 +30,7 @@ namespace Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connectionString = string.Empty;
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                connectionString = Configuration.GetConnectionString("Windows");
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                connectionString = Configuration.GetConnectionString("Linux");
-
-            Console.WriteLine($"connectionString:{connectionString}");
+            string connectionString = Configuration.GetConnectionString("Default");               
             services.AddDbContext<DatabaseContext>(options => options.UseMySql(connectionString));
 
             services.AddCors(config =>

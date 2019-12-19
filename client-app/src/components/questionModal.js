@@ -13,7 +13,7 @@ import {
 import {withRouter} from "react-router-dom"
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import * as UserActions from "./../actions/userActions";
+import * as FeedActions from "./../actions/feedActions";
 
 
 
@@ -65,7 +65,7 @@ class QuestionModal extends Component {
         this.setState({ showSuccessMessage: true });
         const { id } = response.data.data;
         this.setState({ postedQuestionId: id });        
-        this.props.actions.userUpdateQuestions(response.data.data);
+        this.props.feedActions.postedToFeed(response.data.data);
       })
       .catch(err => console.log(err));
   };
@@ -151,7 +151,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    actions : bindActionCreators(UserActions,dispatch)
+ //   actions : bindActionCreators(UserActions,dispatch),
+    feedActions : bindActionCreators(FeedActions,dispatch)
   }
 }
 //export default withRouter(QuestionModal);

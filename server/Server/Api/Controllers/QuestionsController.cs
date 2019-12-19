@@ -49,6 +49,7 @@ namespace Api.Controllers
         public async Task<IActionResult> GetAll(int page = 1)
         {
             var questions = await _dbContext.Questions
+                                     .OrderByDescending(x => x.DateTime)
                                      .Take(page * 5)
                                      .Skip((page - 1) * 5)
                                      .Select(q => new
@@ -63,7 +64,7 @@ namespace Api.Controllers
                                              q.User.LastName
                                          }
                                      })
-                                     .OrderByDescending(x => x.DateTime)
+
                                     .ToListAsync();
 
             return Ok(BaseResponse.Ok(questions));
@@ -130,7 +131,7 @@ namespace Api.Controllers
         public async Task<IActionResult> SaveQuestion(int id)
         {
             var question = await _dbContext.Questions.FirstOrDefaultAsync(x => x.Id == id);
-            if(null == question)
+            if (null == question)
             {
                 return BadRequest();
             }
