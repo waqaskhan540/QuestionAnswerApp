@@ -1,63 +1,243 @@
 import React, { Component } from "react";
-import { Box } from "grommet";
+import {
+  Box,
+  Stack,
+  Button,
+  Layer,
+  Grid,
+  Text,
+  FormField,
+  TextInput
+} from "grommet";
 import userProfileService from "./../services/userProfileService";
 import { Image } from "semantic-ui-react";
+import ImageUploader from "react-images-upload";
+import axios from "axios";
 
 class Profile extends Component {
   constructor(props) {
     super(props);
+
+    const { firstname, lastname, image, email } = this.props.user;
     this.state = {
-      file: null
+      file: null,
+      isHovering: false,
+      showModal: false,
+      profilePicture: null,
+      updatingProfile: false,
+      disableUpdateButton: true,
+      firstname,
+      lastname,
+      image,
+      email
     };
+    //this.toggleUpdateButton  = this.toggleUpdateButton.bind(this);
   }
 
-  onFileSelected = () => {
-    let file = this.uploadInput.files[0];
-    this.setState({ file });
+  onMouseEnter = () => this.setState({ isHovering: true });
+  onMouseLeave = () => this.setState({ isHovering: false });
+  showImageModal = () => this.setState({ showModal: true });
+  hideImageModal = () => this.setState({ showModal: false });
+  onFirstNameChange = e => {
+    const firstname = e.target.value;
+    this.setState({ firstname });
+
+    if (firstname.length && firstname != this.props.user.firstname)
+      this.setState({ disableUpdateButton: false });
+    else this.setState({ disableUpdateButton: true });
   };
+  onLastNameChange = e => {
+    const lastname = e.target.value;
+    this.setState({ lastname });
+
+    if (lastname.length && lastname != this.props.user.lastname)
+      this.setState({ disableUpdateButton: false });
+    else this.setState({ disableUpdateButton: true });
+  };
+
+  onImageSelect = (files, urls) => {
+    console.log(files[0]);
+    this.setState({ profilePicture: files[0] });
+  };
+
+  submitForm = () => {
+    this.setState({ updatingProfile: true });
+    const data = {
+      firstname: this.state.firstname,
+      lastname: this.state.lastname
+    };
+
+    const { accessToken } = JSON.parse(localStorage.getItem("state")).user;
+    axios
+      .post("http://localhost:5000/api/profile", data, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
+      .then(respo => {
+        console.log(respo);
+        this.setState({ updatingProfile: false });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ updatingProfile: false });
+      });
+  };
+
   uploadImage = () => {
+    console.log(this.state.profilePicture);
     const data = new FormData();
-    data.append("file", this.uploadInput.files[0]);
+    data.append("file", this.state.profilePicture);
     userProfileService
       .uploadImage(data)
       .then(resp => alert("img uploaded"))
       .catch(err => alert("error uploading img"));
   };
   render() {
-    const { firstname, lastname, image } = this.props.user;
+    const { firstname, lastname, image, email } = this.state;
+    const { isHovering, showModal } = this.state;
+
     return (
-      <Box
-        direction="row"
-        width="large"
-        pad="large"
-        border={{ side: "bottom", size: "small" }}
+      <Grid
+        rows={["large"]}
+        columns={["small", "medium", "small"]}
+        gap="small"
+        areas={[
+          { name: "left", start: [0, 0], end: [0, 0] },
+          { name: "middle", start: [1, 0], end: [1, 0] },
+          { name: "right", start: [2, 0], end: [2, 0] }
+        ]}
       >
-        <Box width="xsmall">
-          {image && image.length ? (
-            <Image
-              src={`data:image/png;base64, ${image}`}
-              size="small"
-              wrapped
-            />
-          ) : (
-            <Image
-              src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
-              size="small"
-              wrapped
-            />
-          )}
-        </Box>
-        <Box width="medium">
-          <Box direction="column">
-            <h1>{firstname} {lastname}</h1>
-            <p>Admin</p>
+        <Box gridArea="left">
+          <Box width="xsmall">
+            {image && image.length ? (
+              <Stack
+                anchor="center"
+                onMouseEnter={this.onMouseEnter}
+                onMouseLeave={this.onMouseLeave}
+              >
+                <Image
+                  src={`data:image/png;base64, ${image}`}
+                  size="small"
+                  wrapped
+                  rounded
+                />
+                <Button
+                  label="Edit"
+                  onClick={this.showImageModal}
+                  style={{
+                    fontSize: "10px",
+                    visibility: isHovering ? "visible" : "hidden"
+                  }}
+                />
+              </Stack>
+            ) : (
+              <Image
+                src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
+                size="small"
+                wrapped
+                rounded
+              />
+            )}
+            <Text size="xlarge">
+              {this.props.user.firstname} {this.props.user.lastname}
+            </Text>
           </Box>
         </Box>
-      </Box>
-      // <Card fluid>
-      //   <Box round align="center" pad={"medium"} border="small">
+        <Box gridArea="middle">
+          <FormField
+            label="First name"
+            margin={"small"}
+            required
+            error={
+              this.state.firstname.length ? "" : "please provide first name"
+            }
+          >
+            <TextInput
+              onChange={this.onFirstNameChange}
+              placeholder="first name"
+              disabled={this.state.updatingProfile}
+              value={firstname}
+            />
+          </FormField>
+          <FormField
+            label="Last name"
+            margin={"small"}
+            required
+            error={this.state.lastname.length ? "" : "please provide last name"}
+          >
+            <TextInput
+              onChange={this.onLastNameChange}
+              placeholder="last name"
+              disabled={this.state.updatingProfile}
+              value={lastname}
+            />
+          </FormField>
+          <FormField label="Email" margin={"small"}>
+            <TextInput placeholder="type here" value={email} disabled />
+          </FormField>
+          <Button
+            disabled={
+              this.state.disableUpdateButton || this.state.updatingProfile
+            }
+            label={
+              this.state.updatingProfile ? "Updating..." : "Update Profile"
+            }
+            primary
+            alignSelf="start"
+            onClick={this.submitForm}
+          />
+        </Box>
+
+        <Box gridArea="right" />
+        {showModal && (
+          <Layer
+            onEsc={this.hideImageModal}
+            onClickOutside={this.hideImageModal}
+          >
+            <Box fill pad={"medium"}>
+              <ImageUploader
+                withIcon={true}
+                buttonText="Choose image"
+                withPreview={true}
+                singleImage={true}
+                onChange={this.onImageSelect}
+                imgExtension={[".jpg",".jpeg", ".gif", ".png", ".gif"]}
+                maxFileSize={5242880}
+              />
+
+              <Button onClick={this.uploadImage} label="Upload" />
+            </Box>
+          </Layer>
+        )}
+      </Grid>
+      // <Box
+      //   direction="row"
+      //   width="large"
+      //   pad="large"
+      //   border={{ side: "bottom", size: "small" }}
+      // >
+      //   <Box width="xsmall">
       //     {image && image.length ? (
-      //       <Image src={`data:image/png;base64, ${image}`} size="small" wrapped/>
+      //       <Stack
+      //         anchor="center"
+      //         onMouseEnter={this.onMouseEnter}
+      //         onMouseLeave={this.onMouseLeave}
+      //       >
+      //         <Image
+      //           src={`data:image/png;base64, ${image}`}
+      //           size="small"
+      //           wrapped
+      //         />
+      //         <Button
+      //           label="Edit"
+      //           onClick={this.showImageModal}
+      //           style={{
+      //             fontSize: "10px",
+      //             visibility: isHovering ? "visible" : "hidden"
+      //           }}
+      //         />
+      //       </Stack>
       //     ) : (
       //       <Image
       //         src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
@@ -66,20 +246,18 @@ class Profile extends Component {
       //       />
       //     )}
       //   </Box>
-      //   <Card.Content>
-      //     <Card.Header>Daniel</Card.Header>
-      //     <Card.Meta>Joined in 2016</Card.Meta>
-      //     <Card.Description>
-      //       Daniel is a comedian living in Nashville.
-      //     </Card.Description>
-      //   </Card.Content>
-      //   <Card.Content extra>
-      //     <a>
-      //       <Icon name="user" />
-      //       10 Friends
-      //     </a>
-      //   </Card.Content>
-      // </Card>
+      //   <Box width="medium">
+      //     <Box direction="column">
+      //       <h1>
+      //         {firstname} {lastname}
+      //       </h1>
+      //       <p>Admin</p>
+      //     </Box>
+      //   </Box>
+      //   {showModal && (
+
+      //   )}
+      // </Box>
     );
   }
 }

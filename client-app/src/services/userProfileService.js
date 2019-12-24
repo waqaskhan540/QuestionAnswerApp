@@ -4,11 +4,9 @@ import { getHeaders } from "../helpers/authHelper";
 
 class UserProfileService {
   static uploadImage = data => {
-    return axios.post(
-      `${config.API_BASE_URL}/api/profile/image`,
-      { data },
-      { headers: getHeaders() }
-    );
+    return axios.post(`${config.API_BASE_URL}/api/profile/image`, data, {
+      headers: { ...getHeaders(), "Content-Type": "multipart/form-data" }
+    });
   };
 }
 

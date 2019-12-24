@@ -108,7 +108,7 @@ namespace Api.Controllers
                         var picture = result["picture"].ToString();
 
                         var imageResponse = await httpClient.GetByteArrayAsync(picture);
-                        var image = Convert.ToBase64String(imageResponse);
+                        //var image = Convert.ToBase64String(imageResponse);
 
                         var existingUser = _dbContext.Users.FirstOrDefault(x => x.Email == email);
                         if (existingUser == null)
@@ -116,9 +116,10 @@ namespace Api.Controllers
                             var user = AppUser.Create(
                                  firstname: firstname,
                                  lastname: lastname,
-                                 email: email,
+                                 email: email,                                 
                                  passwordHash: "");
 
+                            user.ProfilePicture = imageResponse;
                             await _dbContext.Users.AddAsync(user);
                             await _dbContext.SaveChangesAsync();
 
@@ -132,7 +133,7 @@ namespace Api.Controllers
                                     lastname = user.LastName,
                                     email = user.Email,
                                     userId = user.Id,
-                                    image = image
+                                    image = Convert.ToBase64String(imageResponse)
                                 }
                             };
                             return Ok(BaseResponse.Ok(tokenResponse));
@@ -148,8 +149,8 @@ namespace Api.Controllers
                                 lastname = existingUser.LastName,
                                 email = existingUser.Email,
                                 userId = existingUser.Id,
-                                image = image
-                            }
+                                image = Convert.ToBase64String(existingUser.ProfilePicture)
+                    }
                         };
 
                         return Ok(BaseResponse.Ok(resp));

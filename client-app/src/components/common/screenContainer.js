@@ -3,6 +3,7 @@ import { Grid, Box } from "grommet";
 
 const ScreenContainer = ({ left, middle, right }) => (
   <Grid
+    
     rows={["xlarge"]}
     columns={["small", "large", "small"]}
     gap="small"
@@ -12,7 +13,7 @@ const ScreenContainer = ({ left, middle, right }) => (
       { name: "right", start: [2, 0], end: [2, 0] }
     ]}
   >
-    <Box gridArea="left" margin={"small"} gap={"large"}>
+    <Box gridArea="left" margin={"small"} gap={"large"} >
       {left}
     </Box>
     <Box gridArea="middle" margin={"small"} pad={"small"} gap={"small"}>

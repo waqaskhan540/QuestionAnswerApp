@@ -29,7 +29,7 @@ const feedReducer = (state = initialState , action) => {
             return {
                 ...state,
                 page : state.page + 1,
-                questions : [...action.payload,...state.questions]
+                questions : [...state.questions,...action.payload]
             }
         case FeedActions.IS_FEED_LOADING:
             return {

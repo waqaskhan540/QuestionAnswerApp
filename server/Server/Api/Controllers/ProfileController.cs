@@ -1,8 +1,11 @@
-﻿using Api.Data;
+﻿using Api.ApiModels;
+using Api.Data;
 using Api.Data.Entities;
+using Api.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,9 +38,29 @@ namespace Api.Controllers
                 _dbContext.Users.Update(user);
                 await _dbContext.SaveChangesAsync();
                 return Ok();
-            }
+            }            
+        }
 
-            
+        [HttpPost("api/profile")]
+        [Authorize]
+        public async Task<IActionResult> UpdateProfile([FromBody]UpdateProfileModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var loggedUserId = HttpContext.GetLoggedUserId();
+            var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == loggedUserId);
+
+            if (null == user)
+                return BadRequest();
+
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+
+            _dbContext.Users.Update(user);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(BaseResponse.Ok(new { user.FirstName, user.LastName }));
         }
     }
 }
