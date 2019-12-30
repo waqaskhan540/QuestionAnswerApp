@@ -1,15 +1,13 @@
 ﻿using Api.ApiModels;
-using Api.Data;
-using Api.Data.Entities;
 using Api.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using QnA.Domain.Entities;
+using QnA.Persistence;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Api.Controllers

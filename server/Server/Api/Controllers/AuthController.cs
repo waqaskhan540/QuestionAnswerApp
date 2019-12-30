@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net.Http;
@@ -8,12 +7,11 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Api.ApiModels;
-using Api.Data;
-using Api.Data.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
+using QnA.Domain.Entities;
+using QnA.Persistence;
 
 namespace Api.Controllers
 {
@@ -107,8 +105,7 @@ namespace Api.Controllers
                         var email = result["email"].ToString();
                         var picture = result["picture"].ToString();
 
-                        var imageResponse = await httpClient.GetByteArrayAsync(picture);
-                        //var image = Convert.ToBase64String(imageResponse);
+                        var imageResponse = await httpClient.GetByteArrayAsync(picture);                       
 
                         var existingUser = _dbContext.Users.FirstOrDefault(x => x.Email == email);
                         if (existingUser == null)

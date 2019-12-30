@@ -76,32 +76,35 @@ class HomeScreen extends Component {
 
     return (
       <>
-        {isAuthenticated && (
-          <Box
-            align="center"
-            alignContent="center"
-            fill
-            pad={{ horizontal: "small", vertical: "xsmall" }}
-          >
-            <WritePost />
-          </Box>
-        )}
         <ScreenContainer
-          middle={
+          left={
             loading ? (
               <Loader active></Loader>
             ) : (
               <>
+                {isAuthenticated && (
+                  <Box
+                    direction="column"
+                    pad="medium"
+                    margin="medium"
+                    elevation="small"
+                    //key={question.id}
+                    alignContent={"start"}
+                    gap={"small"}
+                  >
+                    <div>write your question here</div>
+                  </Box>
+                )}
                 {postingToFeed ? (
                   <Box align="center" alignContent="center">
                     <Spinning kind="three-bounce" />
                   </Box>
                 ) : null}
-                <QuestionList
+               <QuestionList
                   questions={questions}
                   isUserAuthenticated={isAuthenticated}
                   onloadMore={this.loadFeed}
-                />
+                /> 
               </>
             )
           }

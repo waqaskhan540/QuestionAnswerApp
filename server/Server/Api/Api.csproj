@@ -17,4 +17,10 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\QnA.Application\QnA.Application.csproj" />
+    <ProjectReference Include="..\QnA.Domain\QnA.Domain.csproj" />
+    <ProjectReference Include="..\QnA.Infrastructure\QnA.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>
