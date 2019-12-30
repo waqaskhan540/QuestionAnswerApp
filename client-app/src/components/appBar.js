@@ -3,7 +3,15 @@ import { Box, Button, Heading, Menu, Header, Anchor, TextInput } from "grommet";
 import QuestionModal from "../components/questionModal";
 import { withRouter } from "react-router-dom";
 //import { Avatar } from "grommet-controls";
-import { Search, Home, UserManager, Edit ,Notification} from "grommet-icons";
+import {
+  Search,
+  Edit,
+  Notification,
+  Article,
+  Notes,
+  Organization,
+  Login
+} from "grommet-icons";
 import { Icon } from "semantic-ui-react";
 import "./styles/appBar.css";
 
@@ -49,7 +57,7 @@ export const Avatar = ({ image }) => (
   <Box
     height="xxsmall"
     width="xxsmall"
-    round="full"
+    round="full"   
     alignSelf="center"
     background={`url(data:image/png;base64, ${image})`}
   />
@@ -59,138 +67,81 @@ class AppBar extends Component {
     const { modalOpened, toggleModal, user, history } = this.props;
     return (
       <Header background="light-4" pad="small">
-        <Box gap="medium">
+        <Box gap={"medium"} direction={"row"}>
           <Heading level={3} style={{ fontFamily: "Pacifico" }}>
             QnA
           </Heading>
         </Box>
-        <Box direction="row" gap="xsmall">
+       
+        <Box direction="row" gap="small" alignSelf="center" width="medium">
           <Button
-            icon={<Home />}
-            label="Home"
-            onClick={e => {
-              e.preventDefault();
-            }}
-            primary
-            color="light-3"
+            icon={<Article />}
+            label="Feed"
+            href="/"
+            plain
+            //color="light-3"
           />
-          <Button
-            icon={<UserManager />}
-            label="Profile"
-            onClick={e => {
-              e.preventDefault();
-            }}
-            primary
-            color="light-3"
-          />
+          <Button icon={<Notes />} label="Topics" plain href="/topics" />
+          {user.isAuthenticated && (
+            <Button
+              icon={<Organization />}
+              label="Organizations"
+              plain
+              href="/organizations"
+            />
+          )}
+          {/* </Box> */}
         </Box>
-        <Button icon={<Notification />}/>
+
         <SearchBar />
-        <Button
-          icon={<Edit />}
-          label="Ask"
-          onClick={e => {
-            e.preventDefault();
-          }}
-          primary
-          // color="dark-3"
-        />
-        <Avatar image={user.image} />
-      </Header>
 
-      // <Box
-      //   tag="header"
-      //   alignContent="center"
-      //   direction="row"
-      //   align="start"
-      //   justify="start"
-      //   pad={{ vertical: "small", horizontal: "small" }}
-      // >
-      //   <Heading level={2} style={{ fontFamily: "Pacifico" }}>
-      //     QnA
-      //   </Heading>
-      //   <Button
-      //     primary={true}
-      //     label="Home"
-      //     href={"/home"}
-      //     style={{ marginLeft: "20px" }}
-      //   />
-      //   {user.isAuthenticated ? (
-      //     <>
-      //       <Button
-      //         label="Questions"
-      //         primary={true}
-      //         href={"/myquestions"}
-      //         style={{ marginLeft: "20px" }}
-      //       />
-      //       <Button
-      //         label="Ask"
-      //         primary={true}
-      //         style={{ marginLeft: "20px" }}
-      //         onClick={toggleModal}
-      //       />
-      //     </>
-      //   ) : (
-      //     ""
-      //   )}
+        {user.isAuthenticated && <Button icon={<Notification />} />}
 
-      //   <Box direction="row" align="end" basis="3/4" justify="end">
-      //     {user.isAuthenticated ? (
-      //       <>
-      //         <Menu
-      //           icon={
-      //             user.image ? (
-      //               <Avatar image={`data:image/png;base64, ${user.image}`} />
-      //             ) : (
-      //               <Icon disabled name="user circle" size="big" />
-      //             )
-      //           }
-      //           items={[
-      //             {
-      //               label: "Profile",
-      //               onClick: () => {
-      //                 history.push("/profile");
-      //               }
-      //             },
-      //             {
-      //               label: "Log Out",
-      //               onClick: () => {
-      //                 //history.push("/logout");
-      //                 localStorage.removeItem("state");
-      //                 if (window.gapi) {
-      //                   const auth = window.gapi.auth2.getAuthInstance();
-      //                   if (auth != null) {
-      //                     auth
-      //                       .signOut()
-      //                       .then(re => console.log("logout from google"));
-      //                   }
-      //                 }
+        {user.isAuthenticated && (
+          <Button
+            icon={<Edit />}
+            label="Ask"
+            primary
+            onClick={toggleModal}
+            color="dark-3"
+          />
+        )}
 
-      //                 if (window.FB && window.FB.getAccessToken()) {
-      //                   window.FB.logout();
-      //                 }
-      //                 if (history.location.pathname === "/")
-      //                   window.location.reload();
-      //                 else history.push("/");
-      //               }
-      //             }
-      //           ]}
-      //         />
-      //       </>
-      //     ) : (
-      //       <>
-      //         <Button primary={true} label="Login" href={"/login"} />
-      //         <Button
-      //           primary={true}
-      //           label="Register"
-      //           href={"/register"}
-      //           style={{ marginLeft: "20px" }}
-      //         />
-      //       </>
-      //     )}
-      //   </Box>
-      //   <QuestionModal modalOpened={modalOpened} toggleModal={toggleModal} />
-      // </Box>
+        {user.isAuthenticated && (
+          <Menu           
+            icon={<Avatar image={user.image} />}
+            items={[
+              { label: "Profile", onClick: () => history.push("/profile") },
+              {
+                label: "Logout",
+                onClick: () => {
+                  localStorage.removeItem("state");
+                  if (window.gapi) {
+                    const auth = window.gapi.auth2.getAuthInstance();
+                    if (auth != null) {
+                      auth
+                        .signOut()
+                        .then(re => console.log("logout from google"));
+                    }
+                  }
+
+                  if (window.FB && window.FB.getAccessToken()) {
+                    window.FB.logout();
+                  }
+                  if (history.location.pathname === "/")
+                    window.location.reload();
+                  else history.push("/");
+                }
+              }
+            ]}
+          />
+        )}
+        {!user.isAuthenticated && (
+          <Button icon={<Login />} label="Login" plain href="/login" />
+        )}
+
+        <QuestionModal modalOpened={modalOpened} toggleModal={toggleModal} />
+      </Header>      
     );
   }
 }
