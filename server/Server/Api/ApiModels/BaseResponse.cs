@@ -12,6 +12,7 @@ namespace Api.ApiModels
         public string Message { get; set; }
         public Object Data { get; set; }
 
+        public List<string> Errors { get; set; }
         public static BaseResponse Ok(Object data = null)
         {
             return new BaseResponse { Success = true , Data = data};
@@ -25,6 +26,11 @@ namespace Api.ApiModels
         public static BaseResponse Error(string message = null)
         {
             return new BaseResponse { Message = message, Success = false };
+        }
+
+        public static BaseResponse Error(string message,List<string> errors)
+        {
+            return new BaseResponse { Message = message, Errors = errors };
         }
 
         

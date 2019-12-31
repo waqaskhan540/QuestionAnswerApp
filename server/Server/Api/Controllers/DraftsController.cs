@@ -1,13 +1,11 @@
 ﻿using Api.ApiModels;
 using Api.Extensions;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using QnA.Domain.Entities;
+using QnA.Application.Drafts.Commands;
+using QnA.Application.Drafts.Queries;
 using QnA.Persistence;
-using System;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Api.Controllers
@@ -16,47 +14,33 @@ namespace Api.Controllers
     public class DraftsController : Controller
     {
         private readonly DatabaseContext _dbContext;
+        private readonly IMediator _mediator;
 
-        public DraftsController(DatabaseContext dbContext)
+        public DraftsController(DatabaseContext dbContext, IMediator mediator)
         {
             _dbContext = dbContext;
+            _mediator = mediator;
         }
 
         [HttpPost("api/drafts")]
         public async Task<IActionResult> SaveDraft([FromBody]DraftViewModel model)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var loggedUserId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
-            var draft = _dbContext.Drafts.FirstOrDefault(x => x.QuestionId == model.QuestionId && x.UserId == int.Parse(loggedUserId));
-
-            if (null != draft)
+           
+            var command = new SaveDraftCommand
             {
-                draft.Content = model.Content;
-                draft.DateTime = DateTime.Now;
-                _dbContext.Drafts.Update(draft);
-            }
-            else
-            {
-                var newDraft = new Draft
-                {
-                    UserId = int.Parse(loggedUserId),
-                    DateTime = DateTime.Now,
-                    Content = model.Content,
-                    QuestionId = model.QuestionId
-                };
-                await _dbContext.Drafts.AddAsync(newDraft);
-            }
-            await _dbContext.SaveChangesAsync();
-            return Ok();
+                UserId = HttpContext.GetLoggedUserId(),
+                Content = model.Content,
+                QuestionId = model.QuestionId
+            };
+            var response = await _mediator.Send(command);
+            return Ok(BaseResponse.Ok(response.Message));
         }
 
         [HttpGet("api/drafts")]
         public async Task<IActionResult> GetDrafts()
         {
             var userId = HttpContext.GetLoggedUserId();
-            var drafts = await _dbContext.Drafts.Where(x => x.UserId == userId).ToListAsync();
+            var drafts = await _mediator.Send(new GetDraftsQuery(userId));
             return Ok(BaseResponse.Ok(drafts));
         }
 
@@ -64,8 +48,8 @@ namespace Api.Controllers
         public async Task<IActionResult> GetDraftsCount()
         {            
             var userId = HttpContext.GetLoggedUserId();
-            var drafts = await _dbContext.Drafts.Where(x => x.UserId == userId).ToListAsync();
-            return Ok(BaseResponse.Ok(new { draftCount = drafts.Count }));
+            var draftCount = await _mediator.Send(new GetDraftsCountQuery(userId));
+            return Ok(BaseResponse.Ok(new { draftCount }));
         }
 
 

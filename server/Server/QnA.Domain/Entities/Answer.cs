@@ -10,7 +10,7 @@ namespace QnA.Domain.Entities
         public DateTime DateTime { get; set; }
         public int UserId { get; set; }
         public AppUser User { get; set; }
-        public int questionId { get; set; }
+        public int QuestionId { get; set; }
         public Question Question { get; set; }
 
     }

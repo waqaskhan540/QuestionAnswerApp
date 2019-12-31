@@ -1,7 +1,11 @@
 ﻿using Api.ApiModels;
+using Api.Extensions;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using QnA.Application.Answers.Commands;
+using QnA.Application.Answers.Queries;
 using QnA.Domain.Entities;
 using QnA.Persistence;
 using System;
@@ -13,65 +17,34 @@ namespace Api.Controllers
 {
 
     public class AnswersController : Controller
-    {
-        private readonly DatabaseContext _dbContext;
+    {        
+        private readonly IMediator _mediator;
 
-        public AnswersController(DatabaseContext dbContext)
-        {
-            _dbContext = dbContext;
+        public AnswersController(IMediator mediator)
+        {           
+            _mediator = mediator;
         }
 
         [HttpPost("api/answer")]
         [Authorize]
         public async Task<IActionResult> Post([FromBody] AnswerViewModel model)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var questionExists = _dbContext.Questions.Any(x => x.Id == model.QuestionId);
-            if (!questionExists)
-                return BadRequest(BaseResponse.Error("question does not exist."));
-
-            var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
-            var answer = new Answer
+        {            
+            var publishCommand = new PublishAnswerCommand
             {
-                AnswerMarkup = model.Answer,
-                DateTime = DateTime.Now,
-                questionId = model.QuestionId,
-                UserId = int.Parse(userId)
+                UserId = HttpContext.GetLoggedUserId(),
+                Answer = model.Answer,
+                QuestionId = model.QuestionId
             };
 
-            await _dbContext.Answers.AddAsync(answer);            
-            await _dbContext.SaveChangesAsync();
-
-            return Ok(BaseResponse.Ok("Answered published successfully."));
+            var response = await _mediator.Send(publishCommand);
+            return Ok(BaseResponse.Ok(response));
 
         }
 
         [HttpGet("api/answers/{questionId:int}")]
         public async Task<IActionResult> GetAnswers(int questionId)
         {
-
-            var answers = await _dbContext.Answers
-                                .Where(x => x.questionId == questionId)
-                                .Include(q => q.User)
-                                //.Include(q => q.Question)
-                                //    .ThenInclude(q => q.User)
-                                .Select(a => new
-                                {
-                                    a.AnswerId,
-                                    a.AnswerMarkup,
-                                    a.DateTime,
-                                    user = new
-                                    {
-                                        a.User.FirstName,
-                                        a.User.LastName,
-                                        a.User.Email
-
-                                    }
-                                })
-                                .ToListAsync();
-
+            var answers = await _mediator.Send(new GetAnswersByQuestionIdQuery(questionId));
             return Ok(BaseResponse.Ok(answers));
         }
     }

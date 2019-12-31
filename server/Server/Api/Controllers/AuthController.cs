@@ -31,9 +31,7 @@ namespace Api.Controllers
         [HttpPost("external-login")]
         public async Task<IActionResult> ExternalLogin([FromBody] ExternalLoginModel model)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
+           
             switch (model.Provider.ToLower())
             {
                 case "facebook":
@@ -160,10 +158,7 @@ namespace Api.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-
+           
             var existingUser = _dbContext.Users.FirstOrDefault(x => x.Email.Equals(model.Email, StringComparison.InvariantCultureIgnoreCase));
             if (existingUser != null)
                 return BadRequest(BaseResponse.Error("user already exists."));
@@ -206,9 +201,7 @@ namespace Api.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginModel model)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
+           
             var user = _dbContext.Users
                         .FirstOrDefault(x => x.Email.Equals(model.Email, StringComparison.OrdinalIgnoreCase));
 

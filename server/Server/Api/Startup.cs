@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using QnA.Persistence;
+using QnA.Application;
+using Api.Filters;
 
 namespace Api
 {
@@ -20,6 +22,7 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddApplication();
             services.AddInfrastructure(Configuration);
             services.AddCors(config =>
             {
@@ -31,8 +34,11 @@ namespace Api
                  });
             });
 
-           
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddMvc(config =>
+            {
+                config.Filters.Add(new ModelStateFilter());
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,10 +49,10 @@ namespace Api
                 app.UseDeveloperExceptionPage();
             }
 
-            using(var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<DatabaseContext>();
-                context.Database.EnsureCreated();                                    
+                context.Database.EnsureCreated();
             }
 
             app.UseCors("AllowAll");

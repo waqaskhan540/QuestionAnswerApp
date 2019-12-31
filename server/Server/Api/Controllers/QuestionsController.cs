@@ -1,13 +1,11 @@
 ﻿using Api.ApiModels;
 using Api.Extensions;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using QnA.Domain.Entities;
-using QnA.Persistence;
-using System;
-using System.Linq;
-using System.Security.Claims;
+using QnA.Application.Feed.Queries;
+using QnA.Application.Questions.Commands;
+using QnA.Application.Questions.Queries;
 using System.Threading.Tasks;
 
 
@@ -16,55 +14,27 @@ namespace Api.Controllers
 
     public class QuestionsController : Controller
     {
-        private readonly DatabaseContext _dbContext;
-        public QuestionsController(DatabaseContext dbContext)
+        private readonly IMediator _mediator;
+        public QuestionsController(IMediator mediator)
         {
-            _dbContext = dbContext;
+            _mediator = mediator;
         }
 
         [HttpPost("api/questions")]
         [Authorize]
         public async Task<IActionResult> Post([FromBody]QuestionViewModel model)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+           
+            var userId = HttpContext.GetLoggedUserId();
+            var questionId = await _mediator.Send(new AddQuestionCommand(userId, model.QuestionText));
 
-            var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
-            var question = new Question
-            {
-                DateTime = DateTime.Now,
-                UserId = int.Parse(userId),
-                QuestionText = model.QuestionText
-            };
-
-            await _dbContext.Questions.AddAsync(question);
-            await _dbContext.SaveChangesAsync();
-
-            return await GetQuestion(question.Id);
+            return await GetQuestion(questionId);
         }
 
         [HttpGet("api/feed/{page:int}")]
-        public async Task<IActionResult> GetAll(int page = 1)
+        public async Task<IActionResult> GetFeed(int page = 1)
         {
-            var questions = await _dbContext.Questions
-                                     .OrderByDescending(x => x.DateTime)
-                                     .Take(page * 5)
-                                     .Skip((page - 1) * 5)
-                                     .Select(q => new
-                                     {
-                                         q.Id,
-                                         q.QuestionText,
-                                         q.DateTime,
-                                         q.UserId,
-                                         User = new
-                                         {
-                                             q.User.FirstName,
-                                             q.User.LastName
-                                         }
-                                     })
-
-                                    .ToListAsync();
-
+            var questions = await _mediator.Send(new GetFeedByPageQuery(page: page));
             return Ok(BaseResponse.Ok(questions));
         }
 
@@ -72,55 +42,20 @@ namespace Api.Controllers
         [Authorize]
         public async Task<IActionResult> Get(int userId)
         {
-            var loggedUserId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
-            if (userId != int.Parse(loggedUserId))
+            var loggedUserId = HttpContext.GetLoggedUserId();
+            if (userId != loggedUserId)
                 return Unauthorized();
 
-            var questions = await _dbContext.Questions
-                                        .Where(q => q.UserId == userId)
-                                         .Select(q => new
-                                         {
-                                             q.Id,
-                                             q.QuestionText,
-                                             q.DateTime,
-                                             q.UserId,
-                                             User = new
-                                             {
-                                                 q.User.FirstName,
-                                                 q.User.LastName
-                                             }
-                                         })
-                                         .OrderByDescending(x => x.DateTime)
-                                        .ToListAsync();
+            var questions = await _mediator.Send(new GetQuestionsByUserQuery(loggedUserId));
             return Ok(BaseResponse.Ok(questions));
         }
 
-        [HttpGet("api/questions/user/{userId}/question/{questionId}")]
-        public async Task<IActionResult> Get(int userId, int questionId)
-        {
-            var question = await _dbContext.Questions
-                                .FirstOrDefaultAsync(x => x.UserId == userId && x.Id == questionId);
-            return Ok(BaseResponse.Ok(question));
-        }
+
 
         [HttpGet("api/questions/{questionId}")]
         public async Task<IActionResult> GetQuestion(int questionId)
         {
-            var question = await _dbContext.Questions
-                                     .Select(q => new
-                                     {
-                                         q.Id,
-                                         q.QuestionText,
-                                         q.DateTime,
-                                         q.UserId,
-                                         User = new
-                                         {
-                                             q.User.FirstName,
-                                             q.User.LastName
-                                         }
-                                     })
-                                     .Where(q => q.Id == questionId)
-                                    .FirstOrDefaultAsync();
+            var question = await _mediator.Send(new GetQuestionByIdQuery(questionId));
             return Ok(BaseResponse.Ok(question));
         }
 
@@ -128,38 +63,12 @@ namespace Api.Controllers
         [Authorize]
         public async Task<IActionResult> SaveQuestion(int id)
         {
-            var question = await _dbContext.Questions.FirstOrDefaultAsync(x => x.Id == id);
-            if (null == question)
-            {
-                return BadRequest();
-            }
-
-            var loggedUserId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
-            var existing = await _dbContext.SavedQuestions.FirstOrDefaultAsync(x => x.QuestionId == id && x.UserId == int.Parse(loggedUserId));
-
-            if (null != existing)
-                return Ok(BaseResponse.Ok("Question already saved"));
-
-            var savedQuestion = new SavedQuestion
-            {
-                UserId = int.Parse(loggedUserId),
-                QuestionId = id,
-                DateTime = DateTime.Now
-            };
-
-            await _dbContext.SavedQuestions.AddAsync(savedQuestion);
-            await _dbContext.SaveChangesAsync();
-
-            return Ok(BaseResponse.Ok("Question saved successfully."));
-        }
-
-        [HttpGet("api/saved/count")]
-        public async Task<IActionResult> GetSavedCount()
-        {
             var userId = HttpContext.GetLoggedUserId();
-            var savedQuestions = await _dbContext.SavedQuestions.Where(x => x.UserId == userId).ToListAsync();
-            return Ok(BaseResponse.Ok(new { savedCount = savedQuestions.Count }));
+            var message = await _mediator.Send(new SaveQuestionCommand(id, userId));
+            return Ok(BaseResponse.Ok(message));
         }
+
+
 
     }
 }
