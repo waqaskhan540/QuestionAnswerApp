@@ -82,19 +82,7 @@ class HomeScreen extends Component {
               <Loader active></Loader>
             ) : (
               <>
-                {isAuthenticated && (
-                  <Box
-                    direction="column"
-                    pad="medium"
-                    margin="medium"
-                    elevation="small"
-                    //key={question.id}
-                    alignContent={"start"}
-                    gap={"small"}
-                  >
-                    <div>write your question here</div>
-                  </Box>
-                )}
+                
                 {postingToFeed ? (
                   <Box align="center" alignContent="center">
                     <Spinning kind="three-bounce" />

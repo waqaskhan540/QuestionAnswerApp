@@ -1,12 +1,11 @@
 import React from "react";
-import { Button, Icon } from "semantic-ui-react";
+import { Button } from "grommet";
+import { Edit } from "grommet-icons";
 
-
-const SmallButton = ({ label, icon , onClick}) => (
-  <Button size="mini" onClick = {onClick} >
-    <Icon name={icon} />
-    {label}
-  </Button>
+const SmallButton = ({ label, icon, onClick }) => (
+  
+    <Button icon={icon} onClick={onClick}  plain />
+   
 );
 
 export default SmallButton;

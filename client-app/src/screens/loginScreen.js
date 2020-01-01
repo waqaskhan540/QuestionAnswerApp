@@ -107,7 +107,7 @@ class LoginScreen extends React.Component {
   render() {
     return (
       <ScreenContainer
-        middle={
+        left={
           <Box pad="medium" elevation="small" margin="medium" gap="small">
             <Header as="h3">Login</Header>
             <LoginForm

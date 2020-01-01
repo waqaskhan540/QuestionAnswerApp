@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Box } from "grommet";
+import { Box, Anchor } from "grommet";
 import SmallButton from "./common/smallButton";
 import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import questionService from "./../services/questionsService";
 import { Button } from "grommet";
-import { Download } from "grommet-icons";
+import { Download, Save, Edit, Rss } from "grommet-icons";
+import { Avatar } from "./common/avatar";
+import "./styles/questionList.css";
 
 class QuestionsList extends Component {
   saveQuestion(questionId) {
@@ -27,46 +29,47 @@ class QuestionsList extends Component {
         {questions.map(question => (
           <Box
             direction="column"
-            pad="medium"
+            pad="small"
             margin="medium"
-            elevation="small"
+            elevation="xsmall"
             key={question.id}
+            background="light-3"
+            round="small"
             alignContent={"start"}
             gap={"small"}
           >
-            <Box align="stretch">
-              <p style={{ color: "grey" }}>
-                {" "}
-                {question.user.firstName} {question.user.lastName} {" . "}
-                {new Date(question.dateTime).toLocaleDateString()}
-              </p>
+            <Box direction="row" gap="small">
+              <Avatar image={question.user.image} />
+              <Box>
+                <p style={{ color: "grey" }}>
+                  {" "}
+                  {question.user.firstName} {question.user.lastName} {" . "}
+                  {new Date(question.dateTime).toLocaleDateString()}
+                </p>
+                <Link to={`question/${question.id}`} style={{ color: "black" }}>
+                  <h3> {question.questionText}</h3>
+                </Link>
+              </Box>
             </Box>
-            <Link to={`question/${question.id}`} style={{ color: "black" }}>
-              {/* <Heading margin="none" level="5"> */}
-              <h3> {question.questionText}</h3>
-              {/* </Heading> */}
-            </Link>
+
             {isUserAuthenticated && (
-              <Box align="start" direction="row">
-                <SmallButton
-                  label={"Answer"}
-                  onClick={() => history.push(`write/${question.id}`)}
-                  icon={"write"}
-                />
-                <SmallButton
-                  onClick={() => this.saveQuestion(question.id)}
-                  label={"Save"}
-                  icon={"save"}
-                />
+              <Box direction="row">
+                <Box
+                  align="start"
+                  direction="row"
+                  gap="small"
+                  fill
+                  margin="small"
+                >
+                  <Anchor label="Answer" icon={<Edit />} href="#" />
+                  <Anchor label="Save" icon={<Save />} href="#" />
+                  <Anchor label="Follow" icon={<Rss />} href="#" />
+                </Box>
               </Box>
             )}
           </Box>
         ))}
-        {/* <SmallButton
-          icon="download"
-          onClick={this.props.onloadMore}
-          label="Load More"
-        /> */}
+
         {questions.length && (
           <Box fill>
             <Button

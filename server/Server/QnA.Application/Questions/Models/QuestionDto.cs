@@ -1,4 +1,5 @@
-﻿using QnA.Domain.Entities;
+﻿using QnA.Application.Answers.Models;
+using QnA.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace QnA.Application.Questions.Models
         public int UserId { get; set; }
 
         public UserDto User { get; set; }
+        public AnswerDto FeaturedAnswer { get; set; }
         public static Expression<Func<Question, QuestionDto>> Projection
         {
             get
@@ -29,7 +31,12 @@ namespace QnA.Application.Questions.Models
                     User = new UserDto
                     {
                         FirstName = c.User.FirstName,
-                        LastName = c.User.LastName
+                        LastName = c.User.LastName,
+                        Image = Convert.ToBase64String(c.User.ProfilePicture)
+                    },
+                    FeaturedAnswer = new AnswerDto
+                    {
+
                     }
 
                 };
@@ -41,5 +48,7 @@ namespace QnA.Application.Questions.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        public string Image {get;set;}
     }
 }

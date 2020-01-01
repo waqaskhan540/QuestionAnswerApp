@@ -13,6 +13,7 @@ import {
   Login
 } from "grommet-icons";
 import { Icon } from "semantic-ui-react";
+import {Avatar} from "./common/avatar";
 import "./styles/appBar.css";
 
 export const SearchBar = () => (
@@ -53,15 +54,7 @@ export const SearchBar = () => (
   </Box>
 );
 
-export const Avatar = ({ image }) => (
-  <Box
-    height="xxsmall"
-    width="xxsmall"
-    round="full"   
-    alignSelf="center"
-    background={`url(data:image/png;base64, ${image})`}
-  />
-);
+
 class AppBar extends Component {
   render() {
     const { modalOpened, toggleModal, user, history } = this.props;

@@ -27,7 +27,7 @@ class QuestionDetailScreen extends Component {
 
     return (
       <ScreenContainer
-        middle={
+        left={
           <QuestionDetail
             isLoading={isloading}
             answers={answers}
