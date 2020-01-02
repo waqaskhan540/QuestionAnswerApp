@@ -5,8 +5,9 @@ import { withRouter } from "react-router-dom";
 import authenticationService from "../services/authenticationService";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {Grid,Box} from "grommet";
+import { Grid, Box } from "grommet";
 import * as userActions from "../actions/userActions";
+import ScreenContainer from "./../components/common/screenContainer";
 
 class RegisterScreen extends React.Component {
   constructor(props) {
@@ -69,25 +70,9 @@ class RegisterScreen extends React.Component {
 
   render() {
     return (
-      <div>
-        <Grid
-          areas={[
-            { name: "nav", start: [0, 0], end: [0, 0] },
-            { name: "main", start: [1, 0], end: [1, 0] }
-          ]}
-          columns={["medium", "medium"]}
-          rows={["medium", "small"]}
-          gap="small"
-          margin={ {vertical : "xlarge"}}
-        >
-          <Box gridArea="nav" />
-          <Box
-            gridArea="main"
-            pad="medium"
-            elevation="small"
-            alignSelf="center"
-            style = {{"margin-top":"100px"}}
-          >
+      <ScreenContainer
+        middle={
+          <>
             <Header as="h3">Register</Header>
 
             <RegisterForm
@@ -95,9 +80,9 @@ class RegisterScreen extends React.Component {
               validateForm={this.validateForm}
               submitHandler={this.submitHandler}
             />
-          </Box>
-        </Grid>
-      </div>
+          </>
+        }
+      />
     );
   }
 }
@@ -114,8 +99,5 @@ const mapDispatchToProps = dispatch => {
   };
 };
 export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(RegisterScreen)
+  connect(mapStateToProps, mapDispatchToProps)(RegisterScreen)
 );

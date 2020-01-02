@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\QnA.Common\QnA.Common.csproj" />
     <ProjectReference Include="..\QnA.Domain\QnA.Domain.csproj" />
   </ItemGroup>
 

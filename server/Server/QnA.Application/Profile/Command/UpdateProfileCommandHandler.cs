@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using QnA.Application.Interfaces;
 using QnA.Application.Profile.Models;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 

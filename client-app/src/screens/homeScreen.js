@@ -77,7 +77,7 @@ class HomeScreen extends Component {
     return (
       <>
         <ScreenContainer
-          left={
+          middle={
             loading ? (
               <Loader active></Loader>
             ) : (

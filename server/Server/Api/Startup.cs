@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Api.Filters;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using QnA.Persistence;
 using QnA.Application;
-using Api.Filters;
+using QnA.Authentication;
+using QnA.Persistence;
+
 
 namespace Api
 {
@@ -23,7 +25,9 @@ namespace Api
         {
 
             services.AddApplication();
-            services.AddInfrastructure(Configuration);
+            services.AddPersistence(Configuration);
+            services.AddAuthencticationServices();
+
             services.AddCors(config =>
             {
                 config.AddPolicy("AllowAll", options =>

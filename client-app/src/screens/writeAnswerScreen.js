@@ -8,36 +8,37 @@ import { Loader } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as WriteAnswerActions from "./../actions/writeAnswerActions";
+import ScreenContainer from "./../components/common/screenContainer";
 
 class WriteAnswerScreen extends Component {
   postAnswer = answer => {
     const { id } = this.props.match.params;
     this.props.actions.savingAnswer(true);
     AnswerService.postAnswer(id, answer)
-      .then(response => {       
+      .then(response => {
         this.props.actions.savingAnswer(false);
         this.props.history.push(`/question/${id}`);
       })
       .catch(err => console.log(err));
   };
 
-  saveDraft = draft => {  
+  saveDraft = draft => {
     this.props.actions.savingDraft(true);
     DraftService.saveDraft(draft)
-      .then(response => {      
+      .then(response => {
         this.props.actions.savingDraft(false);
         console.log(response);
       })
-      .catch(err => {        
+      .catch(err => {
         this.props.actions.savingDraft(false);
         console.log(err);
       });
   };
 
   componentDidMount() {
-    const { id } = this.props.match.params;   
+    const { id } = this.props.match.params;
     questionService.getQuestionById(id).then(response => {
-      const question = response.data.data;     
+      const question = response.data.data;
       this.props.actions.questionLoaded(question);
     });
   }
@@ -48,36 +49,22 @@ class WriteAnswerScreen extends Component {
       savingDraft,
       loadingQuestion
     } = this.props.writeAnswer;
-    return (     
-      <div>
-        <Grid
-          rows={["xlarge"]}
-          columns={["small", "large", "small"]}
-          gap="small"
-          areas={[
-            { name: "left", start: [0, 0], end: [0, 0] },
-            { name: "middle", start: [1, 0], end: [1, 0] },
-            { name: "right", start: [2, 0], end: [2, 0] }
-          ]}
-          margin="small"
-        >
-          <Box gridArea="left" />
-          <Box gridArea="middle">
-            {loadingQuestion ? (
-              <Loader active inline="centered" />
-            ) : (
-              <TextEditor
-                onSaveDraft={this.saveDraft}
-                onPostAnswer={this.postAnswer}
-                publishingAnswer={publishingAnswer}
-                savingDraft={savingDraft}
-                question={question}
-              />
-            )}
-          </Box>
-          <Box gridArea="right" />
-        </Grid>
-      </div>
+    return (
+      <ScreenContainer
+        middle={
+          loadingQuestion ? (
+            <Loader active inline="centered" />
+          ) : (
+            <TextEditor
+              onSaveDraft={this.saveDraft}
+              onPostAnswer={this.postAnswer}
+              publishingAnswer={publishingAnswer}
+              savingDraft={savingDraft}
+              question={question}
+            />
+          )
+        }
+      />
     );
   }
 }

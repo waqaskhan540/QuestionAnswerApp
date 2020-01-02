@@ -15,5 +15,6 @@ namespace QnA.Application.Interfaces
         DbSet<SavedQuestion> SavedQuestions { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+
     }
 }

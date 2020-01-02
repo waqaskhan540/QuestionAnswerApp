@@ -8,7 +8,7 @@ class ProfileScreen extends Component {
     // return <ScreenContainer middle={} />;
     return (
       <ScreenContainer
-        left={<Profile user={this.props.user} />}
+        middle={<Profile user={this.props.user} />}
       ></ScreenContainer>
     );
   }

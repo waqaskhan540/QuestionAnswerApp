@@ -1,12 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Api.ApiModels
 {
-    public class BaseResponse 
+    public class BaseResponse
     {
         public bool Success { get; set; }
         public string Message { get; set; }
@@ -15,7 +12,7 @@ namespace Api.ApiModels
         public List<string> Errors { get; set; }
         public static BaseResponse Ok(Object data = null)
         {
-            return new BaseResponse { Success = true , Data = data};
+            return new BaseResponse { Success = true, Data = data };
         }
 
         public static BaseResponse Ok(string message)
@@ -28,11 +25,11 @@ namespace Api.ApiModels
             return new BaseResponse { Message = message, Success = false };
         }
 
-        public static BaseResponse Error(string message,List<string> errors)
+        public static BaseResponse Error(string message, List<string> errors)
         {
             return new BaseResponse { Message = message, Errors = errors };
         }
 
-        
+
     }
 }
