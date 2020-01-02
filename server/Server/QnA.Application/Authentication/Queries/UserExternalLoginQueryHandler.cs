@@ -68,6 +68,13 @@ namespace QnA.Application.Authentication.Queries
                 };
             }
 
+            if (existingUser.ProfilePicture == null && user.Picture != null)
+            {
+                existingUser.ProfilePicture = user.Picture;
+                _context.Users.Update(existingUser);
+                await _context.SaveChangesAsync(CancellationToken.None);
+            }
+
             accesstoken = _tokenGenerator.GenerateToken(existingUser.LastName, existingUser.Email, existingUser.Id);
             return new UserLoginViewModel
             {

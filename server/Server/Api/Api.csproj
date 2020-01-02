@@ -22,6 +22,7 @@
     <ProjectReference Include="..\QnA.Authentication\QnA.Authentication.csproj" />
     <ProjectReference Include="..\QnA.Domain\QnA.Domain.csproj" />
     <ProjectReference Include="..\QnA.Persistence\QnA.Persistence.csproj" />
+    <ProjectReference Include="..\QnA.Security\QnA.Security.csproj" />
   </ItemGroup>
 
 </Project>

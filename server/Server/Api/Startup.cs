@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using QnA.Application;
 using QnA.Authentication;
 using QnA.Persistence;
-
+using QnA.Security;
 
 namespace Api
 {
@@ -27,6 +27,7 @@ namespace Api
             services.AddApplication();
             services.AddPersistence(Configuration);
             services.AddAuthencticationServices();
+            services.AddSecurity();
 
             services.AddCors(config =>
             {
