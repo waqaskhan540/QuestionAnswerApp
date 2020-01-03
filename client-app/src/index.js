@@ -25,7 +25,7 @@ ReactDOM.render(
   <Grommet plain>
     <Provider store={store}>
       <Router>
-        <AppBar />
+        {/* <AppBar /> */}
         <Route exact path="/" render={() => <HomeScreen />} />
         <Route exact path="/home" render={() => <HomeScreen />} />
         <Route path="/login" render={props => <LoginScreen {...props} />} />

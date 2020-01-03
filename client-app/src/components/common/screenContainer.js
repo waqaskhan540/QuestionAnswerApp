@@ -1,7 +1,10 @@
 import React from "react";
 import { Grid, Box, Main } from "grommet";
+import AppBar from "../../containers/appBarContainer";
 
 const ScreenContainer = ({ left, middle, right }) => (
+  <>
+  <AppBar/>
   <Grid
     rows={["xlarge"]}
     columns={["25%", "50%", "25%"]}
@@ -20,6 +23,7 @@ const ScreenContainer = ({ left, middle, right }) => (
       {right}
     </Box>
   </Grid>
+  </>
 );
 
 export default ScreenContainer;

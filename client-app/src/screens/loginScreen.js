@@ -4,13 +4,15 @@ import { Header } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Box } from "grommet";
+import { Box, Heading } from "grommet";
 import authenticationService from "../services/authenticationService";
 import * as userActions from "../actions/userActions";
 import FacebookLogin from "react-facebook-login";
 import { GoogleLogin } from "react-google-login";
 import ScreenContainer from "./../components/common/screenContainer";
 import qs from "qs";
+
+import LoginScreenContainer from "./../components/common/loginScreenContainer";
 
 class LoginScreen extends React.Component {
   state = {
@@ -106,32 +108,36 @@ class LoginScreen extends React.Component {
 
   render() {
     return (
-      <ScreenContainer
-        middle={
-          <Box pad="medium" elevation="small" margin="medium" gap="small">
-            <Header as="h3">Login</Header>
+      <LoginScreenContainer
+        form={
+          <Box pad="medium" margin="medium" gap="small"  width="medium" elevation="small">
+            <Box align="center" margin="medium">
+              <Heading level={1} style={{ fontFamily: "Pacifico" }}>
+                QnA
+              </Heading>
+            </Box>
             <LoginForm
               submitHandler={this.submitHandler}
               validateForm={this.validateForm}
               error={this.state.error}
             />
-            <Box pad="small" margin="small" direction="row" gap="small">
-              <FacebookLogin
-                appId="1170436143158785"
-                fields="name,email,picture"
-                icon="fa-facebook"
-                callback={this.facebookLoginCallback}
-              />
-              <GoogleLogin
-                clientId={
-                  "1095144691030-h93b853sljjf31f3pico1g9jjibvjcrc.apps.googleusercontent.com"
-                }
-                onSuccess={this.responseGoogle}
-                onFailure={this.responseGoogle}               
-                offline={false}
-                approvalPrompt="force"
-                responseType="id_token"                
-              ></GoogleLogin>
+            <Box pad="small" margin="small" direction="column" gap="small">
+              {/* <FacebookLogin
+                  appId="1170436143158785"
+                  fields="name,email,picture"
+                  icon="fa-facebook"
+                  callback={this.facebookLoginCallback}
+                />
+                <GoogleLogin
+                  clientId={
+                    "1095144691030-h93b853sljjf31f3pico1g9jjibvjcrc.apps.googleusercontent.com"
+                  }
+                  onSuccess={this.responseGoogle}
+                  onFailure={this.responseGoogle}
+                  offline={false}
+                  approvalPrompt="force"
+                  responseType="id_token"
+                /> */}
             </Box>
           </Box>
         }
