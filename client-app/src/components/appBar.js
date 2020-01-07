@@ -59,7 +59,7 @@ class AppBar extends Component {
   render() {
     const { modalOpened, toggleModal, user, history } = this.props;
     return (
-      <Header background="light-4" pad="small">
+      <Header background="brand" pad="small">
         <Box gap={"medium"} direction={"row"}>
           <Heading level={3} style={{ fontFamily: "Pacifico" }}>
             QnA

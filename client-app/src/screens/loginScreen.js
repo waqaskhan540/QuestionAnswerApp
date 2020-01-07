@@ -4,15 +4,16 @@ import { Header } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Box, Heading } from "grommet";
+import { Box, Heading, Anchor, Button } from "grommet";
 import authenticationService from "../services/authenticationService";
 import * as userActions from "../actions/userActions";
-import FacebookLogin from "react-facebook-login";
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { GoogleLogin } from "react-google-login";
 import ScreenContainer from "./../components/common/screenContainer";
 import qs from "qs";
 
-import LoginScreenContainer from "./../components/common/loginScreenContainer";
+import AccountScreenContainer from "./../components/common/accountScreenContainer";
+import { FacebookOption, Google } from "grommet-icons";
 
 class LoginScreen extends React.Component {
   state = {
@@ -108,9 +109,16 @@ class LoginScreen extends React.Component {
 
   render() {
     return (
-      <LoginScreenContainer
+      <AccountScreenContainer
         form={
-          <Box pad="medium" margin="medium" gap="small"  width="medium" elevation="small">
+          <Box
+            pad="medium"
+            gap="small"
+            width="medium"
+            elevation="small"
+            background="brand"
+            alignSelf="center"
+          >
             <Box align="center" margin="medium">
               <Heading level={1} style={{ fontFamily: "Pacifico" }}>
                 QnA
@@ -121,23 +129,45 @@ class LoginScreen extends React.Component {
               validateForm={this.validateForm}
               error={this.state.error}
             />
+            <Box align="center">
+              Don't have an account yet?
+              <Anchor href="/register">Register</Anchor>
+            </Box>
             <Box pad="small" margin="small" direction="column" gap="small">
-              {/* <FacebookLogin
-                  appId="1170436143158785"
-                  fields="name,email,picture"
-                  icon="fa-facebook"
-                  callback={this.facebookLoginCallback}
-                />
-                <GoogleLogin
-                  clientId={
-                    "1095144691030-h93b853sljjf31f3pico1g9jjibvjcrc.apps.googleusercontent.com"
-                  }
-                  onSuccess={this.responseGoogle}
-                  onFailure={this.responseGoogle}
-                  offline={false}
-                  approvalPrompt="force"
-                  responseType="id_token"
-                /> */}
+              <FacebookLogin
+                appId="1170436143158785"
+                fields="name,email,picture"
+                icon="fa-facebook"
+                render={renderProps => (
+                  <Button
+                    onClick={renderProps.onClick}
+                    label="Login with Facebook"
+                    background="neutral-2"
+                    primary
+                    icon={<FacebookOption />}
+                  />
+                )}
+                callback={this.facebookLoginCallback}
+              />
+              <GoogleLogin
+                clientId={
+                  "1095144691030-h93b853sljjf31f3pico1g9jjibvjcrc.apps.googleusercontent.com"
+                }
+                render={renderProps => (
+                  <Button
+                    onClick={renderProps.onClick}
+                    label="Login with Google"
+                    background="neutral-2"
+                    primary
+                    icon={<Google />}
+                  />
+                )}
+                onSuccess={this.responseGoogle}
+                onFailure={this.responseGoogle}
+                offline={false}
+                approvalPrompt="force"
+                responseType="id_token"
+              />
             </Box>
           </Box>
         }
