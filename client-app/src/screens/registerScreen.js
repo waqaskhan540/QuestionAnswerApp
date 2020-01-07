@@ -5,10 +5,11 @@ import { withRouter } from "react-router-dom";
 import authenticationService from "../services/authenticationService";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Grid, Box, Heading, Text } from "grommet";
+import { Grid, Box, Heading, Text, Anchor } from "grommet";
 import * as userActions from "../actions/userActions";
 import ScreenContainer from "./../components/common/screenContainer";
 import AccountScreenContainr from "./../components/common/accountScreenContainer";
+
 
 class RegisterScreen extends React.Component {
   constructor(props) {
@@ -85,14 +86,19 @@ class RegisterScreen extends React.Component {
               <Heading level={1} style={{ fontFamily: "Pacifico" }}>
                 QnA
               </Heading>
-              <Text>Create an account</Text>  
+              <Text>Create an account</Text>
             </Box>
-            
+
             <RegisterForm
               error={this.state.error}
               validateForm={this.validateForm}
               submitHandler={this.submitHandler}
             />
+
+            <Box align="center">
+              Already have an account?
+              <Anchor href="/login">Sign In</Anchor>
+            </Box>
           </Box>
         }
       />

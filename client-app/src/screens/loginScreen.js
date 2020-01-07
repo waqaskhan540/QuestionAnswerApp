@@ -58,14 +58,14 @@ class LoginScreen extends React.Component {
     authenticationService
       .loginExternal(provider, access_token)
       .then(response => {
-        const { user, access_token } = response.data.data;
+        const { user, accessToken } = response.data.data;
         const userInfo = {
           firstname: user.firstname,
           lastname: user.lastname,
           email: user.email,
           userId: user.userId,
           image: user.image,
-          accessToken: access_token
+          accessToken: accessToken
         };
 
         userLoggedIn(userInfo);
@@ -86,14 +86,15 @@ class LoginScreen extends React.Component {
       .then(response => {
         setSubmitting(false);
 
-        const { user, access_token } = response.data.data;
+        
+        const { user, accessToken } = response.data.data;
         const userInfo = {
           firstname: user.firstname,
           lastname: user.lastname,
           email: user.email,
           userId: user.userId,
           image: user.image,
-          accessToken: access_token
+          accessToken: accessToken
         };
 
         this.props.actions.userLoggedIn(userInfo);
@@ -131,7 +132,7 @@ class LoginScreen extends React.Component {
             />
             <Box align="center">
               Don't have an account yet?
-              <Anchor href="/register">Register</Anchor>
+              <Anchor href="/register">Sign Up</Anchor>
             </Box>
             <Box pad="small" margin="small" direction="column" gap="small">
               <FacebookLogin
