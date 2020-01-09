@@ -13,6 +13,7 @@ namespace QnA.Application.Interfaces
         DbSet<Answer> Answers { get; set; }
         DbSet<Draft> Drafts { get; set; }
         DbSet<SavedQuestion> SavedQuestions { get; set; }
+        DbSet<QuestionFollowing> QuestionFollowings { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 

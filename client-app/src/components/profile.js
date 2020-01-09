@@ -211,53 +211,7 @@ class Profile extends Component {
           </Layer>
         )}
       </Grid>
-      // <Box
-      //   direction="row"
-      //   width="large"
-      //   pad="large"
-      //   border={{ side: "bottom", size: "small" }}
-      // >
-      //   <Box width="xsmall">
-      //     {image && image.length ? (
-      //       <Stack
-      //         anchor="center"
-      //         onMouseEnter={this.onMouseEnter}
-      //         onMouseLeave={this.onMouseLeave}
-      //       >
-      //         <Image
-      //           src={`data:image/png;base64, ${image}`}
-      //           size="small"
-      //           wrapped
-      //         />
-      //         <Button
-      //           label="Edit"
-      //           onClick={this.showImageModal}
-      //           style={{
-      //             fontSize: "10px",
-      //             visibility: isHovering ? "visible" : "hidden"
-      //           }}
-      //         />
-      //       </Stack>
-      //     ) : (
-      //       <Image
-      //         src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
-      //         size="small"
-      //         wrapped
-      //       />
-      //     )}
-      //   </Box>
-      //   <Box width="medium">
-      //     <Box direction="column">
-      //       <h1>
-      //         {firstname} {lastname}
-      //       </h1>
-      //       <p>Admin</p>
-      //     </Box>
-      //   </Box>
-      //   {showModal && (
 
-      //   )}
-      // </Box>
     );
   }
 }

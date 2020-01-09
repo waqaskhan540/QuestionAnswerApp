@@ -31,7 +31,7 @@ namespace QnA.Application.Questions.Handlers
             var savedQuestion = new SavedQuestion
             {
                 UserId = request.UserId,
-                QuestionId = request.UserId,
+                QuestionId = request.QuestionId,
                 DateTime = DateTime.Now
             };
 

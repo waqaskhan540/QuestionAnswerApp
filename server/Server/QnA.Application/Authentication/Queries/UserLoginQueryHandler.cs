@@ -32,7 +32,7 @@ namespace QnA.Application.Authentication.Queries
                 };
 
             var passwordhash = _hashGenerator.ComputeHash(request.Password);
-            if (!passwordhash.Equals(request.Password, StringComparison.OrdinalIgnoreCase))
+            if (!passwordhash.Equals(user.PasswordHash, StringComparison.OrdinalIgnoreCase))
                 return new UserLoginViewModel
                 {
                     Success = false,

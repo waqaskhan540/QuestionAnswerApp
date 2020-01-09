@@ -24,7 +24,7 @@ namespace Api.Controllers
         [Authorize]
         public async Task<IActionResult> Post([FromBody]QuestionViewModel model)
         {
-           
+
             var userId = HttpContext.GetLoggedUserId();
             var questionId = await _mediator.Send(new AddQuestionCommand(userId, model.QuestionText));
 
@@ -68,7 +68,27 @@ namespace Api.Controllers
             return Ok(BaseResponse.Ok(message));
         }
 
+        [HttpPost("api/question/follow/{id:int}")]
+        [Authorize]
+        public async Task<IActionResult> FollowQuestion(int id)
+        {
+            var userId = HttpContext.GetLoggedUserId();
+            var response = await _mediator.Send(new FollowQuestionCommand { UserId = userId, QuestionId = id });
+            return Ok(BaseResponse.Ok(response));
+        }
 
+        [HttpPost("api/question/unfollow/{id:int}")]
+        [Authorize]
+        public async Task<IActionResult> UnFollowQuestion(int id)
+        {
+            var userId = HttpContext.GetLoggedUserId();
+            var response = await _mediator.Send(new UnFollowQuestionCommand
+            {
+                UserId = userId,
+                QuestionId = id
+            });
+            return Ok(BaseResponse.Ok(response));
+        }
 
     }
 }

@@ -67,3 +67,11 @@ export const userUpdateQuestions = (question) => {
 export const userResetPage = () => {
     return {type : UserActions.USER_RESET_PAGE}
 }
+
+export const userFollowQuestion = (questionId) => {
+    return {type : UserActions.USER_FOLLOW_QUESTION, payload : questionId}
+}
+
+export const userUnFollowQuestion = (questionId) => {
+    return {type : UserActions.USER_UNFOLLOW_QUESTION, payload : questionId}
+}

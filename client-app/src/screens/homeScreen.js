@@ -10,6 +10,8 @@ import * as UserActions from "./../actions/userActions";
 import * as FeedActions from "./../actions/feedActions";
 import { Box } from "grommet";
 import { Spinning } from "grommet-controls";
+import { toast } from "react-toastify";
+
 
 class HomeScreen extends Component {
   // state = {
@@ -54,6 +56,31 @@ class HomeScreen extends Component {
     });
   };
 
+  followQuestion = (questionId) => {
+   
+    questionService
+      .followQuestion(questionId)
+      .then(resp => {
+        debugger;
+        toast.success(resp.data.data.message);
+      
+        if(resp.data.data.questionId !== undefined)
+          this.props.actions.userFollowQuestion(resp.data.data.questionId);
+      })
+      .catch(err => toast.error("Something went wrong!"));
+  }
+
+  unFollowQuestion = (questionId) => {
+   
+    questionService
+      .unFollowQuestion(questionId)
+      .then(resp => {
+        toast.success(resp.data.data.message);
+        if(resp.data.data.questionId)
+          this.props.UserActions.userUnFollowQuestion(resp.data.data.questionId);
+      })
+      .catch(err => toast.error("Something went wrong!"));
+  }
   componentDidMount() {
     //const { isAuthenticated } = this.props.user;
 
@@ -71,7 +98,7 @@ class HomeScreen extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props.user;
+    const { isAuthenticated, questionsFollowing } = this.props.user;
     const { questions, loading, postingToFeed } = this.props.feed;
 
     return (
@@ -92,6 +119,9 @@ class HomeScreen extends Component {
                   questions={questions}
                   isUserAuthenticated={isAuthenticated}
                   onloadMore={this.loadFeed}
+                  questionsFollowing = {questionsFollowing}
+                  onFollow = {this.followQuestion}
+                  onUnFollow = {this.unFollowQuestion}
                 /> 
               </>
             )

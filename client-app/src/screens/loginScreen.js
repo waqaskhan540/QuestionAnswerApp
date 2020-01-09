@@ -54,14 +54,14 @@ class LoginScreen extends React.Component {
   loginExternal(provider, access_token) {
     const { userLoggedIn } = this.props.actions;
     const { history } = this.props;
-
+    debugger;
     authenticationService
       .loginExternal(provider, access_token)
       .then(response => {
         const { user, accessToken } = response.data.data;
         const userInfo = {
-          firstname: user.firstname,
-          lastname: user.lastname,
+          firstname: user.firstName,
+          lastname: user.lastName,
           email: user.email,
           userId: user.userId,
           image: user.image,
@@ -89,8 +89,8 @@ class LoginScreen extends React.Component {
         
         const { user, accessToken } = response.data.data;
         const userInfo = {
-          firstname: user.firstname,
-          lastname: user.lastname,
+          firstname: user.firstName,
+          lastname: user.lastName,
           email: user.email,
           userId: user.userId,
           image: user.image,

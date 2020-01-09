@@ -21,8 +21,15 @@ class QuestionsList extends Component {
       })
       .catch(err => toast.error("Something went wrong!"));
   }
+
   render() {
-    const { questions, isUserAuthenticated, history } = this.props;
+    const {
+      questions,
+      isUserAuthenticated,
+      questionsFollowing,
+      onFollow,
+      onUnFollow
+    } = this.props;
 
     return (
       <div>
@@ -61,9 +68,30 @@ class QuestionsList extends Component {
                   fill
                   margin="small"
                 >
-                  <Anchor label="Answer" icon={<Edit />} href="#" />
-                  <Anchor label="Save" icon={<Save />} href="#" />
-                  <Anchor label="Follow" icon={<Rss />} href="#" />
+                  <Anchor
+                    label="Answer"
+                    icon={<Edit />}
+                    href={`/write/${question.id}`}
+                  />
+                  <Anchor
+                    label="Save"
+                    icon={<Save />}
+                    onClick={() => this.saveQuestion(question.id)}
+                  />
+
+                  {questionsFollowing.includes(question.id) ? (
+                    <Anchor
+                      label="UnFollow"
+                      icon={<Rss />}
+                      onClick={() => onUnFollow(question.id)}
+                    />
+                  ) : (
+                    <Anchor
+                      label="Follow"
+                      icon={<Rss />}
+                      onClick={() => onFollow(question.id)}
+                    />
+                  )}
                 </Box>
               </Box>
             )}

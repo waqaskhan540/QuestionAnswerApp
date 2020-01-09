@@ -32,6 +32,18 @@ class QuestionsService {
       headers : getHeaders()
     })
   }
+
+  static followQuestion = (questionId) => {
+    return axios.post(`${config.API_BASE_URL}/api/question/follow/${questionId}`,{}, {
+      headers : getHeaders()
+    })
+  }
+
+  static unFollowQuestion = (questionId) => {
+    return axios.post(`${config.API_BASE_URL}/api/question/unfollow/${questionId}`,{}, {
+      headers : getHeaders()
+    })
+  }
 }
 
 export default QuestionsService;

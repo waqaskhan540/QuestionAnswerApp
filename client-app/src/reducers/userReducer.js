@@ -15,7 +15,7 @@ let initialState = {
   statsUpdating: false,
   savedCount: 0,
   draftCount: 0, 
-  
+  questionsFollowing :[]
 };
 
 const user = (state = initialState, action) => {
@@ -80,7 +80,19 @@ const user = (state = initialState, action) => {
         ...state,
         questions : [action.payload,...state.questions]
       }
-    default:
+  
+    case UserActions.USER_FOLLOW_QUESTION:
+      debugger;
+      return {
+        ...state,
+        questionsFollowing : [action.payload,...state.questionsFollowing]
+      }
+    case UserActions.USER_UNFOLLOW_QUESTION:
+      return {
+        ...state,
+        questionsFollowing : [...state.questionsFollowing.filter( x => x !== action.payload)]
+      }
+    default:    
       return state;
   }
 };
