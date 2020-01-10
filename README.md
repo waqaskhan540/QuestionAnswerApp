@@ -4,6 +4,8 @@
 
 A simple app for asking questions and posting answers, built using React and ASP.NET Core
 
+
+![QnA](preview.gif)
 # Requirements
 
 - .NET Core SDK 2.2

@@ -64,7 +64,7 @@ class AppBar extends Component {
           {/* <Heading level={3} style={{ fontFamily: "Pacifico" }}>
             QnA
           </Heading> */}
-          <Image src="qna_logo.png" height="60" width="60"/>
+          <Image src="/qna_logo.png" height="60" width="60"/>
         </Box>
        
         <Box direction="row" gap="small" alignSelf="center" width="medium">
