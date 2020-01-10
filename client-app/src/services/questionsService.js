@@ -33,6 +33,12 @@ class QuestionsService {
     })
   }
 
+  static unSaveQuestion = (questionId) => {
+    return axios.post(`${config.API_BASE_URL}/api/unsave/${questionId}`,{}, {
+      headers : getHeaders()
+    })
+  }
+
   static followQuestion = (questionId) => {
     return axios.post(`${config.API_BASE_URL}/api/question/follow/${questionId}`,{}, {
       headers : getHeaders()
@@ -43,6 +49,10 @@ class QuestionsService {
     return axios.post(`${config.API_BASE_URL}/api/question/unfollow/${questionId}`,{}, {
       headers : getHeaders()
     })
+  }
+
+  static getFeaturedQuestions = () => {
+    return axios.get(`${config.API_BASE_URL}/api/questions/featured`)
   }
 }
 

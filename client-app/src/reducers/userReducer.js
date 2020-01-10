@@ -15,7 +15,8 @@ let initialState = {
   statsUpdating: false,
   savedCount: 0,
   draftCount: 0, 
-  questionsFollowing :[]
+  questionsFollowing :[],
+  questionsSaved : []
 };
 
 const user = (state = initialState, action) => {
@@ -91,6 +92,16 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         questionsFollowing : [...state.questionsFollowing.filter( x => x !== action.payload)]
+      }
+    case UserActions.USER_SAVED_QUESTION :
+      return {
+        ...state,
+        questionsSaved : [action.payload,...state.questionsSaved]
+      }
+    case UserActions.USER_UNSAVED_QUESTION:
+      return {
+        ...state,
+        questionsSaved : [...state.questionsSaved.filter(x => x !== action.payload)]
       }
     default:    
       return state;

@@ -67,6 +67,15 @@ namespace Api.Controllers
             var message = await _mediator.Send(new SaveQuestionCommand(id, userId));
             return Ok(BaseResponse.Ok(message));
         }
+        [HttpPost("api/unsave/{questionId:int}")]
+        [Authorize]
+        public async Task<IActionResult> UnSaveQuestion(int questionId)
+        {
+            var userId = HttpContext.GetLoggedUserId();
+            var command = new UnSaveQuestionCommand { UserId = userId, QuestionId = questionId };
+            var response = await _mediator.Send(command);
+            return Ok(BaseResponse.Ok(response));
+        }
 
         [HttpPost("api/question/follow/{id:int}")]
         [Authorize]
@@ -90,5 +99,13 @@ namespace Api.Controllers
             return Ok(BaseResponse.Ok(response));
         }
 
+        [HttpGet("api/questions/featured")]
+
+        public async Task<IActionResult> GetFeaturedQuestions()
+        {
+            var command = new GetFeaturedQuestionsQuery();
+            var response = await _mediator.Send(command);
+            return Ok(BaseResponse.Ok(response));
+        }
     }
 }

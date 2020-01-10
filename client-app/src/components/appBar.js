@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Box, Button, Heading, Menu, Header, Anchor, TextInput } from "grommet";
+import { Box, Button, Heading, Menu, Header, Anchor, TextInput, Image } from "grommet";
 import QuestionModal from "../components/questionModal";
 import { withRouter } from "react-router-dom";
 //import { Avatar } from "grommet-controls";
@@ -59,11 +59,12 @@ class AppBar extends Component {
   render() {
     const { modalOpened, toggleModal, user, history } = this.props;
     return (
-      <Header background="brand" pad="small">
+      <Header  pad="small"  elevation="small">
         <Box gap={"medium"} direction={"row"}>
-          <Heading level={3} style={{ fontFamily: "Pacifico" }}>
+          {/* <Heading level={3} style={{ fontFamily: "Pacifico" }}>
             QnA
-          </Heading>
+          </Heading> */}
+          <Image src="qna_logo.png" height="60" width="60"/>
         </Box>
        
         <Box direction="row" gap="small" alignSelf="center" width="medium">

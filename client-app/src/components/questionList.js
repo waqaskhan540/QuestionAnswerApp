@@ -12,23 +12,19 @@ import { Avatar } from "./common/avatar";
 import "./styles/questionList.css";
 
 class QuestionsList extends Component {
-  saveQuestion(questionId) {
-    toast.info("Saving question");
-    questionService
-      .saveQuestion(questionId)
-      .then(resp => {
-        toast.success(resp.data.message);
-      })
-      .catch(err => toast.error("Something went wrong!"));
-  }
+ 
 
   render() {
     const {
       questions,
       isUserAuthenticated,
       questionsFollowing,
+      questionsSaved,
       onFollow,
-      onUnFollow
+      onUnFollow,
+      onSave,
+      onUnSave,
+      toggleLoadMore
     } = this.props;
 
     return (
@@ -73,11 +69,20 @@ class QuestionsList extends Component {
                     icon={<Edit />}
                     href={`/write/${question.id}`}
                   />
+                 
+                {questionsSaved.includes(question.id)? (
+                       <Anchor
+                       label="UnSave"
+                       icon={<Save />}
+                       onClick={() => onUnSave(question.id)}
+                     />
+                ): (
                   <Anchor
-                    label="Save"
-                    icon={<Save />}
-                    onClick={() => this.saveQuestion(question.id)}
-                  />
+                  label="Save"
+                  icon={<Save />}
+                  onClick={() => onSave(question.id)}
+                />
+                )}
 
                   {questionsFollowing.includes(question.id) ? (
                     <Anchor
@@ -98,7 +103,7 @@ class QuestionsList extends Component {
           </Box>
         ))}
 
-        {questions.length && (
+        {questions.length && toggleLoadMore ?(
           <Box fill>
             <Button
               icon={<Download />}
@@ -106,7 +111,7 @@ class QuestionsList extends Component {
               onClick={this.props.onloadMore}
             />
           </Box>
-        )}
+        ):""}
       </div>
     );
   }

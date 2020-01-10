@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import authenticationService from "../services/authenticationService";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Grid, Box, Heading, Text, Anchor } from "grommet";
+import { Grid, Box, Heading, Text, Anchor, Image } from "grommet";
 import * as userActions from "../actions/userActions";
 import ScreenContainer from "./../components/common/screenContainer";
 import AccountScreenContainr from "./../components/common/accountScreenContainer";
@@ -78,14 +78,11 @@ class RegisterScreen extends React.Component {
             pad="medium"
             gap="small"
             width="medium"
-            elevation="small"
-            background="brand"
+           
             alignSelf="center"
           >
             <Box align="center">
-              <Heading level={1} style={{ fontFamily: "Pacifico" }}>
-                QnA
-              </Heading>
+             <Image src="qna_logo.png"/>
               <Text>Create an account</Text>
             </Box>
 

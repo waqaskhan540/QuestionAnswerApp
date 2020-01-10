@@ -75,3 +75,11 @@ export const userFollowQuestion = (questionId) => {
 export const userUnFollowQuestion = (questionId) => {
     return {type : UserActions.USER_UNFOLLOW_QUESTION, payload : questionId}
 }
+
+export const userSavedQuestion = (questionId) => {
+    return {type : UserActions.USER_SAVED_QUESTION, payload : questionId}
+}
+
+export const userUnSavedQuestion = (questionId) => {
+    return {type : UserActions.USER_UNSAVED_QUESTION, payload : questionId};
+}

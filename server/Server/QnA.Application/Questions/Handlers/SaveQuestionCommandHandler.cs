@@ -38,7 +38,7 @@ namespace QnA.Application.Questions.Handlers
             await _context.SavedQuestions.AddAsync(savedQuestion);
             await _context.SaveChangesAsync(cancellationToken);
 
-            return new SaveQuestionViewModel { Message = "Question saved successfully." };
+            return new SaveQuestionViewModel { Message = "Question saved successfully.", QuestionId = request.QuestionId };
 
         }
     }

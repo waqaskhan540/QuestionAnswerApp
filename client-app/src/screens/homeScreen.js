@@ -11,7 +11,7 @@ import * as FeedActions from "./../actions/feedActions";
 import { Box } from "grommet";
 import { Spinning } from "grommet-controls";
 import { toast } from "react-toastify";
-
+import FeaturedQuestions from "../containers/featuredQuestionsContainer"
 
 class HomeScreen extends Component {
   // state = {
@@ -19,11 +19,14 @@ class HomeScreen extends Component {
   //   questions: [],
   //   loading: false
   // };
+  state = {
+    showLoadMore : true
+  }
 
   loadFeed = () => {
     const { page } = this.props.feed;
     // this.setState({loading:true})
-    this.props.feedActions.isFeedLoading(true);
+   // this.props.feedActions.isFeedLoading(true);
     questionService.getFeedData(page).then(response => {
       const questions = response.data.data;
       // this.props.actions.userQuestionsLoaded(questions);
@@ -33,9 +36,12 @@ class HomeScreen extends Component {
       //   questions: [...this.state.questions, ...questions],
       //   loading: false
       // });
-
+      if(questions.length < 5){
+        this.setState({showLoadMore : false})
+        return;
+      }
       this.props.feedActions.updateQuestions(questions);
-      this.props.feedActions.isFeedLoading(false);
+     // this.props.feedActions.isFeedLoading(false);
     });
   };
 
@@ -60,10 +66,7 @@ class HomeScreen extends Component {
    
     questionService
       .followQuestion(questionId)
-      .then(resp => {
-        debugger;
-        toast.success(resp.data.data.message);
-      
+      .then(resp => {       
         if(resp.data.data.questionId !== undefined)
           this.props.actions.userFollowQuestion(resp.data.data.questionId);
       })
@@ -75,9 +78,29 @@ class HomeScreen extends Component {
     questionService
       .unFollowQuestion(questionId)
       .then(resp => {
-        toast.success(resp.data.data.message);
-        if(resp.data.data.questionId)
-          this.props.UserActions.userUnFollowQuestion(resp.data.data.questionId);
+       // toast.success(resp.data.data.message);
+        if(resp.data.data.questionId !== undefined)
+          this.props.actions.userUnFollowQuestion(resp.data.data.questionId);
+      })
+      .catch(err => toast.error("Something went wrong!"));
+  }
+
+  saveQuestion = (questionId) => {
+    questionService
+      .saveQuestion(questionId)
+      .then(response => {
+        if(response.data.data.questionId !== undefined)
+          this.props.actions.userSavedQuestion(response.data.data.questionId);
+      })
+      .catch(err => toast.error("Something went wrong!"));
+  }
+
+  unSaveQuestion = (questionId) => {
+    questionService
+      .unSaveQuestion(questionId)
+      .then(response => {
+        if(response.data.data.questionId !== undefined)
+          this.props.actions.userUnSavedQuestion(response.data.data.questionId);
       })
       .catch(err => toast.error("Something went wrong!"));
   }
@@ -98,7 +121,7 @@ class HomeScreen extends Component {
   }
 
   render() {
-    const { isAuthenticated, questionsFollowing } = this.props.user;
+    const { isAuthenticated, questionsFollowing ,questionsSaved} = this.props.user;
     const { questions, loading, postingToFeed } = this.props.feed;
 
     return (
@@ -120,12 +143,18 @@ class HomeScreen extends Component {
                   isUserAuthenticated={isAuthenticated}
                   onloadMore={this.loadFeed}
                   questionsFollowing = {questionsFollowing}
+                  questionsSaved = {questionsSaved}
                   onFollow = {this.followQuestion}
                   onUnFollow = {this.unFollowQuestion}
+                  onSave = {this.saveQuestion}
+                  onUnSave = {this.unSaveQuestion}
+                  toggleLoadMore = {this.state.loadMore}
                 /> 
               </>
             )
           }
+          right = {<FeaturedQuestions/>}
+          
         />
       </>
     );

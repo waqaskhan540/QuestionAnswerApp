@@ -4,7 +4,7 @@ import { Header } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Box, Heading, Anchor, Button } from "grommet";
+import { Box, Heading, Anchor, Button, Image } from "grommet";
 import authenticationService from "../services/authenticationService";
 import * as userActions from "../actions/userActions";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
@@ -116,14 +116,14 @@ class LoginScreen extends React.Component {
             pad="medium"
             gap="small"
             width="medium"
-            elevation="small"
-            background="brand"
+           
             alignSelf="center"
           >
             <Box align="center" margin="medium">
-              <Heading level={1} style={{ fontFamily: "Pacifico" }}>
+              {/* <Heading level={1} style={{ fontFamily: "Pacifico" }}>
                 QnA
-              </Heading>
+              </Heading> */}
+              <Image src="qna_logo.png"/>
             </Box>
             <LoginForm
               submitHandler={this.submitHandler}

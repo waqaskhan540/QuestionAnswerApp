@@ -3,5 +3,6 @@
     public class SaveQuestionViewModel
     {
         public string Message { get; set; }
+        public int QuestionId { get; set; }
     }
 }
