@@ -9,10 +9,10 @@ namespace QnA.Domain.Entities
         public string LastName { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
-        public byte[] ProfilePicture { get; set; }
+        public string ProfilePicture { get; set; }
 
         public ICollection<Question> Questions { get; set; }
-        public static AppUser Create(string firstname,string lastname,string email,string passwordHash)
+        public static AppUser Create(string firstname, string lastname, string email, string passwordHash)
         {
             return new AppUser
             {

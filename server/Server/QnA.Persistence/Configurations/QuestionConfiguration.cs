@@ -19,6 +19,8 @@ namespace QnA.Persistence.Configurations
                 .HasOne(q => q.User)
                 .WithMany(u => u.Questions)
                 .HasForeignKey(q => q.UserId);
+
+
         }
     }
 }

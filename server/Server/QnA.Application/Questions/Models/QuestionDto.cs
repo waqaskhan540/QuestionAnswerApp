@@ -26,7 +26,7 @@ namespace QnA.Application.Questions.Models
                     {
                         FirstName = c.User.FirstName,
                         LastName = c.User.LastName,
-                        Image = Convert.ToBase64String(c.User.ProfilePicture)
+                        //Image = Convert.ToBase64String(c.User.ProfilePicture)
                     }
                 };
             }

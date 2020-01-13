@@ -108,40 +108,25 @@ class Profile extends Component {
           { name: "right", start: [2, 0], end: [2, 0] }
         ]}
       >
-        <Box gridArea="left">
+        <Box
+          gridArea="left"
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
+        >
           <Box width="xsmall">
-            {image && image.length ? (
-              <Stack
-                anchor="center"
-                onMouseEnter={this.onMouseEnter}
-                onMouseLeave={this.onMouseLeave}
-              >
-                <Image
-                  src={`data:image/png;base64, ${image}`}
-                  size="small"
-                  wrapped
-                  rounded
-                />
-                <Button
-                  label="Edit"
-                  onClick={this.showImageModal}
-                  style={{
-                    fontSize: "10px",
-                    visibility: isHovering ? "visible" : "hidden"
-                  }}
-                />
-              </Stack>
-            ) : (
-              <Image
-                src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
-                size="small"
-                wrapped
-                rounded
-              />
-            )}
+            <Image src={image} />
             <Text size="xlarge">
               {this.props.user.firstname} {this.props.user.lastname}
             </Text>
+            <Button
+              label="Edit"
+              onClick={this.showImageModal}
+              style={{
+                fontSize: "10px",
+
+                zIndex: 1000
+              }}
+            />
           </Box>
         </Box>
         <Box gridArea="middle">
@@ -202,7 +187,7 @@ class Profile extends Component {
                 withPreview={true}
                 singleImage={true}
                 onChange={this.onImageSelect}
-                imgExtension={[".jpg",".jpeg", ".gif", ".png", ".gif"]}
+                imgExtension={[".jpg", ".jpeg", ".gif", ".png", ".gif"]}
                 maxFileSize={5242880}
               />
 
@@ -211,7 +196,6 @@ class Profile extends Component {
           </Layer>
         )}
       </Grid>
-
     );
   }
 }

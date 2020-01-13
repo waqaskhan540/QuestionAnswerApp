@@ -53,7 +53,7 @@ namespace QnA.Persistence.Migrations
 
                     b.Property<string>("PasswordHash");
 
-                    b.Property<byte[]>("ProfilePicture");
+                    b.Property<string>("ProfilePicture");
 
                     b.HasKey("Id");
 

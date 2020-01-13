@@ -53,12 +53,13 @@ class RegisterScreen extends React.Component {
       .register(values)
       .then(response => {
         setSubmitting(false);
-        const { user, access_token } = response.data.data;
+        debugger;
+        const { user, accessToken } = response.data.data;
         const userInfo = {
-          firstname: user.firstname,
-          lastname: user.lastname,
+          firstname: user.firstName,
+          lastname: user.lastName,
           email: user.email,
-          accessToken: access_token
+          accessToken: accessToken
         };
 
         this.props.actions.userLoggedIn(userInfo);

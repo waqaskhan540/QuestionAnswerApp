@@ -15,12 +15,19 @@ namespace QnA.Application.Authentication.Commands
         private readonly IDatabaseContext _context;
         private readonly IHashGenerator _hashGenerator;
         private readonly IJwtTokenGenerator _tokenGenerator;
+        private readonly IPlaceHolderImageProvider _placeholderImageProvider;
 
-        public UserRegisterCommandHandler(IDatabaseContext context, IHashGenerator hashGenerator, IJwtTokenGenerator tokenGenerator)
+        public UserRegisterCommandHandler(
+            IDatabaseContext context,
+            IHashGenerator hashGenerator,
+            IJwtTokenGenerator tokenGenerator,
+            IPlaceHolderImageProvider placeholderImageProvider
+            )
         {
             _context = context;
             _hashGenerator = hashGenerator;
             _tokenGenerator = tokenGenerator;
+            _placeholderImageProvider = placeholderImageProvider;
         }
         public async Task<UserLoginViewModel> Handle(UserRegisterCommand request, CancellationToken cancellationToken)
         {
@@ -53,7 +60,7 @@ namespace QnA.Application.Authentication.Commands
                     LastName = user.LastName,
                     Email = user.Email,
                     UserId = user.Id,
-                    Image = user.ProfilePicture != null ? Convert.ToBase64String(user.ProfilePicture) : null
+                    Image = user.ProfilePicture != null ? user.ProfilePicture : _placeholderImageProvider.GetProfileImagePlaceHolder()
                 }
             };
 

@@ -4,7 +4,6 @@ using QnA.Application.Authentication.Models;
 using QnA.Application.Interfaces;
 using QnA.Application.Interfaces.Security;
 using QnA.Domain.Entities;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -63,7 +62,7 @@ namespace QnA.Application.Authentication.Queries
                         LastName = newUser.LastName,
                         Email = newUser.Email,
                         UserId = newUser.Id,
-                        Image = Convert.ToBase64String(newUser.ProfilePicture)
+                        Image = newUser.ProfilePicture
                     }
                 };
             }
@@ -86,7 +85,7 @@ namespace QnA.Application.Authentication.Queries
                     LastName = existingUser.LastName,
                     Email = existingUser.Email,
                     UserId = existingUser.Id,
-                    Image = Convert.ToBase64String(existingUser.ProfilePicture)
+                    Image = existingUser.ProfilePicture
                 }
             };
 

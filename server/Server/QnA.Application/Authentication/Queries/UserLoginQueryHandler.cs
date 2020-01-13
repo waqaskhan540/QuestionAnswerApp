@@ -14,12 +14,19 @@ namespace QnA.Application.Authentication.Queries
         private readonly IDatabaseContext _context;
         private readonly IHashGenerator _hashGenerator;
         private readonly IJwtTokenGenerator _tokenGenerator;
+        private readonly IPlaceHolderImageProvider _placeHolderImageProvider;
 
-        public UserLoginQueryHandler(IDatabaseContext context, IHashGenerator hashGenerator, IJwtTokenGenerator tokenGenerator)
+        public UserLoginQueryHandler(
+            IDatabaseContext context,
+            IHashGenerator hashGenerator,
+            IJwtTokenGenerator tokenGenerator,
+            IPlaceHolderImageProvider placeHolderImageProvider
+            )
         {
             _context = context;
             _hashGenerator = hashGenerator;
             _tokenGenerator = tokenGenerator;
+            _placeHolderImageProvider = placeHolderImageProvider;
         }
         public async Task<UserLoginViewModel> Handle(UserLoginQuery request, CancellationToken cancellationToken)
         {
@@ -50,7 +57,7 @@ namespace QnA.Application.Authentication.Queries
                     LastName = user.LastName,
                     Email = user.Email,
                     UserId = user.Id,
-                    Image = user.ProfilePicture != null ? Convert.ToBase64String(user.ProfilePicture) : null
+                    Image = user.ProfilePicture != null ? user.ProfilePicture : _placeHolderImageProvider.GetProfileImagePlaceHolder()
                 }
             };
 

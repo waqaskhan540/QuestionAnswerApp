@@ -18,7 +18,7 @@ namespace QnA.Persistence.Migrations
                     LastName = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     PasswordHash = table.Column<string>(nullable: true),
-                    ProfilePicture = table.Column<byte[]>(nullable: true)
+                    ProfilePicture = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

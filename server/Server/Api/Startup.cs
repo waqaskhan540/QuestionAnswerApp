@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using QnA.Application;
 using QnA.Authentication;
+using QnA.FileStorage;
 using QnA.Persistence;
 using QnA.Security;
 
@@ -28,6 +29,7 @@ namespace Api
             services.AddPersistence(Configuration);
             services.AddAuthencticationServices();
             services.AddSecurity();
+            services.AddStorage();
 
             services.AddCors(config =>
             {
@@ -40,6 +42,7 @@ namespace Api
             });
 
 
+            services.AddHttpContextAccessor();
             services.AddMvc(config =>
             {
                 config.Filters.Add(new ModelStateFilter());
@@ -60,6 +63,7 @@ namespace Api
                 context.Database.EnsureCreated();
             }
 
+            app.UseStaticFiles();
             app.UseCors("AllowAll");
             app.UseAuthentication();
             app.UseMvc();

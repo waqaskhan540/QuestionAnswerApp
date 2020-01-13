@@ -34,7 +34,7 @@ namespace QnA.Authentication
                 var firstname = result["first_name"].ToString();
                 var lastname = result["last_name"].ToString();
                 var email = result["email"].ToString();
-                var picture = await httpClient.GetByteArrayAsync(result["picture"]["data"]["url"].ToString());
+                var picture = result["picture"]["data"]["url"].ToString();
 
                 return new ExternalLoginResult
                 {
@@ -59,7 +59,7 @@ namespace QnA.Authentication
                 var firstname = result["given_name"].ToString();
                 var lastname = result["family_name"].ToString();
                 var email = result["email"].ToString();
-                var picture = await httpClient.GetByteArrayAsync(result["picture"].ToString());
+                var picture = result["picture"].ToString();
 
                 return new ExternalLoginResult
                 {

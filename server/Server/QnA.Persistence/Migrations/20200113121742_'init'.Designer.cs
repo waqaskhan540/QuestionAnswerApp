@@ -9,7 +9,7 @@ using QnA.Persistence;
 namespace QnA.Persistence.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20200108101512_'init'")]
+    [Migration("20200113121742_'init'")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,7 +55,7 @@ namespace QnA.Persistence.Migrations
 
                     b.Property<string>("PasswordHash");
 
-                    b.Property<byte[]>("ProfilePicture");
+                    b.Property<string>("ProfilePicture");
 
                     b.HasKey("Id");
 

@@ -148,7 +148,7 @@ class HomeScreen extends Component {
                   onUnFollow = {this.unFollowQuestion}
                   onSave = {this.saveQuestion}
                   onUnSave = {this.unSaveQuestion}
-                  toggleLoadMore = {this.state.loadMore}
+                  toggleLoadMore = {this.state.showLoadMore}
                 /> 
               </>
             )

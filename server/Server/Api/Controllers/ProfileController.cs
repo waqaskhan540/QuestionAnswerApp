@@ -12,10 +12,10 @@ namespace Api.Controllers
 {
     public class ProfileController : Controller
     {
-        
+
         private readonly IMediator _mediator;
-        public ProfileController( IMediator mediator)
-        {            
+        public ProfileController(IMediator mediator)
+        {
             _mediator = mediator;
         }
         [HttpPost("api/profile/image")]
@@ -24,13 +24,14 @@ namespace Api.Controllers
         {
             var updateCommand = new UpdateProfilePictureCommand
             {
-                UserId = HttpContext.GetLoggedUserId(),               
+                UserId = HttpContext.GetLoggedUserId(),
             };
 
             using (var stream = new MemoryStream())
             {
                 await file.CopyToAsync(stream);
-                updateCommand.ProfilePicture = stream.ToArray();                                
+                updateCommand.ProfilePicture = stream.ToArray();
+                updateCommand.FileType = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
             }
 
             var response = await _mediator.Send(updateCommand);
@@ -41,7 +42,7 @@ namespace Api.Controllers
         [Authorize]
         public async Task<IActionResult> UpdateProfile([FromBody]UpdateProfileModel model)
         {
-           
+
             var updateCommand = new UpdateProfileCommand
             {
                 FirstName = model.FirstName,
