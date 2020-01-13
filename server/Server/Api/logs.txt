@@ -1,0 +1,41 @@
+2020-01-14 01:42:03.012 +05:00 [INF] User profile is available. Using 'C:\Users\Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-14 01:42:03.580 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-14 01:42:03.949 +05:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-14 01:42:04.206 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/  
+2020-01-14 01:42:04.295 +05:00 [INF] Executing endpoint 'HomeController.Index (Api)'
+2020-01-14 01:42:04.305 +05:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller HomeController (Api).
+2020-01-14 01:42:04.316 +05:00 [INF] Executing action method HomeController.Index (Api) - Validation state: "Valid"
+2020-01-14 01:42:04.318 +05:00 [INF] Executed action method HomeController.Index (Api), returned result Microsoft.AspNetCore.Mvc.ContentResult in 0.17470000000000002ms.
+2020-01-14 01:42:04.323 +05:00 [INF] Executing ContentResult with HTTP Response ContentType of text/plain; charset=utf-8
+2020-01-14 01:42:04.345 +05:00 [INF] Executed action HomeController.Index (Api) in 37.2287ms
+2020-01-14 01:42:04.345 +05:00 [INF] Executed endpoint 'HomeController.Index (Api)'
+2020-01-14 01:42:04.349 +05:00 [INF] Request finished in 143.005ms 200 text/plain; charset=utf-8
+2020-01-14 01:42:08.588 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-14 01:42:08.598 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-14 01:42:08.622 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-14 01:42:08.634 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-14 01:42:08.647 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-14 01:42:08.752 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-14 01:42:08.755 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-14 01:42:08.755 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-14 01:42:08.764 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-14 01:42:08.951 +05:00 [INF] Executed DbCommand (19ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-14 01:42:08.965 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 331.0966ms.
+2020-01-14 01:42:08.968 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-14 01:42:09.094 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 471.57230000000004ms
+2020-01-14 01:42:09.094 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-14 01:42:09.094 +05:00 [INF] Request finished in 506.4567ms 200 application/json; charset=utf-8
