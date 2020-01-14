@@ -8,6 +8,7 @@ using QnA.Application;
 using QnA.Authentication;
 using QnA.FileStorage;
 using QnA.Persistence;
+using QnA.RealTime.Hubs;
 using QnA.Security;
 
 namespace Api
@@ -30,14 +31,16 @@ namespace Api
             services.AddAuthencticationServices();
             services.AddSecurity();
             services.AddStorage();
+            services.AddSignalR();
 
             services.AddCors(config =>
             {
                 config.AddPolicy("AllowAll", options =>
                  {
-                     options.AllowAnyHeader();
-                     options.AllowAnyMethod();
-                     options.AllowAnyOrigin();
+                     options.AllowAnyHeader()
+                             .AllowAnyMethod()
+                             .WithOrigins("http://localhost:3000")
+                             .AllowCredentials();
                  });
             });
 
@@ -55,18 +58,28 @@ namespace Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                {
+                    var context = serviceScope.ServiceProvider.GetRequiredService<DatabaseContext>();
+                    context.Database.EnsureCreated();
+                    context.SeedData();
+
+
+                }
             }
 
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                var context = serviceScope.ServiceProvider.GetRequiredService<DatabaseContext>();
-                context.Database.EnsureCreated();
-            }
+
 
             app.UseStaticFiles();
             app.UseCors("AllowAll");
             app.UseAuthentication();
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<FollowHub>("/followings");
+            });
             app.UseMvc();
+
         }
     }
 }

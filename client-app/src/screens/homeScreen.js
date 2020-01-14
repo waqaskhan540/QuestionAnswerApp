@@ -8,10 +8,11 @@ import ScreenContainer from "../components/common/screenContainer";
 import WritePost from "./../containers/writePostContainer";
 import * as UserActions from "./../actions/userActions";
 import * as FeedActions from "./../actions/feedActions";
-import { Box } from "grommet";
+import { Box, Button } from "grommet";
 import { Spinning } from "grommet-controls";
 import { toast } from "react-toastify";
-import FeaturedQuestions from "../containers/featuredQuestionsContainer"
+import FeaturedQuestions from "../containers/featuredQuestionsContainer";
+import * as signalR from "@aspnet/signalr";
 
 class HomeScreen extends Component {
   // state = {
@@ -20,13 +21,22 @@ class HomeScreen extends Component {
   //   loading: false
   // };
   state = {
-    showLoadMore : true
-  }
+    showLoadMore: true,
+    hubConnection: null
+  };
 
+  // onAnswerQuestion = () => {
+    
+  //   if (this.state.hubConnection) {
+  //     const connection = this.state.hubConnection;
+  //     console.log(connection);
+  //     connection.send("QuestionAnswered", 1);
+  //   }
+  // };
   loadFeed = () => {
     const { page } = this.props.feed;
     // this.setState({loading:true})
-   // this.props.feedActions.isFeedLoading(true);
+    // this.props.feedActions.isFeedLoading(true);
     questionService.getFeedData(page).then(response => {
       const questions = response.data.data;
       // this.props.actions.userQuestionsLoaded(questions);
@@ -36,12 +46,12 @@ class HomeScreen extends Component {
       //   questions: [...this.state.questions, ...questions],
       //   loading: false
       // });
-      if(questions.length < 5){
-        this.setState({showLoadMore : false})
+      if (questions.length < 5) {
+        this.setState({ showLoadMore: false });
         return;
       }
       this.props.feedActions.updateQuestions(questions);
-     // this.props.feedActions.isFeedLoading(false);
+      // this.props.feedActions.isFeedLoading(false);
     });
   };
 
@@ -62,50 +72,48 @@ class HomeScreen extends Component {
     });
   };
 
-  followQuestion = (questionId) => {
-   
+  followQuestion = questionId => {
     questionService
       .followQuestion(questionId)
-      .then(resp => {       
-        if(resp.data.data.questionId !== undefined)
+      .then(resp => {
+        if (resp.data.data.questionId !== undefined)
           this.props.actions.userFollowQuestion(resp.data.data.questionId);
       })
       .catch(err => toast.error("Something went wrong!"));
-  }
+  };
 
-  unFollowQuestion = (questionId) => {
-   
+  unFollowQuestion = questionId => {
     questionService
       .unFollowQuestion(questionId)
       .then(resp => {
-       // toast.success(resp.data.data.message);
-        if(resp.data.data.questionId !== undefined)
+        // toast.success(resp.data.data.message);
+        if (resp.data.data.questionId !== undefined)
           this.props.actions.userUnFollowQuestion(resp.data.data.questionId);
       })
       .catch(err => toast.error("Something went wrong!"));
-  }
+  };
 
-  saveQuestion = (questionId) => {
+  saveQuestion = questionId => {
     questionService
       .saveQuestion(questionId)
       .then(response => {
-        if(response.data.data.questionId !== undefined)
+        if (response.data.data.questionId !== undefined)
           this.props.actions.userSavedQuestion(response.data.data.questionId);
       })
       .catch(err => toast.error("Something went wrong!"));
-  }
+  };
 
-  unSaveQuestion = (questionId) => {
+  unSaveQuestion = questionId => {
     questionService
       .unSaveQuestion(questionId)
       .then(response => {
-        if(response.data.data.questionId !== undefined)
+        if (response.data.data.questionId !== undefined)
           this.props.actions.userUnSavedQuestion(response.data.data.questionId);
       })
       .catch(err => toast.error("Something went wrong!"));
-  }
+  };
   componentDidMount() {
-    //const { isAuthenticated } = this.props.user;
+    const { isAuthenticated, accessToken } = this.props.user;
 
     this.initFeed();
     //this.props.feedActions.resetPage();
@@ -118,10 +126,27 @@ class HomeScreen extends Component {
     //     this.props.actions.userStatsUpdating(false);
     //   });
     // }
+    // if (isAuthenticated) {
+    //   const connection = new signalR.HubConnectionBuilder()
+    //     .withUrl("http://localhost:5000/followings", {
+    //       accessTokenFactory: () => accessToken
+    //     })
+    //     .build();
+    //   this.setState({ hubConnection: connection });
+    //   connection.start().catch(err => console.error(err));
+
+    //   connection.on("QuestionAnswered",(user,question) => {
+    //     alert(`user is ${user} and question is ${question}`)
+    //   })
+    // }
   }
 
   render() {
-    const { isAuthenticated, questionsFollowing ,questionsSaved} = this.props.user;
+    const {
+      isAuthenticated,
+      questionsFollowing,
+      questionsSaved
+    } = this.props.user;
     const { questions, loading, postingToFeed } = this.props.feed;
 
     return (
@@ -132,29 +157,27 @@ class HomeScreen extends Component {
               <Loader active></Loader>
             ) : (
               <>
-                
                 {postingToFeed ? (
                   <Box align="center" alignContent="center">
                     <Spinning kind="three-bounce" />
                   </Box>
                 ) : null}
-               <QuestionList
+                <QuestionList
                   questions={questions}
                   isUserAuthenticated={isAuthenticated}
                   onloadMore={this.loadFeed}
-                  questionsFollowing = {questionsFollowing}
-                  questionsSaved = {questionsSaved}
-                  onFollow = {this.followQuestion}
-                  onUnFollow = {this.unFollowQuestion}
-                  onSave = {this.saveQuestion}
-                  onUnSave = {this.unSaveQuestion}
-                  toggleLoadMore = {this.state.showLoadMore}
-                /> 
+                  questionsFollowing={questionsFollowing}
+                  questionsSaved={questionsSaved}
+                  onFollow={this.followQuestion}
+                  onUnFollow={this.unFollowQuestion}
+                  onSave={this.saveQuestion}
+                  onUnSave={this.unSaveQuestion}
+                  toggleLoadMore={this.state.showLoadMore}
+                />
               </>
             )
           }
-          right = {<FeaturedQuestions/>}
-          
+          right={<FeaturedQuestions/>}
         />
       </>
     );
