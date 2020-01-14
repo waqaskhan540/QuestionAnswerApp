@@ -595,3 +595,4 @@ LIMIT @__p_0
 2020-01-15 00:47:28.071 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) in 114.4047ms
 2020-01-15 00:47:28.074 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
 2020-01-15 00:47:28.077 +05:00 [INF] Request finished in 199.4448ms 200 application/json; charset=utf-8
+2020-01-15 02:11:53.369 +05:00 [INF] User profile is available. Using 'C:\Users\Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.

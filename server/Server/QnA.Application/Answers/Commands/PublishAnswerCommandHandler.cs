@@ -26,7 +26,7 @@ namespace QnA.Application.Answers.Commands
             var answer = new Answer
             {
                 AnswerMarkup = request.Answer,
-                DateTime = DateTime.Now,
+                DateTime = DateTime.UtcNow,
                 QuestionId = request.QuestionId,
                 UserId = request.UserId
             };
@@ -34,7 +34,13 @@ namespace QnA.Application.Answers.Commands
             await _context.Answers.AddAsync(answer);
             await _context.SaveChangesAsync(cancellationToken);
 
-            return new PublishAnswerViewModel { Message = "Answer published successfully" };
+
+            var hasFollowers = await _context.QuestionFollowings.AnyAsync(f => f.QuestionId == request.QuestionId);
+
+            return new PublishAnswerViewModel { 
+                Message = "Answer published successfully",
+                HasFollowers = hasFollowers
+            };
 
         }
     }
