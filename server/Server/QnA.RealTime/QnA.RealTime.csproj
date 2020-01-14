@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\QnA.Application\QnA.Application.csproj" />
+    <ProjectReference Include="..\QnA.Persistence\QnA.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

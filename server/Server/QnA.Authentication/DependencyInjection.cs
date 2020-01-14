@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using QnA.Application.Interfaces;
@@ -9,11 +10,18 @@ namespace QnA.Authentication
 {
     public static class DependencyInjection
     {
-        public static void AddAuthencticationServices(this IServiceCollection services)
+        public static void AddAuthencticationServices(this IServiceCollection services,IConfiguration configuration)
         {
             services.AddScoped<IExternalAuthenticationProvider, ExternalAuthenticationProvider>();
 
             /** Security **/
+            string secret = configuration["Security:Secret"];
+            var key = Encoding.UTF8.GetBytes(secret);
+            var signingKey = new SymmetricSecurityKey(key);
+
+            string issuer = configuration.GetSection("Security")["Issuer"];
+            string audience = configuration.GetSection("Security")["Audience"];
+
             services.AddAuthentication(config =>
             {
                 config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -21,13 +29,15 @@ namespace QnA.Authentication
             }).AddJwtBearer(config =>
             {
                 config.RequireHttpsMetadata = false;
-                config.SaveToken = true;
+                config.SaveToken = true;                
                 config.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("some_big_key_value_here_secret")),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
+                    IssuerSigningKey = signingKey,
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidAudience = audience,
+                    ValidIssuer = issuer                    
                 };
                 config.Events = new JwtBearerEvents
                 {
@@ -41,6 +51,7 @@ namespace QnA.Authentication
                         }
                         return Task.CompletedTask;
                     }
+                    
                 };
             });
         }

@@ -1,5 +1,7 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using QnA.Application.Interfaces.Security;
+using QnA.Security.Configuration;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -9,20 +11,32 @@ namespace QnA.Security
 {
     public class JwtTokenGenerator : IJwtTokenGenerator
     {
+        private readonly SecurityOptions _securityOptions;
+        public JwtTokenGenerator(IOptionsSnapshot<SecurityOptions> securityOptions)
+        {
+            _securityOptions = securityOptions.Value;
+        }
         public string GenerateToken(string name, string email, int userId)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("some_big_key_value_here_secret");
+            
+            var key = Encoding.ASCII.GetBytes(_securityOptions.Secret);
+            var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
+
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim(ClaimTypes.Name, name),
-                    new Claim(ClaimTypes.Email,email),
-                    new Claim(ClaimTypes.NameIdentifier, userId.ToString(),ClaimValueTypes.Integer32)
+                    new Claim(ClaimTypes.Email, email),
+                    new Claim(ClaimTypes.NameIdentifier, userId.ToString(), ClaimValueTypes.Integer32)
                 }),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                IssuedAt = DateTime.UtcNow,
+                Audience = _securityOptions.Audience,
+                Issuer = _securityOptions.Issuer,
+                Expires = DateTime.UtcNow.AddHours(_securityOptions.TokenExpiry),
+                SigningCredentials = signingCredentials
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);

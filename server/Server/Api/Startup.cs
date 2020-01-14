@@ -30,18 +30,19 @@ namespace Api
 
             services.AddApplication();
             services.AddPersistence(Configuration);
-            services.AddAuthencticationServices();
-            services.AddSecurity();
+            services.AddAuthencticationServices(Configuration);
+            services.AddSecurity(Configuration);
             services.AddStorage();
             services.AddSignalR();
 
+            string clientAppUrl = Configuration["ClientAppUrl"];
             services.AddCors(config =>
             {
                 config.AddPolicy("AllowAll", options =>
                  {
                      options.AllowAnyHeader()
                              .AllowAnyMethod()
-                             .WithOrigins("http://localhost:3000")
+                             .WithOrigins(clientAppUrl)
                              .AllowCredentials();
                  });
             });
@@ -69,12 +70,7 @@ namespace Api
             }
 
 
-            app.ConfigureExceptionHandler(loggerFactory);
-
-            
-
-
-
+            app.ConfigureExceptionHandler(loggerFactory);            
             app.UseStaticFiles();
             app.UseCors("AllowAll");
             app.UseAuthentication();

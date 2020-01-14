@@ -113,7 +113,7 @@ class HomeScreen extends Component {
       .catch(err => toast.error("Something went wrong!"));
   };
   componentDidMount() {
-    const { isAuthenticated, accessToken } = this.props.user;
+    //const { isAuthenticated, accessToken } = this.props.user;
 
     this.initFeed();
     //this.props.feedActions.resetPage();
