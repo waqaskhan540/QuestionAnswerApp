@@ -16,13 +16,10 @@ namespace Api.Controllers
     public class QuestionsController : Controller
     {
         private readonly IMediator _mediator;
-        private readonly ILogger _logger;
-        public QuestionsController(
-            IMediator mediator,
-            ILogger<QuestionsController> logger)
+        
+        public QuestionsController(IMediator mediator)
         {
-            _mediator = mediator;
-            _logger = logger;
+            _mediator = mediator;            
         }
 
         [HttpPost("api/questions")]

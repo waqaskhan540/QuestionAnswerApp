@@ -39,3 +39,74 @@ LIMIT 18446744073709551610 OFFSET @__p_1
 2020-01-14 01:42:09.094 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 471.57230000000004ms
 2020-01-14 01:42:09.094 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
 2020-01-14 01:42:09.094 +05:00 [INF] Request finished in 506.4567ms 200 application/json; charset=utf-8
+2020-01-14 02:05:15.547 +05:00 [INF] User profile is available. Using 'C:\Users\Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-14 02:05:16.076 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-14 02:05:16.510 +05:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-14 02:05:16.774 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/  
+2020-01-14 02:05:16.865 +05:00 [INF] Executing endpoint 'HomeController.Index (Api)'
+2020-01-14 02:05:16.875 +05:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller HomeController (Api).
+2020-01-14 02:05:16.885 +05:00 [INF] Executing action method HomeController.Index (Api) - Validation state: "Valid"
+2020-01-14 02:05:27.451 +05:00 [INF] Executed action HomeController.Index (Api) in 10572.4607ms
+2020-01-14 02:05:27.452 +05:00 [INF] Executed endpoint 'HomeController.Index (Api)'
+2020-01-14 02:05:27.979 +05:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Exception: test exception
+   at HomeController.Index() in D:\QuestionAnswerApp\server\Server\Api\Controllers\HomeController.cs:line 7
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2020-01-14 02:05:28.119 +05:00 [ERR] Exception:System.Exception: test exception
+   at HomeController.Index() in D:\QuestionAnswerApp\server\Server\Api\Controllers\HomeController.cs:line 7
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2020-01-14 02:05:28.140 +05:00 [INF] Request finished in 11366.8466ms 500 application/json
+2020-01-14 02:07:57.072 +05:00 [INF] User profile is available. Using 'C:\Users\Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-14 02:07:57.609 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-14 02:07:57.959 +05:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-14 02:07:58.207 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/  
+2020-01-14 02:07:58.302 +05:00 [INF] Executing endpoint 'HomeController.Index (Api)'
+2020-01-14 02:07:58.316 +05:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller HomeController (Api).
+2020-01-14 02:07:58.328 +05:00 [INF] Executing action method HomeController.Index (Api) - Validation state: "Valid"
+2020-01-14 02:07:58.330 +05:00 [INF] Executed action method HomeController.Index (Api), returned result Microsoft.AspNetCore.Mvc.ContentResult in 0.2046ms.
+2020-01-14 02:07:58.336 +05:00 [INF] Executing ContentResult with HTTP Response ContentType of text/plain; charset=utf-8
+2020-01-14 02:07:58.357 +05:00 [INF] Executed action HomeController.Index (Api) in 39.3417ms
+2020-01-14 02:07:58.358 +05:00 [INF] Executed endpoint 'HomeController.Index (Api)'
+2020-01-14 02:07:58.360 +05:00 [INF] Request finished in 154.1036ms 200 text/plain; charset=utf-8
