@@ -29,6 +29,7 @@
     <ProjectReference Include="..\QnA.Domain\QnA.Domain.csproj" />
     <ProjectReference Include="..\QnA.FileStorage\QnA.FileStorage.csproj" />
     <ProjectReference Include="..\QnA.Persistence\QnA.Persistence.csproj" />
+    <ProjectReference Include="..\QnA.RealTime\QnA.RealTime.csproj" />
     <ProjectReference Include="..\QnA.Security\QnA.Security.csproj" />
   </ItemGroup>
 

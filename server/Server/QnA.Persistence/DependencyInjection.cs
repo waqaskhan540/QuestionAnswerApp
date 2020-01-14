@@ -17,6 +17,8 @@ namespace QnA.Persistence
 
             services.AddScoped<IDatabaseContext>(provider => provider.GetService<DatabaseContext>());
 
+
+
         }
     }
 }

@@ -38,8 +38,8 @@ namespace QnA.Application.Authentication.Queries
                     Message = "Invalid email or password."
                 };
 
-            var passwordhash = _hashGenerator.ComputeHash(request.Password);
-            if (!passwordhash.Equals(user.PasswordHash, StringComparison.OrdinalIgnoreCase))
+            var verified = _hashGenerator.CheckHash(user.PasswordHash, request.Password);
+            if (!verified)
                 return new UserLoginViewModel
                 {
                     Success = false,
