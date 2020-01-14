@@ -3,6 +3,7 @@ using Api.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using QnA.Application.Feed.Queries;
 using QnA.Application.Questions.Commands;
 using QnA.Application.Questions.Queries;
@@ -15,16 +16,19 @@ namespace Api.Controllers
     public class QuestionsController : Controller
     {
         private readonly IMediator _mediator;
-        public QuestionsController(IMediator mediator)
+        private readonly ILogger _logger;
+        public QuestionsController(
+            IMediator mediator,
+            ILogger<QuestionsController> logger)
         {
             _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpPost("api/questions")]
         [Authorize]
         public async Task<IActionResult> Post([FromBody]QuestionViewModel model)
         {
-
             var userId = HttpContext.GetLoggedUserId();
             var questionId = await _mediator.Send(new AddQuestionCommand(userId, model.QuestionText));
 

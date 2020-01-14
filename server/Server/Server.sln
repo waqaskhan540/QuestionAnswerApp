@@ -26,8 +26,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QnA.Security", "QnA.Security\QnA.Security.csproj", "{C3529DA5-94D9-44FE-BE33-4F63255F117F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QnA.FileStorage", "QnA.FileStorage\QnA.FileStorage.csproj", "{548942CB-8B2F-4FD5-9A07-B36D432080C7}"
+<<<<<<< HEAD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QnA.RealTime", "QnA.RealTime\QnA.RealTime.csproj", "{2D8183B6-EDE7-460C-8DCA-73A493EDF77A}"
+=======
+>>>>>>> e1d9e0a343cdf362158005f4e21753fde2a3c1fc
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
