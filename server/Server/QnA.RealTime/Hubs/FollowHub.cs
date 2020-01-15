@@ -13,7 +13,7 @@ namespace QnA.RealTime.Hubs
         public string QuestionText { get; set; }
         public int QuestionId { get; set; }
 
-        
+
     }
     [Authorize]
     public class FollowHub : Hub
@@ -26,14 +26,14 @@ namespace QnA.RealTime.Hubs
         }
         public async Task QuestionAnswered(int questionId)
         {
-            var answeredby = int.Parse(Context.UserIdentifier);                        
+            var answeredby = int.Parse(Context.UserIdentifier);
             var question = await _context.Questions.SingleOrDefaultAsync(q => q.Id == questionId);
-            if(question != null)
+            if (question != null)
             {
                 var user = await _context.Users.SingleOrDefaultAsync(u => u.Id == answeredby);
-                var followers = await _context.QuestionFollowings.Where(q => q.Id == questionId).ToListAsync();
+                var followers = await _context.QuestionFollowings.Where(q => q.QuestionId == questionId).ToListAsync();
 
-                if(followers.Any() && user != null)
+                if (followers.Any() && user != null)
                 {
                     var users = followers.Select(x => x.UserId.ToString());
                     var response = new QuestionAnsweredResponse

@@ -1,8 +1,8 @@
-﻿using Api.ApiModels;
-using Api.Extensions;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using QnA.Api.ApiModels;
+using QnA.Api.Extensions;
 using QnA.Application.Drafts.Commands;
 using QnA.Application.Drafts.Queries;
 using QnA.Persistence;
@@ -22,10 +22,15 @@ namespace Api.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// creates a new draft for an unpublished answer
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost("api/drafts")]
         public async Task<IActionResult> SaveDraft([FromBody]DraftViewModel model)
         {
-           
+
             var command = new SaveDraftCommand
             {
                 UserId = HttpContext.GetLoggedUserId(),
@@ -36,6 +41,10 @@ namespace Api.Controllers
             return Ok(BaseResponse.Ok(response.Message));
         }
 
+        /// <summary>
+        /// gets the drafts for current user
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("api/drafts")]
         public async Task<IActionResult> GetDrafts()
         {
@@ -44,9 +53,13 @@ namespace Api.Controllers
             return Ok(BaseResponse.Ok(drafts));
         }
 
+        /// <summary>
+        /// gets the number of drafts the current user has
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("api/drafts/count")]
         public async Task<IActionResult> GetDraftsCount()
-        {            
+        {
             var userId = HttpContext.GetLoggedUserId();
             var draftCount = await _mediator.Send(new GetDraftsCountQuery(userId));
             return Ok(BaseResponse.Ok(new { draftCount }));

@@ -1,9 +1,9 @@
-﻿using Api.ApiModels;
-using Api.Extensions;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using QnA.Api.ApiModels;
+using QnA.Api.Extensions;
 using QnA.Application.Profile.Command;
 using System.IO;
 using System.Threading.Tasks;
@@ -18,6 +18,12 @@ namespace Api.Controllers
         {
             _mediator = mediator;
         }
+
+        /// <summary>
+        /// uploads user profile picture
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
         [HttpPost("api/profile/image")]
         [Authorize]
         public async Task<IActionResult> UploadProfilePicture(IFormFile file)
@@ -37,6 +43,12 @@ namespace Api.Controllers
             var response = await _mediator.Send(updateCommand);
             return Ok(BaseResponse.Ok(response.Message));
         }
+
+        /// <summary>
+        /// updates user profile data
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
 
         [HttpPost("api/profile")]
         [Authorize]

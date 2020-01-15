@@ -1,11 +1,12 @@
 ﻿using Api.Extensions;
-using Api.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using QnA.Api.Extensions;
+using QnA.Api.Filters;
 using QnA.Application;
 using QnA.Authentication;
 using QnA.FileStorage;
@@ -53,6 +54,9 @@ namespace Api
             {
                 config.Filters.Add(new ModelStateFilter());
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddSwagger(Configuration);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,15 +74,19 @@ namespace Api
             }
 
 
-            app.ConfigureExceptionHandler(loggerFactory);            
+            app.ConfigureExceptionHandler(loggerFactory);
             app.UseStaticFiles();
             app.UseCors("AllowAll");
             app.UseAuthentication();
+
+
 
             app.UseSignalR(routes =>
             {
                 routes.MapHub<FollowHub>("/followings");
             });
+
+            app.UseSwagger(Configuration);
             app.UseMvc();
 
         }

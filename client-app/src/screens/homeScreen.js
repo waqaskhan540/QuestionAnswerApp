@@ -25,14 +25,14 @@ class HomeScreen extends Component {
     hubConnection: null
   };
 
-  // onAnswerQuestion = () => {
+  onAnswerQuestion = () => {
     
-  //   if (this.state.hubConnection) {
-  //     const connection = this.state.hubConnection;
-  //     console.log(connection);
-  //     connection.send("QuestionAnswered", 1);
-  //   }
-  // };
+    if (this.state.hubConnection) {
+      const connection = this.state.hubConnection;
+      console.log(connection);
+      connection.send("QuestionAnswered", 17);
+    }
+  };
   loadFeed = () => {
     const { page } = this.props.feed;
     // this.setState({loading:true})
@@ -113,10 +113,10 @@ class HomeScreen extends Component {
       .catch(err => toast.error("Something went wrong!"));
   };
   componentDidMount() {
-    //const { isAuthenticated, accessToken } = this.props.user;
+    const { isAuthenticated, accessToken } = this.props.user;
 
     this.initFeed();
-    //this.props.feedActions.resetPage();
+    // this.props.feedActions.resetPage();
     // if (isAuthenticated) {
     //   this.props.actions.userStatsUpdating(true);
     //   StatsService.GetUserStats().then(response => {
@@ -126,19 +126,20 @@ class HomeScreen extends Component {
     //     this.props.actions.userStatsUpdating(false);
     //   });
     // }
-    // if (isAuthenticated) {
-    //   const connection = new signalR.HubConnectionBuilder()
-    //     .withUrl("http://localhost:5000/followings", {
-    //       accessTokenFactory: () => accessToken
-    //     })
-    //     .build();
-    //   this.setState({ hubConnection: connection });
-    //   connection.start().catch(err => console.error(err));
+    if (isAuthenticated) {
+      const connection = new signalR.HubConnectionBuilder()
+        .withUrl("http://localhost:5000/followings", {
+          accessTokenFactory: () => accessToken
+        })
+        .build();
+      this.setState({ hubConnection: connection });
+      connection.start().catch(err => console.error(err));
 
-    //   connection.on("QuestionAnswered",(user,question) => {
-    //     alert(`user is ${user} and question is ${question}`)
-    //   })
-    // }
+      connection.on("QuestionAnswered",(response) => {
+        debugger;
+        console.log(response);
+      })
+    }
   }
 
   render() {
@@ -177,7 +178,7 @@ class HomeScreen extends Component {
               </>
             )
           }
-          right={<FeaturedQuestions/>}
+          right={<button onClick={this.onAnswerQuestion}>answer</button>}
         />
       </>
     );

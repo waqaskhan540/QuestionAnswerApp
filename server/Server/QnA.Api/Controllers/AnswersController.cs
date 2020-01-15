@@ -1,13 +1,13 @@
-﻿using Api.ApiModels;
-using Api.Extensions;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using QnA.Api.ApiModels;
+using QnA.Api.Extensions;
 using QnA.Application.Answers.Commands;
 using QnA.Application.Answers.Queries;
 using System.Threading.Tasks;
 
-namespace Api.Controllers
+namespace QnA.Api.Controllers
 {
 
     public class AnswersController : Controller
@@ -18,6 +18,12 @@ namespace Api.Controllers
         {
             _mediator = mediator;
         }
+
+        /// <summary>
+        /// creates a new answer to a question
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
 
         [HttpPost("api/answer")]
         [Authorize]
@@ -34,6 +40,11 @@ namespace Api.Controllers
             return Ok(BaseResponse.Ok(response));
 
         }
+        /// <summary>
+        /// gets answers of a given question based on {questionId}
+        /// </summary>
+        /// <param name="questionId"></param>
+        /// <returns></returns>
 
         [HttpGet("api/answers/{questionId:int}")]
         public async Task<IActionResult> GetAnswers(int questionId)

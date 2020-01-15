@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Api.ApiModels
+namespace QnA.Api.ApiModels
 {
     public class BaseResponse
     {

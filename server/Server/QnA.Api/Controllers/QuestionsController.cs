@@ -1,9 +1,8 @@
-﻿using Api.ApiModels;
-using Api.Extensions;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using QnA.Api.ApiModels;
+using QnA.Api.Extensions;
 using QnA.Application.Feed.Queries;
 using QnA.Application.Questions.Commands;
 using QnA.Application.Questions.Queries;
@@ -16,12 +15,18 @@ namespace Api.Controllers
     public class QuestionsController : Controller
     {
         private readonly IMediator _mediator;
-        
+
         public QuestionsController(IMediator mediator)
         {
-            _mediator = mediator;            
+            _mediator = mediator;
         }
 
+
+        /// <summary>
+        /// creates a new question on behalf of current user
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost("api/questions")]
         [Authorize]
         public async Task<IActionResult> Post([FromBody]QuestionViewModel model)
@@ -32,6 +37,11 @@ namespace Api.Controllers
             return await GetQuestion(questionId);
         }
 
+        /// <summary>
+        /// gets user's feed data
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [HttpGet("api/feed/{page:int}")]
         public async Task<IActionResult> GetFeed(int page = 1)
         {
@@ -39,20 +49,25 @@ namespace Api.Controllers
             return Ok(BaseResponse.Ok(questions));
         }
 
-        [HttpGet("api/questions/user/{userId}")]
+        /// <summary>
+        /// gets questions posted by current user
+        /// </summary>        
+        /// <returns></returns>
+        [HttpGet("api/questions/user/")]
         [Authorize]
-        public async Task<IActionResult> Get(int userId)
+        public async Task<IActionResult> Get()
         {
             var loggedUserId = HttpContext.GetLoggedUserId();
-            if (userId != loggedUserId)
-                return Unauthorized();
-
             var questions = await _mediator.Send(new GetQuestionsByUserQuery(loggedUserId));
             return Ok(BaseResponse.Ok(questions));
         }
 
 
-
+        /// <summary>
+        /// gets a question by {questionId}
+        /// </summary>
+        /// <param name="questionId"></param>
+        /// <returns></returns>
         [HttpGet("api/questions/{questionId}")]
         public async Task<IActionResult> GetQuestion(int questionId)
         {
@@ -60,6 +75,11 @@ namespace Api.Controllers
             return Ok(BaseResponse.Ok(question));
         }
 
+        /// <summary>
+        /// marks the question as saved.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost("api/save/{id:int}")]
         [Authorize]
         public async Task<IActionResult> SaveQuestion(int id)
@@ -68,6 +88,12 @@ namespace Api.Controllers
             var message = await _mediator.Send(new SaveQuestionCommand(id, userId));
             return Ok(BaseResponse.Ok(message));
         }
+
+        /// <summary>
+        /// unsaves a questions
+        /// </summary>
+        /// <param name="questionId"></param>
+        /// <returns></returns>
         [HttpPost("api/unsave/{questionId:int}")]
         [Authorize]
         public async Task<IActionResult> UnSaveQuestion(int questionId)
@@ -78,6 +104,11 @@ namespace Api.Controllers
             return Ok(BaseResponse.Ok(response));
         }
 
+        /// <summary>
+        /// follow a question
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost("api/question/follow/{id:int}")]
         [Authorize]
         public async Task<IActionResult> FollowQuestion(int id)
@@ -87,6 +118,11 @@ namespace Api.Controllers
             return Ok(BaseResponse.Ok(response));
         }
 
+        /// <summary>
+        /// unfollow a question
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost("api/question/unfollow/{id:int}")]
         [Authorize]
         public async Task<IActionResult> UnFollowQuestion(int id)
@@ -100,8 +136,11 @@ namespace Api.Controllers
             return Ok(BaseResponse.Ok(response));
         }
 
+        /// <summary>
+        /// gets featured questions
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("api/questions/featured")]
-
         public async Task<IActionResult> GetFeaturedQuestions()
         {
             var command = new GetFeaturedQuestionsQuery();

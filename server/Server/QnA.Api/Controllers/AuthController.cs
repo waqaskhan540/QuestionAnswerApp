@@ -1,6 +1,7 @@
-﻿using Api.ApiModels;
+﻿
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using QnA.Api.ApiModels;
 using QnA.Application.Authentication.Commands;
 using QnA.Application.Authentication.Queries;
 using System.Threading.Tasks;
@@ -18,7 +19,11 @@ namespace Api.Controllers
             _mediator = mediator;
         }
 
-
+        /// <summary>
+        /// provides login for facebook and gmail
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost("external-login")]
         public async Task<IActionResult> ExternalLogin([FromBody] ExternalLoginModel model)
         {
@@ -38,6 +43,11 @@ namespace Api.Controllers
 
         }
 
+        /// <summary>
+        /// creates a new user
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
@@ -56,6 +66,11 @@ namespace Api.Controllers
             return BadRequest(BaseResponse.Error(response.Message));
         }
 
+        /// <summary>
+        /// logs the user in
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {

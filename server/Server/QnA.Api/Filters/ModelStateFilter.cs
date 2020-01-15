@@ -1,11 +1,10 @@
-﻿using Api.ApiModels;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System;
+using QnA.Api.ApiModels;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Api.Filters
+namespace QnA.Api.Filters
 {
     public class ModelStateFilter : IAsyncActionFilter
     {

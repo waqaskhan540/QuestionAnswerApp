@@ -1,0 +1,2048 @@
+2020-01-14 01:42:03.012 +05:00 [INF] User profile is available. Using 'C:\Users\Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-14 01:42:03.580 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-14 01:42:03.949 +05:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-14 01:42:04.206 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/  
+2020-01-14 01:42:04.295 +05:00 [INF] Executing endpoint 'HomeController.Index (Api)'
+2020-01-14 01:42:04.305 +05:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller HomeController (Api).
+2020-01-14 01:42:04.316 +05:00 [INF] Executing action method HomeController.Index (Api) - Validation state: "Valid"
+2020-01-14 01:42:04.318 +05:00 [INF] Executed action method HomeController.Index (Api), returned result Microsoft.AspNetCore.Mvc.ContentResult in 0.17470000000000002ms.
+2020-01-14 01:42:04.323 +05:00 [INF] Executing ContentResult with HTTP Response ContentType of text/plain; charset=utf-8
+2020-01-14 01:42:04.345 +05:00 [INF] Executed action HomeController.Index (Api) in 37.2287ms
+2020-01-14 01:42:04.345 +05:00 [INF] Executed endpoint 'HomeController.Index (Api)'
+2020-01-14 01:42:04.349 +05:00 [INF] Request finished in 143.005ms 200 text/plain; charset=utf-8
+2020-01-14 01:42:08.588 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-14 01:42:08.598 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-14 01:42:08.622 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-14 01:42:08.634 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-14 01:42:08.647 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-14 01:42:08.752 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-14 01:42:08.755 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-14 01:42:08.755 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-14 01:42:08.764 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-14 01:42:08.951 +05:00 [INF] Executed DbCommand (19ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-14 01:42:08.965 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 331.0966ms.
+2020-01-14 01:42:08.968 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-14 01:42:09.094 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 471.57230000000004ms
+2020-01-14 01:42:09.094 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-14 01:42:09.094 +05:00 [INF] Request finished in 506.4567ms 200 application/json; charset=utf-8
+2020-01-14 02:05:15.547 +05:00 [INF] User profile is available. Using 'C:\Users\Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-14 02:05:16.076 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-14 02:05:16.510 +05:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-14 02:05:16.774 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/  
+2020-01-14 02:05:16.865 +05:00 [INF] Executing endpoint 'HomeController.Index (Api)'
+2020-01-14 02:05:16.875 +05:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller HomeController (Api).
+2020-01-14 02:05:16.885 +05:00 [INF] Executing action method HomeController.Index (Api) - Validation state: "Valid"
+2020-01-14 02:05:27.451 +05:00 [INF] Executed action HomeController.Index (Api) in 10572.4607ms
+2020-01-14 02:05:27.452 +05:00 [INF] Executed endpoint 'HomeController.Index (Api)'
+2020-01-14 02:05:27.979 +05:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Exception: test exception
+   at HomeController.Index() in D:\QuestionAnswerApp\server\Server\Api\Controllers\HomeController.cs:line 7
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2020-01-14 02:05:28.119 +05:00 [ERR] Exception:System.Exception: test exception
+   at HomeController.Index() in D:\QuestionAnswerApp\server\Server\Api\Controllers\HomeController.cs:line 7
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2020-01-14 02:05:28.140 +05:00 [INF] Request finished in 11366.8466ms 500 application/json
+2020-01-14 02:07:57.072 +05:00 [INF] User profile is available. Using 'C:\Users\Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-14 02:07:57.609 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-14 02:07:57.959 +05:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-14 02:07:58.207 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/  
+2020-01-14 02:07:58.302 +05:00 [INF] Executing endpoint 'HomeController.Index (Api)'
+2020-01-14 02:07:58.316 +05:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller HomeController (Api).
+2020-01-14 02:07:58.328 +05:00 [INF] Executing action method HomeController.Index (Api) - Validation state: "Valid"
+2020-01-14 02:07:58.330 +05:00 [INF] Executed action method HomeController.Index (Api), returned result Microsoft.AspNetCore.Mvc.ContentResult in 0.2046ms.
+2020-01-14 02:07:58.336 +05:00 [INF] Executing ContentResult with HTTP Response ContentType of text/plain; charset=utf-8
+2020-01-14 02:07:58.357 +05:00 [INF] Executed action HomeController.Index (Api) in 39.3417ms
+2020-01-14 02:07:58.358 +05:00 [INF] Executed endpoint 'HomeController.Index (Api)'
+2020-01-14 02:07:58.360 +05:00 [INF] Request finished in 154.1036ms 200 text/plain; charset=utf-8
+2020-01-15 00:24:52.986 +05:00 [INF] User profile is available. Using 'C:\Users\Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-15 00:24:57.065 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 00:24:58.931 +05:00 [INF] Executed DbCommand (92ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-15 00:24:59.265 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Users` AS `u`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 00:24:59.626 +05:00 [INF] Executed DbCommand (66ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 255), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Users` (`Id`, `Email`, `FirstName`, `LastName`, `PasswordHash`, `ProfilePicture`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2020-01-15 00:24:59.644 +05:00 [INF] Executed DbCommand (15ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 255), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Users` (`Id`, `Email`, `FirstName`, `LastName`, `PasswordHash`, `ProfilePicture`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2020-01-15 00:24:59.842 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Questions` AS `q`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 00:25:00.377 +05:00 [INF] Executed DbCommand (441ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 500), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = DateTime), @p6='?' (Size = 500), @p7='?' (DbType = Int32), @p8='?' (DbType = Int32), @p9='?' (DbType = DateTime), @p10='?' (Size = 500), @p11='?' (DbType = Int32), @p12='?' (DbType = Int32), @p13='?' (DbType = DateTime), @p14='?' (Size = 500), @p15='?' (DbType = Int32), @p16='?' (DbType = Int32), @p17='?' (DbType = DateTime), @p18='?' (Size = 500), @p19='?' (DbType = Int32), @p20='?' (DbType = Int32), @p21='?' (DbType = DateTime), @p22='?' (Size = 500), @p23='?' (DbType = Int32), @p24='?' (DbType = Int32), @p25='?' (DbType = DateTime), @p26='?' (Size = 500), @p27='?' (DbType = Int32), @p28='?' (DbType = Int32), @p29='?' (DbType = DateTime), @p30='?' (Size = 500), @p31='?' (DbType = Int32), @p32='?' (DbType = Int32), @p33='?' (DbType = DateTime), @p34='?' (Size = 500), @p35='?' (DbType = Int32), @p36='?' (DbType = Int32), @p37='?' (DbType = DateTime), @p38='?' (Size = 500), @p39='?' (DbType = Int32), @p40='?' (DbType = Int32), @p41='?' (DbType = DateTime), @p42='?' (Size = 500), @p43='?' (DbType = Int32), @p44='?' (DbType = Int32), @p45='?' (DbType = DateTime), @p46='?' (Size = 500), @p47='?' (DbType = Int32), @p48='?' (DbType = Int32), @p49='?' (DbType = DateTime), @p50='?' (Size = 500), @p51='?' (DbType = Int32), @p52='?' (DbType = Int32), @p53='?' (DbType = DateTime), @p54='?' (Size = 500), @p55='?' (DbType = Int32), @p56='?' (DbType = Int32), @p57='?' (DbType = DateTime), @p58='?' (Size = 500), @p59='?' (DbType = Int32), @p60='?' (DbType = Int32), @p61='?' (DbType = DateTime), @p62='?' (Size = 500), @p63='?' (DbType = Int32), @p64='?' (DbType = Int32), @p65='?' (DbType = DateTime), @p66='?' (Size = 500), @p67='?' (DbType = Int32), @p68='?' (DbType = Int32), @p69='?' (DbType = DateTime), @p70='?' (Size = 500), @p71='?' (DbType = Int32), @p72='?' (DbType = Int32), @p73='?' (DbType = DateTime), @p74='?' (Size = 500), @p75='?' (DbType = Int32), @p76='?' (DbType = Int32), @p77='?' (DbType = DateTime), @p78='?' (Size = 500), @p79='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Questions` (`Id`, `DateTime`, `QuestionText`, `UserId`)
+VALUES (@p0, @p1, @p2, @p3),
+(@p4, @p5, @p6, @p7),
+(@p8, @p9, @p10, @p11),
+(@p12, @p13, @p14, @p15),
+(@p16, @p17, @p18, @p19),
+(@p20, @p21, @p22, @p23),
+(@p24, @p25, @p26, @p27),
+(@p28, @p29, @p30, @p31),
+(@p32, @p33, @p34, @p35),
+(@p36, @p37, @p38, @p39),
+(@p40, @p41, @p42, @p43),
+(@p44, @p45, @p46, @p47),
+(@p48, @p49, @p50, @p51),
+(@p52, @p53, @p54, @p55),
+(@p56, @p57, @p58, @p59),
+(@p60, @p61, @p62, @p63),
+(@p64, @p65, @p66, @p67),
+(@p68, @p69, @p70, @p71),
+(@p72, @p73, @p74, @p75),
+(@p76, @p77, @p78, @p79);
+2020-01-15 00:25:04.863 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/  
+2020-01-15 00:25:06.165 +05:00 [INF] Executing endpoint 'HomeController.Index (Api)'
+2020-01-15 00:25:06.292 +05:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller HomeController (Api).
+2020-01-15 00:25:06.404 +05:00 [INF] Executing action method HomeController.Index (Api) - Validation state: "Valid"
+2020-01-15 00:25:06.501 +05:00 [INF] Executed action method HomeController.Index (Api), returned result Microsoft.AspNetCore.Mvc.ContentResult in 85.8794ms.
+2020-01-15 00:25:06.522 +05:00 [INF] Executing ContentResult with HTTP Response ContentType of text/plain; charset=utf-8
+2020-01-15 00:25:06.772 +05:00 [INF] Executed action HomeController.Index (Api) in 442.9107ms
+2020-01-15 00:25:06.782 +05:00 [INF] Executed endpoint 'HomeController.Index (Api)'
+2020-01-15 00:25:06.811 +05:00 [INF] Request finished in 1949.4419ms 200 text/plain; charset=utf-8
+2020-01-15 00:25:07.129 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/favicon.ico  
+2020-01-15 00:25:07.299 +05:00 [INF] Request finished in 167.2966ms 404 
+2020-01-15 00:34:10.302 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/questions/featured  
+2020-01-15 00:34:10.329 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 00:34:10.349 +05:00 [INF] CORS policy execution successful.
+2020-01-15 00:34:10.349 +05:00 [INF] CORS policy execution successful.
+2020-01-15 00:34:10.418 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 00:34:10.423 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 00:34:10.453 +05:00 [INF] Route matched with {action = "GetFeaturedQuestions", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeaturedQuestions() on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 00:34:10.478 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) - Validation state: "Valid"
+2020-01-15 00:34:10.538 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 00:34:10.587 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:34:10.597 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:34:10.611 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:34:10.617 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:34:10.634 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 00:34:10.698 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 00:34:10.661 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:34:10.743 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:34:10.747 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:34:10.750 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:34:10.779 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 00:34:10.928 +05:00 [WRN] The Include operation for navigation '[x].Answers' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2020-01-15 00:34:11.435 +05:00 [INF] Executed DbCommand (19ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 00:34:11.498 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 859.68080000000009ms.
+2020-01-15 00:34:11.518 +05:00 [INF] Executed DbCommand (102ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+WHERE (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) > 5
+ORDER BY `x`.`DateTime`
+LIMIT @__p_0
+2020-01-15 00:34:11.530 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 00:34:11.562 +05:00 [WRN] The Include operation for navigation '[x].Answers' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2020-01-15 00:34:11.600 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+ORDER BY (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) DESC
+LIMIT @__p_0
+2020-01-15 00:34:11.606 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1123.4952ms.
+2020-01-15 00:34:11.613 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 00:34:12.125 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 1579.2652ms
+2020-01-15 00:34:12.128 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) in 1665.016ms
+2020-01-15 00:34:12.135 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 00:34:12.139 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 00:34:12.158 +05:00 [INF] Request finished in 1849.8419ms 200 application/json; charset=utf-8
+2020-01-15 00:34:12.162 +05:00 [INF] Request finished in 1873.46ms 200 application/json; charset=utf-8
+2020-01-15 00:34:51.435 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/auth/login  
+2020-01-15 00:34:51.439 +05:00 [INF] CORS policy execution successful.
+2020-01-15 00:34:51.444 +05:00 [INF] Request finished in 9.3994ms 204 
+2020-01-15 00:34:51.789 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/auth/login application/json;charset=UTF-8 49
+2020-01-15 00:34:51.793 +05:00 [INF] CORS policy execution successful.
+2020-01-15 00:34:51.799 +05:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Login (Api)'
+2020-01-15 00:34:51.811 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Api.ApiModels.LoginModel) on controller Api.Controllers.AuthController (Api).
+2020-01-15 00:34:52.063 +05:00 [INF] Executing action method Api.Controllers.AuthController.Login (Api) - Validation state: "Valid"
+2020-01-15 00:34:52.073 +05:00 [INF] QnA Request: UserLoginQuery  {"Email":"test1@gmail.com","Password":"password","$type":"UserLoginQuery"}
+2020-01-15 00:34:52.077 +05:00 [INF] QnA Request: UserLoginQuery  {"Email":"test1@gmail.com","Password":"password","$type":"UserLoginQuery"}
+2020-01-15 00:34:52.082 +05:00 [INF] QnA Request: UserLoginQuery  {"Email":"test1@gmail.com","Password":"password","$type":"UserLoginQuery"}
+2020-01-15 00:34:52.086 +05:00 [INF] QnA Request: UserLoginQuery  {"Email":"test1@gmail.com","Password":"password","$type":"UserLoginQuery"}
+2020-01-15 00:34:52.101 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 00:34:52.227 +05:00 [WRN] The LINQ expression 'where [x].Email.Equals(__request_Email_0, OrdinalIgnoreCase)' could not be translated and will be evaluated locally.
+2020-01-15 00:34:52.233 +05:00 [WRN] The LINQ expression 'FirstOrDefault()' could not be translated and will be evaluated locally.
+2020-01-15 00:34:52.305 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`Email`, `x`.`FirstName`, `x`.`LastName`, `x`.`PasswordHash`, `x`.`ProfilePicture`
+FROM `Users` AS `x`
+2020-01-15 00:34:52.532 +05:00 [INF] Executed action method Api.Controllers.AuthController.Login (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 465.35940000000005ms.
+2020-01-15 00:34:52.536 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 00:34:52.548 +05:00 [INF] Executed action Api.Controllers.AuthController.Login (Api) in 733.68720000000008ms
+2020-01-15 00:34:52.552 +05:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Login (Api)'
+2020-01-15 00:34:52.555 +05:00 [INF] Request finished in 767.1482ms 200 application/json; charset=utf-8
+2020-01-15 00:34:52.831 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000//ProfileImages/placeholder.jpg  
+2020-01-15 00:34:52.936 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/questions/featured  
+2020-01-15 00:34:52.946 +05:00 [INF] CORS policy execution successful.
+2020-01-15 00:34:52.951 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 00:34:52.957 +05:00 [INF] CORS policy execution successful.
+2020-01-15 00:34:52.961 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 00:34:52.964 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 00:34:52.967 +05:00 [INF] Route matched with {action = "GetFeaturedQuestions", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeaturedQuestions() on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 00:34:52.970 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 00:34:52.976 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) - Validation state: "Valid"
+2020-01-15 00:34:52.980 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 00:34:52.983 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:34:52.986 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:34:52.993 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:34:53.021 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:34:53.028 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:34:53.030 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:34:53.036 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:34:53.048 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:34:53.053 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 00:34:53.059 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 00:34:53.066 +05:00 [INF] Sending file. Request path: '//ProfileImages/placeholder.jpg'. Physical path: 'D:\QuestionAnswerApp\server\Server\Api\wwwroot\ProfileImages\placeholder.jpg'
+2020-01-15 00:34:53.081 +05:00 [INF] Request finished in 240.2756ms 200 image/jpeg
+2020-01-15 00:34:53.106 +05:00 [INF] Executed DbCommand (15ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 00:34:53.115 +05:00 [INF] Executed DbCommand (22ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+WHERE (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) > 5
+ORDER BY `x`.`DateTime`
+LIMIT @__p_0
+2020-01-15 00:34:53.117 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 129.2169ms.
+2020-01-15 00:34:53.124 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 00:34:53.132 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 155.1885ms
+2020-01-15 00:34:53.136 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+ORDER BY (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) DESC
+LIMIT @__p_0
+2020-01-15 00:34:53.143 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 00:34:53.147 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 160.9564ms.
+2020-01-15 00:34:53.152 +05:00 [INF] Request finished in 197.7888ms 200 application/json; charset=utf-8
+2020-01-15 00:34:53.156 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 00:34:53.169 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) in 194.9659ms
+2020-01-15 00:34:53.175 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 00:34:53.180 +05:00 [INF] Request finished in 243.7771ms 200 application/json; charset=utf-8
+2020-01-15 00:40:05.071 +05:00 [INF] User profile is available. Using 'C:\Users\Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-15 00:40:05.986 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 00:40:06.734 +05:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-15 00:40:06.988 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Users` AS `u`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 00:40:07.023 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Questions` AS `q`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 00:40:07.755 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/  
+2020-01-15 00:40:07.993 +05:00 [INF] Executing endpoint 'HomeController.Index (Api)'
+2020-01-15 00:40:08.023 +05:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller HomeController (Api).
+2020-01-15 00:40:08.057 +05:00 [INF] Executing action method HomeController.Index (Api) - Validation state: "Valid"
+2020-01-15 00:40:08.068 +05:00 [INF] Executed action method HomeController.Index (Api), returned result Microsoft.AspNetCore.Mvc.ContentResult in 0.4561ms.
+2020-01-15 00:40:08.088 +05:00 [INF] Executing ContentResult with HTTP Response ContentType of text/plain; charset=utf-8
+2020-01-15 00:40:08.134 +05:00 [INF] Executed action HomeController.Index (Api) in 99.745200000000011ms
+2020-01-15 00:40:08.138 +05:00 [INF] Executed endpoint 'HomeController.Index (Api)'
+2020-01-15 00:40:08.149 +05:00 [INF] Request finished in 395.738ms 200 text/plain; charset=utf-8
+2020-01-15 00:40:23.720 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/questions/featured  
+2020-01-15 00:40:23.724 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 00:40:23.734 +05:00 [INF] CORS policy execution successful.
+2020-01-15 00:40:23.734 +05:00 [INF] CORS policy execution successful.
+2020-01-15 00:40:23.767 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 00:40:23.769 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 00:40:23.792 +05:00 [INF] Route matched with {action = "GetFeaturedQuestions", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeaturedQuestions() on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 00:40:23.798 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) - Validation state: "Valid"
+2020-01-15 00:40:23.819 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 00:40:23.839 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:40:23.849 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:40:23.853 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 00:40:23.867 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:40:23.871 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:40:23.864 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:40:23.890 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:40:23.894 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:40:23.898 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:40:23.902 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 00:40:23.909 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 00:40:24.007 +05:00 [WRN] The Include operation for navigation '[x].Answers' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2020-01-15 00:40:24.260 +05:00 [INF] Executed DbCommand (62ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 00:40:24.288 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 432.36420000000004ms.
+2020-01-15 00:40:24.298 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 00:40:24.306 +05:00 [INF] Executed DbCommand (91ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+WHERE (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) > 5
+ORDER BY `x`.`DateTime`
+LIMIT @__p_0
+2020-01-15 00:40:24.337 +05:00 [WRN] The Include operation for navigation '[x].Answers' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2020-01-15 00:40:24.375 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+ORDER BY (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) DESC
+LIMIT @__p_0
+2020-01-15 00:40:24.389 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 586.71850000000006ms.
+2020-01-15 00:40:24.402 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 00:40:24.634 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 810.26830000000007ms
+2020-01-15 00:40:24.640 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 00:40:24.644 +05:00 [INF] Request finished in 920.3162ms 200 application/json; charset=utf-8
+2020-01-15 00:40:24.650 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) in 854.01640000000009ms
+2020-01-15 00:40:24.656 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 00:40:24.677 +05:00 [INF] Request finished in 959.0804ms 200 application/json; charset=utf-8
+2020-01-15 00:46:52.830 +05:00 [INF] User profile is available. Using 'C:\Users\Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-15 00:46:53.780 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 00:46:54.694 +05:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-15 00:46:54.919 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Users` AS `u`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 00:46:54.951 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Questions` AS `q`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 00:46:55.718 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/  
+2020-01-15 00:46:55.956 +05:00 [INF] Executing endpoint 'HomeController.Index (Api)'
+2020-01-15 00:46:55.985 +05:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller HomeController (Api).
+2020-01-15 00:46:56.019 +05:00 [INF] Executing action method HomeController.Index (Api) - Validation state: "Valid"
+2020-01-15 00:46:56.032 +05:00 [INF] Executed action method HomeController.Index (Api), returned result Microsoft.AspNetCore.Mvc.ContentResult in 0.4675ms.
+2020-01-15 00:46:56.049 +05:00 [INF] Executing ContentResult with HTTP Response ContentType of text/plain; charset=utf-8
+2020-01-15 00:46:56.099 +05:00 [INF] Executed action HomeController.Index (Api) in 104.34870000000001ms
+2020-01-15 00:46:56.103 +05:00 [INF] Executed endpoint 'HomeController.Index (Api)'
+2020-01-15 00:46:56.115 +05:00 [INF] Request finished in 411.4ms 200 text/plain; charset=utf-8
+2020-01-15 00:47:06.232 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/questions/featured  
+2020-01-15 00:47:06.232 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 00:47:06.242 +05:00 [INF] CORS policy execution successful.
+2020-01-15 00:47:06.242 +05:00 [INF] CORS policy execution successful.
+2020-01-15 00:47:06.263 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 00:47:06.265 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 00:47:06.285 +05:00 [INF] Route matched with {action = "GetFeaturedQuestions", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeaturedQuestions() on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 00:47:06.289 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) - Validation state: "Valid"
+2020-01-15 00:47:06.304 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 00:47:06.319 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:47:06.326 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:47:06.328 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 00:47:06.340 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:47:06.343 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:47:06.338 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:47:06.359 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:47:06.363 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:47:06.366 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:47:06.369 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 00:47:07.288 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 00:47:07.340 +05:00 [WRN] The Include operation for navigation '[x].Answers' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2020-01-15 00:47:07.570 +05:00 [INF] Executed DbCommand (82ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 00:47:07.595 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1263.3184ms.
+2020-01-15 00:47:07.674 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 00:47:07.933 +05:00 [INF] Executed DbCommand (342ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+WHERE (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) > 5
+ORDER BY `x`.`DateTime`
+LIMIT @__p_0
+2020-01-15 00:47:07.958 +05:00 [WRN] The Include operation for navigation '[x].Answers' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2020-01-15 00:47:07.989 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+ORDER BY (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) DESC
+LIMIT @__p_0
+2020-01-15 00:47:08.005 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1712.284ms.
+2020-01-15 00:47:08.020 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 00:47:08.040 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 1732.8834000000002ms
+2020-01-15 00:47:08.044 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 00:47:08.048 +05:00 [INF] Request finished in 1825.9758ms 200 application/json; charset=utf-8
+2020-01-15 00:47:08.053 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) in 1764.3848ms
+2020-01-15 00:47:08.058 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 00:47:08.073 +05:00 [INF] Request finished in 1850.5135ms 200 application/json; charset=utf-8
+2020-01-15 00:47:27.005 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/auth/login  
+2020-01-15 00:47:27.008 +05:00 [INF] CORS policy execution successful.
+2020-01-15 00:47:27.017 +05:00 [INF] Request finished in 12.0615ms 204 
+2020-01-15 00:47:27.029 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/auth/login application/json;charset=UTF-8 49
+2020-01-15 00:47:27.034 +05:00 [INF] CORS policy execution successful.
+2020-01-15 00:47:27.041 +05:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Login (Api)'
+2020-01-15 00:47:27.053 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Api.ApiModels.LoginModel) on controller Api.Controllers.AuthController (Api).
+2020-01-15 00:47:27.180 +05:00 [INF] Executing action method Api.Controllers.AuthController.Login (Api) - Validation state: "Valid"
+2020-01-15 00:47:27.191 +05:00 [INF] QnA Request: UserLoginQuery  {"Email":"test1@gmail.com","Password":"password","$type":"UserLoginQuery"}
+2020-01-15 00:47:27.195 +05:00 [INF] QnA Request: UserLoginQuery  {"Email":"test1@gmail.com","Password":"password","$type":"UserLoginQuery"}
+2020-01-15 00:47:27.200 +05:00 [INF] QnA Request: UserLoginQuery  {"Email":"test1@gmail.com","Password":"password","$type":"UserLoginQuery"}
+2020-01-15 00:47:27.204 +05:00 [INF] QnA Request: UserLoginQuery  {"Email":"test1@gmail.com","Password":"password","$type":"UserLoginQuery"}
+2020-01-15 00:47:27.219 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 00:47:27.298 +05:00 [WRN] The LINQ expression 'where [x].Email.Equals(__request_Email_0, OrdinalIgnoreCase)' could not be translated and will be evaluated locally.
+2020-01-15 00:47:27.303 +05:00 [WRN] The LINQ expression 'FirstOrDefault()' could not be translated and will be evaluated locally.
+2020-01-15 00:47:27.342 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`Email`, `x`.`FirstName`, `x`.`LastName`, `x`.`PasswordHash`, `x`.`ProfilePicture`
+FROM `Users` AS `x`
+2020-01-15 00:47:27.597 +05:00 [INF] Executed action method Api.Controllers.AuthController.Login (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 413.2481ms.
+2020-01-15 00:47:27.602 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 00:47:27.614 +05:00 [INF] Executed action Api.Controllers.AuthController.Login (Api) in 551.2512ms
+2020-01-15 00:47:27.618 +05:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Login (Api)'
+2020-01-15 00:47:27.623 +05:00 [INF] Request finished in 593.3179ms 200 application/json; charset=utf-8
+2020-01-15 00:47:27.879 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/questions/featured  
+2020-01-15 00:47:27.884 +05:00 [INF] CORS policy execution successful.
+2020-01-15 00:47:27.937 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 00:47:27.944 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 00:47:27.953 +05:00 [INF] Route matched with {action = "GetFeaturedQuestions", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeaturedQuestions() on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 00:47:27.954 +05:00 [INF] CORS policy execution successful.
+2020-01-15 00:47:27.957 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 00:47:27.959 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) - Validation state: "Valid"
+2020-01-15 00:47:27.964 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 00:47:27.967 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:47:27.970 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 00:47:27.975 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:47:27.977 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:47:27.983 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:47:27.985 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:47:27.990 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 00:47:27.991 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:47:27.998 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 00:47:28.001 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 00:47:28.005 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 00:47:28.017 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+WHERE (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) > 5
+ORDER BY `x`.`DateTime`
+LIMIT @__p_0
+2020-01-15 00:47:28.036 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 00:47:28.043 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 68.7984ms.
+2020-01-15 00:47:28.048 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+ORDER BY (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) DESC
+LIMIT @__p_0
+2020-01-15 00:47:28.051 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 00:47:28.055 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 86.0771ms
+2020-01-15 00:47:28.057 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 89.13430000000001ms.
+2020-01-15 00:47:28.060 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 00:47:28.064 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 00:47:28.068 +05:00 [INF] Request finished in 126.7555ms 200 application/json; charset=utf-8
+2020-01-15 00:47:28.071 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) in 114.4047ms
+2020-01-15 00:47:28.074 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 00:47:28.077 +05:00 [INF] Request finished in 199.4448ms 200 application/json; charset=utf-8
+2020-01-15 02:11:53.369 +05:00 [INF] User profile is available. Using 'C:\Users\Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-15 12:23:49.314 +05:00 [INF] User profile is available. Using 'C:\Users\M Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-15 12:23:51.028 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 12:23:51.841 +05:00 [INF] Executed DbCommand (45ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-15 12:24:03.644 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Users` AS `u`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 12:24:03.692 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Questions` AS `q`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 12:24:04.583 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/  
+2020-01-15 12:24:04.985 +05:00 [INF] Executing endpoint 'HomeController.Index (Api)'
+2020-01-15 12:24:05.009 +05:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller HomeController (Api).
+2020-01-15 12:24:05.160 +05:00 [INF] Executing action method HomeController.Index (Api) - Validation state: "Valid"
+2020-01-15 12:24:05.169 +05:00 [INF] Executed action method HomeController.Index (Api), returned result Microsoft.AspNetCore.Mvc.ContentResult in 0.30060000000000003ms.
+2020-01-15 12:24:05.185 +05:00 [INF] Executing ContentResult with HTTP Response ContentType of text/plain; charset=utf-8
+2020-01-15 12:24:05.229 +05:00 [INF] Executed action HomeController.Index (Api) in 207.03480000000002ms
+2020-01-15 12:24:05.233 +05:00 [INF] Executed endpoint 'HomeController.Index (Api)'
+2020-01-15 12:24:05.239 +05:00 [INF] Request finished in 657.6677ms 200 text/plain; charset=utf-8
+2020-01-15 12:24:06.356 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/favicon.ico  
+2020-01-15 12:24:06.368 +05:00 [INF] Request finished in 14.2156ms 404 
+2020-01-15 12:24:11.826 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000//ProfileImages/placeholder.jpg  
+2020-01-15 12:24:11.827 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/questions/featured  
+2020-01-15 12:24:11.834 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 12:24:11.856 +05:00 [INF] CORS policy execution successful.
+2020-01-15 12:24:11.856 +05:00 [INF] CORS policy execution successful.
+2020-01-15 12:24:11.864 +05:00 [INF] The file //ProfileImages/placeholder.jpg was not modified
+2020-01-15 12:24:11.915 +05:00 [INF] Request finished in 93.9596ms 304 image/jpeg
+2020-01-15 12:24:11.951 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 12:24:11.955 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 12:24:11.996 +05:00 [INF] Route matched with {action = "GetFeaturedQuestions", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeaturedQuestions() on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 12:24:12.086 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 12:24:12.089 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) - Validation state: "Valid"
+2020-01-15 12:24:12.170 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 12:24:12.179 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 12:24:12.200 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 12:24:12.201 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 12:24:12.236 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 12:24:12.244 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 12:24:12.244 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 12:24:12.248 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 12:24:12.253 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 12:24:12.273 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 12:24:12.278 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 12:24:12.336 +05:00 [WRN] The Include operation for navigation '[x].Answers' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2020-01-15 12:24:12.634 +05:00 [INF] Executed DbCommand (22ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+WHERE (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) > 5
+ORDER BY `x`.`DateTime`
+LIMIT @__p_0
+2020-01-15 12:24:12.637 +05:00 [INF] Executed DbCommand (64ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 12:24:12.669 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 484.8845ms.
+2020-01-15 12:24:12.675 +05:00 [WRN] The Include operation for navigation '[x].Answers' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2020-01-15 12:24:12.686 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 12:24:12.747 +05:00 [INF] Executed DbCommand (49ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+ORDER BY (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) DESC
+LIMIT @__p_0
+2020-01-15 12:24:12.763 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 671.6973ms.
+2020-01-15 12:24:12.778 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 12:24:13.003 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 909.1032ms
+2020-01-15 12:24:13.012 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) in 1007.5597ms
+2020-01-15 12:24:13.018 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 12:24:13.021 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 12:24:13.023 +05:00 [INF] Request finished in 1224.5131ms 200 application/json; charset=utf-8
+2020-01-15 12:24:13.062 +05:00 [INF] Request finished in 1394.9134ms 200 application/json; charset=utf-8
+2020-01-15 12:24:33.281 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/questions/featured  
+2020-01-15 12:24:33.308 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 12:24:33.312 +05:00 [INF] CORS policy execution successful.
+2020-01-15 12:24:33.312 +05:00 [INF] CORS policy execution successful.
+2020-01-15 12:24:33.352 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 12:24:33.479 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 12:24:33.507 +05:00 [INF] Route matched with {action = "GetFeaturedQuestions", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeaturedQuestions() on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 12:24:33.699 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 12:24:33.704 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) - Validation state: "Valid"
+2020-01-15 12:24:33.819 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 12:24:33.827 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 12:24:33.835 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 12:24:33.840 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 12:24:33.842 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 12:24:33.846 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 12:24:33.851 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 12:24:33.853 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 12:24:33.861 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 12:24:33.863 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 12:24:33.869 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 12:24:33.962 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 12:24:33.971 +05:00 [INF] Executed DbCommand (65ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+WHERE (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) > 5
+ORDER BY `x`.`DateTime`
+LIMIT @__p_0
+2020-01-15 12:24:33.981 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 144.2118ms.
+2020-01-15 12:24:34.018 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 12:24:34.031 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 318.8413ms
+2020-01-15 12:24:34.037 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+ORDER BY (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) DESC
+LIMIT @__p_0
+2020-01-15 12:24:34.041 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 12:24:34.049 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 337.1616ms.
+2020-01-15 12:24:34.052 +05:00 [INF] Request finished in 764.6975ms 200 application/json; charset=utf-8
+2020-01-15 12:24:34.058 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 12:24:34.066 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) in 551.39460000000008ms
+2020-01-15 12:24:34.075 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 12:24:34.082 +05:00 [INF] Request finished in 801.3653ms 200 application/json; charset=utf-8
+2020-01-15 12:24:34.207 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000//ProfileImages/placeholder.jpg  
+2020-01-15 12:24:34.270 +05:00 [INF] Sending file. Request path: '//ProfileImages/placeholder.jpg'. Physical path: 'G:\Practice\app\QuestionAnswerApp\server\Server\Api\wwwroot\ProfileImages\placeholder.jpg'
+2020-01-15 12:24:34.278 +05:00 [INF] Request finished in 69.229ms 200 image/jpeg
+2020-01-15 12:25:00.344 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/auth/login  
+2020-01-15 12:25:00.359 +05:00 [INF] CORS policy execution successful.
+2020-01-15 12:25:00.368 +05:00 [INF] Request finished in 20.2254ms 204 
+2020-01-15 12:25:00.374 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/auth/login application/json;charset=UTF-8 49
+2020-01-15 12:25:00.379 +05:00 [INF] CORS policy execution successful.
+2020-01-15 12:25:00.393 +05:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Login (Api)'
+2020-01-15 12:25:00.405 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Api.ApiModels.LoginModel) on controller Api.Controllers.AuthController (Api).
+2020-01-15 12:25:00.548 +05:00 [INF] Executing action method Api.Controllers.AuthController.Login (Api) - Validation state: "Valid"
+2020-01-15 12:25:00.558 +05:00 [INF] QnA Request: UserLoginQuery  {"Email":"test2@gmail.com","Password":"password","$type":"UserLoginQuery"}
+2020-01-15 12:25:00.561 +05:00 [INF] QnA Request: UserLoginQuery  {"Email":"test2@gmail.com","Password":"password","$type":"UserLoginQuery"}
+2020-01-15 12:25:00.565 +05:00 [INF] QnA Request: UserLoginQuery  {"Email":"test2@gmail.com","Password":"password","$type":"UserLoginQuery"}
+2020-01-15 12:25:00.567 +05:00 [INF] QnA Request: UserLoginQuery  {"Email":"test2@gmail.com","Password":"password","$type":"UserLoginQuery"}
+2020-01-15 12:25:00.580 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 12:25:00.639 +05:00 [WRN] The LINQ expression 'where [x].Email.Equals(__request_Email_0, OrdinalIgnoreCase)' could not be translated and will be evaluated locally.
+2020-01-15 12:25:00.643 +05:00 [WRN] The LINQ expression 'FirstOrDefault()' could not be translated and will be evaluated locally.
+2020-01-15 12:25:00.685 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`Email`, `x`.`FirstName`, `x`.`LastName`, `x`.`PasswordHash`, `x`.`ProfilePicture`
+FROM `Users` AS `x`
+2020-01-15 12:25:00.946 +05:00 [INF] Executed action method Api.Controllers.AuthController.Login (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 392.1609ms.
+2020-01-15 12:25:00.949 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 12:25:00.969 +05:00 [INF] Executed action Api.Controllers.AuthController.Login (Api) in 559.3984ms
+2020-01-15 12:25:00.973 +05:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Login (Api)'
+2020-01-15 12:25:00.978 +05:00 [INF] Request finished in 605.7358ms 200 application/json; charset=utf-8
+2020-01-15 12:25:01.312 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/questions/featured  
+2020-01-15 12:25:01.313 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 12:25:01.325 +05:00 [INF] CORS policy execution successful.
+2020-01-15 12:25:01.329 +05:00 [INF] CORS policy execution successful.
+2020-01-15 12:25:01.330 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 12:25:01.333 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 12:25:01.336 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 12:25:01.342 +05:00 [INF] Route matched with {action = "GetFeaturedQuestions", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeaturedQuestions() on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 12:25:01.441 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 12:25:01.444 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) - Validation state: "Valid"
+2020-01-15 12:25:01.446 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 12:25:01.449 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 12:25:01.451 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 12:25:01.456 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 12:25:01.458 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 12:25:01.462 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 12:25:01.463 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 12:25:01.466 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 12:25:01.469 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 12:25:01.474 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 12:25:01.501 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 12:25:01.502 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+WHERE (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) > 5
+ORDER BY `x`.`DateTime`
+LIMIT @__p_0
+2020-01-15 12:25:01.507 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 60.403400000000005ms.
+2020-01-15 12:25:01.511 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 12:25:01.532 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 185.9375ms
+2020-01-15 12:25:01.532 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+ORDER BY (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) DESC
+LIMIT @__p_0
+2020-01-15 12:25:01.535 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 12:25:01.539 +05:00 [INF] Request finished in 235.1901ms 200 application/json; charset=utf-8
+2020-01-15 12:25:01.543 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 93.3328ms.
+2020-01-15 12:25:01.546 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 12:25:01.554 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) in 153.9065ms
+2020-01-15 12:25:01.559 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 12:25:01.562 +05:00 [INF] Request finished in 261.8226ms 200 application/json; charset=utf-8
+2020-01-15 12:54:01.326 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 12:54:01.323 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/questions/featured  
+2020-01-15 12:54:01.343 +05:00 [INF] CORS policy execution successful.
+2020-01-15 12:54:01.372 +05:00 [INF] CORS policy execution successful.
+2020-01-15 12:54:01.403 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 12:54:01.486 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 12:54:01.584 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 12:54:01.588 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 12:54:01.590 +05:00 [INF] Route matched with {action = "GetFeaturedQuestions", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeaturedQuestions() on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 12:54:01.596 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 12:54:01.601 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 12:54:01.664 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 12:54:01.666 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) - Validation state: "Valid"
+2020-01-15 12:54:01.669 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 12:54:01.673 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 12:54:01.682 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 12:54:01.684 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 12:54:01.710 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 12:54:01.728 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 12:54:01.749 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 12:54:01.869 +05:00 [INF] Executed DbCommand (18ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 12:54:01.874 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 280.5466ms.
+2020-01-15 12:54:01.881 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 12:54:01.891 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 394.7595ms
+2020-01-15 12:54:01.901 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+WHERE (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) > 5
+ORDER BY `x`.`DateTime`
+LIMIT @__p_0
+2020-01-15 12:54:01.903 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 12:54:01.915 +05:00 [INF] Request finished in 580.2924ms 200 application/json; charset=utf-8
+2020-01-15 12:54:01.948 +05:00 [INF] Executed DbCommand (25ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+ORDER BY (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) DESC
+LIMIT @__p_0
+2020-01-15 12:54:01.953 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 279.8895ms.
+2020-01-15 12:54:01.957 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 12:54:01.972 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) in 364.72700000000003ms
+2020-01-15 12:54:01.978 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 12:54:01.982 +05:00 [INF] Request finished in 658.5372ms 200 application/json; charset=utf-8
+2020-01-15 13:25:34.648 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/questions/featured  
+2020-01-15 13:25:34.656 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/followings/negotiate  
+2020-01-15 13:25:34.673 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 13:25:34.674 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:25:34.678 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:25:34.683 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:25:34.723 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 13:25:34.731 +05:00 [INF] Request finished in 40.509ms 204 
+2020-01-15 13:25:34.748 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:25:34.760 +05:00 [INF] Route matched with {action = "GetFeaturedQuestions", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeaturedQuestions() on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:25:34.760 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:25:35.015 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 13:25:35.023 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) - Validation state: "Valid"
+2020-01-15 13:25:35.025 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/followings/negotiate text/plain;charset=UTF-8 0
+2020-01-15 13:25:35.029 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:25:35.030 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:25:35.042 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:25:35.042 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:25:35.047 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:25:35.050 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:25:35.058 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:25:35.059 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:25:35.073 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:25:35.075 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:25:35.082 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:25:35.263 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 13:25:35.267 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+WHERE (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) > 5
+ORDER BY `x`.`DateTime`
+LIMIT @__p_0
+2020-01-15 13:25:35.274 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 246.9383ms.
+2020-01-15 13:25:35.288 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:25:35.290 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+ORDER BY (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) DESC
+LIMIT @__p_0
+2020-01-15 13:25:35.296 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 530.3207ms
+2020-01-15 13:25:35.298 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 268.101ms.
+2020-01-15 13:25:35.301 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:25:35.306 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:25:35.310 +05:00 [INF] Request finished in 651.5161ms 200 application/json; charset=utf-8
+2020-01-15 13:25:35.314 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) in 549.4506ms
+2020-01-15 13:25:35.323 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 13:25:35.327 +05:00 [INF] Request finished in 679.8662ms 200 application/json; charset=utf-8
+2020-01-15 13:25:35.343 +05:00 [INF] Successfully validated the token.
+2020-01-15 13:25:35.380 +05:00 [INF] Authorization was successful.
+2020-01-15 13:25:35.409 +05:00 [INF] Request finished in 384.6551ms 200 application/json
+2020-01-15 13:25:35.546 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/followings?id=nokwA7u2dFupMhWT3MCnMw&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Imxhc3QiLCJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsIm5hbWVpZCI6MiwibmJmIjoxNTc5MDczMTAwLCJleHAiOjE1NzkxNTk1MDAsImlhdCI6MTU3OTA3MzEwMCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwIn0.5otaxTyWIGwhPK9aWSo1L3fkv_R2GKqVkMMz4Fsa1vI  
+2020-01-15 13:25:35.554 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:25:35.559 +05:00 [INF] Successfully validated the token.
+2020-01-15 13:25:35.568 +05:00 [INF] Authorization was successful.
+2020-01-15 13:25:35.749 +05:00 [INF] Completed connection handshake. Using HubProtocol 'json'.
+2020-01-15 13:25:37.581 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/questions/featured  
+2020-01-15 13:25:37.585 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 13:25:37.587 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:25:37.594 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:25:37.597 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/followings/negotiate  
+2020-01-15 13:25:37.598 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 13:25:37.601 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:25:37.604 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:25:37.607 +05:00 [INF] Route matched with {action = "GetFeaturedQuestions", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeaturedQuestions() on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:25:37.611 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:25:37.613 +05:00 [INF] Request finished in 20.3732ms 204 
+2020-01-15 13:25:37.720 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/followings/negotiate  
+2020-01-15 13:25:37.726 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 13:25:37.730 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) - Validation state: "Valid"
+2020-01-15 13:25:37.731 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:25:37.734 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:25:37.741 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:25:37.744 +05:00 [INF] Request finished in 73.0429ms 204 
+2020-01-15 13:25:37.751 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:25:37.751 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:25:37.757 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:25:37.759 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:25:37.763 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:25:37.767 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:25:37.769 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:25:37.789 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:25:37.798 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 13:25:37.806 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+WHERE (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) > 5
+ORDER BY `x`.`DateTime`
+LIMIT @__p_0
+2020-01-15 13:25:37.808 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 71.6572ms.
+2020-01-15 13:25:37.816 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:25:37.823 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+ORDER BY (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) DESC
+LIMIT @__p_0
+2020-01-15 13:25:37.824 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 205.7614ms
+2020-01-15 13:25:37.827 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 13:25:37.830 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 88.24430000000001ms.
+2020-01-15 13:25:37.833 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:25:37.836 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:25:37.840 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:25:37.844 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:25:37.847 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:25:37.850 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/questions/featured  
+2020-01-15 13:25:37.855 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) in 230.3571ms
+2020-01-15 13:25:37.899 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:25:37.905 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/followings/negotiate text/plain;charset=UTF-8 0
+2020-01-15 13:25:37.905 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 13:25:37.908 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 13:25:37.911 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 13:25:37.913 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:25:37.917 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:25:37.919 +05:00 [INF] Route matched with {action = "GetFeaturedQuestions", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeaturedQuestions() on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:25:37.923 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:25:37.927 +05:00 [INF] Request finished in 328.6325ms 200 application/json; charset=utf-8
+2020-01-15 13:25:37.965 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:25:37.969 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) - Validation state: "Valid"
+2020-01-15 13:25:37.972 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/followings/negotiate text/plain;charset=UTF-8 0
+2020-01-15 13:25:37.975 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:25:37.978 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:25:37.980 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:25:37.982 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:25:37.985 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:25:37.994 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:25:37.996 +05:00 [INF] Request finished in 263.6327ms 200 application/json; charset=utf-8
+2020-01-15 13:25:38.006 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:25:38.014 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 13:25:38.018 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:25:38.021 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 105.90870000000001ms.
+2020-01-15 13:25:38.026 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:25:38.034 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 181.32750000000001ms
+2020-01-15 13:25:38.043 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:25:38.049 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+WHERE (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) > 5
+ORDER BY `x`.`DateTime`
+LIMIT @__p_0
+2020-01-15 13:25:38.051 +05:00 [INF] Request finished in 221.0904ms 200 application/json; charset=utf-8
+2020-01-15 13:25:38.080 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+ORDER BY (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) DESC
+LIMIT @__p_0
+2020-01-15 13:25:38.096 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 122.3525ms.
+2020-01-15 13:25:38.100 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:25:38.106 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) in 179.94ms
+2020-01-15 13:25:38.109 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 13:25:38.113 +05:00 [INF] Request finished in 265.4832ms 200 application/json; charset=utf-8
+2020-01-15 13:25:38.147 +05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10503: Signature validation failed. Keys tried: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+Exceptions caught:
+ '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateSignature(String token, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleAuthenticateAsync()
+2020-01-15 13:25:38.150 +05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10503: Signature validation failed. Keys tried: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+Exceptions caught:
+ '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateSignature(String token, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleAuthenticateAsync()
+2020-01-15 13:25:38.156 +05:00 [INF] Bearer was not authenticated. Failure message: IDX10503: Signature validation failed. Keys tried: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+Exceptions caught:
+ '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2020-01-15 13:25:38.158 +05:00 [INF] Bearer was not authenticated. Failure message: IDX10503: Signature validation failed. Keys tried: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+Exceptions caught:
+ '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2020-01-15 13:25:38.162 +05:00 [INF] Authorization failed.
+2020-01-15 13:25:38.165 +05:00 [INF] Authorization failed.
+2020-01-15 13:25:38.181 +05:00 [INF] AuthenticationScheme: Bearer was challenged.
+2020-01-15 13:25:38.184 +05:00 [INF] AuthenticationScheme: Bearer was challenged.
+2020-01-15 13:25:38.189 +05:00 [INF] Request finished in 222.0199ms 401 
+2020-01-15 13:25:38.194 +05:00 [INF] Request finished in 335.8963ms 401 
+2020-01-15 13:25:59.270 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/question/follow/17  
+2020-01-15 13:25:59.273 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:25:59.279 +05:00 [INF] Request finished in 6.5822ms 204 
+2020-01-15 13:25:59.283 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/question/follow/17 application/json;charset=UTF-8 2
+2020-01-15 13:25:59.287 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:25:59.289 +05:00 [INF] Successfully validated the token.
+2020-01-15 13:25:59.293 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.FollowQuestion (Api)'
+2020-01-15 13:25:59.307 +05:00 [INF] Route matched with {action = "FollowQuestion", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] FollowQuestion(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:25:59.316 +05:00 [INF] Authorization was successful.
+2020-01-15 13:25:59.362 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.FollowQuestion (Api) - Validation state: "Valid"
+2020-01-15 13:25:59.372 +05:00 [INF] QnA Request: FollowQuestionCommand  {"QuestionId":17,"UserId":2,"$type":"FollowQuestionCommand"}
+2020-01-15 13:25:59.374 +05:00 [INF] QnA Request: FollowQuestionCommand  {"QuestionId":17,"UserId":2,"$type":"FollowQuestionCommand"}
+2020-01-15 13:25:59.377 +05:00 [INF] QnA Request: FollowQuestionCommand  {"QuestionId":17,"UserId":2,"$type":"FollowQuestionCommand"}
+2020-01-15 13:25:59.380 +05:00 [INF] QnA Request: FollowQuestionCommand  {"QuestionId":17,"UserId":2,"$type":"FollowQuestionCommand"}
+2020-01-15 13:25:59.387 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:25:59.438 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__request_QuestionId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Questions` AS `x`
+        WHERE `x`.`Id` = @__request_QuestionId_0)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 13:25:59.465 +05:00 [INF] Executed DbCommand (11ms) [Parameters=[@__request_QuestionId_0='?' (DbType = Int32), @__request_UserId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `QuestionFollowings` AS `x`
+        WHERE (`x`.`QuestionId` = @__request_QuestionId_0) AND (`x`.`UserId` = @__request_UserId_1))
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 13:25:59.641 +05:00 [INF] Executed DbCommand (17ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `QuestionFollowings` (`QuestionId`, `UserId`)
+VALUES (@p0, @p1);
+SELECT `Id`
+FROM `QuestionFollowings`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2020-01-15 13:25:59.671 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.FollowQuestion (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 306.40020000000004ms.
+2020-01-15 13:25:59.674 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:25:59.680 +05:00 [INF] Executed action Api.Controllers.QuestionsController.FollowQuestion (Api) in 369.1598ms
+2020-01-15 13:25:59.683 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.FollowQuestion (Api)'
+2020-01-15 13:25:59.686 +05:00 [INF] Request finished in 403.3005ms 200 application/json; charset=utf-8
+2020-01-15 13:27:12.669 +05:00 [INF] Request finished in 97104.7595ms 101 
+2020-01-15 13:27:13.539 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/questions/featured  
+2020-01-15 13:27:13.554 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 13:27:13.623 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/followings/negotiate  
+2020-01-15 13:27:13.638 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:27:13.642 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:27:13.652 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:27:13.655 +05:00 [INF] Request finished in 105.0957ms 204 
+2020-01-15 13:27:13.674 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:27:13.705 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:27:13.875 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 13:27:13.899 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 13:27:14.022 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/followings/negotiate text/plain;charset=UTF-8 0
+2020-01-15 13:27:14.027 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:27:14.029 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:27:14.037 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:27:14.039 +05:00 [INF] Successfully validated the token.
+2020-01-15 13:27:14.042 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:27:14.048 +05:00 [INF] Authorization was successful.
+2020-01-15 13:27:14.052 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:27:14.054 +05:00 [INF] Route matched with {action = "GetFeaturedQuestions", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeaturedQuestions() on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:27:14.064 +05:00 [INF] Request finished in 188.4444ms 200 application/json
+2020-01-15 13:27:14.083 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:27:14.166 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/followings?id=DgxBxTytB5kA3DQ8WX8AMA&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Imxhc3QiLCJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsIm5hbWVpZCI6MiwibmJmIjoxNTc5MDczMTAwLCJleHAiOjE1NzkxNTk1MDAsImlhdCI6MTU3OTA3MzEwMCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwIn0.5otaxTyWIGwhPK9aWSo1L3fkv_R2GKqVkMMz4Fsa1vI  
+2020-01-15 13:27:14.170 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) - Validation state: "Valid"
+2020-01-15 13:27:14.182 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:27:14.250 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:27:14.287 +05:00 [INF] Successfully validated the token.
+2020-01-15 13:27:14.301 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:27:14.304 +05:00 [INF] Authorization was successful.
+2020-01-15 13:27:14.313 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:27:14.320 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:27:14.322 +05:00 [INF] Executed DbCommand (25ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 13:27:14.330 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:27:14.332 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 424.97880000000004ms.
+2020-01-15 13:27:14.338 +05:00 [INF] Completed connection handshake. Using HubProtocol 'json'.
+2020-01-15 13:27:14.347 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:27:14.372 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 672.8232ms
+2020-01-15 13:27:14.416 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:27:14.422 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+WHERE (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) > 5
+ORDER BY `x`.`DateTime`
+LIMIT @__p_0
+2020-01-15 13:27:14.431 +05:00 [INF] Request finished in 880.4412ms 200 application/json; charset=utf-8
+2020-01-15 13:27:14.497 +05:00 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+ORDER BY (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) DESC
+LIMIT @__p_0
+2020-01-15 13:27:14.527 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 325.9692ms.
+2020-01-15 13:27:14.547 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:27:14.555 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) in 491.86530000000005ms
+2020-01-15 13:27:14.563 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 13:27:14.568 +05:00 [INF] Request finished in 1031.2113ms 200 application/json; charset=utf-8
+2020-01-15 13:28:02.717 +05:00 [INF] Request finished in 48293.2484ms 101 
+2020-01-15 13:28:04.851 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/questions/featured  
+2020-01-15 13:28:04.857 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:28:05.140 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 13:28:05.151 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 13:28:05.155 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:28:05.163 +05:00 [INF] Route matched with {action = "GetFeaturedQuestions", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeaturedQuestions() on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:28:05.173 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:28:05.274 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/followings/negotiate  
+2020-01-15 13:28:05.297 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:28:05.309 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) - Validation state: "Valid"
+2020-01-15 13:28:05.380 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:28:05.394 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:28:05.400 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 13:28:05.402 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:28:05.410 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:28:05.413 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:28:05.417 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:28:05.421 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:28:05.436 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:28:05.450 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:28:05.456 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:28:05.461 +05:00 [INF] Request finished in 529.5908ms 204 
+2020-01-15 13:28:05.464 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:28:05.466 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/followings/negotiate text/plain;charset=UTF-8 0
+2020-01-15 13:28:05.477 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:28:05.504 +05:00 [INF] Successfully validated the token.
+2020-01-15 13:28:05.531 +05:00 [INF] Authorization was successful.
+2020-01-15 13:28:05.538 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 13:28:05.550 +05:00 [INF] Executed DbCommand (47ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+WHERE (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) > 5
+ORDER BY `x`.`DateTime`
+LIMIT @__p_0
+2020-01-15 13:28:05.557 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 144.8881ms.
+2020-01-15 13:28:05.563 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/followings?id=6ig5EKeGW6ovoajmU1MTQg&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Imxhc3QiLCJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsIm5hbWVpZCI6MiwibmJmIjoxNTc5MDczMTAwLCJleHAiOjE1NzkxNTk1MDAsImlhdCI6MTU3OTA3MzEwMCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwIn0.5otaxTyWIGwhPK9aWSo1L3fkv_R2GKqVkMMz4Fsa1vI  
+2020-01-15 13:28:05.577 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:28:05.587 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:28:05.620 +05:00 [INF] Request finished in 119.4816ms 200 application/json
+2020-01-15 13:28:05.628 +05:00 [INF] Successfully validated the token.
+2020-01-15 13:28:05.636 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 282.3625ms
+2020-01-15 13:28:05.641 +05:00 [INF] Authorization was successful.
+2020-01-15 13:28:05.652 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:28:05.659 +05:00 [INF] Executed DbCommand (16ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+ORDER BY (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) DESC
+LIMIT @__p_0
+2020-01-15 13:28:05.663 +05:00 [INF] Completed connection handshake. Using HubProtocol 'json'.
+2020-01-15 13:28:05.667 +05:00 [INF] Request finished in 801.3683ms 200 application/json; charset=utf-8
+2020-01-15 13:28:05.673 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 353.4409ms.
+2020-01-15 13:28:05.683 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:28:05.694 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) in 520.8637ms
+2020-01-15 13:28:05.811 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 13:28:05.987 +05:00 [INF] Request finished in 974.9512ms 200 application/json; charset=utf-8
+2020-01-15 13:28:08.967 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/questions/featured  
+2020-01-15 13:28:08.970 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:28:08.974 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 13:28:08.982 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 13:28:08.985 +05:00 [INF] Route matched with {action = "GetFeaturedQuestions", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeaturedQuestions() on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:28:08.987 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:28:09.047 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:28:09.051 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) - Validation state: "Valid"
+2020-01-15 13:28:09.059 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/followings/negotiate  
+2020-01-15 13:28:09.062 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:28:09.066 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:28:09.069 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:28:09.073 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:28:09.120 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:28:09.123 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 13:28:09.127 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:28:09.130 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:28:09.132 +05:00 [INF] Request finished in 27.7104ms 204 
+2020-01-15 13:28:09.136 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:28:09.139 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:28:09.149 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:28:09.157 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:28:09.164 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+WHERE (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) > 5
+ORDER BY `x`.`DateTime`
+LIMIT @__p_0
+2020-01-15 13:28:09.167 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:28:09.186 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+ORDER BY (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) DESC
+LIMIT @__p_0
+2020-01-15 13:28:09.190 +05:00 [INF] Executed DbCommand (12ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 13:28:09.195 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 134.7216ms.
+2020-01-15 13:28:09.206 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:28:09.211 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 76.1042ms.
+2020-01-15 13:28:09.215 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) in 225.94570000000002ms
+2020-01-15 13:28:09.220 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:28:09.224 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 13:28:09.237 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 157.7632ms
+2020-01-15 13:28:09.240 +05:00 [INF] Request finished in 265.3913ms 200 application/json; charset=utf-8
+2020-01-15 13:28:09.244 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:28:09.247 +05:00 [INF] Request finished in 269.95ms 200 application/json; charset=utf-8
+2020-01-15 13:28:09.823 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/questions/featured  
+2020-01-15 13:28:09.828 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:28:09.834 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 13:28:09.838 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 13:28:09.842 +05:00 [INF] Route matched with {action = "GetFeaturedQuestions", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeaturedQuestions() on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:28:09.847 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:28:09.898 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/followings/negotiate  
+2020-01-15 13:28:09.904 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:28:09.910 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) - Validation state: "Valid"
+2020-01-15 13:28:09.915 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:28:09.923 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:28:09.978 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:28:09.983 +05:00 [INF] Request finished in 80.6004ms 204 
+2020-01-15 13:28:09.988 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 13:28:09.995 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:28:10.000 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:28:10.003 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:28:10.008 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:28:10.011 +05:00 [INF] QnA Request: GetFeaturedQuestionsQuery  {"$type":"GetFeaturedQuestionsQuery"}
+2020-01-15 13:28:10.017 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:28:10.021 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/followings/negotiate text/plain;charset=UTF-8 0
+2020-01-15 13:28:10.029 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:28:10.032 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:28:10.036 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:28:10.046 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:28:10.081 +05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10503: Signature validation failed. Keys tried: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+Exceptions caught:
+ '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateSignature(String token, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleAuthenticateAsync()
+2020-01-15 13:28:10.106 +05:00 [INF] Bearer was not authenticated. Failure message: IDX10503: Signature validation failed. Keys tried: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+Exceptions caught:
+ '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2020-01-15 13:28:10.113 +05:00 [INF] Executed DbCommand (31ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+WHERE (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) > 5
+ORDER BY `x`.`DateTime`
+LIMIT @__p_0
+2020-01-15 13:28:10.120 +05:00 [INF] Executed DbCommand (24ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 13:28:10.125 +05:00 [INF] Authorization failed.
+2020-01-15 13:28:10.133 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 132.99460000000002ms.
+2020-01-15 13:28:10.165 +05:00 [INF] AuthenticationScheme: Bearer was challenged.
+2020-01-15 13:28:10.169 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:28:10.173 +05:00 [INF] Request finished in 156.5007ms 401 
+2020-01-15 13:28:10.179 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 257.0285ms
+2020-01-15 13:28:10.204 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:28:10.245 +05:00 [INF] Request finished in 374.2127ms 200 application/json; charset=utf-8
+2020-01-15 13:28:10.249 +05:00 [INF] Executed DbCommand (62ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+FROM `Questions` AS `x`
+INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+ORDER BY (
+    SELECT COUNT(*)
+    FROM `Answers` AS `a`
+    WHERE `x`.`Id` = `a`.`QuestionId`
+) DESC
+LIMIT @__p_0
+2020-01-15 13:28:10.253 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeaturedQuestions (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 336.95390000000003ms.
+2020-01-15 13:28:10.258 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:28:10.263 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeaturedQuestions (Api) in 416.3512ms
+2020-01-15 13:28:10.267 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeaturedQuestions (Api)'
+2020-01-15 13:28:10.272 +05:00 [INF] Request finished in 447.6536ms 200 application/json; charset=utf-8
+2020-01-15 13:28:10.714 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/followings/negotiate text/plain;charset=UTF-8 0
+2020-01-15 13:28:10.718 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:28:10.725 +05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10503: Signature validation failed. Keys tried: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+Exceptions caught:
+ '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateSignature(String token, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleAuthenticateAsync()
+2020-01-15 13:28:10.732 +05:00 [INF] Bearer was not authenticated. Failure message: IDX10503: Signature validation failed. Keys tried: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+Exceptions caught:
+ '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2020-01-15 13:28:10.738 +05:00 [INF] Authorization failed.
+2020-01-15 13:28:10.747 +05:00 [INF] AuthenticationScheme: Bearer was challenged.
+2020-01-15 13:28:10.753 +05:00 [INF] Request finished in 37.974ms 401 
+2020-01-15 13:29:10.188 +05:00 [INF] Request finished in 64583.5732ms 101 
+2020-01-15 13:29:11.410 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 13:29:11.416 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:29:11.445 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/followings/negotiate  
+2020-01-15 13:29:11.450 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:29:11.623 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:29:11.637 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:29:11.651 +05:00 [INF] Request finished in 216.306ms 204 
+2020-01-15 13:29:11.774 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/followings/negotiate text/plain;charset=UTF-8 0
+2020-01-15 13:29:11.775 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 13:29:11.818 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:29:11.982 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:29:11.997 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:29:12.002 +05:00 [INF] Successfully validated the token.
+2020-01-15 13:29:12.010 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:29:12.013 +05:00 [INF] Authorization was successful.
+2020-01-15 13:29:12.026 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:29:12.035 +05:00 [INF] Request finished in 257.5044ms 200 application/json
+2020-01-15 13:29:12.051 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:29:12.105 +05:00 [INF] Executed DbCommand (19ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 13:29:12.148 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 330.7056ms.
+2020-01-15 13:29:12.164 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/followings?id=H3G7Z-vuKPnTDfNDHEMQgw&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Imxhc3QiLCJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsIm5hbWVpZCI6MiwibmJmIjoxNTc5MDczMTAwLCJleHAiOjE1NzkxNTk1MDAsImlhdCI6MTU3OTA3MzEwMCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwIn0.5otaxTyWIGwhPK9aWSo1L3fkv_R2GKqVkMMz4Fsa1vI  
+2020-01-15 13:29:12.167 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:29:12.174 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:29:12.179 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 516.5565ms
+2020-01-15 13:29:12.185 +05:00 [INF] Successfully validated the token.
+2020-01-15 13:29:12.219 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:29:12.231 +05:00 [INF] Authorization was successful.
+2020-01-15 13:29:12.242 +05:00 [INF] Request finished in 823.3353ms 200 application/json; charset=utf-8
+2020-01-15 13:29:12.252 +05:00 [INF] Completed connection handshake. Using HubProtocol 'json'.
+2020-01-15 13:29:16.630 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 13:29:16.635 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/followings/negotiate  
+2020-01-15 13:29:16.637 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:29:16.641 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:29:16.644 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:29:16.648 +05:00 [INF] Request finished in 13.4356ms 204 
+2020-01-15 13:29:16.650 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:29:16.697 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 13:29:16.700 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:29:16.704 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:29:16.707 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:29:16.711 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:29:16.737 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:29:16.764 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 13:29:16.767 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 67.6113ms.
+2020-01-15 13:29:16.776 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:29:16.781 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 125.9441ms
+2020-01-15 13:29:16.784 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:29:16.789 +05:00 [INF] Request finished in 156.7968ms 200 application/json; charset=utf-8
+2020-01-15 13:29:17.173 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 13:29:17.177 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:29:17.180 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:29:17.185 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:29:17.187 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/followings/negotiate  
+2020-01-15 13:29:17.192 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:29:17.307 +05:00 [INF] Request finished in 102.5132ms 204 
+2020-01-15 13:29:17.308 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 13:29:17.312 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:29:17.315 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:29:17.323 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:29:17.327 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:29:17.331 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:29:17.349 +05:00 [INF] Executed DbCommand (10ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 13:29:17.353 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 41.1207ms.
+2020-01-15 13:29:17.357 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:29:17.361 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 172.3427ms
+2020-01-15 13:29:17.368 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:29:17.374 +05:00 [INF] Request finished in 198.4821ms 200 application/json; charset=utf-8
+2020-01-15 13:29:17.416 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/followings/negotiate text/plain;charset=UTF-8 0
+2020-01-15 13:29:17.421 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:29:17.426 +05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10503: Signature validation failed. Keys tried: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+Exceptions caught:
+ '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateSignature(String token, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleAuthenticateAsync()
+2020-01-15 13:29:17.430 +05:00 [INF] Bearer was not authenticated. Failure message: IDX10503: Signature validation failed. Keys tried: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+Exceptions caught:
+ '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2020-01-15 13:29:17.433 +05:00 [INF] Authorization failed.
+2020-01-15 13:29:17.437 +05:00 [INF] AuthenticationScheme: Bearer was challenged.
+2020-01-15 13:29:17.441 +05:00 [INF] Request finished in 25.3866ms 401 
+2020-01-15 13:29:17.704 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/followings/negotiate text/plain;charset=UTF-8 0
+2020-01-15 13:29:17.708 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:29:17.715 +05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10503: Signature validation failed. Keys tried: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+Exceptions caught:
+ '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateSignature(String token, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleAuthenticateAsync()
+2020-01-15 13:29:17.720 +05:00 [INF] Bearer was not authenticated. Failure message: IDX10503: Signature validation failed. Keys tried: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+Exceptions caught:
+ '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2020-01-15 13:29:17.725 +05:00 [INF] Authorization failed.
+2020-01-15 13:29:17.728 +05:00 [INF] AuthenticationScheme: Bearer was challenged.
+2020-01-15 13:29:17.732 +05:00 [INF] Request finished in 28.9958ms 401 
+2020-01-15 13:30:16.889 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 13:30:16.892 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:30:16.897 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/followings/negotiate  
+2020-01-15 13:30:16.901 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:30:16.903 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:30:16.905 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:30:16.934 +05:00 [INF] Request finished in 15.9484ms 204 
+2020-01-15 13:30:17.006 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 13:30:17.018 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:30:17.019 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/followings/negotiate text/plain;charset=UTF-8 0
+2020-01-15 13:30:17.024 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:30:17.025 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:30:17.028 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:30:17.031 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:30:17.040 +05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10503: Signature validation failed. Keys tried: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+Exceptions caught:
+ '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateSignature(String token, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleAuthenticateAsync()
+2020-01-15 13:30:17.059 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:30:17.064 +05:00 [INF] Bearer was not authenticated. Failure message: IDX10503: Signature validation failed. Keys tried: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+Exceptions caught:
+ '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2020-01-15 13:30:17.074 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 13:30:17.078 +05:00 [INF] Authorization failed.
+2020-01-15 13:30:17.084 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 68.6883ms.
+2020-01-15 13:30:17.086 +05:00 [INF] AuthenticationScheme: Bearer was challenged.
+2020-01-15 13:30:17.088 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:30:17.092 +05:00 [INF] Request finished in 81.6955ms 401 
+2020-01-15 13:30:17.098 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 186.02460000000002ms
+2020-01-15 13:30:17.110 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:30:17.114 +05:00 [INF] Request finished in 224.2014ms 200 application/json; charset=utf-8
+2020-01-15 13:30:19.989 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 13:30:19.992 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:30:19.995 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:30:19.997 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:30:20.060 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 13:30:20.064 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:30:20.069 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:30:20.075 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:30:20.109 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:30:20.139 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:30:20.212 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 13:30:20.217 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 151.7358ms.
+2020-01-15 13:30:20.220 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:30:20.223 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 223.28140000000002ms
+2020-01-15 13:30:20.226 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:30:20.229 +05:00 [INF] Request finished in 242.7686ms 200 application/json; charset=utf-8
+2020-01-15 13:30:29.172 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/auth/login  
+2020-01-15 13:30:29.174 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:30:29.178 +05:00 [INF] Request finished in 5.9045ms 204 
+2020-01-15 13:30:29.220 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/auth/login application/json;charset=UTF-8 49
+2020-01-15 13:30:29.223 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:30:29.229 +05:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Login (Api)'
+2020-01-15 13:30:29.232 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Api.ApiModels.LoginModel) on controller Api.Controllers.AuthController (Api).
+2020-01-15 13:30:29.276 +05:00 [INF] Executing action method Api.Controllers.AuthController.Login (Api) - Validation state: "Valid"
+2020-01-15 13:30:29.280 +05:00 [INF] QnA Request: UserLoginQuery  {"Email":"test1@gmail.com","Password":"password","$type":"UserLoginQuery"}
+2020-01-15 13:30:29.283 +05:00 [INF] QnA Request: UserLoginQuery  {"Email":"test1@gmail.com","Password":"password","$type":"UserLoginQuery"}
+2020-01-15 13:30:29.286 +05:00 [INF] QnA Request: UserLoginQuery  {"Email":"test1@gmail.com","Password":"password","$type":"UserLoginQuery"}
+2020-01-15 13:30:29.288 +05:00 [INF] QnA Request: UserLoginQuery  {"Email":"test1@gmail.com","Password":"password","$type":"UserLoginQuery"}
+2020-01-15 13:30:29.293 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:30:29.318 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`Email`, `x`.`FirstName`, `x`.`LastName`, `x`.`PasswordHash`, `x`.`ProfilePicture`
+FROM `Users` AS `x`
+2020-01-15 13:30:29.341 +05:00 [INF] Executed action method Api.Controllers.AuthController.Login (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 62.1098ms.
+2020-01-15 13:30:29.344 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:30:29.349 +05:00 [INF] Executed action Api.Controllers.AuthController.Login (Api) in 112.042ms
+2020-01-15 13:30:29.352 +05:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Login (Api)'
+2020-01-15 13:30:29.355 +05:00 [INF] Request finished in 135.1007ms 200 application/json; charset=utf-8
+2020-01-15 13:30:29.656 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/followings/negotiate  
+2020-01-15 13:30:29.660 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 13:30:29.662 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:30:29.670 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:30:29.677 +05:00 [INF] Request finished in 14.446ms 204 
+2020-01-15 13:30:29.679 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:30:29.685 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:30:29.735 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/followings/negotiate text/plain;charset=UTF-8 0
+2020-01-15 13:30:29.739 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 13:30:29.740 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:30:29.742 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:30:29.747 +05:00 [INF] Successfully validated the token.
+2020-01-15 13:30:29.750 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:30:29.752 +05:00 [INF] Authorization was successful.
+2020-01-15 13:30:29.755 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:30:29.759 +05:00 [INF] Request finished in 63.4802ms 200 application/json
+2020-01-15 13:30:29.761 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:30:29.765 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:30:29.768 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/followings?id=lYPWaVnrx0N5PEjrmXR2eg&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Imxhc3QiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsIm5hbWVpZCI6MSwibmJmIjoxNTc5MDc3MDI5LCJleHAiOjE1NzkxNjM0MjksImlhdCI6MTU3OTA3NzAyOSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwIn0.hhRKxxLO13Ap9F1qZQY51oQXzo9BCgX0prSRY2rH-nk  
+2020-01-15 13:30:29.771 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:30:29.779 +05:00 [INF] Successfully validated the token.
+2020-01-15 13:30:29.783 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 13:30:29.785 +05:00 [INF] Authorization was successful.
+2020-01-15 13:30:29.788 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 46.434000000000005ms.
+2020-01-15 13:30:29.792 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:30:29.797 +05:00 [INF] Completed connection handshake. Using HubProtocol 'json'.
+2020-01-15 13:30:29.802 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 108.5043ms
+2020-01-15 13:30:29.804 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:30:29.807 +05:00 [INF] Request finished in 153.1632ms 200 application/json; charset=utf-8
+2020-01-15 13:30:51.097 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:30:51.130 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__questionId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `q`.`Id`, `q`.`DateTime`, `q`.`QuestionText`, `q`.`UserId`
+FROM `Questions` AS `q`
+WHERE `q`.`Id` = @__questionId_0
+LIMIT 2
+2020-01-15 13:30:53.161 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__answeredby_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`Email`, `u`.`FirstName`, `u`.`LastName`, `u`.`PasswordHash`, `u`.`ProfilePicture`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__answeredby_0
+LIMIT 2
+2020-01-15 13:30:56.088 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__questionId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `q`.`Id`, `q`.`QuestionId`, `q`.`UserId`
+FROM `QuestionFollowings` AS `q`
+WHERE `q`.`Id` = @__questionId_0
+2020-01-15 13:31:49.342 +05:00 [INF] User profile is available. Using 'C:\Users\M Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-15 13:31:50.877 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:31:51.456 +05:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-15 13:31:51.600 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Users` AS `u`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 13:31:51.622 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Questions` AS `q`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 13:31:52.184 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/  
+2020-01-15 13:31:52.323 +05:00 [INF] Executing endpoint 'HomeController.Index (Api)'
+2020-01-15 13:31:52.340 +05:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller HomeController (Api).
+2020-01-15 13:31:52.511 +05:00 [INF] Executing action method HomeController.Index (Api) - Validation state: "Valid"
+2020-01-15 13:31:52.518 +05:00 [INF] Executed action method HomeController.Index (Api), returned result Microsoft.AspNetCore.Mvc.ContentResult in 0.2792ms.
+2020-01-15 13:31:52.531 +05:00 [INF] Executing ContentResult with HTTP Response ContentType of text/plain; charset=utf-8
+2020-01-15 13:31:52.558 +05:00 [INF] Executed action HomeController.Index (Api) in 210.9318ms
+2020-01-15 13:31:52.561 +05:00 [INF] Executed endpoint 'HomeController.Index (Api)'
+2020-01-15 13:31:52.567 +05:00 [INF] Request finished in 385.1821ms 200 text/plain; charset=utf-8
+2020-01-15 13:32:06.355 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/followings/negotiate  
+2020-01-15 13:32:06.356 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 13:32:06.374 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:32:06.374 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:32:06.496 +05:00 [INF] Request finished in 38.1727ms 204 
+2020-01-15 13:32:06.502 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:32:06.581 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:32:06.766 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 13:32:06.783 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/followings/negotiate text/plain;charset=UTF-8 0
+2020-01-15 13:32:06.799 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:32:06.867 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:32:06.904 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:32:06.919 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:32:06.922 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:32:06.956 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:32:07.395 +05:00 [INF] Executed DbCommand (87ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 13:32:07.429 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 652.6128ms.
+2020-01-15 13:32:07.442 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:32:07.482 +05:00 [INF] Successfully validated the token.
+2020-01-15 13:32:07.515 +05:00 [INF] Authorization was successful.
+2020-01-15 13:32:07.552 +05:00 [INF] Request finished in 785.7077ms 200 application/json
+2020-01-15 13:32:07.561 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/followings?id=LloG25-mgIuPcS2hXHNnXg&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Imxhc3QiLCJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsIm5hbWVpZCI6MiwibmJmIjoxNTc5MDczMTAwLCJleHAiOjE1NzkxNTk1MDAsImlhdCI6MTU3OTA3MzEwMCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwIn0.5otaxTyWIGwhPK9aWSo1L3fkv_R2GKqVkMMz4Fsa1vI  
+2020-01-15 13:32:07.564 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:32:07.570 +05:00 [INF] Successfully validated the token.
+2020-01-15 13:32:07.580 +05:00 [INF] Authorization was successful.
+2020-01-15 13:32:07.596 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 1004.9839000000001ms
+2020-01-15 13:32:07.604 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:32:07.611 +05:00 [INF] Request finished in 1258.7988ms 200 application/json; charset=utf-8
+2020-01-15 13:32:07.929 +05:00 [INF] Completed connection handshake. Using HubProtocol 'json'.
+2020-01-15 13:32:32.091 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 13:32:32.095 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:32:32.096 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/followings/negotiate  
+2020-01-15 13:32:32.128 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:32:32.128 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:32:32.136 +05:00 [INF] Request finished in 37.6654ms 204 
+2020-01-15 13:32:32.137 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (Api).
+2020-01-15 13:32:32.241 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (Api) - Validation state: "Valid"
+2020-01-15 13:32:32.241 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/followings/negotiate text/plain;charset=UTF-8 0
+2020-01-15 13:32:32.265 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:32:32.266 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:32:32.269 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:32:32.271 +05:00 [INF] Successfully validated the token.
+2020-01-15 13:32:32.276 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:32:32.277 +05:00 [INF] Authorization was successful.
+2020-01-15 13:32:32.279 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 13:32:32.282 +05:00 [INF] Request finished in 44.263ms 200 application/json
+2020-01-15 13:32:32.287 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:32:32.293 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/followings?id=azBUhE9XRPW98IwG13v23Q&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Imxhc3QiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsIm5hbWVpZCI6MSwibmJmIjoxNTc5MDc3MDI5LCJleHAiOjE1NzkxNjM0MjksImlhdCI6MTU3OTA3NzAyOSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwIn0.hhRKxxLO13Ap9F1qZQY51oQXzo9BCgX0prSRY2rH-nk  
+2020-01-15 13:32:32.309 +05:00 [INF] CORS policy execution successful.
+2020-01-15 13:32:32.312 +05:00 [INF] Successfully validated the token.
+2020-01-15 13:32:32.314 +05:00 [INF] Authorization was successful.
+2020-01-15 13:32:32.333 +05:00 [INF] Completed connection handshake. Using HubProtocol 'json'.
+2020-01-15 13:32:32.391 +05:00 [INF] Executed DbCommand (30ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 13:32:32.434 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 190.37ms.
+2020-01-15 13:32:32.451 +05:00 [INF] Executing ObjectResult, writing value of type 'Api.ApiModels.BaseResponse'.
+2020-01-15 13:32:32.462 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (Api) in 321.9929ms
+2020-01-15 13:32:32.466 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (Api)'
+2020-01-15 13:32:32.482 +05:00 [INF] Request finished in 393.9095ms 200 application/json; charset=utf-8
+2020-01-15 13:32:40.915 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 13:32:40.962 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__questionId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `q`.`Id`, `q`.`DateTime`, `q`.`QuestionText`, `q`.`UserId`
+FROM `Questions` AS `q`
+WHERE `q`.`Id` = @__questionId_0
+LIMIT 2
+2020-01-15 13:32:42.657 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__answeredby_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`Email`, `u`.`FirstName`, `u`.`LastName`, `u`.`PasswordHash`, `u`.`ProfilePicture`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__answeredby_0
+LIMIT 2
+2020-01-15 13:32:43.275 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__questionId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `q`.`Id`, `q`.`QuestionId`, `q`.`UserId`
+FROM `QuestionFollowings` AS `q`
+WHERE `q`.`QuestionId` = @__questionId_0
+2020-01-15 13:33:42.224 +05:00 [INF] Request finished in 94662.2519ms 101 
+2020-01-15 15:51:58.446 +05:00 [INF] User profile is available. Using 'C:\Users\M Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-15 15:51:59.399 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 15:51:59.994 +05:00 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-15 15:52:00.159 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Users` AS `u`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 15:52:00.189 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Questions` AS `q`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 15:52:00.839 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/  
+2020-01-15 15:52:00.982 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/index.html  
+2020-01-15 15:52:01.001 +05:00 [INF] Request finished in 154.7819ms 301 
+2020-01-15 15:52:01.241 +05:00 [INF] Request finished in 258.7887ms 200 text/html;charset=utf-8
+2020-01-15 15:52:01.380 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger-ui-bundle.js  
+2020-01-15 15:52:01.388 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger-ui.css  
+2020-01-15 15:52:01.389 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger-ui-standalone-preset.js  
+2020-01-15 15:52:01.499 +05:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2020-01-15 15:52:01.502 +05:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2020-01-15 15:52:01.506 +05:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2020-01-15 15:52:01.517 +05:00 [INF] Request finished in 131.2409ms 200 text/css
+2020-01-15 15:52:01.519 +05:00 [INF] Request finished in 153.3205ms 200 application/javascript
+2020-01-15 15:52:01.526 +05:00 [INF] Request finished in 129.2972ms 200 application/javascript
+2020-01-15 15:52:02.437 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+2020-01-15 15:52:02.545 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/favicon-32x32.png  
+2020-01-15 15:52:02.566 +05:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2020-01-15 15:52:02.570 +05:00 [INF] Request finished in 34.2191ms 200 image/png
+2020-01-15 15:52:02.742 +05:00 [INF] Request finished in 303.0941ms 200 application/json;charset=utf-8
+2020-01-15 16:02:22.784 +05:00 [INF] User profile is available. Using 'C:\Users\M Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-15 16:02:23.675 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 16:02:24.332 +05:00 [INF] Executed DbCommand (31ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-15 16:02:24.481 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Users` AS `u`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 16:02:24.507 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Questions` AS `q`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 16:02:25.083 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/index.html  
+2020-01-15 16:02:25.438 +05:00 [INF] Request finished in 355.7749ms 200 text/html;charset=utf-8
+2020-01-15 16:02:26.622 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+2020-01-15 16:02:26.875 +05:00 [INF] Request finished in 240.4796ms 200 application/json;charset=utf-8
+2020-01-15 16:07:47.428 +05:00 [INF] User profile is available. Using 'C:\Users\M Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-15 16:07:48.629 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 16:07:49.387 +05:00 [INF] Executed DbCommand (31ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-15 16:07:49.596 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Users` AS `u`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 16:07:49.625 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Questions` AS `q`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 16:07:50.334 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/index.html  
+2020-01-15 16:07:50.823 +05:00 [INF] Request finished in 491.3851ms 200 text/html;charset=utf-8
+2020-01-15 16:07:52.199 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+2020-01-15 16:07:52.596 +05:00 [INF] Request finished in 403.3429ms 200 application/json;charset=utf-8
+2020-01-15 17:43:05.671 +05:00 [INF] User profile is available. Using 'C:\Users\M Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-15 17:43:07.338 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 17:43:08.250 +05:00 [INF] Executed DbCommand (36ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-15 17:43:08.449 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Users` AS `u`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 17:43:08.479 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Questions` AS `q`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 17:43:09.368 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/index.html  
+2020-01-15 17:43:10.118 +05:00 [INF] Request finished in 752.4975ms 200 text/html;charset=utf-8
+2020-01-15 17:43:11.450 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+2020-01-15 17:43:11.948 +05:00 [INF] Request finished in 498.915ms 200 application/json;charset=utf-8
+2020-01-15 17:51:32.309 +05:00 [INF] User profile is available. Using 'C:\Users\M Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-15 17:51:33.760 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 17:51:34.611 +05:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-15 17:51:34.827 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Users` AS `u`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 17:51:34.861 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Questions` AS `q`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 17:51:35.660 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/index.html  
+2020-01-15 17:51:36.158 +05:00 [INF] Request finished in 498.2236ms 200 text/html;charset=utf-8
+2020-01-15 17:51:37.419 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+2020-01-15 17:51:38.001 +05:00 [INF] Request finished in 582.574ms 200 application/json;charset=utf-8
