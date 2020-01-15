@@ -15,6 +15,7 @@ import rootReducer from "./reducers";
 import { loadState, saveState } from "./helpers/localStorage";
 import AppBar from "./containers/appBarContainer";
 import { Grommet } from "grommet";
+import Sandbox from "./screens/sandbox/sandbox";
 
 const store = createStore(rootReducer, loadState());
 store.subscribe(() => {
@@ -41,6 +42,7 @@ ReactDOM.render(
           path="/write/:id"
           render={props => <WriteAnswerScreen {...props} />}
         />
+        <Route path="/sandbox" render = {props => <Sandbox/>} />
         <ToastContainer
           position="bottom-center"
           autoClose={5000}

@@ -2046,3 +2046,208 @@ END
 2020-01-15 17:51:36.158 +05:00 [INF] Request finished in 498.2236ms 200 text/html;charset=utf-8
 2020-01-15 17:51:37.419 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
 2020-01-15 17:51:38.001 +05:00 [INF] Request finished in 582.574ms 200 application/json;charset=utf-8
+2020-01-15 21:46:37.464 +05:00 [INF] User profile is available. Using 'C:\Users\Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-15 21:46:43.856 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 21:46:49.543 +05:00 [INF] Executed DbCommand (676ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-15 21:46:50.352 +05:00 [INF] Executed DbCommand (141ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Users` AS `u`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 21:46:50.452 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Questions` AS `q`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-15 21:46:55.238 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/  
+2020-01-15 21:46:56.450 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/index.html  
+2020-01-15 21:46:56.498 +05:00 [INF] Request finished in 1259.0991ms 301 
+2020-01-15 21:46:57.118 +05:00 [INF] Request finished in 669.5494ms 200 text/html;charset=utf-8
+2020-01-15 21:46:57.195 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger-ui-standalone-preset.js  
+2020-01-15 21:46:57.200 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger-ui-bundle.js  
+2020-01-15 21:46:57.202 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger-ui.css  
+2020-01-15 21:46:57.331 +05:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2020-01-15 21:46:57.342 +05:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2020-01-15 21:46:57.342 +05:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2020-01-15 21:46:57.363 +05:00 [INF] Request finished in 164.3978ms 200 application/javascript
+2020-01-15 21:46:57.367 +05:00 [INF] Request finished in 200.7663ms 200 application/javascript
+2020-01-15 21:46:57.371 +05:00 [INF] Request finished in 162.5742ms 200 text/css
+2020-01-15 21:46:57.860 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+2020-01-15 21:46:58.053 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/favicon-32x32.png  
+2020-01-15 21:46:58.058 +05:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2020-01-15 21:46:58.064 +05:00 [INF] Request finished in 9.8642ms 200 image/png
+2020-01-15 21:46:58.889 +05:00 [INF] Request finished in 1027.8345ms 200 application/json;charset=utf-8
+2020-01-15 21:50:22.067 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/followings/negotiate  
+2020-01-15 21:50:22.077 +05:00 [INF] CORS policy execution successful.
+2020-01-15 21:50:22.084 +05:00 [INF] Request finished in 17.8765ms 204 
+2020-01-15 21:50:22.095 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/followings/negotiate text/plain;charset=UTF-8 0
+2020-01-15 21:50:22.100 +05:00 [INF] CORS policy execution successful.
+2020-01-15 21:50:23.480 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 21:50:23.483 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000//ProfileImages/placeholder.jpg  
+2020-01-15 21:50:23.484 +05:00 [INF] CORS policy execution successful.
+2020-01-15 21:50:23.722 +05:00 [INF] Sending file. Request path: '//ProfileImages/placeholder.jpg'. Physical path: 'D:\QuestionAnswerApp\server\Server\QnA.Api\wwwroot\ProfileImages\placeholder.jpg'
+2020-01-15 21:50:23.726 +05:00 [INF] Request finished in 247.0984ms 200 image/jpeg
+2020-01-15 21:50:23.925 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (QnA.Api)'
+2020-01-15 21:50:24.125 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (QnA.Api).
+2020-01-15 21:50:24.365 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (QnA.Api) - Validation state: "Valid"
+2020-01-15 21:50:24.423 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 21:50:24.550 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 21:50:24.563 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 21:50:24.568 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 21:50:24.628 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 21:50:24.748 +05:00 [INF] Successfully validated the token.
+2020-01-15 21:50:24.824 +05:00 [INF] Authorization was successful.
+2020-01-15 21:50:24.887 +05:00 [INF] Request finished in 2792.203ms 200 application/json
+2020-01-15 21:50:24.898 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/followings?id=n6gRRqcyeHg2Gu11zeCc_Q&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Imxhc3QiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsIm5hbWVpZCI6MSwibmJmIjoxNTc5MDMxMjQ3LCJleHAiOjE1NzkxMTc2NDcsImlhdCI6MTU3OTAzMTI0NywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwIn0.o-Xs9zEFLnbHWX5T7ZZRLKYLmjr-FNdjBzWOmO2QuPM  
+2020-01-15 21:50:24.902 +05:00 [INF] CORS policy execution successful.
+2020-01-15 21:50:24.940 +05:00 [INF] Successfully validated the token.
+2020-01-15 21:50:24.950 +05:00 [INF] Authorization was successful.
+2020-01-15 21:50:25.393 +05:00 [INF] Completed connection handshake. Using HubProtocol 'json'.
+2020-01-15 21:50:25.435 +05:00 [INF] Executed DbCommand (261ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 21:50:25.530 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (QnA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1147.3825000000002ms.
+2020-01-15 21:50:25.565 +05:00 [INF] Executing ObjectResult, writing value of type 'QnA.Api.ApiModels.BaseResponse'.
+2020-01-15 21:50:25.716 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (QnA.Api) in 1578.5366000000001ms
+2020-01-15 21:50:25.721 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (QnA.Api)'
+2020-01-15 21:50:25.731 +05:00 [INF] Request finished in 2250.8696ms 200 application/json; charset=utf-8
+2020-01-15 22:03:44.634 +05:00 [INF] Request finished in 799738.3906ms 101 
+2020-01-15 22:03:46.563 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000//ProfileImages/placeholder.jpg  
+2020-01-15 22:03:46.569 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 22:03:46.572 +05:00 [INF] The file //ProfileImages/placeholder.jpg was not modified
+2020-01-15 22:03:46.576 +05:00 [INF] CORS policy execution successful.
+2020-01-15 22:03:46.585 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/followings/negotiate  
+2020-01-15 22:03:46.592 +05:00 [INF] CORS policy execution successful.
+2020-01-15 22:03:46.594 +05:00 [INF] Request finished in 26.856ms 304 image/jpeg
+2020-01-15 22:03:46.599 +05:00 [INF] Request finished in 25.7712ms 204 
+2020-01-15 22:03:46.604 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (QnA.Api)'
+2020-01-15 22:03:46.609 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/followings/negotiate text/plain;charset=UTF-8 0
+2020-01-15 22:03:46.613 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (QnA.Api).
+2020-01-15 22:03:46.617 +05:00 [INF] CORS policy execution successful.
+2020-01-15 22:03:46.622 +05:00 [INF] Successfully validated the token.
+2020-01-15 22:03:46.629 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (QnA.Api) - Validation state: "Valid"
+2020-01-15 22:03:46.632 +05:00 [INF] Authorization was successful.
+2020-01-15 22:03:46.636 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 22:03:46.641 +05:00 [INF] Request finished in 31.3345ms 200 application/json
+2020-01-15 22:03:46.643 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 22:03:46.646 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 22:03:46.649 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 22:03:46.657 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/followings?id=KeJWa9hiBh4BF0bmtlIR6g&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Imxhc3QiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsIm5hbWVpZCI6MSwibmJmIjoxNTc5MDMxMjQ3LCJleHAiOjE1NzkxMTc2NDcsImlhdCI6MTU3OTAzMTI0NywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwIn0.o-Xs9zEFLnbHWX5T7ZZRLKYLmjr-FNdjBzWOmO2QuPM  
+2020-01-15 22:03:46.660 +05:00 [INF] CORS policy execution successful.
+2020-01-15 22:03:46.663 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 22:03:46.666 +05:00 [INF] Successfully validated the token.
+2020-01-15 22:03:46.668 +05:00 [INF] Authorization was successful.
+2020-01-15 22:03:46.700 +05:00 [INF] Completed connection handshake. Using HubProtocol 'json'.
+2020-01-15 22:03:47.281 +05:00 [INF] Executed DbCommand (124ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 22:03:47.286 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (QnA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 650.1408ms.
+2020-01-15 22:03:47.291 +05:00 [INF] Executing ObjectResult, writing value of type 'QnA.Api.ApiModels.BaseResponse'.
+2020-01-15 22:03:47.296 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (QnA.Api) in 677.3282ms
+2020-01-15 22:03:47.301 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (QnA.Api)'
+2020-01-15 22:03:47.306 +05:00 [INF] Request finished in 737.5827ms 200 application/json; charset=utf-8
+2020-01-15 22:04:06.949 +05:00 [INF] Request finished in 20291.1455ms 101 
+2020-01-15 22:04:08.893 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/followings/negotiate  
+2020-01-15 22:04:08.899 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 22:04:08.902 +05:00 [INF] CORS policy execution successful.
+2020-01-15 22:04:08.907 +05:00 [INF] CORS policy execution successful.
+2020-01-15 22:04:08.911 +05:00 [INF] Request finished in 21.0206ms 204 
+2020-01-15 22:04:08.915 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (QnA.Api)'
+2020-01-15 22:04:08.920 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (QnA.Api).
+2020-01-15 22:04:08.925 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (QnA.Api) - Validation state: "Valid"
+2020-01-15 22:04:08.930 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 22:04:08.935 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 22:04:08.940 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 22:04:08.945 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 22:04:08.952 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 22:04:09.019 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 22:04:09.023 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (QnA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 94.107ms.
+2020-01-15 22:04:09.029 +05:00 [INF] Executing ObjectResult, writing value of type 'QnA.Api.ApiModels.BaseResponse'.
+2020-01-15 22:04:09.034 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (QnA.Api) in 109.6644ms
+2020-01-15 22:04:09.040 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/followings/negotiate text/plain;charset=UTF-8 0
+2020-01-15 22:04:09.044 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (QnA.Api)'
+2020-01-15 22:04:09.049 +05:00 [INF] CORS policy execution successful.
+2020-01-15 22:04:09.051 +05:00 [INF] Request finished in 153.1928ms 200 application/json; charset=utf-8
+2020-01-15 22:04:09.055 +05:00 [INF] Successfully validated the token.
+2020-01-15 22:04:09.061 +05:00 [INF] Authorization was successful.
+2020-01-15 22:04:09.065 +05:00 [INF] Request finished in 27.3835ms 200 application/json
+2020-01-15 22:04:09.224 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/followings?id=4CG0yLxQ1naQ3ziNyC3Q4w&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Imxhc3QiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsIm5hbWVpZCI6MSwibmJmIjoxNTc5MDMxMjQ3LCJleHAiOjE1NzkxMTc2NDcsImlhdCI6MTU3OTAzMTI0NywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwIn0.o-Xs9zEFLnbHWX5T7ZZRLKYLmjr-FNdjBzWOmO2QuPM  
+2020-01-15 22:04:09.230 +05:00 [INF] CORS policy execution successful.
+2020-01-15 22:04:09.235 +05:00 [INF] Successfully validated the token.
+2020-01-15 22:04:09.240 +05:00 [INF] Authorization was successful.
+2020-01-15 22:04:09.255 +05:00 [INF] Completed connection handshake. Using HubProtocol 'json'.
+2020-01-15 22:05:00.469 +05:00 [INF] Request finished in 51246.7245ms 101 
+2020-01-15 22:05:02.257 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-01-15 22:05:02.262 +05:00 [INF] CORS policy execution successful.
+2020-01-15 22:05:02.268 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/followings/negotiate  
+2020-01-15 22:05:02.269 +05:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (QnA.Api)'
+2020-01-15 22:05:02.273 +05:00 [INF] CORS policy execution successful.
+2020-01-15 22:05:02.280 +05:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (QnA.Api).
+2020-01-15 22:05:02.284 +05:00 [INF] Request finished in 22.2635ms 204 
+2020-01-15 22:05:02.288 +05:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (QnA.Api) - Validation state: "Valid"
+2020-01-15 22:05:02.294 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 22:05:02.298 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 22:05:02.302 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 22:05:02.308 +05:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-01-15 22:05:02.314 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-15 22:05:02.352 +05:00 [INF] Executed DbCommand (19ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.*
+FROM (
+    SELECT `x`.`Id`, `x`.`QuestionText`, `x`.`DateTime`, `x`.`UserId`, `x.User`.`FirstName`, `x.User`.`LastName`
+    FROM `Questions` AS `x`
+    INNER JOIN `Users` AS `x.User` ON `x`.`UserId` = `x.User`.`Id`
+    ORDER BY `x`.`DateTime` DESC
+    LIMIT @__p_0
+) AS `t`
+ORDER BY `t`.`DateTime` DESC
+LIMIT 18446744073709551610 OFFSET @__p_1
+2020-01-15 22:05:02.357 +05:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (QnA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 64.6489ms.
+2020-01-15 22:05:02.363 +05:00 [INF] Executing ObjectResult, writing value of type 'QnA.Api.ApiModels.BaseResponse'.
+2020-01-15 22:05:02.368 +05:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (QnA.Api) in 81.8721ms
+2020-01-15 22:05:02.373 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/followings/negotiate text/plain;charset=UTF-8 0
+2020-01-15 22:05:02.374 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (QnA.Api)'
+2020-01-15 22:05:02.378 +05:00 [INF] CORS policy execution successful.
+2020-01-15 22:05:02.380 +05:00 [INF] Request finished in 126.2517ms 200 application/json; charset=utf-8
+2020-01-15 22:05:02.385 +05:00 [INF] Successfully validated the token.
+2020-01-15 22:05:02.393 +05:00 [INF] Authorization was successful.
+2020-01-15 22:05:02.397 +05:00 [INF] Request finished in 26.9491ms 200 application/json
+2020-01-15 22:05:02.566 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/followings?id=YPJJsiWabGDEQGjNIkFcfw&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Imxhc3QiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsIm5hbWVpZCI6MSwibmJmIjoxNTc5MDMxMjQ3LCJleHAiOjE1NzkxMTc2NDcsImlhdCI6MTU3OTAzMTI0NywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwIn0.o-Xs9zEFLnbHWX5T7ZZRLKYLmjr-FNdjBzWOmO2QuPM  
+2020-01-15 22:05:02.571 +05:00 [INF] CORS policy execution successful.
+2020-01-15 22:05:02.576 +05:00 [INF] Successfully validated the token.
+2020-01-15 22:05:02.581 +05:00 [INF] Authorization was successful.
+2020-01-15 22:05:02.606 +05:00 [INF] Completed connection handshake. Using HubProtocol 'json'.
+2020-01-15 22:05:11.273 +05:00 [INF] Request finished in 8708.1433ms 101 
