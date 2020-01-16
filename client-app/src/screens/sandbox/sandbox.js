@@ -1,7 +1,10 @@
 import React from "react";
 import {InputText} from "./../../theme/inputs/InputText";
 import {FeedCard} from "./../../theme/cards/FeedCard";
-import {FeaturedTopics} from "./../../theme/sidebars/featuredTopics";
+import {ItemList} from "../../theme/sidebars/ItemList";
+import {NormalButton} from "./../../theme/buttons/NormalButton";
+import {LoadingButton} from "./../../theme/buttons/LoadingButton";
+
 import {Box} from "grommet";
 
 class Sandbox extends React.Component {
@@ -20,7 +23,9 @@ class Sandbox extends React.Component {
                     onClickSave= {() => alert("save")}
                     footer                    
                 />
-                <FeaturedTopics/>
+                <ItemList align="end"/>
+                <NormalButton/>
+                <LoadingButton loading = {true}/>
             </Box>
         )
     }

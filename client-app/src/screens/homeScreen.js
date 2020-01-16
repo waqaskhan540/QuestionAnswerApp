@@ -13,6 +13,7 @@ import { Spinning } from "grommet-controls";
 import { toast } from "react-toastify";
 import FeaturedQuestions from "../containers/featuredQuestionsContainer";
 import * as signalR from "@aspnet/signalr";
+import { ItemList } from "../theme/sidebars/ItemList";
 
 class HomeScreen extends Component {
   // state = {
@@ -22,11 +23,11 @@ class HomeScreen extends Component {
   // };
   state = {
     showLoadMore: true,
+    loadingMore: false,
     hubConnection: null
   };
 
   onAnswerQuestion = () => {
-    
     if (this.state.hubConnection) {
       const connection = this.state.hubConnection;
       console.log(connection);
@@ -35,7 +36,7 @@ class HomeScreen extends Component {
   };
   loadFeed = () => {
     const { page } = this.props.feed;
-    // this.setState({loading:true})
+    this.setState({ loadingMore: true });
     // this.props.feedActions.isFeedLoading(true);
     questionService.getFeedData(page).then(response => {
       const questions = response.data.data;
@@ -46,6 +47,7 @@ class HomeScreen extends Component {
       //   questions: [...this.state.questions, ...questions],
       //   loading: false
       // });
+      this.setState({ loadingMore: false });
       if (questions.length < 5) {
         this.setState({ showLoadMore: false });
         return;
@@ -135,10 +137,10 @@ class HomeScreen extends Component {
       this.setState({ hubConnection: connection });
       connection.start().catch(err => console.error(err));
 
-      connection.on("QuestionAnswered",(response) => {
+      connection.on("QuestionAnswered", response => {
         debugger;
         console.log(response);
-      })
+      });
     }
   }
 
@@ -153,6 +155,7 @@ class HomeScreen extends Component {
     return (
       <>
         <ScreenContainer
+          left={<ItemList align={"end"} />}
           middle={
             loading ? (
               <Loader active></Loader>
@@ -174,11 +177,12 @@ class HomeScreen extends Component {
                   onSave={this.saveQuestion}
                   onUnSave={this.unSaveQuestion}
                   toggleLoadMore={this.state.showLoadMore}
+                  loadingMore={this.state.loadingMore}
                 />
               </>
             )
           }
-          right={<button onClick={this.onAnswerQuestion}>answer</button>}
+          right={<ItemList align={"start"} />}
         />
       </>
     );

@@ -1,0 +1,18 @@
+.normal-button {
+    border-radius: 0%;
+    border :1px solid #bab4c5;
+    font-size:15px;
+}
+.normal-button:focus {
+   outline:none;
+   border-color:#bab4c5;
+   border :1px solid #bab4c5;
+   box-shadow :none;  
+}
+
+.normal-button:hover {
+    background: #bab4c5;
+    color:white;
+    box-shadow :none;
+    outline:none;
+}
