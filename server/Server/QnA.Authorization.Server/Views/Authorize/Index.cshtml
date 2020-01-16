@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <form method="post" action="/authorize">
+
+        <input type="text" name="response_type" value="token" />
+        <input type="text" name="client_id" value="123" />
+        <input type="text" name="redirect_uri" value="http://localhost:3456" />
+        <input type="text" name="scope" value="email,profile" />
+        <input type="text" name="state" value="xyz" />
+
+        <button type="submit">submit</button>
+    </form>
+</body>
+</html>
