@@ -14,6 +14,8 @@ namespace QnA.Application.Interfaces
         DbSet<Draft> Drafts { get; set; }
         DbSet<SavedQuestion> SavedQuestions { get; set; }
         DbSet<QuestionFollowing> QuestionFollowings { get; set; }
+        DbSet<RedirectUrl> RedirectUrls { get; set; }
+        DbSet<DeveloperApp> DeveloperApps { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 

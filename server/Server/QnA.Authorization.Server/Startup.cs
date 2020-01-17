@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using QnA.Authorization.Server.Validators;
+using QnA.Persistence;
+using System;
+using System.Linq;
 
 namespace QnA.Authorization.Server
 {
@@ -18,6 +22,8 @@ namespace QnA.Authorization.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IAuthorizationRequestValidator, AuthorizationRequestValidator>();
+            services.AddPersistence(Configuration);
             services.AddRazorPages();
             services.AddMvc(config =>
             {
@@ -31,6 +37,27 @@ namespace QnA.Authorization.Server
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                using (var scope = app.ApplicationServices.CreateScope())
+                {
+                    var context = scope.ServiceProvider.GetRequiredService(typeof(DatabaseContext)) as DatabaseContext;
+                    if (!context.DeveloperApps.Any())
+                    {
+                        var appId = Guid.NewGuid();
+                        context.DeveloperApps.Add(new Domain.Entities.DeveloperApp
+                        {
+                            AppId = appId,
+                            AppName = "Test App"
+                        });
+
+                        context.RedirectUrls.Add(new Domain.Entities.RedirectUrl
+                        {
+                            AppId = appId,
+                            RedirectUri = "http://localhost:5000/callback"
+                        });
+
+                        context.SaveChanges();
+                    }
+                }
             }
             else
             {

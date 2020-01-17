@@ -7,17 +7,33 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Pages\Authorize\**" />
-    <Content Remove="Pages\Authorize\**" />
-    <EmbeddedResource Remove="Pages\Authorize\**" />
-    <None Remove="Pages\Authorize\**" />
+    <Compile Remove="Controllers\**" />
+    <Content Remove="Controllers\**" />
+    <EmbeddedResource Remove="Controllers\**" />
+    <None Remove="Controllers\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Pages\Authorize\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.2" />
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QnA.Application\QnA.Application.csproj" />
+    <ProjectReference Include="..\QnA.Persistence\QnA.Persistence.csproj" />
   </ItemGroup>
 
 

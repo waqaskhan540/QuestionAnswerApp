@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using QnA.Domain.Entities;
-using QnA.Security;
 
 namespace QnA.Persistence.Configurations
 {
@@ -13,7 +12,7 @@ namespace QnA.Persistence.Configurations
               .HasIndex(x => x.Email)
               .IsUnique();
 
-            var hashGenerator = new HashGenerator();
+
 
         }
     }

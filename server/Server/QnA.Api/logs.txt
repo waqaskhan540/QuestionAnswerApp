@@ -4963,3 +4963,63 @@ LIMIT 18446744073709551610 OFFSET @__p_1
 2020-01-16 15:27:06.216 +05:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (QnA.Api)'
 2020-01-16 15:27:06.219 +05:00 [INF] Completed connection handshake. Using HubProtocol 'json'.
 2020-01-16 15:27:06.221 +05:00 [INF] Request finished in 332.8951ms 200 application/json; charset=utf-8
+2020-01-17 12:13:59.783 +05:00 [INF] User profile is available. Using 'C:\Users\M Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-17 12:14:01.390 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-17 12:14:02.142 +05:00 [INF] Executed DbCommand (101ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-17 12:14:02.283 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Users` AS `u`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-17 12:14:02.309 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Questions` AS `q`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-17 12:14:03.044 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/  
+2020-01-17 12:14:03.397 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/index.html  
+2020-01-17 12:14:03.412 +05:00 [INF] Request finished in 362.5608ms 301 
+2020-01-17 12:14:03.678 +05:00 [INF] Request finished in 235.2266ms 200 text/html;charset=utf-8
+2020-01-17 12:14:03.975 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger-ui.css  
+2020-01-17 12:14:03.984 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger-ui-bundle.js  
+2020-01-17 12:14:04.085 +05:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2020-01-17 12:14:04.095 +05:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2020-01-17 12:14:04.106 +05:00 [INF] Request finished in 131.8959ms 200 text/css
+2020-01-17 12:14:04.109 +05:00 [INF] Request finished in 127.4944ms 200 application/javascript
+2020-01-17 12:14:05.004 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger-ui-standalone-preset.js  
+2020-01-17 12:14:05.020 +05:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2020-01-17 12:14:05.023 +05:00 [INF] Request finished in 18.1061ms 200 application/javascript
+2020-01-17 12:14:05.385 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+2020-01-17 12:14:05.701 +05:00 [INF] Request finished in 315.6794ms 200 application/json;charset=utf-8
+2020-01-17 12:14:51.936 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/authorize application/x-www-form-urlencoded 108
+2020-01-17 12:14:51.943 +05:00 [INF] CORS policy execution failed.
+2020-01-17 12:14:51.946 +05:00 [INF] Request origin http://127.0.0.1:5500 does not have permission to access the resource.
+2020-01-17 12:14:52.025 +05:00 [INF] Executing endpoint 'QnA.Api.Controllers.TestController.Authorize (QnA.Api)'
+2020-01-17 12:14:52.051 +05:00 [INF] Route matched with {action = "Authorize", controller = "Test"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorize() on controller QnA.Api.Controllers.TestController (QnA.Api).
+2020-01-17 12:14:52.260 +05:00 [INF] Executing action method QnA.Api.Controllers.TestController.Authorize (QnA.Api) - Validation state: "Valid"
+2020-01-17 12:14:52.267 +05:00 [INF] Executed action method QnA.Api.Controllers.TestController.Authorize (QnA.Api), returned result Microsoft.AspNetCore.Mvc.OkResult in 0.4551ms.
+2020-01-17 12:14:52.281 +05:00 [INF] Executing HttpStatusCodeResult, setting HTTP status code 200
+2020-01-17 12:14:52.288 +05:00 [INF] Executed action QnA.Api.Controllers.TestController.Authorize (QnA.Api) in 231.0732ms
+2020-01-17 12:14:52.291 +05:00 [INF] Executed endpoint 'QnA.Api.Controllers.TestController.Authorize (QnA.Api)'
+2020-01-17 12:14:52.295 +05:00 [INF] Request finished in 359.6455ms 200 
+2020-01-17 12:14:53.038 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/favicon.ico  
+2020-01-17 12:14:53.044 +05:00 [INF] Request finished in 5.6762ms 404 
+2020-01-17 12:15:08.188 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/authorize application/x-www-form-urlencoded 108
+2020-01-17 12:15:08.194 +05:00 [INF] CORS policy execution failed.
+2020-01-17 12:15:08.198 +05:00 [INF] Request origin http://127.0.0.1:5500 does not have permission to access the resource.
+2020-01-17 12:15:08.202 +05:00 [INF] Executing endpoint 'QnA.Api.Controllers.TestController.Authorize (QnA.Api)'
+2020-01-17 12:15:08.208 +05:00 [INF] Route matched with {action = "Authorize", controller = "Test"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorize() on controller QnA.Api.Controllers.TestController (QnA.Api).
+2020-01-17 12:15:08.254 +05:00 [INF] Executing action method QnA.Api.Controllers.TestController.Authorize (QnA.Api) - Validation state: "Valid"
+2020-01-17 12:15:19.757 +05:00 [INF] Executed action method QnA.Api.Controllers.TestController.Authorize (QnA.Api), returned result Microsoft.AspNetCore.Mvc.OkResult in 11498.0424ms.
+2020-01-17 12:15:19.762 +05:00 [INF] Executing HttpStatusCodeResult, setting HTTP status code 200
+2020-01-17 12:15:19.765 +05:00 [INF] Executed action QnA.Api.Controllers.TestController.Authorize (QnA.Api) in 11554.862200000001ms
+2020-01-17 12:15:19.768 +05:00 [INF] Executed endpoint 'QnA.Api.Controllers.TestController.Authorize (QnA.Api)'
+2020-01-17 12:15:19.783 +05:00 [INF] Request finished in 11583.9883ms 200 

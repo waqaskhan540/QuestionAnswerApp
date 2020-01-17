@@ -17,6 +17,9 @@ namespace QnA.Persistence
         public DbSet<SavedQuestion> SavedQuestions { get; set; }
         public DbSet<QuestionFollowing> QuestionFollowings { get; set; }
 
+        public DbSet<RedirectUrl> RedirectUrls { get; set; }
+        public DbSet<DeveloperApp> DeveloperApps { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
