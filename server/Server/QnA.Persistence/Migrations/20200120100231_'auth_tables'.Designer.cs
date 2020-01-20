@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QnA.Persistence;
 
 namespace QnA.Persistence.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20200120100231_'auth_tables'")]
+    partial class auth_tables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,13 +74,15 @@ namespace QnA.Persistence.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
+                    b.Property<int?>("DeveloperId");
+
                     b.Property<bool>("RequiresConsent");
 
                     b.Property<int>("UserId");
 
                     b.HasKey("AppId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("DeveloperId");
 
                     b.ToTable("DeveloperApps");
                 });
@@ -190,9 +194,8 @@ namespace QnA.Persistence.Migrations
             modelBuilder.Entity("QnA.Domain.Entities.DeveloperApp", b =>
                 {
                     b.HasOne("QnA.Domain.Entities.AppUser", "Developer")
-                        .WithMany("Apps")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany()
+                        .HasForeignKey("DeveloperId");
                 });
 
             modelBuilder.Entity("QnA.Domain.Entities.Draft", b =>

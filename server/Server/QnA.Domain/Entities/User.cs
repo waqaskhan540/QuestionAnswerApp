@@ -12,6 +12,7 @@ namespace QnA.Domain.Entities
         public string ProfilePicture { get; set; }
 
         public ICollection<Question> Questions { get; set; }
+        public ICollection<DeveloperApp> Apps { get; set; }
         public static AppUser Create(string firstname, string lastname, string email, string passwordHash)
         {
             return new AppUser

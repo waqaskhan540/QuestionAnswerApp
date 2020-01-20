@@ -1,7 +1,5 @@
 ﻿using QnA.Application.Interfaces;
 using QnA.Authorization.Server.Models;
-using System;
-using System.Linq;
 
 namespace QnA.Authorization.Server.Validators
 {
@@ -30,14 +28,14 @@ namespace QnA.Authorization.Server.Validators
             if (string.IsNullOrWhiteSpace(input.State))
                 return ValidationResult.Fail("invalid state");
 
-            if (input.ResponseType.Equals("code", System.StringComparison.OrdinalIgnoreCase))
-                return ValidationResult.Fail("invalid response_type. response_type must be 'code'");
+            //if (input.ResponseType.Equals("code", System.StringComparison.OrdinalIgnoreCase))
+            //    return ValidationResult.Fail("invalid response_type. response_type must be 'code'");
 
-            if (!_context.DeveloperApps.Any(x => x.AppId == Guid.Parse(input.ClientId)))
-                return ValidationResult.Fail("invalid client_id");
+            //if (!_context.DeveloperApps.Any(x => x.AppId == Guid.Parse(input.ClientId)))
+            //    return ValidationResult.Fail("invalid client_id");
 
-            if (!_context.RedirectUrls.Any(x => x.AppId == Guid.Parse(input.ClientId) && x.RedirectUri == input.RedirectUri))
-                return ValidationResult.Fail("invalid redirect_uri");
+            //if (!_context.RedirectUrls.Any(x => x.AppId == Guid.Parse(input.ClientId) && x.RedirectUri == input.RedirectUri))
+            //    return ValidationResult.Fail("invalid redirect_uri");
 
             return ValidationResult.Success();
 

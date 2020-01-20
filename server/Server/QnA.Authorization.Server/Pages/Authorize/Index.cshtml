@@ -1,5 +1,5 @@
 ﻿@page
-@model QnA.Authorization.Server.IndexModel
+@model QnA.Authorization.Server.Pages.Authorize.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -8,6 +8,10 @@
 @if (Model.IsError)
 {
     <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+else if (!string.IsNullOrEmpty(Model.SuccessMessage))
+{
+    <div class="alert alert-success">@Model.SuccessMessage</div>
 }
 else
 {
@@ -22,6 +26,13 @@ else
             <label asp-for="Password">Password</label>
             <input asp-for="Password" class="form-control" />
         </div>
+
+
+        <input asp-for="AuthorizationRequest.ClientId" type="hidden" />
+        <input asp-for="AuthorizationRequest.RedirectUri" type="hidden" />
+        <input asp-for="AuthorizationRequest.ResponseType" type="hidden" />
+        <input asp-for="AuthorizationRequest.State" type="hidden" />
+        <input asp-for="AuthorizationRequest.Scope" type="hidden" />
 
         <button type="submit" class="btn btn-primary">Login</button>
     </form>

@@ -9,5 +9,6 @@ namespace QnA.Domain.Entities
         public string RedirectUri { get; set; }
 
         public DeveloperApp App { get; set; }
+
     }
 }

@@ -19,7 +19,8 @@
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
+    <!--<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.0" />-->
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
@@ -33,6 +34,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\QnA.Application\QnA.Application.csproj" />
+    <ProjectReference Include="..\QnA.Authentication\QnA.Authentication.csproj" />
     <ProjectReference Include="..\QnA.Persistence\QnA.Persistence.csproj" />
     <ProjectReference Include="..\QnA.Security\QnA.Security.csproj" />
   </ItemGroup>

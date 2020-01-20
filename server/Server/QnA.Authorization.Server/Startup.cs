@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using QnA.Authorization.Server.Validators;
 using QnA.Persistence;
+using QnA.Security;
 using System;
 using System.Linq;
 
@@ -25,6 +27,12 @@ namespace QnA.Authorization.Server
             services.AddScoped<IAuthorizationRequestValidator, AuthorizationRequestValidator>();
             services.AddPersistence(Configuration);
             services.AddRazorPages();
+
+            services.AddSecurity(Configuration);
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie();
+
             services.AddMvc(config =>
             {
                 config.EnableEndpointRouting = false;
@@ -46,7 +54,9 @@ namespace QnA.Authorization.Server
                         context.DeveloperApps.Add(new Domain.Entities.DeveloperApp
                         {
                             AppId = appId,
-                            AppName = "Test App"
+                            AppName = "Test App",
+                            UserId = 1,
+                            RequiresConsent = true
                         });
 
                         context.RedirectUrls.Add(new Domain.Entities.RedirectUrl
@@ -71,6 +81,7 @@ namespace QnA.Authorization.Server
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

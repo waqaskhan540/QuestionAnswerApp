@@ -5023,3 +5023,67 @@ END
 2020-01-17 12:15:19.765 +05:00 [INF] Executed action QnA.Api.Controllers.TestController.Authorize (QnA.Api) in 11554.862200000001ms
 2020-01-17 12:15:19.768 +05:00 [INF] Executed endpoint 'QnA.Api.Controllers.TestController.Authorize (QnA.Api)'
 2020-01-17 12:15:19.783 +05:00 [INF] Request finished in 11583.9883ms 200 
+2020-01-20 15:56:38.399 +05:00 [INF] User profile is available. Using 'C:\Users\M Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-20 15:56:40.279 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-20 15:56:41.320 +05:00 [INF] Executed DbCommand (46ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-20 15:56:41.599 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Users` AS `u`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-20 15:56:41.990 +05:00 [INF] Executed DbCommand (57ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 255), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Users` (`Id`, `Email`, `FirstName`, `LastName`, `PasswordHash`, `ProfilePicture`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2020-01-20 15:56:41.998 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 255), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Users` (`Id`, `Email`, `FirstName`, `LastName`, `PasswordHash`, `ProfilePicture`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2020-01-20 15:56:42.029 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Questions` AS `q`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-20 15:56:42.144 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 500), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = DateTime), @p6='?' (Size = 500), @p7='?' (DbType = Int32), @p8='?' (DbType = Int32), @p9='?' (DbType = DateTime), @p10='?' (Size = 500), @p11='?' (DbType = Int32), @p12='?' (DbType = Int32), @p13='?' (DbType = DateTime), @p14='?' (Size = 500), @p15='?' (DbType = Int32), @p16='?' (DbType = Int32), @p17='?' (DbType = DateTime), @p18='?' (Size = 500), @p19='?' (DbType = Int32), @p20='?' (DbType = Int32), @p21='?' (DbType = DateTime), @p22='?' (Size = 500), @p23='?' (DbType = Int32), @p24='?' (DbType = Int32), @p25='?' (DbType = DateTime), @p26='?' (Size = 500), @p27='?' (DbType = Int32), @p28='?' (DbType = Int32), @p29='?' (DbType = DateTime), @p30='?' (Size = 500), @p31='?' (DbType = Int32), @p32='?' (DbType = Int32), @p33='?' (DbType = DateTime), @p34='?' (Size = 500), @p35='?' (DbType = Int32), @p36='?' (DbType = Int32), @p37='?' (DbType = DateTime), @p38='?' (Size = 500), @p39='?' (DbType = Int32), @p40='?' (DbType = Int32), @p41='?' (DbType = DateTime), @p42='?' (Size = 500), @p43='?' (DbType = Int32), @p44='?' (DbType = Int32), @p45='?' (DbType = DateTime), @p46='?' (Size = 500), @p47='?' (DbType = Int32), @p48='?' (DbType = Int32), @p49='?' (DbType = DateTime), @p50='?' (Size = 500), @p51='?' (DbType = Int32), @p52='?' (DbType = Int32), @p53='?' (DbType = DateTime), @p54='?' (Size = 500), @p55='?' (DbType = Int32), @p56='?' (DbType = Int32), @p57='?' (DbType = DateTime), @p58='?' (Size = 500), @p59='?' (DbType = Int32), @p60='?' (DbType = Int32), @p61='?' (DbType = DateTime), @p62='?' (Size = 500), @p63='?' (DbType = Int32), @p64='?' (DbType = Int32), @p65='?' (DbType = DateTime), @p66='?' (Size = 500), @p67='?' (DbType = Int32), @p68='?' (DbType = Int32), @p69='?' (DbType = DateTime), @p70='?' (Size = 500), @p71='?' (DbType = Int32), @p72='?' (DbType = Int32), @p73='?' (DbType = DateTime), @p74='?' (Size = 500), @p75='?' (DbType = Int32), @p76='?' (DbType = Int32), @p77='?' (DbType = DateTime), @p78='?' (Size = 500), @p79='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Questions` (`Id`, `DateTime`, `QuestionText`, `UserId`)
+VALUES (@p0, @p1, @p2, @p3),
+(@p4, @p5, @p6, @p7),
+(@p8, @p9, @p10, @p11),
+(@p12, @p13, @p14, @p15),
+(@p16, @p17, @p18, @p19),
+(@p20, @p21, @p22, @p23),
+(@p24, @p25, @p26, @p27),
+(@p28, @p29, @p30, @p31),
+(@p32, @p33, @p34, @p35),
+(@p36, @p37, @p38, @p39),
+(@p40, @p41, @p42, @p43),
+(@p44, @p45, @p46, @p47),
+(@p48, @p49, @p50, @p51),
+(@p52, @p53, @p54, @p55),
+(@p56, @p57, @p58, @p59),
+(@p60, @p61, @p62, @p63),
+(@p64, @p65, @p66, @p67),
+(@p68, @p69, @p70, @p71),
+(@p72, @p73, @p74, @p75),
+(@p76, @p77, @p78, @p79);
+2020-01-20 15:56:43.377 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/  
+2020-01-20 15:56:43.958 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/index.html  
+2020-01-20 15:56:43.983 +05:00 [INF] Request finished in 593.2066ms 301 
+2020-01-20 15:56:44.366 +05:00 [INF] Request finished in 407.8368ms 200 text/html;charset=utf-8
+2020-01-20 15:56:44.615 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger-ui-standalone-preset.js  
+2020-01-20 15:56:44.622 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger-ui.css  
+2020-01-20 15:56:44.626 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger-ui-bundle.js  
+2020-01-20 15:56:44.731 +05:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2020-01-20 15:56:44.748 +05:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2020-01-20 15:56:44.776 +05:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2020-01-20 15:56:44.832 +05:00 [INF] Request finished in 212.2644ms 200 application/javascript
+2020-01-20 15:56:44.843 +05:00 [INF] Request finished in 207.7212ms 200 application/javascript
+2020-01-20 15:56:44.846 +05:00 [INF] Request finished in 211.9938ms 200 text/css
+2020-01-20 15:56:46.348 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+2020-01-20 15:56:47.026 +05:00 [INF] Request finished in 671.7788ms 200 application/json;charset=utf-8

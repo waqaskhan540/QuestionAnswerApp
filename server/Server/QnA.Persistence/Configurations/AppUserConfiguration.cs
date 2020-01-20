@@ -10,7 +10,11 @@ namespace QnA.Persistence.Configurations
         {
             builder
               .HasIndex(x => x.Email)
-              .IsUnique();
+              .IsUnique()
+              ;
+
+
+            builder.HasMany(x => x.Apps).WithOne(x => x.Developer).HasForeignKey(x => x.UserId);
 
 
 

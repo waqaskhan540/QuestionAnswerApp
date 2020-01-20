@@ -11,7 +11,7 @@ namespace QnA.Persistence.Configurations
             builder.HasKey(x => x.AppId);
             builder.Property(x => x.AppName).IsRequired().HasMaxLength(100);
 
-
+            builder.HasMany(x => x.RedirectUrls).WithOne(x => x.App).HasForeignKey(x => x.AppId);
         }
     }
 }
