@@ -4,4 +4,27 @@
     ViewData["Title"] = "Consent";
 }
 
-<h1>Consent</h1>
+<h1>@Model.AppName</h1>
+<p>wants to access your public profile</p>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.AppName will have access to following</div>
+    <div class="panel-body">
+        @foreach (var scope in Model.Scope.Split(","))
+        {
+            <div class="alert alert-info">@scope</div>
+        }
+
+        <form method="post">
+            <input asp-for="ClientId" type="hidden" />
+            <input asp-for="RedirectUri" type="hidden" />
+            <input asp-for="ResponseType" type="hidden" />
+            <input asp-for="State" type="hidden" />
+            <input asp-for="Scope" type="hidden" />
+
+            <button class="btn btn-primary" type="submit">Allow</button>
+            <button class="btn btn-danger">Don't Allow</button>
+        </form>
+    </div>
+</div>

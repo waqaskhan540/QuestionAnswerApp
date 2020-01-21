@@ -1,12 +1,16 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using QnA.Application.Interfaces;
 using QnA.Application.Interfaces.Security;
+using QnA.Authorization.Server.Extensions;
 using QnA.Authorization.Server.Models;
 using QnA.Authorization.Server.Validators;
+using QnA.Security;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
@@ -18,15 +22,18 @@ namespace QnA.Authorization.Server.Pages.Authorize
     {
         private readonly IAuthorizationRequestValidator _validator;
         private readonly IDatabaseContext _context;
+        private readonly IPublicApiAccessTokenGenerator<TokenResult> _tokenGenerator;
         private readonly IHashGenerator _hashGenerator;
 
         public IndexModel(
             IAuthorizationRequestValidator validator,
             IDatabaseContext context,
+            IPublicApiAccessTokenGenerator<TokenResult> tokenGenerator,
             IHashGenerator hashGenerator)
         {
             _validator = validator;
             _context = context;
+            _tokenGenerator = tokenGenerator;
             _hashGenerator = hashGenerator;
         }
         [BindProperty]
@@ -53,25 +60,25 @@ namespace QnA.Authorization.Server.Pages.Authorize
 
         public IActionResult OnGetAsync()
         {
-            //var authorizationRequest = Request.Query.AsAuthorizationRequest();
-            //var validationResult = _validator.Validate(authorizationRequest);
+            var authorizationRequest = Request.Query.AsAuthorizationRequest();
+            var validationResult = _validator.Validate(authorizationRequest);
 
-            //if (validationResult.Error)
-            //{
-            //    IsError = true;
-            //    ErrorMessage = validationResult.ValidationError;
-            //    return Page();
-            //}
+            if (validationResult.Error)
+            {
+                IsError = true;
+                ErrorMessage = validationResult.ValidationError;
+                return Page();
+            }
 
-            //AuthorizationRequest.ClientId = authorizationRequest.ClientId;
-            //AuthorizationRequest.RedirectUri = authorizationRequest.RedirectUri;
-            //AuthorizationRequest.ResponseType = authorizationRequest.ResponseType;
-            //AuthorizationRequest.Scope = authorizationRequest.Scope;
-            //AuthorizationRequest.State = authorizationRequest.State;
+            AuthorizationRequest.ClientId = authorizationRequest.ClientId;
+            AuthorizationRequest.RedirectUri = authorizationRequest.RedirectUri;
+            AuthorizationRequest.ResponseType = authorizationRequest.ResponseType;
+            AuthorizationRequest.Scope = authorizationRequest.Scope;
+            AuthorizationRequest.State = authorizationRequest.State;
 
 
 
-            return RedirectToPage("/Consent");
+            return Page();
 
         }
 
@@ -107,10 +114,30 @@ namespace QnA.Authorization.Server.Pages.Authorize
                 new AuthenticationProperties()
                 );
 
+            var clientApp = await _context.DeveloperApps.SingleOrDefaultAsync(x => x.AppId == Guid.Parse(AuthorizationRequest.ClientId));
+            if (clientApp.RequiresConsent)
+            {
+                HttpContext.Session.SetString("client_id", AuthorizationRequest.ClientId);
+                HttpContext.Session.SetString("response_type", AuthorizationRequest.ResponseType);
+                HttpContext.Session.SetString("redirect_uri", AuthorizationRequest.RedirectUri);
+                HttpContext.Session.SetString("state", AuthorizationRequest.State);
+                HttpContext.Session.SetString("scope", AuthorizationRequest.Scope);
+                HttpContext.Session.SetString("app_name", clientApp.AppName);
+
+                return RedirectToPage("/Consent/Index");
+            }
 
 
+            var token = await _tokenGenerator.GenerateToken(user.Id.ToString(), user.LastName, user.Email, new List<Claim>
+            {
+               new Claim("client_id",clientApp.AppId.ToString()),
+               new Claim("scopes",AuthorizationRequest.Scope)
+            });
 
-            return new RedirectToPageResult("/Consent");
+            var hashFragment = $"#access_token={token.AccessToken}&&expires_in={token.Expiry}&&type={token.Type}&&state={AuthorizationRequest.State}";
+
+            return Redirect($"{AuthorizationRequest.RedirectUri}/{hashFragment}");
+
         }
 
     }
