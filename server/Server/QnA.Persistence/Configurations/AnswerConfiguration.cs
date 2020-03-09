@@ -18,7 +18,17 @@ namespace QnA.Persistence.Configurations
 
             builder
                 .HasOne(x => x.Question)
-                .WithMany(x => x.Answers);
+                .WithMany(x => x.Answers)
+                .HasForeignKey( x => x.QuestionId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(x => x.User)
+                .WithMany(x => x.Answers)
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+                    
+                
+                
 
         }
     }

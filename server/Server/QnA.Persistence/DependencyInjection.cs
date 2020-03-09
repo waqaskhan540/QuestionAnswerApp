@@ -12,12 +12,11 @@ namespace QnA.Persistence
             /** Databases **/
             string connectionString = configuration.GetConnectionString("Default");
             services.AddDbContext<DatabaseContext>(
-                options => options.UseMySql(connectionString,
+                options => options.UseSqlServer(connectionString,
                 b => b.MigrationsAssembly(typeof(DatabaseContext).Assembly.FullName)));
 
             services.AddScoped<IDatabaseContext>(provider => provider.GetService<DatabaseContext>());
-
-
+           
 
         }
     }

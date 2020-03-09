@@ -13,7 +13,7 @@ namespace QnA.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
@@ -26,11 +26,31 @@ namespace QnA.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DeveloperApps",
+                columns: table => new
+                {
+                    AppId = table.Column<Guid>(nullable: false),
+                    AppName = table.Column<string>(maxLength: 100, nullable: false),
+                    RequiresConsent = table.Column<bool>(nullable: false),
+                    UserId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DeveloperApps", x => x.AppId);
+                    table.ForeignKey(
+                        name: "FK_DeveloperApps_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Questions",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     QuestionText = table.Column<string>(maxLength: 500, nullable: false),
                     DateTime = table.Column<DateTime>(nullable: false),
                     UserId = table.Column<int>(nullable: false)
@@ -47,11 +67,29 @@ namespace QnA.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RedirectUrls",
+                columns: table => new
+                {
+                    AppId = table.Column<Guid>(nullable: false),
+                    RedirectUri = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RedirectUrls", x => new { x.AppId, x.RedirectUri });
+                    table.ForeignKey(
+                        name: "FK_RedirectUrls_DeveloperApps_AppId",
+                        column: x => x.AppId,
+                        principalTable: "DeveloperApps",
+                        principalColumn: "AppId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Answers",
                 columns: table => new
                 {
                     AnswerId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     AnswerMarkup = table.Column<string>(nullable: false),
                     DateTime = table.Column<DateTime>(nullable: false),
                     UserId = table.Column<int>(nullable: false),
@@ -65,13 +103,13 @@ namespace QnA.Persistence.Migrations
                         column: x => x.QuestionId,
                         principalTable: "Questions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Answers_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -79,7 +117,7 @@ namespace QnA.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     QuestionId = table.Column<int>(nullable: false),
                     UserId = table.Column<int>(nullable: false),
                     Content = table.Column<string>(nullable: true),
@@ -99,7 +137,7 @@ namespace QnA.Persistence.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -107,7 +145,7 @@ namespace QnA.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     UserId = table.Column<int>(nullable: false),
                     QuestionId = table.Column<int>(nullable: false)
                 },
@@ -125,7 +163,7 @@ namespace QnA.Persistence.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -133,26 +171,27 @@ namespace QnA.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     QuestionId = table.Column<int>(nullable: false),
                     UserId = table.Column<int>(nullable: false),
-                    DateTime = table.Column<DateTime>(nullable: false)
+                    DateTime = table.Column<DateTime>(nullable: false),
+                    QuestionId1 = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SavedQuestions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SavedQuestions_Questions_QuestionId",
+                        name: "FK_SavedQuestions_Users_QuestionId",
                         column: x => x.QuestionId,
-                        principalTable: "Questions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_SavedQuestions_Users_UserId",
-                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_SavedQuestions_Questions_QuestionId1",
+                        column: x => x.QuestionId1,
+                        principalTable: "Questions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -163,6 +202,11 @@ namespace QnA.Persistence.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Answers_UserId",
                 table: "Answers",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DeveloperApps_UserId",
+                table: "DeveloperApps",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -196,15 +240,16 @@ namespace QnA.Persistence.Migrations
                 column: "QuestionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SavedQuestions_UserId",
+                name: "IX_SavedQuestions_QuestionId1",
                 table: "SavedQuestions",
-                column: "UserId");
+                column: "QuestionId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",
                 table: "Users",
                 column: "Email",
-                unique: true);
+                unique: true,
+                filter: "[Email] IS NOT NULL");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -219,7 +264,13 @@ namespace QnA.Persistence.Migrations
                 name: "QuestionFollowings");
 
             migrationBuilder.DropTable(
+                name: "RedirectUrls");
+
+            migrationBuilder.DropTable(
                 name: "SavedQuestions");
+
+            migrationBuilder.DropTable(
+                name: "DeveloperApps");
 
             migrationBuilder.DropTable(
                 name: "Questions");

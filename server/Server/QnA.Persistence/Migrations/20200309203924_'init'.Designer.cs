@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QnA.Persistence;
@@ -9,20 +10,22 @@ using QnA.Persistence;
 namespace QnA.Persistence.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20200120100231_'auth_tables'")]
-    partial class auth_tables
+    [Migration("20200309203924_'init'")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("QnA.Domain.Entities.Answer", b =>
                 {
                     b.Property<int>("AnswerId")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AnswerMarkup")
                         .IsRequired();
@@ -45,7 +48,8 @@ namespace QnA.Persistence.Migrations
             modelBuilder.Entity("QnA.Domain.Entities.AppUser", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email");
 
@@ -60,7 +64,8 @@ namespace QnA.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
 
                     b.ToTable("Users");
                 });
@@ -74,15 +79,13 @@ namespace QnA.Persistence.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<int?>("DeveloperId");
-
                     b.Property<bool>("RequiresConsent");
 
                     b.Property<int>("UserId");
 
                     b.HasKey("AppId");
 
-                    b.HasIndex("DeveloperId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("DeveloperApps");
                 });
@@ -90,7 +93,8 @@ namespace QnA.Persistence.Migrations
             modelBuilder.Entity("QnA.Domain.Entities.Draft", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Content");
 
@@ -112,7 +116,8 @@ namespace QnA.Persistence.Migrations
             modelBuilder.Entity("QnA.Domain.Entities.Question", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DateTime");
 
@@ -132,7 +137,8 @@ namespace QnA.Persistence.Migrations
             modelBuilder.Entity("QnA.Domain.Entities.QuestionFollowing", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("QuestionId");
 
@@ -161,11 +167,14 @@ namespace QnA.Persistence.Migrations
             modelBuilder.Entity("QnA.Domain.Entities.SavedQuestion", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DateTime");
 
                     b.Property<int>("QuestionId");
+
+                    b.Property<int?>("QuestionId1");
 
                     b.Property<int>("UserId");
 
@@ -173,7 +182,7 @@ namespace QnA.Persistence.Migrations
 
                     b.HasIndex("QuestionId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("QuestionId1");
 
                     b.ToTable("SavedQuestions");
                 });
@@ -183,19 +192,20 @@ namespace QnA.Persistence.Migrations
                     b.HasOne("QnA.Domain.Entities.Question", "Question")
                         .WithMany("Answers")
                         .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("QnA.Domain.Entities.AppUser", "User")
-                        .WithMany()
+                        .WithMany("Answers")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("QnA.Domain.Entities.DeveloperApp", b =>
                 {
                     b.HasOne("QnA.Domain.Entities.AppUser", "Developer")
-                        .WithMany()
-                        .HasForeignKey("DeveloperId");
+                        .WithMany("Apps")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("QnA.Domain.Entities.Draft", b =>
@@ -206,9 +216,9 @@ namespace QnA.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("QnA.Domain.Entities.AppUser", "User")
-                        .WithMany()
+                        .WithMany("Drafts")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("QnA.Domain.Entities.Question", b =>
@@ -227,9 +237,9 @@ namespace QnA.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("QnA.Domain.Entities.AppUser", "User")
-                        .WithMany()
+                        .WithMany("QuestionFollowings")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("QnA.Domain.Entities.RedirectUrl", b =>
@@ -242,15 +252,14 @@ namespace QnA.Persistence.Migrations
 
             modelBuilder.Entity("QnA.Domain.Entities.SavedQuestion", b =>
                 {
+                    b.HasOne("QnA.Domain.Entities.AppUser", "User")
+                        .WithMany("SavedQuestions")
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("QnA.Domain.Entities.Question", "Question")
                         .WithMany()
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("QnA.Domain.Entities.AppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("QuestionId1");
                 });
 #pragma warning restore 612, 618
         }

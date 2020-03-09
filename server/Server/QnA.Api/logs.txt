@@ -5087,3 +5087,229 @@ VALUES (@p0, @p1, @p2, @p3),
 2020-01-20 15:56:44.846 +05:00 [INF] Request finished in 211.9938ms 200 text/css
 2020-01-20 15:56:46.348 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
 2020-01-20 15:56:47.026 +05:00 [INF] Request finished in 671.7788ms 200 application/json;charset=utf-8
+2020-01-29 00:06:28.646 +05:00 [INF] User profile is available. Using 'C:\Users\Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-01-29 00:06:31.197 +05:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-01-29 00:06:33.792 +05:00 [INF] Executed DbCommand (343ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+                    FROM information_schema.tables
+                    WHERE table_type = 'BASE TABLE' AND table_schema = 'questionsdb'
+2020-01-29 00:06:34.425 +05:00 [INF] Executed DbCommand (145ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Users` AS `u`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-29 00:06:34.546 +05:00 [INF] Executed DbCommand (41ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM `Questions` AS `q`)
+    THEN TRUE ELSE FALSE
+END
+2020-01-29 00:07:07.415 +05:00 [INF] Request starting HTTP/1.1 GET http://127.0.0.1:5000/  
+2020-01-29 00:07:08.459 +05:00 [INF] Request finished in 1043.5526ms 301 
+2020-01-29 00:07:08.490 +05:00 [INF] Request starting HTTP/1.1 GET http://127.0.0.1:5000/index.html  
+2020-01-29 00:07:08.872 +05:00 [INF] Request finished in 382.4753ms 200 text/html;charset=utf-8
+2020-01-29 00:07:08.932 +05:00 [INF] Request starting HTTP/1.1 GET http://127.0.0.1:5000/swagger-ui.css  
+2020-01-29 00:07:08.934 +05:00 [INF] Request starting HTTP/1.1 GET http://127.0.0.1:5000/swagger-ui-bundle.js  
+2020-01-29 00:07:08.936 +05:00 [INF] Request starting HTTP/1.1 GET http://127.0.0.1:5000/swagger-ui-standalone-preset.js  
+2020-01-29 00:07:09.044 +05:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2020-01-29 00:07:09.062 +05:00 [INF] Request finished in 130.1688ms 200 text/css
+2020-01-29 00:07:09.098 +05:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2020-01-29 00:07:09.116 +05:00 [INF] Request finished in 179.9072ms 200 application/javascript
+2020-01-29 00:07:09.179 +05:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2020-01-29 00:07:09.182 +05:00 [INF] Request finished in 247.8835ms 200 application/javascript
+2020-01-29 00:07:09.702 +05:00 [INF] Request starting HTTP/1.1 GET http://127.0.0.1:5000/swagger/v1/swagger.json  
+2020-01-29 00:07:10.183 +05:00 [INF] Request starting HTTP/1.1 GET http://127.0.0.1:5000/favicon-32x32.png  
+2020-01-29 00:07:10.205 +05:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2020-01-29 00:07:10.333 +05:00 [INF] Request finished in 149.786ms 200 image/png
+2020-01-29 00:07:11.757 +05:00 [INF] Request finished in 2054.8459ms 200 application/json;charset=utf-8
+2020-03-09 21:41:03.009 +01:00 [INF] User profile is available. Using 'C:\Users\Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-03-09 21:41:03.469 +01:00 [INF] Creating key {d9ec8225-5387-47bb-9e2d-440d5ad34c83} with creation date 2020-03-09 20:41:03Z, activation date 2020-03-11 16:48:35Z, and expiration date 2020-06-07 20:41:03Z.
+2020-03-09 21:41:03.599 +01:00 [INF] Writing data to file 'C:\Users\Waqas\AppData\Local\ASP.NET\DataProtection-Keys\key-d9ec8225-5387-47bb-9e2d-440d5ad34c83.xml'.
+2020-03-09 21:41:05.974 +01:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-03-09 21:41:06.782 +01:00 [INF] Executed DbCommand (256ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2020-03-09 21:41:11.546 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Users] AS [u])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2020-03-09 21:41:15.482 +01:00 [ERR] Failed executing DbCommand (7ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 450), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Users] ([Id], [Email], [FirstName], [LastName], [PasswordHash], [ProfilePicture])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+System.Data.SqlClient.SqlException (0x80131904): Cannot insert explicit value for identity column in table 'Users' when IDENTITY_INSERT is set to OFF.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+ClientConnectionId:130e653d-7a13-435e-8ebb-e8a0880c2c43
+Error Number:544,State:1,Class:16
+2020-03-09 21:41:15.502 +01:00 [ERR] An exception occurred in the database while saving changes for context type 'QnA.Persistence.DatabaseContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert explicit value for identity column in table 'Users' when IDENTITY_INSERT is set to OFF.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert explicit value for identity column in table 'Users' when IDENTITY_INSERT is set to OFF.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+2020-03-09 21:44:37.379 +01:00 [INF] User profile is available. Using 'C:\Users\Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-03-09 21:44:38.356 +01:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-03-09 21:44:38.942 +01:00 [INF] Executed DbCommand (440ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2020-03-09 21:44:46.395 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Users] AS [u])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2020-03-09 21:44:49.169 +01:00 [INF] Executed DbCommand (151ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Users] ([Email], [FirstName], [LastName], [PasswordHash], [ProfilePicture])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [Id]
+FROM [Users]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2020-03-09 21:44:49.201 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Users] ([Email], [FirstName], [LastName], [PasswordHash], [ProfilePicture])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [Id]
+FROM [Users]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2020-03-09 21:45:22.832 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Questions] AS [q])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2020-03-09 21:45:30.801 +01:00 [INF] Executed DbCommand (95ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 500), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2), @p4='?' (Size = 500), @p5='?' (DbType = Int32), @p6='?' (DbType = DateTime2), @p7='?' (Size = 500), @p8='?' (DbType = Int32), @p9='?' (DbType = DateTime2), @p10='?' (Size = 500), @p11='?' (DbType = Int32), @p12='?' (DbType = DateTime2), @p13='?' (Size = 500), @p14='?' (DbType = Int32), @p15='?' (DbType = DateTime2), @p16='?' (Size = 500), @p17='?' (DbType = Int32), @p18='?' (DbType = DateTime2), @p19='?' (Size = 500), @p20='?' (DbType = Int32), @p21='?' (DbType = DateTime2), @p22='?' (Size = 500), @p23='?' (DbType = Int32), @p24='?' (DbType = DateTime2), @p25='?' (Size = 500), @p26='?' (DbType = Int32), @p27='?' (DbType = DateTime2), @p28='?' (Size = 500), @p29='?' (DbType = Int32), @p30='?' (DbType = DateTime2), @p31='?' (Size = 500), @p32='?' (DbType = Int32), @p33='?' (DbType = DateTime2), @p34='?' (Size = 500), @p35='?' (DbType = Int32), @p36='?' (DbType = DateTime2), @p37='?' (Size = 500), @p38='?' (DbType = Int32), @p39='?' (DbType = DateTime2), @p40='?' (Size = 500), @p41='?' (DbType = Int32), @p42='?' (DbType = DateTime2), @p43='?' (Size = 500), @p44='?' (DbType = Int32), @p45='?' (DbType = DateTime2), @p46='?' (Size = 500), @p47='?' (DbType = Int32), @p48='?' (DbType = DateTime2), @p49='?' (Size = 500), @p50='?' (DbType = Int32), @p51='?' (DbType = DateTime2), @p52='?' (Size = 500), @p53='?' (DbType = Int32), @p54='?' (DbType = DateTime2), @p55='?' (Size = 500), @p56='?' (DbType = Int32), @p57='?' (DbType = DateTime2), @p58='?' (Size = 500), @p59='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Questions] USING (
+VALUES (@p0, @p1, @p2, 0),
+(@p3, @p4, @p5, 1),
+(@p6, @p7, @p8, 2),
+(@p9, @p10, @p11, 3),
+(@p12, @p13, @p14, 4),
+(@p15, @p16, @p17, 5),
+(@p18, @p19, @p20, 6),
+(@p21, @p22, @p23, 7),
+(@p24, @p25, @p26, 8),
+(@p27, @p28, @p29, 9),
+(@p30, @p31, @p32, 10),
+(@p33, @p34, @p35, 11),
+(@p36, @p37, @p38, 12),
+(@p39, @p40, @p41, 13),
+(@p42, @p43, @p44, 14),
+(@p45, @p46, @p47, 15),
+(@p48, @p49, @p50, 16),
+(@p51, @p52, @p53, 17),
+(@p54, @p55, @p56, 18),
+(@p57, @p58, @p59, 19)) AS i ([DateTime], [QuestionText], [UserId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([DateTime], [QuestionText], [UserId])
+VALUES (i.[DateTime], i.[QuestionText], i.[UserId])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Questions] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2020-03-09 21:45:35.986 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/  
+2020-03-09 21:45:36.672 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/index.html  
+2020-03-09 21:45:36.728 +01:00 [INF] Request finished in 742.3013ms 301 
+2020-03-09 21:45:37.034 +01:00 [INF] Request finished in 361.7405ms 200 text/html;charset=utf-8
+2020-03-09 21:45:37.090 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger-ui.css  
+2020-03-09 21:45:37.092 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger-ui-bundle.js  
+2020-03-09 21:45:37.102 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger-ui-standalone-preset.js  
+2020-03-09 21:45:37.151 +01:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2020-03-09 21:45:37.159 +01:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2020-03-09 21:45:37.175 +01:00 [INF] Request finished in 89.7822ms 200 text/css
+2020-03-09 21:45:37.178 +01:00 [INF] Request finished in 77.6367ms 200 application/javascript
+2020-03-09 21:45:37.194 +01:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2020-03-09 21:45:37.198 +01:00 [INF] Request finished in 114.4495ms 200 application/javascript
+2020-03-09 21:45:37.476 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+2020-03-09 21:45:37.567 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/favicon-32x32.png  
+2020-03-09 21:45:37.573 +01:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2020-03-09 21:45:37.577 +01:00 [INF] Request finished in 9.0084ms 200 image/png
+2020-03-09 21:45:37.804 +01:00 [INF] Request finished in 329.7711ms 200 application/json;charset=utf-8
+2020-03-09 21:46:08.386 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/answers/1  
+2020-03-09 21:46:08.586 +01:00 [INF] Executing endpoint 'QnA.Api.Controllers.AnswersController.GetAnswers (QnA.Api)'
+2020-03-09 21:46:08.659 +01:00 [INF] Route matched with {action = "GetAnswers", controller = "Answers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAnswers(Int32) on controller QnA.Api.Controllers.AnswersController (QnA.Api).
+2020-03-09 21:46:08.771 +01:00 [INF] Executing action method QnA.Api.Controllers.AnswersController.GetAnswers (QnA.Api) - Validation state: "Valid"
+2020-03-09 21:46:08.830 +01:00 [INF] QnA Request: GetAnswersByQuestionIdQuery  {"QuestionId":1,"$type":"GetAnswersByQuestionIdQuery"}
+2020-03-09 21:46:08.916 +01:00 [INF] QnA Request: GetAnswersByQuestionIdQuery  {"QuestionId":1,"$type":"GetAnswersByQuestionIdQuery"}
+2020-03-09 21:46:08.929 +01:00 [INF] QnA Request: GetAnswersByQuestionIdQuery  {"QuestionId":1,"$type":"GetAnswersByQuestionIdQuery"}
+2020-03-09 21:46:08.933 +01:00 [INF] QnA Request: GetAnswersByQuestionIdQuery  {"QuestionId":1,"$type":"GetAnswersByQuestionIdQuery"}
+2020-03-09 21:46:08.973 +01:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-03-09 21:46:09.122 +01:00 [WRN] The Include operation for navigation '[x].User' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2020-03-09 21:46:09.386 +01:00 [INF] Executed DbCommand (99ms) [Parameters=[@__request_QuestionId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [x].[AnswerId], [x].[AnswerMarkup], [x].[DateTime], [x.User].[FirstName], [x.User].[LastName], [x.User].[Email]
+FROM [Answers] AS [x]
+INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+WHERE [x].[QuestionId] = @__request_QuestionId_0
+2020-03-09 21:46:09.449 +01:00 [INF] Executed action method QnA.Api.Controllers.AnswersController.GetAnswers (QnA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 664.5234ms.
+2020-03-09 21:46:09.487 +01:00 [INF] Executing ObjectResult, writing value of type 'QnA.Api.ApiModels.BaseResponse'.
+2020-03-09 21:46:09.927 +01:00 [INF] Executed action QnA.Api.Controllers.AnswersController.GetAnswers (QnA.Api) in 1257.7879ms
+2020-03-09 21:46:09.934 +01:00 [INF] Executed endpoint 'QnA.Api.Controllers.AnswersController.GetAnswers (QnA.Api)'
+2020-03-09 21:46:09.941 +01:00 [INF] Request finished in 1554.4079ms 200 application/json; charset=utf-8
