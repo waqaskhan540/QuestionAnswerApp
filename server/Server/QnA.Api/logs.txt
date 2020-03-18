@@ -5313,3 +5313,110 @@ WHERE [x].[QuestionId] = @__request_QuestionId_0
 2020-03-09 21:46:09.927 +01:00 [INF] Executed action QnA.Api.Controllers.AnswersController.GetAnswers (QnA.Api) in 1257.7879ms
 2020-03-09 21:46:09.934 +01:00 [INF] Executed endpoint 'QnA.Api.Controllers.AnswersController.GetAnswers (QnA.Api)'
 2020-03-09 21:46:09.941 +01:00 [INF] Request finished in 1554.4079ms 200 application/json; charset=utf-8
+2020-03-09 21:59:13.520 +01:00 [INF] User profile is available. Using 'C:\Users\Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-03-09 21:59:14.801 +01:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-03-09 21:59:16.078 +01:00 [INF] Executed DbCommand (1,056ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2020-03-09 21:59:16.311 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Users] AS [u])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2020-03-09 21:59:16.550 +01:00 [INF] Executed DbCommand (204ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Questions] AS [q])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2020-03-09 21:59:17.626 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/index.html  
+2020-03-09 21:59:18.199 +01:00 [INF] Request finished in 575.6892ms 200 text/html;charset=utf-8
+2020-03-09 21:59:18.703 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+2020-03-09 21:59:19.001 +01:00 [INF] Request finished in 298.8521ms 200 application/json;charset=utf-8
+2020-03-09 22:04:33.217 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-03-09 22:04:33.224 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/followings/negotiate  
+2020-03-09 22:04:33.242 +01:00 [INF] CORS policy execution successful.
+2020-03-09 22:04:33.242 +01:00 [INF] CORS policy execution successful.
+2020-03-09 22:04:33.254 +01:00 [INF] Request finished in 32.3015ms 204 
+2020-03-09 22:04:33.258 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/followings/negotiate text/plain;charset=UTF-8 0
+2020-03-09 22:04:33.264 +01:00 [INF] CORS policy execution successful.
+2020-03-09 22:04:33.293 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000//ProfileImages/placeholder.jpg  
+2020-03-09 22:04:33.403 +01:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (QnA.Api)'
+2020-03-09 22:04:33.453 +01:00 [INF] Sending file. Request path: '//ProfileImages/placeholder.jpg'. Physical path: 'D:\QuestionAnswerApp\server\Server\QnA.Api\wwwroot\ProfileImages\placeholder.jpg'
+2020-03-09 22:04:33.496 +01:00 [INF] Request finished in 194.0151ms 200 image/jpeg
+2020-03-09 22:04:33.526 +01:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (QnA.Api).
+2020-03-09 22:04:33.595 +01:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (QnA.Api) - Validation state: "Valid"
+2020-03-09 22:04:33.652 +01:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-03-09 22:04:33.946 +01:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-03-09 22:04:33.962 +01:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-03-09 22:04:33.966 +01:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-03-09 22:04:34.361 +01:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-03-09 22:04:35.008 +01:00 [INF] Executed DbCommand (355ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].*
+FROM (
+    SELECT TOP(@__p_0) [x].[Id], [x].[QuestionText], [x].[DateTime], [x].[UserId], [x.User].[FirstName], [x.User].[LastName]
+    FROM [Questions] AS [x]
+    INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+    ORDER BY [x].[DateTime] DESC
+) AS [t]
+ORDER BY [t].[DateTime] DESC
+OFFSET @__p_1 ROWS
+2020-03-09 22:04:35.195 +01:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (QnA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1539.7398ms.
+2020-03-09 22:04:35.260 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]', Current time: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, JwtSecurityToken jwtToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateTokenPayload(JwtSecurityToken jwtToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleAuthenticateAsync()
+2020-03-09 22:04:35.270 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]', Current time: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2020-03-09 22:04:35.280 +01:00 [INF] Executing ObjectResult, writing value of type 'QnA.Api.ApiModels.BaseResponse'.
+2020-03-09 22:04:35.346 +01:00 [INF] Authorization failed.
+2020-03-09 22:04:35.381 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2020-03-09 22:04:35.431 +01:00 [INF] Request finished in 2171.6899ms 401 
+2020-03-09 22:04:35.579 +01:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (QnA.Api) in 2040.1723000000002ms
+2020-03-09 22:04:35.586 +01:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (QnA.Api)'
+2020-03-09 22:04:35.604 +01:00 [INF] Request finished in 2393.8972ms 200 application/json; charset=utf-8
+2020-03-09 22:08:47.196 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/questions/3  
+2020-03-09 22:08:47.199 +01:00 [INF] CORS policy execution successful.
+2020-03-09 22:08:47.207 +01:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetQuestion (QnA.Api)'
+2020-03-09 22:08:47.217 +01:00 [INF] Route matched with {action = "GetQuestion", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuestion(Int32) on controller Api.Controllers.QuestionsController (QnA.Api).
+2020-03-09 22:08:47.223 +01:00 [INF] Executing action method Api.Controllers.QuestionsController.GetQuestion (QnA.Api) - Validation state: "Valid"
+2020-03-09 22:08:47.233 +01:00 [INF] QnA Request: GetQuestionByIdQuery  {"QuestionId":3,"$type":"GetQuestionByIdQuery"}
+2020-03-09 22:08:47.239 +01:00 [INF] QnA Request: GetQuestionByIdQuery  {"QuestionId":3,"$type":"GetQuestionByIdQuery"}
+2020-03-09 22:08:47.244 +01:00 [INF] QnA Request: GetQuestionByIdQuery  {"QuestionId":3,"$type":"GetQuestionByIdQuery"}
+2020-03-09 22:08:47.248 +01:00 [INF] QnA Request: GetQuestionByIdQuery  {"QuestionId":3,"$type":"GetQuestionByIdQuery"}
+2020-03-09 22:08:47.255 +01:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-03-09 22:08:47.354 +01:00 [INF] Executed DbCommand (7ms) [Parameters=[@__request_QuestionId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [x].[Id], [x].[QuestionText], [x].[DateTime], [x].[UserId], [x.User].[FirstName], [x.User].[LastName]
+FROM [Questions] AS [x]
+INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+WHERE [x].[Id] = @__request_QuestionId_0
+2020-03-09 22:08:47.359 +01:00 [INF] Executed action method Api.Controllers.QuestionsController.GetQuestion (QnA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 131.9685ms.
+2020-03-09 22:08:47.364 +01:00 [INF] Executing ObjectResult, writing value of type 'QnA.Api.ApiModels.BaseResponse'.
+2020-03-09 22:08:47.369 +01:00 [INF] Executed action Api.Controllers.QuestionsController.GetQuestion (QnA.Api) in 148.3425ms
+2020-03-09 22:08:47.374 +01:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetQuestion (QnA.Api)'
+2020-03-09 22:08:47.378 +01:00 [INF] Request finished in 182.3584ms 200 application/json; charset=utf-8
+2020-03-09 22:08:47.400 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/answers/3  
+2020-03-09 22:08:47.405 +01:00 [INF] CORS policy execution successful.
+2020-03-09 22:08:47.410 +01:00 [INF] Executing endpoint 'QnA.Api.Controllers.AnswersController.GetAnswers (QnA.Api)'
+2020-03-09 22:08:47.420 +01:00 [INF] Route matched with {action = "GetAnswers", controller = "Answers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAnswers(Int32) on controller QnA.Api.Controllers.AnswersController (QnA.Api).
+2020-03-09 22:08:47.425 +01:00 [INF] Executing action method QnA.Api.Controllers.AnswersController.GetAnswers (QnA.Api) - Validation state: "Valid"
+2020-03-09 22:08:47.434 +01:00 [INF] QnA Request: GetAnswersByQuestionIdQuery  {"QuestionId":3,"$type":"GetAnswersByQuestionIdQuery"}
+2020-03-09 22:08:47.439 +01:00 [INF] QnA Request: GetAnswersByQuestionIdQuery  {"QuestionId":3,"$type":"GetAnswersByQuestionIdQuery"}
+2020-03-09 22:08:47.443 +01:00 [INF] QnA Request: GetAnswersByQuestionIdQuery  {"QuestionId":3,"$type":"GetAnswersByQuestionIdQuery"}
+2020-03-09 22:08:47.447 +01:00 [INF] QnA Request: GetAnswersByQuestionIdQuery  {"QuestionId":3,"$type":"GetAnswersByQuestionIdQuery"}
+2020-03-09 22:08:47.457 +01:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-03-09 22:08:47.473 +01:00 [WRN] The Include operation for navigation '[x].User' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2020-03-09 22:08:47.561 +01:00 [INF] Executed DbCommand (40ms) [Parameters=[@__request_QuestionId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [x].[AnswerId], [x].[AnswerMarkup], [x].[DateTime], [x.User].[FirstName], [x.User].[LastName], [x.User].[Email]
+FROM [Answers] AS [x]
+INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+WHERE [x].[QuestionId] = @__request_QuestionId_0
+2020-03-09 22:08:47.580 +01:00 [INF] Executed action method QnA.Api.Controllers.AnswersController.GetAnswers (QnA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 150.0608ms.
+2020-03-09 22:08:47.585 +01:00 [INF] Executing ObjectResult, writing value of type 'QnA.Api.ApiModels.BaseResponse'.
+2020-03-09 22:08:47.592 +01:00 [INF] Executed action QnA.Api.Controllers.AnswersController.GetAnswers (QnA.Api) in 168.5967ms
+2020-03-09 22:08:47.597 +01:00 [INF] Executed endpoint 'QnA.Api.Controllers.AnswersController.GetAnswers (QnA.Api)'
+2020-03-09 22:08:47.601 +01:00 [INF] Request finished in 201.4891ms 200 application/json; charset=utf-8

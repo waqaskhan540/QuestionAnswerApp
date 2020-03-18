@@ -8,7 +8,8 @@ namespace QnA.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Answer> builder)
         {
-            builder.HasKey(x => x.AnswerId);
+            builder
+                .HasKey(x => x.AnswerId);
             builder
                 .Property(x => x.AnswerMarkup)
                 .IsRequired();
@@ -26,10 +27,7 @@ namespace QnA.Persistence.Configurations
                 .WithMany(x => x.Answers)
                 .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
-                    
-                
-                
-
+                                                   
         }
     }
 }

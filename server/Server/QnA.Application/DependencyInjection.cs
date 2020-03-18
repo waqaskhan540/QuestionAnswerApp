@@ -2,6 +2,7 @@
 using MediatR;
 using MediatR.Pipeline;
 using Microsoft.Extensions.DependencyInjection;
+using QnA.Application.Interfaces.Repositories;
 using QnA.Application.Logging;
 using System.Reflection;
 
@@ -18,6 +19,8 @@ namespace QnA.Application
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPreProcessorBehavior<,>));
             services.AddTransient(typeof(IRequestPreProcessor<>), typeof(RequestLogger<>));
+
+           // services.AddScoped<IQuestionsRepository,QuestionsRepository>
             return services;
 
 

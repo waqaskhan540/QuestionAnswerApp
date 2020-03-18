@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using QnA.Application.Answers.Models;
 using QnA.Application.Interfaces;
+using QnA.Application.Interfaces.Repositories;
 using QnA.Domain.Entities;
 using System;
 using System.Threading;
@@ -10,16 +11,27 @@ using System.Threading.Tasks;
 namespace QnA.Application.Answers.Commands
 {
     public class PublishAnswerCommandHandler : IRequestHandler<PublishAnswerCommand, PublishAnswerViewModel>
-    {
-        private readonly IDatabaseContext _context;
+    {        
+        private readonly IQuestionsRepository _questionsRepository;
+        private readonly IAnswersRepository _answersRepository;
+        private readonly IQuestionsFollowingRepository _questionsFollowingRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public PublishAnswerCommandHandler(IDatabaseContext context)
-        {
-            _context = context;
+        public PublishAnswerCommandHandler(                        
+            IQuestionsRepository questionsRepository,
+            IAnswersRepository answersRepository,
+            IQuestionsFollowingRepository questionsFollowingRepository,
+            IUnitOfWork unitOfWork
+            )
+        {            
+            _questionsRepository = questionsRepository;
+            _answersRepository = answersRepository;
+            _questionsFollowingRepository = questionsFollowingRepository;
+            _unitOfWork = unitOfWork;
         }
         public async Task<PublishAnswerViewModel> Handle(PublishAnswerCommand request, CancellationToken cancellationToken)
         {
-            var exists = await _context.Questions.AnyAsync(x => x.Id == request.QuestionId);
+            var exists = await _questionsRepository.QuestionExists(request.QuestionId);
             if (!exists)
                 return new PublishAnswerViewModel { Message = "Question does not exist." };
 
@@ -31,12 +43,11 @@ namespace QnA.Application.Answers.Commands
                 UserId = request.UserId
             };
 
-            await _context.Answers.AddAsync(answer);
-            await _context.SaveChangesAsync(cancellationToken);
+            
+            await _answersRepository.AddAsync(answer);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-
-            var hasFollowers = await _context.QuestionFollowings.AnyAsync(f => f.QuestionId == request.QuestionId);
-
+            var hasFollowers = await _questionsFollowingRepository.QuestionsHasFollowers(request.QuestionId);
             return new PublishAnswerViewModel { 
                 Message = "Answer published successfully",
                 HasFollowers = hasFollowers

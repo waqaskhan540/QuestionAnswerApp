@@ -11,6 +11,22 @@ namespace QnA.Application.Answers.Models
         public DateTime DateTime { get; set; }
 
         public UserDto User { get; set; }
+        public static AnswerDto FromEntity(Answer answer)
+        {
+          var x =  new AnswerDto
+            {
+                AnswerId = answer.AnswerId,
+                AnswerMarkup = answer.AnswerMarkup,
+                DateTime = answer.DateTime,
+                User = new UserDto
+                {
+                    FirstName = answer.User?.FirstName,
+                    LastName = answer.User?.LastName,
+                    Email = answer.User?.Email
+                }
+            };
+            return x;
+        }
         public static Expression<Func<Answer, AnswerDto>> Projection
         {
             get
