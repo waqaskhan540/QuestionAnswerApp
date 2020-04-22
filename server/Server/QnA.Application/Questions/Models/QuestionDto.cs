@@ -12,6 +12,25 @@ namespace QnA.Application.Questions.Models
         public int UserId { get; set; }
 
         public UserDto User { get; set; }
+
+        public static QuestionDto FromEntity(Question entity)
+        {
+
+            return new QuestionDto
+            {
+                Id = entity.Id,
+                QuestionText = entity.QuestionText,
+                DateTime = entity.DateTime,
+                UserId = entity.UserId,
+                User = new UserDto
+                {
+                    FirstName = entity.User.FirstName,
+                    LastName = entity.User.LastName,
+                    //Image = Convert.ToBase64String(c.User.ProfilePicture)
+                }
+            };
+
+        }
         public static Expression<Func<Question, QuestionDto>> Projection
         {
             get

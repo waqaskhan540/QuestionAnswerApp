@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using QnA.Application.Drafts.Models;
+using QnA.Application.Exceptions;
 using QnA.Application.Interfaces;
+using QnA.Application.Interfaces.Repositories;
 using QnA.Domain.Entities;
 using System;
 using System.Linq;
@@ -11,21 +13,32 @@ namespace QnA.Application.Drafts.Commands
 {
     public class SaveDraftCommandHandler : IRequestHandler<SaveDraftCommand, SaveDraftViewModel>
     {
-        private readonly IDatabaseContext _context;
+        
+        private readonly IDraftRepository _draftRepository;
+        private readonly IQuestionsRepository _questionsRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public SaveDraftCommandHandler(IDatabaseContext context)
-        {
-            _context = context;
+        public SaveDraftCommandHandler(
+            IDraftRepository draftRepository,
+            IQuestionsRepository questionsRepository,
+            IUnitOfWork unitOfWork)
+        {            
+            _draftRepository = draftRepository;
+            _questionsRepository = questionsRepository;
+            _unitOfWork = unitOfWork;
         }
         public async Task<SaveDraftViewModel> Handle(SaveDraftCommand request, CancellationToken cancellationToken)
         {
-            var draft = _context.Drafts.FirstOrDefault(x => x.UserId == request.UserId && x.QuestionId == request.QuestionId);
+            if (!await _questionsRepository.QuestionExists(request.QuestionId))
+                throw new InvalidQuestionException();
+
+            var draft = await _draftRepository.GetByQuestionAndUser(request.UserId, request.QuestionId);
 
             if(draft != null)
             {
                 draft.Content = request.Content;
                 draft.DateTime = DateTime.Now;
-                _context.Drafts.Update(draft);
+                _draftRepository.Update(draft);
             }else
             {
                 var newDraft = new Draft
@@ -36,10 +49,11 @@ namespace QnA.Application.Drafts.Commands
                     QuestionId = request.QuestionId
                 };
 
-                await _context.Drafts.AddAsync(newDraft);
+                await _draftRepository.AddAsync(newDraft);
             }
 
-            await _context.SaveChangesAsync(cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
+            
             return new SaveDraftViewModel { Message = "Draft saved successfully." };
         }
     }

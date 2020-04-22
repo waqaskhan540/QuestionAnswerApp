@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using QnA.Application.Authentication.Models;
 using QnA.Application.Interfaces;
+using QnA.Application.Interfaces.Repositories;
 using QnA.Application.Interfaces.Security;
 using QnA.Domain.Entities;
 using System.Threading;
@@ -12,17 +13,19 @@ namespace QnA.Application.Authentication.Queries
     public class UserExternalLoginQueryHandler : IRequestHandler<UserExternalLoginQuery, UserLoginViewModel>
     {
         private readonly IExternalAuthenticationProvider _externalAuthProvider;
-        private readonly IDatabaseContext _context;
+        private readonly IUserRepository _userRepository;
         private readonly IJwtTokenGenerator _tokenGenerator;
+        private readonly IUnitOfWork _unitOfWork;
 
         public UserExternalLoginQueryHandler(
             IExternalAuthenticationProvider externalAuthProvider,
-            IDatabaseContext context,
-            IJwtTokenGenerator tokenGenerator
+            IUserRepository userRepository,
+            IJwtTokenGenerator tokenGenerator,
+            IUnitOfWork unitOfWork
             )
         {
             _externalAuthProvider = externalAuthProvider;
-            _context = context;
+            _userRepository = userRepository;
             _tokenGenerator = tokenGenerator;
         }
         public async Task<UserLoginViewModel> Handle(UserExternalLoginQuery request, CancellationToken cancellationToken)
@@ -35,7 +38,7 @@ namespace QnA.Application.Authentication.Queries
                     Message = user.Error
                 };
 
-            var existingUser = await _context.Users.FirstOrDefaultAsync(x => x.Email == user.Email);
+            var existingUser = await _userRepository.GetUserByEmail(user.Email);
             string accesstoken = string.Empty;
 
             if (existingUser == null)
@@ -48,8 +51,8 @@ namespace QnA.Application.Authentication.Queries
                     );
                 newUser.ProfilePicture = user.Picture;
 
-                await _context.Users.AddAsync(newUser);
-                await _context.SaveChangesAsync(CancellationToken.None);
+                await _userRepository.AddAsync(newUser);
+                await _unitOfWork.SaveChangesAsync(CancellationToken.None);
 
                 accesstoken = _tokenGenerator.GenerateToken(newUser.LastName, newUser.Email, newUser.Id);
                 return new UserLoginViewModel
@@ -70,8 +73,8 @@ namespace QnA.Application.Authentication.Queries
             if (existingUser.ProfilePicture == null && user.Picture != null)
             {
                 existingUser.ProfilePicture = user.Picture;
-                _context.Users.Update(existingUser);
-                await _context.SaveChangesAsync(CancellationToken.None);
+                _userRepository.Update(existingUser);
+                await _unitOfWork.SaveChangesAsync(CancellationToken.None);
             }
 
             accesstoken = _tokenGenerator.GenerateToken(existingUser.LastName, existingUser.Email, existingUser.Id);

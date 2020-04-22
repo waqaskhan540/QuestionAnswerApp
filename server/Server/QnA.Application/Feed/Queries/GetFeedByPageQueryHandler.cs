@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using QnA.Application.Interfaces;
+using QnA.Application.Interfaces.Repositories;
 using QnA.Application.Questions.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,29 +12,30 @@ namespace QnA.Application.Feed.Queries
 {
     public class GetFeedByPageQueryHandler : IRequestHandler<GetFeedByPageQuery, List<QuestionDto>>
     {
-        private readonly IDatabaseContext _context;
+
+        private readonly IQuestionsRepository _questionsRepository;
         private readonly IPlaceHolderImageProvider _placeholderImageProvider;
 
-        public GetFeedByPageQueryHandler(IDatabaseContext context,IPlaceHolderImageProvider placeholderImageProvider)
+        public GetFeedByPageQueryHandler(IQuestionsRepository questionsRepository, IPlaceHolderImageProvider placeholderImageProvider)
         {
-            _context = context;
+            _questionsRepository = questionsRepository;
             _placeholderImageProvider = placeholderImageProvider;
         }
         public async Task<List<QuestionDto>> Handle(GetFeedByPageQuery request, CancellationToken cancellationToken)
         {
-            var questions = await _context.Questions
-                                 .OrderByDescending(x => x.DateTime)
-                                 .Take(request.Page * 5)
-                                 .Skip((request.Page - 1) * 5)
-                                 .Select(QuestionDto.Projection)
-                                 .ToListAsync();
+            var questions = await _questionsRepository.GetQuestionsPagedData(request.Page);
 
-            questions.ForEach(que =>
+            //TODO: replace logic using AutoMapper
+            var questionDtos = new List<QuestionDto>();
+            foreach (var ques in questions)
+                questionDtos.Add(QuestionDto.FromEntity(ques));
+
+            questionDtos.ForEach(que =>
             {
                 if (que.User.Image == null)
                     que.User.Image = _placeholderImageProvider.GetProfileImagePlaceHolder();
             });
-            return questions;
+            return questionDtos;
         }
     }
 }
