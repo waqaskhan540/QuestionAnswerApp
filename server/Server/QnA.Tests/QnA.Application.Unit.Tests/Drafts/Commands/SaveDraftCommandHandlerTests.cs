@@ -101,9 +101,7 @@ namespace QnA.Application.Unit.Tests.Drafts.Commands
 
             var result = await commandHandler.Handle(command, CancellationToken.None);
 
-            Assert.Equal("Draft saved successfully.", result.Message);
-            _draftsRepository.Verify(x => x.AddAsync(It.IsAny<Draft>()), Times.Once);
-            _unitOfWork.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
+            Assert.Equal("Draft saved successfully.", result.Message);                                  
         }
     }
 }
