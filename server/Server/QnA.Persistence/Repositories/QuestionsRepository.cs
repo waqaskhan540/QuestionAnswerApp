@@ -22,10 +22,10 @@ namespace QnA.Persistence.Repositories
         public async Task<IEnumerable<Question>> GetQuestionsPagedData(int page)
         {
             var questions = await _context.Questions
+                                 .Include(x => x.User)
                                  .OrderByDescending(x => x.DateTime)
                                  .Take(page * 5)
-                                 .Skip((page - 1) * 5)
-                                 //.Select(QuestionDto.Projection)
+                                 .Skip((page - 1) * 5)                                 
                                  .ToListAsync();
             return questions;
         }

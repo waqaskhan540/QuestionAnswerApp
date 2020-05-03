@@ -5420,3 +5420,97 @@ WHERE [x].[QuestionId] = @__request_QuestionId_0
 2020-03-09 22:08:47.592 +01:00 [INF] Executed action QnA.Api.Controllers.AnswersController.GetAnswers (QnA.Api) in 168.5967ms
 2020-03-09 22:08:47.597 +01:00 [INF] Executed endpoint 'QnA.Api.Controllers.AnswersController.GetAnswers (QnA.Api)'
 2020-03-09 22:08:47.601 +01:00 [INF] Request finished in 201.4891ms 200 application/json; charset=utf-8
+2020-05-03 21:20:39.803 +02:00 [INF] User profile is available. Using 'C:\Users\Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-05-03 21:20:41.693 +02:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-05-03 21:20:42.084 +02:00 [INF] Executed DbCommand (105ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2020-05-03 21:20:42.346 +02:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Users] AS [u])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2020-05-03 21:20:42.389 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Questions] AS [q])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2020-05-03 21:20:43.408 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/index.html  
+2020-05-03 21:20:44.007 +02:00 [INF] Request finished in 602.0914ms 200 text/html;charset=utf-8
+2020-05-03 21:20:44.219 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+2020-05-03 21:20:44.594 +02:00 [INF] Request finished in 373.286ms 200 application/json;charset=utf-8
+2020-05-03 21:23:45.855 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-05-03 21:23:45.870 +02:00 [INF] CORS policy execution successful.
+2020-05-03 21:23:45.921 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000//ProfileImages/placeholder.jpg  
+2020-05-03 21:23:46.006 +02:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (QnA.Api)'
+2020-05-03 21:23:46.011 +02:00 [INF] Sending file. Request path: '//ProfileImages/placeholder.jpg'. Physical path: 'D:\QnA\server\Server\QnA.Api\wwwroot\ProfileImages\placeholder.jpg'
+2020-05-03 21:23:46.021 +02:00 [INF] Request finished in 99.2298ms 200 image/jpeg
+2020-05-03 21:23:46.103 +02:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (QnA.Api).
+2020-05-03 21:23:46.176 +02:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (QnA.Api) - Validation state: "Valid"
+2020-05-03 21:23:46.228 +02:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-05-03 21:23:46.281 +02:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-05-03 21:23:46.298 +02:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-05-03 21:23:46.303 +02:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-05-03 21:23:46.350 +02:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-05-03 21:23:46.614 +02:00 [INF] Executed DbCommand (76ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].*
+FROM (
+    SELECT TOP(@__p_0) [x].[Id], [x].[DateTime], [x].[QuestionText], [x].[UserId]
+    FROM [Questions] AS [x]
+    ORDER BY [x].[DateTime] DESC
+) AS [t]
+ORDER BY [t].[DateTime] DESC
+OFFSET @__p_1 ROWS
+2020-05-03 21:25:41.958 +02:00 [INF] User profile is available. Using 'C:\Users\Waqas\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-05-03 21:25:42.959 +02:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-05-03 21:25:43.453 +02:00 [INF] Executed DbCommand (331ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2020-05-03 21:25:43.753 +02:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Users] AS [u])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2020-05-03 21:25:43.803 +02:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Questions] AS [q])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2020-05-03 21:25:44.817 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/index.html  
+2020-05-03 21:25:45.446 +02:00 [INF] Request finished in 632.5107ms 200 text/html;charset=utf-8
+2020-05-03 21:25:45.683 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+2020-05-03 21:25:46.075 +02:00 [INF] Request finished in 392.8536ms 200 application/json;charset=utf-8
+2020-05-03 21:25:54.780 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/feed/1  
+2020-05-03 21:25:54.794 +02:00 [INF] CORS policy execution successful.
+2020-05-03 21:25:54.882 +02:00 [INF] Executing endpoint 'Api.Controllers.QuestionsController.GetFeed (QnA.Api)'
+2020-05-03 21:25:54.959 +02:00 [INF] Route matched with {action = "GetFeed", controller = "Questions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFeed(Int32) on controller Api.Controllers.QuestionsController (QnA.Api).
+2020-05-03 21:25:55.038 +02:00 [INF] Executing action method Api.Controllers.QuestionsController.GetFeed (QnA.Api) - Validation state: "Valid"
+2020-05-03 21:25:55.093 +02:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-05-03 21:25:55.124 +02:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-05-03 21:25:55.137 +02:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-05-03 21:25:55.141 +02:00 [INF] QnA Request: GetFeedByPageQuery  {"Page":1,"$type":"GetFeedByPageQuery"}
+2020-05-03 21:25:55.159 +02:00 [INF] Entity Framework Core 2.2.6-servicing-10079 initialized 'DatabaseContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: MigrationsAssembly=QnA.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2020-05-03 21:25:55.460 +02:00 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].*
+FROM (
+    SELECT TOP(@__p_0) [x].[Id], [x].[DateTime], [x].[QuestionText], [x].[UserId], [x.User].[Id] AS [Id0], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[PasswordHash], [x.User].[ProfilePicture]
+    FROM [Questions] AS [x]
+    INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+    ORDER BY [x].[DateTime] DESC
+) AS [t]
+ORDER BY [t].[DateTime] DESC
+OFFSET @__p_1 ROWS
+2020-05-03 21:25:55.756 +02:00 [INF] Executed action method Api.Controllers.QuestionsController.GetFeed (QnA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 705.3895ms.
+2020-05-03 21:25:55.790 +02:00 [INF] Executing ObjectResult, writing value of type 'QnA.Api.ApiModels.BaseResponse'.
+2020-05-03 21:25:56.240 +02:00 [INF] Executed action Api.Controllers.QuestionsController.GetFeed (QnA.Api) in 1267.6076ms
+2020-05-03 21:25:56.247 +02:00 [INF] Executed endpoint 'Api.Controllers.QuestionsController.GetFeed (QnA.Api)'
+2020-05-03 21:25:56.274 +02:00 [INF] Request finished in 1494.2106ms 200 application/json; charset=utf-8
+2020-05-03 21:25:56.371 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000//ProfileImages/placeholder.jpg  
+2020-05-03 21:25:56.379 +02:00 [INF] The file //ProfileImages/placeholder.jpg was not modified
+2020-05-03 21:25:56.388 +02:00 [INF] Request finished in 16.6244ms 304 image/jpeg

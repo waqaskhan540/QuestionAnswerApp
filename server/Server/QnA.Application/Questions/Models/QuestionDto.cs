@@ -16,6 +16,9 @@ namespace QnA.Application.Questions.Models
         public static QuestionDto FromEntity(Question entity)
         {
 
+            if (entity.User == null)
+                throw new ArgumentNullException(nameof(entity.User));
+
             return new QuestionDto
             {
                 Id = entity.Id,
