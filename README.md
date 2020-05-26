@@ -1,6 +1,8 @@
 
 ![QnA](qna_logo.png)
 
+![.NET Core](https://github.com/waqaskhan540/QuestionAnswerApp/workflows/.NET%20Core/badge.svg?branch=master)
+
 
 A simple app for asking questions and posting answers, built using React and ASP.NET Core
 
