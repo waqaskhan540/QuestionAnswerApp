@@ -18,7 +18,7 @@ jobs:
       with:
         dotnet-version: 2.2.207
     - name: Goto server directory
-      run: cd server/Server
+      run: cd server/Server/QnA.Api
     - name: Install dependencies        
       run: dotnet restore
     - name: Build
