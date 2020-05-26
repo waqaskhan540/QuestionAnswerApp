@@ -17,10 +17,10 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.2.207
-    - name: Goto server directory
-      run: cd server/Server/QnA.Api
-    - name: Install dependencies        
+    - name: Install dependencies              
+      working-directory: ./server/Server
       run: dotnet restore
     - name: Build
+      working-directory: ./server/Server
       run: dotnet build --configuration Release --no-restore
 
