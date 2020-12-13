@@ -24,6 +24,8 @@ namespace QnA.Persistence
             services.AddScoped<IQuestionsRepository, QuestionsRepository>();
             services.AddScoped<IAnswersRepository, AnswersRepository>();
             services.AddScoped<IQuestionsFollowingRepository, QuestionsFollowingRepository>();
+            services.AddScoped<IDraftRepository, DraftRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         }

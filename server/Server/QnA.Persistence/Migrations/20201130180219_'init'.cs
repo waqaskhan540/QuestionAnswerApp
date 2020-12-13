@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QnA.Persistence.Migrations
@@ -13,7 +12,7 @@ namespace QnA.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
@@ -50,7 +49,7 @@ namespace QnA.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     QuestionText = table.Column<string>(maxLength: 500, nullable: false),
                     DateTime = table.Column<DateTime>(nullable: false),
                     UserId = table.Column<int>(nullable: false)
@@ -89,7 +88,7 @@ namespace QnA.Persistence.Migrations
                 columns: table => new
                 {
                     AnswerId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     AnswerMarkup = table.Column<string>(nullable: false),
                     DateTime = table.Column<DateTime>(nullable: false),
                     UserId = table.Column<int>(nullable: false),
@@ -117,7 +116,7 @@ namespace QnA.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     QuestionId = table.Column<int>(nullable: false),
                     UserId = table.Column<int>(nullable: false),
                     Content = table.Column<string>(nullable: true),
@@ -145,7 +144,7 @@ namespace QnA.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(nullable: false),
                     QuestionId = table.Column<int>(nullable: false)
                 },
@@ -171,11 +170,11 @@ namespace QnA.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     QuestionId = table.Column<int>(nullable: false),
                     UserId = table.Column<int>(nullable: false),
                     DateTime = table.Column<DateTime>(nullable: false),
-                    QuestionId1 = table.Column<int>(nullable: true)
+                    QuestionId1 = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -191,7 +190,7 @@ namespace QnA.Persistence.Migrations
                         column: x => x.QuestionId1,
                         principalTable: "Questions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

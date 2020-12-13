@@ -1,7 +1,6 @@
 ﻿using Api.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -50,20 +49,17 @@ namespace Api
 
 
             services.AddHttpContextAccessor();
-            services.AddMvc(config =>
-            {
-                config.Filters.Add(new ModelStateFilter());
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllers();
 
             services.AddSwagger(Configuration);
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
-            if (env.IsDevelopment())
-            {
+            //if (env)
+           // {
                 app.UseDeveloperExceptionPage();
                 using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
                 {
@@ -71,23 +67,23 @@ namespace Api
                     context.Database.EnsureCreated();
                     context.SeedData();
                 }
-            }
+            //}
 
 
             app.ConfigureExceptionHandler(loggerFactory);
             app.UseStaticFiles();
             app.UseCors("AllowAll");
+            
+            app.UseRouting();
             app.UseAuthentication();
 
-
-
-            app.UseSignalR(routes =>
-            {
-                routes.MapHub<FollowHub>("/followings");
-            });
+            //app.UseSignalR(routes =>
+            //{
+            //    routes.MapHub<FollowHub>("/followings");
+            //});
 
             app.UseSwagger(Configuration);
-            app.UseMvc();
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
 
         }
     }

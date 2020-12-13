@@ -12,5 +12,11 @@ namespace QnA.Api.Controllers
             var request = HttpContext.Request;
             return Ok();
         }
+
+        [HttpGet("apirunning")]
+        public IActionResult Test()
+        {
+            return Content("Api is running.");
+        }
     }
 }

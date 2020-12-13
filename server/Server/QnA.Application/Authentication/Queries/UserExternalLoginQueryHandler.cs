@@ -27,6 +27,7 @@ namespace QnA.Application.Authentication.Queries
             _externalAuthProvider = externalAuthProvider;
             _userRepository = userRepository;
             _tokenGenerator = tokenGenerator;
+            _unitOfWork = unitOfWork;
         }
         public async Task<UserLoginViewModel> Handle(UserExternalLoginQuery request, CancellationToken cancellationToken)
         {

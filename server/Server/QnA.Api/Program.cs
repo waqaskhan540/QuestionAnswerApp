@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Serilog.Events;
 using Serilog.Core;
 using Serilog;
+using Microsoft.Extensions.Hosting;
 
 namespace Api
 {
@@ -43,13 +44,17 @@ namespace Api
 
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()  
-                   .ConfigureLogging(logging =>
-                   {
-                       logging.AddSerilog();
-                   })
-                .UseUrls("http://+:5000");
+        public static IHostBuilder CreateWebHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+             .ConfigureWebHostDefaults(webBuilder =>
+             {
+                 webBuilder.ConfigureKestrel(serverOptions =>
+                 {
+                     // Set properties and call methods on options                     
+                 })
+                 .UseStartup<Startup>()
+                    .ConfigureLogging(logging => logging.AddSerilog())
+                    .UseUrls("http://+:5000");
+             });       
     }
 }
