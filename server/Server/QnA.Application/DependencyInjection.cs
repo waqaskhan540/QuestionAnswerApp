@@ -14,17 +14,14 @@ namespace QnA.Application
 
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
+            var assembly = Assembly.GetExecutingAssembly();
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPreProcessorBehavior<,>));
             services.AddTransient(typeof(IRequestPreProcessor<>), typeof(RequestLogger<>));
-
-           // services.AddScoped<IQuestionsRepository,QuestionsRepository>
+            
             return services;
-
-
-
         }
     }
 }
