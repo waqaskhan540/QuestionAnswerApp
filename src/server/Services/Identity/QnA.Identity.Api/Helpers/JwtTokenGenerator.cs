@@ -49,7 +49,8 @@ namespace QnA.Identity.Api.Helpers
                 Claims = new Dictionary<string, object>
                 {
                     {"first_name",user.FirstName },
-                    {"last_name",user.LastName }
+                    {"last_name",user.LastName },
+                    {"profile_image", user.Image }
                 },
                 IssuedAt = DateTime.UtcNow,
                 Issuer = issuer,

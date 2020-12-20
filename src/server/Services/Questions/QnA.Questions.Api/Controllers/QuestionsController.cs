@@ -20,6 +20,13 @@ namespace QnA.Questions.Api.Controllers
             _questionService = questionService;
         }
 
+        [AllowAnonymous]
+        [HttpGet("test")]
+        public IActionResult Test()
+        {
+            return Content("questions api working.");
+        }
+
         /// <summary>
         /// get a question by its Id
         /// </summary>

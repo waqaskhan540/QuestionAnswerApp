@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using QnA.Questions.Api.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,13 @@ namespace QnA.Questions.Api.Data
         }
 
         public DbSet<Question> Questions { get; set; }
+        public DbSet<Author> Authors { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+               
+        }
+
     }
 }

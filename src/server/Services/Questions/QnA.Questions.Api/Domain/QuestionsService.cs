@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using QnA.Questions.Api.Data;
+using QnA.Questions.Api.Data.Entities;
 using QnA.Questions.Api.Helpers;
 using QnA.Questions.Api.Models;
 using QnA.Questions.Api.Results;

@@ -18,6 +18,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using QnA.Questions.Api.Data;
+using QnA.Questions.Api.Data.Entities;
 using QnA.Questions.Api.Domain;
 using QnA.Questions.Api.Helpers;
 using QnA.Questions.Api.Models;

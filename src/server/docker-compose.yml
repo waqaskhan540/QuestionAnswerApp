@@ -10,12 +10,11 @@ services:
       - "5434:1433"
 
 
-
   qna.questions.api:
     container_name : questionsapi             
     build:
       context: .
-      dockerfile: Services\QnA.Questions.Api\Dockerfile
+      dockerfile: Services\Questions\QnA.Questions.Api\Dockerfile
     restart: on-failure
     depends_on:
         - db
@@ -25,7 +24,7 @@ services:
     container_name: answersapi
     build:
       context: .
-      dockerfile: Services\QnA.Answers.Api\Dockerfile
+      dockerfile: Services\Answers\QnA.Answers.Api\Dockerfile
     restart: on-failure
     depends_on:
         - db
@@ -34,7 +33,7 @@ services:
     container_name: draftsapi
     build:
       context: .
-      dockerfile: Services\QnA.Drafts.Api\Dockerfile
+      dockerfile: Services\Drafts\QnA.Drafts.Api\Dockerfile
     restart: on-failure
     depends_on:
         - db
@@ -43,8 +42,18 @@ services:
     container_name: identityapi
     build:
       context: .
-      dockerfile: Services\QnA.Identity.Api\Dockerfile
+      dockerfile: Services\Identity\QnA.Identity.Api\Dockerfile
     restart: on-failure
     depends_on:
         - db
+
+
+  qna.gateway.api:
+    container_name: gatewayapi
+    ports:
+       - 8000:80
+       - 8001:443
+    build:
+      context: .
+      dockerfile: ApiGateway\QnA.Gateway.Api\Dockerfile
 
