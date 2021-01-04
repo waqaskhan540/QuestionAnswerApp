@@ -24,30 +24,26 @@ namespace QnA.Drafts.Api.Domain
         private readonly IMapper _mapper;
         private readonly IDraftRepository _draftRepository;
 
-        private readonly ICurrentUser _currentUser;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ICurrentUser _currentUser;        
         public DraftsService(
             IDraftRepository draftRepository, 
             IValidator<CreateDraftModel> createDraftModelValidator,
             IValidator<UpdateDraftModel> updateDraftModelValidator,
             IMapper mapper,
-            ICurrentUser currentUser,
-            IHttpContextAccessor httpContextAccessor)
+            ICurrentUser currentUser)
         {
             _draftRepository = draftRepository;
             _createDraftModelValidator = createDraftModelValidator;
             _updateDraftModelValidator = updateDraftModelValidator;
             _mapper = mapper;
-            _currentUser = currentUser;
-            _httpContextAccessor = httpContextAccessor;
+            _currentUser = currentUser;            
         }
         public async Task<ICustomHttpResponse> Create(CreateDraftModel model)
         {
             var validation = _createDraftModelValidator.Validate(model);
             if (!validation.IsValid)
             {
-                string[] errors = validation.Errors.Select(x => x.ErrorMessage).ToArray();
-                return CustomHttpResponse.Create(HttpStatusCode.BadRequest, errors: errors);                
+                throw new ValidationException(validation.Errors);             
             }
 
             Draft draftEntity = _mapper.Map<Draft>(model);
@@ -64,9 +60,8 @@ namespace QnA.Drafts.Api.Domain
         {
             var draft = await _draftRepository.GetById(draftId);
             if (draft == null)
-            {
-                string[] errors = new string[] { "draft does not exist" };
-                return CustomHttpResponse.Create(HttpStatusCode.BadRequest, errors: errors);
+            {                
+                return CustomHttpResponse.Create(HttpStatusCode.NotFound);
             }
 
             await _draftRepository.Remove(draft);
@@ -112,10 +107,8 @@ namespace QnA.Drafts.Api.Domain
         {
             var validation = _updateDraftModelValidator.Validate(model);
             if (!validation.IsValid)
-            {               
-                return CustomHttpResponse.Create(
-                    statusCode: HttpStatusCode.BadRequest,
-                    errors: validation.Errors.Select(x => x.ErrorMessage).ToArray());
+            {
+                throw new ValidationException(validation.Errors);
             }
 
             var draft = await _draftRepository.GetById(model.DraftId);
