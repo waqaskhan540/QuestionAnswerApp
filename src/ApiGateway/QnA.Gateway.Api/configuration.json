@@ -1,0 +1,55 @@
+{
+	"Routes": [
+		{
+			"DownstreamPathTemplate": "/api/q/{everything}",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "qna.questions.api",
+					"Port": 80
+				}
+			],
+			"UpstreamPathTemplate": "/api/q/{everything}",
+			"UpstreamHttpMethod": [ "GET", "POST", "DELETE" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/answers/{everything}",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "qna.answers.api",
+					"Port": 80
+				}
+			],
+			"UpstreamPathTemplate": "/api/answers/{everything}",
+			"UpstreamHttpMethod": [ "GET", "POST", "DELETE" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/drafts/{everything}",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "qna.drafts.api",
+					"Port": 80
+				}
+			],
+			"UpstreamPathTemplate": "/api/drafts/{everything}",
+			"UpstreamHttpMethod": [ "GET", "POST", "DELETE" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/auth/{everything}",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "qna.identity.api",
+					"Port": 80
+				}
+			],
+			"UpstreamPathTemplate": "/api/auth/{everything}",
+			"UpstreamHttpMethod": [ "GET", "POST", "DELETE" ]
+		}
+	],
+	"GlobalConfiguration": {
+		"BaseUrl": "http://qna.gateway.api/"
+	}
+}
