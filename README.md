@@ -1,18 +1,16 @@
 
 ![QnA](qna_logo.png)
 
-![.NET Core](https://github.com/waqaskhan540/QuestionAnswerApp/workflows/.NET%20Core/badge.svg?branch=master)
 
 
 A simple app for asking questions and posting answers, built using React and ASP.NET Core
 
-
-![QnA](preview.gif)
 # Requirements
 
 - .NET Core SDK 2.2
-- MySQL
-- MySQL Connector
+- Node
+- Visual Studio 
+- SQL Server
 - Docker (optional)
 
 # How to Setup ?
